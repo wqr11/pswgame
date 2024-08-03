@@ -1,0 +1,15 @@
+.game_layout {
+  position: relative;
+  color: white;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.game_layout::before {
+  content: "";
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0e0e0e;
+  z-index: -100;
+}
