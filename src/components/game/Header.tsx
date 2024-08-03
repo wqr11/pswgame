@@ -1,12 +1,10 @@
 "use client";
 
-import Image from "next/image";
-
 import { Link } from "../Link/Link";
 
-import gyberLogoGreen from "@/assets/svg/game/gyber-logo-green.svg";
-import paperclip from "@/assets/svg/game/paperclip.svg";
-import message from "@/assets/svg/game/message.svg";
+import GyberLogoGreen from "@/assets/svg/game/gyber-logo-green.svg";
+import Paperclip from "@/assets/svg/game/paperclip.svg";
+import Message from "@/assets/svg/game/message.svg";
 
 import styles from "@/styles/game/header.module.css";
 
@@ -15,16 +13,10 @@ const Header = () => {
     <header className="mx-[27px] flex justify-between pt-[30px]">
       <Link href="/" className={styles.header_link}>
         <div className={`${styles.header_link} relative`}>
-          <Image src={paperclip} alt="Paperclip" />
+          <Paperclip />
           <div className="absolute left-[38px] top-[-8px] size-max">
             <div className="relative h-[24px] w-[24px]">
-              <Image
-                className="h-[24px] w-[24px]"
-                src={message}
-                width={24}
-                height={24}
-                alt="Message"
-              />
+              <Message />
               <small className="absolute left-0 top-0 size-full text-center text-white">
                 99 {/* Only values between 1 and 99 */}
               </small>
@@ -34,13 +26,7 @@ const Header = () => {
       </Link>
       <Link href="/game" className={`${styles.header_link} justify-center`}>
         <div className="size-fit border-[2px] border-white px-[12px] py-[10px]">
-          <Image
-            className="h-[32px] w-[26px]"
-            src={gyberLogoGreen}
-            width={26}
-            height={32}
-            alt="Gyber Logo Green"
-          />
+          <GyberLogoGreen />
         </div>
       </Link>
       <Link href="/game/about" className={`${styles.header_link} justify-end`}>
