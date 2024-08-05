@@ -10,18 +10,16 @@ const TabSwitcher = ({
 }: {
   currentTab: searchParamsType["tab"];
 }) => {
-  return (
-    <>
-      {currentTab !== null && (
-        <>
-          {currentTab === "resources" && <ResourcesTab />}
-          {currentTab === "augmentations" && <AugmentationsTab />}
-          {currentTab === "leaderboard" && <LeaderboardTab />}
-          {currentTab === "market" && <MarketTab />}
-        </>
-      )}
-    </>
-  );
+  switch (currentTab) {
+    case "resources":
+      return <ResourcesTab />;
+    case "augmentations":
+      return <AugmentationsTab />;
+    case "leaderboard":
+      return <LeaderboardTab />;
+    case "market":
+      return <MarketTab />;
+  }
 };
 
 export default TabSwitcher;
