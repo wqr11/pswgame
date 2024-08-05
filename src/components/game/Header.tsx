@@ -2,7 +2,7 @@
 
 import { Link } from "../Link/Link";
 
-import GyberLogoGreen from "@/assets/svg/game/gyber-logo-green.svg";
+import GyberLogoGreen from "@/assets/svg/game/gyber-logo-green-w-border.svg";
 import Paperclip from "@/assets/svg/game/paperclip.svg";
 import Message from "@/assets/svg/game/message.svg";
 
@@ -10,7 +10,7 @@ import styles from "@/styles/game/header.module.css";
 
 const Header = () => {
   return (
-    <header className="mx-[27px] flex justify-between pt-[30px]">
+    <header className="sticky left-0 top-0 z-50 mx-[27px] flex h-[100px] items-center justify-between">
       <Link href="/" className={styles.header_link}>
         <div className={`${styles.header_link} relative`}>
           <Paperclip />
@@ -24,10 +24,11 @@ const Header = () => {
           </div>
         </div>
       </Link>
-      <Link href="/game" className={`${styles.header_link} justify-center`}>
-        <div className="size-fit border-[2px] border-white px-[12px] py-[10px]">
-          <GyberLogoGreen />
-        </div>
+      <Link
+        href="/game?tab=none"
+        className={`${styles.header_link} justify-center`}
+      >
+        <GyberLogoGreen />
       </Link>
       <Link href="/game/about" className={`${styles.header_link} justify-end`}>
         <h6 className="size-fit text-[14px] text-[#434343]">ABOUT US</h6>

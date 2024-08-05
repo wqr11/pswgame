@@ -9,7 +9,7 @@ const GameLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className={`${styles.game_layout} ${tickerbitMono.className}`}>
       <Header />
-      <main>{children}</main>
+      <main className="flex">{children}</main>
       <Footer />
     </div>
   );
