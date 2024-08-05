@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import QuestionMark from "@/assets/svg/game/question.svg";
 import ReferenceBorder from "@/assets/svg/game/reference-border.svg";
@@ -15,6 +15,10 @@ const ReferenceButton = ({
   direction: "fromLeft" | "fromRight";
 }) => {
   const [referenceShown, setReferenceShown] = useState<boolean>(false);
+
+  useEffect(() => {
+    setReferenceShown(false);
+  }, []);
 
   return (
     <div className="relative">

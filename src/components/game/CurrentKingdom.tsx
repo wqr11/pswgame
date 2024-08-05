@@ -55,7 +55,7 @@ const CurrentKingdom = ({
   const Kingdom = kingdoms[kingdomType][kingdomTier];
 
   return (
-    <div className="mt-[10%] flex h-[160px] w-full justify-center">
+    <div className="mt-[10%] flex h-[140px] w-full justify-center">
       <Kingdom />
     </div>
   );
