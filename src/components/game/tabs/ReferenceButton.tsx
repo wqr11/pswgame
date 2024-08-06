@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import QuestionMark from "@/assets/svg/game/question.svg";
 import ReferenceBorder from "@/assets/svg/game/reference-border.svg";
@@ -16,10 +16,6 @@ const ReferenceButton = ({
 }) => {
   const [referenceShown, setReferenceShown] = useState<boolean>(false);
 
-  useEffect(() => {
-    setReferenceShown(false);
-  }, []);
-
   return (
     <div className="relative">
       <button
@@ -33,7 +29,7 @@ const ReferenceButton = ({
       </button>
       {referenceShown && (
         <div
-          className={`${styles.reference_window} ${styles[direction]} absolute top-8`}
+          className={`${styles.reference_window} ${styles[direction]} absolute top-8 z-50`}
         >
           <div className="relative">
             <ReferenceBorder />

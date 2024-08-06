@@ -1,0 +1,13 @@
+.leaders_scroll {
+  position: relative;
+}
+.leaders_scroll:after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  background: radial-gradient(circle at 25% 150%, #0e0e0e 15%, transparent 50%), radial-gradient(circle at 50% 150%, #0e0e0e 15%, transparent 50%), radial-gradient(circle at 75% 150%, #0e0e0e 15%, transparent 50%);
+}/*# sourceMappingURL=LeaderboardTab.module.css.map */

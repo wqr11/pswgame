@@ -18,7 +18,7 @@ const UserRating = ({
           <UserRatingBorder />
         </div>
         <div className="absolute left-0 top-1 flex size-full flex-col items-center uppercase">
-          <h6 className="max-w-[80%] overflow-clip text-center text-[14px]">
+          <h6 className="max-w-[80%] overflow-clip text-center text-[13px]">
             {username}
           </h6>
           <p className="text-[13px] text-green-400">
