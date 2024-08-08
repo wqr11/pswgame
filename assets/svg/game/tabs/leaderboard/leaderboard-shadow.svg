@@ -9,17 +9,17 @@
 <circle cx="213" cy="134" r="88" fill="#101010"/>
 </g>
 <defs>
-<filter id="filter0_f_948_5155" x="0.799999" y="4.8" width="266.4" height="266.4" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter0_f_948_5155" x="0.799999" y="4.8" width="100%" height="100%" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
 <feGaussianBlur stdDeviation="22.6" result="effect1_foregroundBlur_948_5155"/>
 </filter>
-<filter id="filter1_f_948_5155" x="157.8" y="7.8" width="266.4" height="266.4" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter1_f_948_5155" x="157.8" y="7.8" width="100%" height="100%" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
 <feGaussianBlur stdDeviation="22.6" result="effect1_foregroundBlur_948_5155"/>
 </filter>
-<filter id="filter2_f_948_5155" x="79.8" y="0.799999" width="266.4" height="266.4" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter2_f_948_5155" x="79.8" y="0.799999" width="100%" height="100%" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
 <feGaussianBlur stdDeviation="22.6" result="effect1_foregroundBlur_948_5155"/>

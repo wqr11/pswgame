@@ -18,7 +18,6 @@
   width: 100%;
   height: 100%;
   max-height: calc(100vh - 100px);
-  z-index: 40;
   background-color: rgba(14, 14, 14, 0.95);
   animation: appearFromBeneath 0.2s ease-in-out 1;
 }
@@ -26,4 +25,5 @@
 .section_with_border {
   border: 1px solid white;
   height: calc(100% - 60px);
+  padding-inline: 5%;
 }/*# sourceMappingURL=currentTab.module.css.map */

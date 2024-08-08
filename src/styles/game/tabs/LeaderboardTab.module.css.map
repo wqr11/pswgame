@@ -1,1 +1,1 @@
-{"version":3,"sources":["LeaderboardTab.module.scss","LeaderboardTab.module.css"],"names":[],"mappings":"AAAA;EACE,kBAAA;ACCF;ADAE;EACE,WAAA;EACA,WAAA;EACA,YAAA;EACA,kBAAA;EACA,SAAA;EACA,OAAA;EACA,WAAA;EACA,mNAAA;ACEJ","file":"LeaderboardTab.module.css"}
+{"version":3,"sources":["LeaderboardTab.module.scss","LeaderboardTab.module.css"],"names":[],"mappings":"AAmBA;EACE,qBAAA;AClBF;ADmBE;EACE,aAAA;ACjBJ","file":"LeaderboardTab.module.css"}

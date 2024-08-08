@@ -18,12 +18,15 @@ import AquaKingdomTier2 from "@/assets/svg/game/kingdoms/aqua/tier-2.svg";
 import AquaKingdomTier3 from "@/assets/svg/game/kingdoms/aqua/tier-3.svg";
 import AquaKingdomTier4 from "@/assets/svg/game/kingdoms/aqua/tier-4.svg";
 
+export type KingdomTypeProp = "sun" | "plant" | "electro" | "aqua";
+export type KingdomTierProp = "first" | "second" | "third" | "fourth";
+
 const CurrentKingdom = ({
   kingdomType,
   kingdomTier,
 }: {
-  kingdomType: "sun" | "plant" | "electro" | "aqua";
-  kingdomTier: "first" | "second" | "third" | "fourth";
+  kingdomType: KingdomTypeProp;
+  kingdomTier: KingdomTierProp;
 }) => {
   const kingdoms = {
     plant: {
@@ -55,7 +58,7 @@ const CurrentKingdom = ({
   const Kingdom = kingdoms[kingdomType][kingdomTier];
 
   return (
-    <div className="mt-[10%] flex h-[140px] w-full justify-center">
+    <div className="mt-[2%] flex h-[160px] w-full justify-center">
       <Kingdom />
     </div>
   );

@@ -116,8 +116,8 @@ const LeaderboardTab = () => {
   ];
 
   return (
-    <div className={`${styles.tab_wrapper} flex flex-col gap-1`}>
-      <div className="flex w-full justify-end">
+    <div className={`${styles.tab_wrapper} relative flex flex-col gap-1`}>
+      <div className="flex justify-end">
         <ReferenceButton
           direction="fromRight"
           reference="This is the leaderboard. Here's the best of our investors and miners."
@@ -127,7 +127,7 @@ const LeaderboardTab = () => {
         <div className="mt-1 flex justify-center">
           <UserRating username="user2130124912841" coinsLast24Hours={156234} />
         </div>
-        <div className="mx-auto mt-4 flex w-[90%] flex-col gap-3">
+        <div className="mx-auto mt-4 flex w-full flex-col gap-3">
           {leaders.slice(0, 3).map((leader, idx) => (
             <TopLeaderboardUnit
               key={`top-leader-${idx}`}
@@ -137,10 +137,10 @@ const LeaderboardTab = () => {
             />
           ))}
         </div>
-        <div className="mb-16 flex-grow overflow-y-scroll">
-          <div
-            className={`${tabStyles.leaders_scroll} mx-auto mt-4 flex w-[75%] flex-col gap-3`}
-          >
+        <div
+          className={`${tabStyles.leaders_scroll} mx-auto mb-16 w-[90%] flex-grow overflow-y-scroll`}
+        >
+          <div className="mt-4 flex w-full flex-col gap-3">
             {leaders.slice(3).map((leader, idx) => (
               <LeaderboardUnit
                 key={`leader-${idx}`}
