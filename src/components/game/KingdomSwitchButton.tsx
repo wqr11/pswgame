@@ -2,10 +2,10 @@
 
 import { Link } from "../Link/Link";
 
-import AquaMedium from "@/assets/svg/game/resource-icons/aqua-medium.svg";
-import SunMedium from "@/assets/svg/game/resource-icons/sun-medium.svg";
-import PlantMedium from "@/assets/svg/game/resource-icons/plant-medium.svg";
-import ElectroMedium from "@/assets/svg/game/resource-icons/electro-medium.svg";
+import AquaMedium from "@/assets/svg/game/resource-icons/aqua/aqua-medium.svg";
+import SunMedium from "@/assets/svg/game/resource-icons/sun/sun-medium.svg";
+import PlantMedium from "@/assets/svg/game/resource-icons/plant/plant-medium.svg";
+import ElectroMedium from "@/assets/svg/game/resource-icons/electro/electro-medium.svg";
 
 import Lock from "@/assets/svg/game/resource-icons/lock.svg";
 import LockGreen from "@/assets/svg/game/resource-icons/lock-green.svg";

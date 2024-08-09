@@ -1,5 +1,5 @@
 import styles from "@/styles/game/currentTab.module.css";
-import ReferenceButton from "./ReferenceButton";
+import ReferenceButton from "./etc/ReferenceButton";
 
 const AugmentationsTab = () => {
   return (

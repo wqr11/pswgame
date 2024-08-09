@@ -1,0 +1,11 @@
+.progress:before {
+  content: "";
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: url("../../../../../../assets/svg/game/tabs/resources/fills/plant-progress-fill.svg")
+    no-repeat;
+  background-size: 100%;
+  z-index: -1;
+} /*# sourceMappingURL=ResourceProgress.module.css.map */

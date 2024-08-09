@@ -1,9 +1,9 @@
-import ReferenceButton from "./ReferenceButton";
-import UserRating from "./etc/UserRating";
-import LeaderboardUnit from "./etc/LeaderboardUnit";
-import TopLeaderboardUnit from "./etc/TopLeaderboardUnit";
+import ReferenceButton from "./etc/ReferenceButton";
+import UserRating from "./etc/leaderboard/UserRating";
+import LeaderboardUnit from "./etc/leaderboard/LeaderboardUnit";
+import TopLeaderboardUnit from "./etc/leaderboard/TopLeaderboardUnit";
 
-import Shadow from "@/assets/svg/game/tabs/leaderboard/leaderboard-shadow.svg";
+// import Shadow from "@/assets/svg/game/tabs/leaderboard/leaderboard-shadow.svg";
 
 import styles from "@/styles/game/currentTab.module.css";
 import tabStyles from "@/styles/game/tabs/LeaderboardTab.module.css";

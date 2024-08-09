@@ -1,4 +1,4 @@
-import styles from "@/styles/game/tabs/etc/TopLeaderboardUnit.module.css";
+import styles from "@/styles/game/tabs/etc/leaderboard/TopLeaderboardUnit.module.css";
 
 const TopLeaderboardUnit = ({
   username = "unknown",

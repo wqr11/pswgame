@@ -1,10 +1,10 @@
-import PlantSmall from "@/assets/svg/game/resource-icons/plant-small.svg";
-import SunSmall from "@/assets/svg/game/resource-icons/sun-small.svg";
-import ElectroSmall from "@/assets/svg/game/resource-icons/electro-small.svg";
-import AquaSmall from "@/assets/svg/game/resource-icons/aqua-small.svg";
+import PlantSmall from "@/assets/svg/game/resource-icons/plant/plant-small.svg";
+import SunSmall from "@/assets/svg/game/resource-icons/sun/sun-small.svg";
+import ElectroSmall from "@/assets/svg/game/resource-icons/electro/electro-small.svg";
+import AquaSmall from "@/assets/svg/game/resource-icons/aqua/aqua-small.svg";
 
 import styles from "@/styles/game/currentTab.module.css";
-import ReferenceButton from "./ReferenceButton";
+import ReferenceButton from "./etc/ReferenceButton";
 
 const MarketTab = () => {
   return (
