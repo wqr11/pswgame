@@ -1,11 +1,9 @@
-import dynamic from "next/dynamic";
-
 import BuyResource from "./etc/resources/BuyResource";
-import ResourceProgress from "./etc/resources/ResourceProgress";
 import UpdatePoolProgress from "./etc/resources/UpdatePoolProgress";
 import ReferenceButton from "./etc/ReferenceButton";
 
 import styles from "@/styles/game/currentTab.module.css";
+import Resources from "./etc/resources/Resources";
 
 const ResourcesTab = () => {
   return (
@@ -20,9 +18,7 @@ const ResourcesTab = () => {
         <div className="flex flex-col gap-[12px]">
           <div></div>
         </div>
-        <div>
-          <ResourceProgress resource="plant" progress={50} />
-        </div>
+        <Resources />
         <div className="flex flex-col items-end gap-2">
           <UpdatePoolProgress startTime={7200} remainingTime={5864} />
           <BuyResource />

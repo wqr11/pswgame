@@ -1,6 +1,8 @@
 import CurrentKingdomDisplay from "@/components/game/CurrentKingdomDisplay";
 import KingdomSwitcher from "@/components/game/KingdomSwitcher";
 
+import { KingdomTypeProp } from "@/components/game/CurrentKingdom";
+
 import { KingdomStateUnitType } from "@/components/game/KingdomSwitchButton";
 
 import dynamic from "next/dynamic";
@@ -9,21 +11,28 @@ import dynamic from "next/dynamic";
 const TabSwitcher = dynamic(() => import("@/components/game/TabSwitcher"));
 
 export type searchParamsType = {
-  tab: "resources" | "augmentations" | "leaderboard" | "market" | "none";
+  tab:
+    | "resources"
+    | "augmentations"
+    | "leaderboard"
+    | "market"
+    | "about"
+    | "refs"
+    | "none";
 };
 
-export type ApiDataType = {
-  id: string;
-  username: string;
-  kingdomsState: {
-    aqua: {
-      state: KingdomStateUnitType;
-      kingdomTier?: "first" | "second" | "third" | "fourth";
-      kingdomResourceLast24Hours?: number;
-    };
-  };
-  coins: number;
-};
+// export type ApiDataType = {
+//   id: string;
+//   username: string;
+//   kingdomsState: {
+//     [kingdomType: KingdomTypeProp]: {
+//       state: KingdomStateUnitType;
+//       kingdomTier?: "first" | "second" | "third" | "fourth";
+//       kingdomResourceLast24Hours?: number;
+//     };
+//   };
+//   coins: number;
+// };
 
 const Game = ({ searchParams }: { searchParams: searchParamsType }) => {
   // MAKE THIS PLACEHOLDER DATA
@@ -46,8 +55,8 @@ const Game = ({ searchParams }: { searchParams: searchParamsType }) => {
       {/* 100px stand for header height*/}
 
       <CurrentKingdomDisplay
-        kingdomType="sun"
-        kingdomTier="second"
+        kingdomType="aqua"
+        kingdomTier="fourth"
         coins="10 000 000"
         coinsLast24Hours="12 534"
       />

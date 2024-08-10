@@ -1,37 +1,9 @@
-import { FC, SVGProps } from "react";
+import Image from "next/image";
 
 import PlantMedium from "@/assets/svg/game/resource-icons/plant/plant-medium.svg";
 import SunMedium from "@/assets/svg/game/resource-icons/sun/sun-medium.svg";
 import ElectroMedium from "@/assets/svg/game/resource-icons/electro/electro-medium.svg";
 import AquaMedium from "@/assets/svg/game/resource-icons/aqua/aqua-medium.svg";
-
-import PlantProgressFill from "@/assets/svg/game/tabs/resources/fills/plant-progress-fill.svg";
-import SunProgressFill from "@/assets/svg/game/tabs/resources/fills/sun-progress-fill.svg";
-import ElectroProgressFill from "@/assets/svg/game/tabs/resources/fills/electro-progress-fill.svg";
-import AquaProgressFill from "@/assets/svg/game/tabs/resources/fills/aqua-progress-fill.svg";
-
-import ProgressBorder from "@/assets/svg/game/tabs/resources/progress-border.svg";
-
-import styles from "@/styles/game/tabs/etc/resources/ResourceProgress.module.css";
-
-type IconsType = {
-  aqua: {
-    icon: FC<SVGProps<SVGElement>>;
-    fill: FC<SVGProps<SVGElement>>;
-  };
-  sun: {
-    icon: FC<SVGProps<SVGElement>>;
-    fill: FC<SVGProps<SVGElement>>;
-  };
-  electro: {
-    icon: FC<SVGProps<SVGElement>>;
-    fill: FC<SVGProps<SVGElement>>;
-  };
-  plant: {
-    icon: FC<SVGProps<SVGElement>>;
-    fill: FC<SVGProps<SVGElement>>;
-  };
-};
 
 const ResourceProgress = ({
   progress,
@@ -41,43 +13,46 @@ const ResourceProgress = ({
   resource: "aqua" | "electro" | "sun" | "plant";
 }) => {
   const icons = {
-    aqua: {
-      icon: AquaMedium,
-      fill: AquaProgressFill,
-    },
-    electro: {
-      icon: ElectroMedium,
-      fill: ElectroProgressFill,
-    },
-    sun: {
-      icon: SunMedium,
-      fill: SunProgressFill,
-    },
-    plant: {
-      icon: PlantMedium,
-      fill: PlantProgressFill,
-    },
+    aqua: AquaMedium,
+    electro: ElectroMedium,
+    sun: SunMedium,
+    plant: PlantMedium,
   };
 
-  const ResourceIcon = icons[resource].icon;
+  const fills = {
+    aqua: "/game/tabs/resources/fills/aqua-progress-fill.svg",
+    sun: "/game/tabs/resources/fills/sun-progress-fill.svg",
+    electro: "/game/tabs/resources/fills/electro-progress-fill.svg",
+    plant: "/game/tabs/resources/fills/plant-progress-fill.svg",
+  };
 
-  const ProgressFill = icons[resource].fill;
+  const ResourceIcon = icons[resource];
+
+  const resourceFill = fills[resource];
 
   return (
-    <div className="relative flex w-full items-center">
-      <div className="z-20 min-h-[48px] min-w-[48px] border-[3px] border-white bg-[#0e0e0e] p-2">
+    <div className="relative flex items-center">
+      <div className="z-30 min-h-[48px] min-w-[48px] border-[3px] border-white bg-[#0e0e0e] p-2">
         <ResourceIcon />
       </div>
       <div className="absolute w-full">
-        <div className="relative">
-          <div className="relative z-10">
-            <ProgressBorder />
-          </div>
-          <div className="absolute left-0 top-0">
-            {/* FIX NOT SIZING */}
-
-            <ProgressFill />
-          </div>
+        <div className="relative w-full">
+          <Image
+            className="relative z-20"
+            src="/game/tabs/resources/progress-border.svg"
+            width={282}
+            height={22}
+            alt="progress-border"
+            style={{ objectFit: "fill", width: "100%", height: "22px" }}
+          />
+          <Image
+            className="absolute left-0 top-0 z-10"
+            src={resourceFill}
+            width={200}
+            height={22}
+            alt="progress-fill"
+            style={{ objectFit: "fill", width: `${progress}%`, height: "22px" }}
+          />
         </div>
       </div>
     </div>
@@ -85,5 +60,3 @@ const ResourceProgress = ({
 };
 
 export default ResourceProgress;
-
-// className={`${styles.progress} w-full before:w-[${progress}%]`}
