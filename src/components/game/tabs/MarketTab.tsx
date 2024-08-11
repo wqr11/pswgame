@@ -5,6 +5,7 @@ import AquaSmall from "@/assets/svg/game/resource-icons/aqua/aqua-small.svg";
 
 import styles from "@/styles/game/currentTab.module.css";
 import ReferenceButton from "./etc/ReferenceButton";
+import Placement from "./etc/market/Placement";
 
 const MarketTab = () => {
   return (
@@ -29,7 +30,13 @@ const MarketTab = () => {
           reference="This is market. Here you can trade resources with other people."
         />
       </div>
-      <div className={styles.section_with_border}></div>
+      <div className={styles.section_with_border}>
+        <Placement
+          placementHolder="user123123123821"
+          assetsAvailable={140000}
+          assetsInitially={290000}
+        />
+      </div>
     </div>
   );
 };

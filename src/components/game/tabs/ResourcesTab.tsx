@@ -2,8 +2,12 @@ import BuyResource from "./etc/resources/BuyResource";
 import UpdatePoolProgress from "./etc/resources/UpdatePoolProgress";
 import ReferenceButton from "./etc/ReferenceButton";
 
-import styles from "@/styles/game/currentTab.module.css";
+import ResourcePool from "./etc/resources/ResourcePool";
 import Resources from "./etc/resources/Resources";
+
+import styles from "@/styles/game/currentTab.module.css";
+
+export const dynamic = "force-dynamic";
 
 const ResourcesTab = () => {
   return (
@@ -15,9 +19,10 @@ const ResourcesTab = () => {
         />
       </div>
       <div className={`${styles.section_with_border} relative`}>
-        <div className="flex flex-col gap-[12px]">
-          <div></div>
-        </div>
+        <ResourcePool
+          resourcePool={7500000000}
+          startResourcePool={12000000000}
+        />
         <Resources />
         <div className="flex flex-col items-end gap-2">
           <UpdatePoolProgress startTime={7200} remainingTime={5864} />

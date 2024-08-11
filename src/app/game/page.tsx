@@ -21,33 +21,51 @@ export type searchParamsType = {
     | "none";
 };
 
-// export type ApiDataType = {
-//   id: string;
-//   username: string;
-//   kingdomsState: {
-//     [kingdomType: KingdomTypeProp]: {
-//       state: KingdomStateUnitType;
-//       kingdomTier?: "first" | "second" | "third" | "fourth";
-//       kingdomResourceLast24Hours?: number;
-//     };
-//   };
-//   coins: number;
-// };
+export type ApiDataType = {
+  id: string;
+  username: string;
+  kingdomsState: {
+    [kingdomType in KingdomTypeProp]: {
+      state: KingdomStateUnitType;
+      kingdomTier: "first" | "second" | "third" | "fourth";
+      kingdomResourceLast24Hours: number;
+    };
+  };
+  kingdomsOpened: KingdomTypeProp[];
+  coins: number;
+  coinsLast24Hours: number;
+};
 
 const Game = ({ searchParams }: { searchParams: searchParamsType }) => {
-  // MAKE THIS PLACEHOLDER DATA
-  // const apiData: ApiDataType = {
-  //   id: "2130124912841",
-  //   username: "user2130124912841",
-  //   kingdomsState: {
-  //     aqua: "locked",
-  //     sun: "opened",
-  //     electro: "available",
-  //     plant: "opened",
-  //   },
-  //   coins: 10000000,
-  //   coinsLast24Hours: 12534,
-  // };
+  const apiData: ApiDataType = {
+    id: "2130124912841",
+    username: "user2130124912841",
+    kingdomsState: {
+      aqua: {
+        state: "opened",
+        kingdomTier: "second",
+        kingdomResourceLast24Hours: 12489,
+      },
+      sun: {
+        state: "opened",
+        kingdomTier: "first",
+        kingdomResourceLast24Hours: 192002,
+      },
+      electro: {
+        state: "opened",
+        kingdomTier: "third",
+        kingdomResourceLast24Hours: 25922,
+      },
+      plant: {
+        state: "opened",
+        kingdomTier: "fourth",
+        kingdomResourceLast24Hours: 1809,
+      },
+    },
+    kingdomsOpened: ["aqua", "sun", "electro", "plant"],
+    coins: 10000000,
+    coinsLast24Hours: 12534,
+  };
 
   return (
     <div className="relative h-[calc(100vh-100px)] w-full overflow-clip">
@@ -55,13 +73,13 @@ const Game = ({ searchParams }: { searchParams: searchParamsType }) => {
       {/* 100px stand for header height*/}
 
       <CurrentKingdomDisplay
-        kingdomType="aqua"
+        kingdomType="electro"
         kingdomTier="fourth"
-        coins="10 000 000"
-        coinsLast24Hours="12 534"
+        coins={apiData.coins}
+        coinsLast24Hours={apiData.coinsLast24Hours}
       />
 
-      <KingdomSwitcher />
+      <KingdomSwitcher kingdomsState={apiData.kingdomsState} />
 
       <TabSwitcher currentTab={searchParams.tab} />
     </div>

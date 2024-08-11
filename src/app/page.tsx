@@ -14,14 +14,7 @@ export default function Home() {
         footer="You can use these pages to learn more about features, provided by Telegram Mini Apps and other useful projects"
       >
         <Link href="/ton-connect">
-          <Cell
-            before={
-              <Image src={tonSvg.src} style={{ backgroundColor: "#007AFF" }} />
-            }
-            subtitle="Connect your TON wallet"
-          >
-            TON Connect
-          </Cell>
+          <Cell subtitle="Connect your TON wallet">TON Connect</Cell>
         </Link>
       </Section>
       <Section

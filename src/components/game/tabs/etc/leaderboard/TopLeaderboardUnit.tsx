@@ -1,3 +1,5 @@
+import formatNumber from "@/ui/formatNumber";
+
 import styles from "@/styles/game/tabs/etc/leaderboard/TopLeaderboardUnit.module.css";
 
 const TopLeaderboardUnit = ({
@@ -17,7 +19,8 @@ const TopLeaderboardUnit = ({
         {username}
       </h6>
       <h6 className="text-[12px] uppercase text-green-400">
-        {coinsLast24Hours} <span className="text-yellow-300">24h</span>
+        {formatNumber(coinsLast24Hours)}{" "}
+        <span className="text-yellow-300">24h</span>
       </h6>
     </div>
   );

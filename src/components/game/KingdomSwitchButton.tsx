@@ -10,36 +10,17 @@ import ElectroMedium from "@/assets/svg/game/resource-icons/electro/electro-medi
 import Lock from "@/assets/svg/game/resource-icons/lock.svg";
 import LockGreen from "@/assets/svg/game/resource-icons/lock-green.svg";
 
-export type KingdomStateUnitType = "locked" | "opened" | "available";
+import { KingdomTypeProp } from "./CurrentKingdom";
 
-type ApiDataType = {
-  kingdomsState: {
-    aqua: KingdomStateUnitType;
-    electro: KingdomStateUnitType;
-    sun: KingdomStateUnitType;
-    plant: KingdomStateUnitType;
-  };
-};
+export type KingdomStateUnitType = "locked" | "opened" | "available";
 
 const KingdomSwitchButton = ({
   resource,
+  resourceState,
 }: {
-  resource: "aqua" | "sun" | "plant" | "electro";
+  resource: KingdomTypeProp;
+  resourceState: KingdomStateUnitType;
 }) => {
-  // ###########
-  // MOVE LOGIC TO KingdomSwitcher.tsx ! ! !
-  // ###########
-
-  const apiData: ApiDataType = {
-    // placeholder for api data
-    kingdomsState: {
-      aqua: "locked",
-      electro: "opened",
-      sun: "locked",
-      plant: "opened",
-    },
-  };
-
   const resourceIcons = {
     aqua: AquaMedium,
     sun: SunMedium,
@@ -49,7 +30,7 @@ const KingdomSwitchButton = ({
 
   const ResourceOpenedIcon = resourceIcons[resource];
 
-  switch (apiData.kingdomsState[resource]) {
+  switch (resourceState) {
     case "opened":
       return (
         <Link
