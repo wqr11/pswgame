@@ -18,14 +18,14 @@ const ResourcesTab = () => {
           reference="This is the resource pool. It says how much resources are there for people to obtain."
         />
       </div>
-      <div className={`${styles.section_with_border} relative`}>
+      <div className={`${styles.section_with_border} relative overflow-y-auto`}>
         <ResourcePool
-          resourcePool={7500000000}
+          resourcePool={7000000000}
           startResourcePool={12000000000}
         />
         <Resources />
         <div className="flex flex-col items-end gap-2">
-          <UpdatePoolProgress startTime={7200} remainingTime={5864} />
+          <UpdatePoolProgress startTime={9800} remainingTime={5378} />
           <BuyResource />
         </div>
       </div>

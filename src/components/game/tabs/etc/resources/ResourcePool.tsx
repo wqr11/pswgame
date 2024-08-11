@@ -48,7 +48,7 @@ const ResourcePool = ({
                 alt="resource-pool-fill"
               />
             </div>
-            <div className="absolute bottom-1 right-0 z-30 h-12 w-10">
+            <div className="absolute bottom-1 left-[calc(100%-20px)] z-30 h-12 w-10">
               <Flame />
             </div>
           </div>
