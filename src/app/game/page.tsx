@@ -1,14 +1,13 @@
-import CurrentKingdomDisplay from "@/components/game/CurrentKingdomDisplay";
-import KingdomSwitcher from "@/components/game/KingdomSwitcher";
+import { CurrentKingdomDisplay, KingdomSwitcher } from "@/widgets";
 
-import { KingdomTypeProp } from "@/components/game/CurrentKingdom";
+import { KingdomStateUnitType } from "@/widgets/kingdom-switcher/ui/kingdom-switch-button";
 
-import { KingdomStateUnitType } from "@/components/game/KingdomSwitchButton";
+import { KingdomTypeProp } from "@/shared/types";
 
 import dynamic from "next/dynamic";
 
 // needs to be dynamic as it's stops working when statically renderred
-const TabSwitcher = dynamic(() => import("@/components/game/TabSwitcher"));
+const TabSwitcher = dynamic(() => import("@/widgets/tab-switcher/ui"));
 
 export type searchParamsType = {
   tab:

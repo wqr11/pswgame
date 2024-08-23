@@ -1,15 +1,19 @@
-import Header from "@/components/game/Header";
-import Footer from "@/components/game/Footer";
+import { Header, Footer } from "@/widgets";
 
-import { tickerbitMono } from "@/ui/fonts";
+import { tickerbitMono } from "@/shared/utils/fonts";
 
 import styles from "@/styles/game/gameLayout.module.css";
 
 const GameLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className={`${styles.game_layout} ${tickerbitMono.className}`}>
+    <div
+      className={styles.game_layout}
+      style={{
+        fontFamily: tickerbitMono.style.fontFamily,
+      }}
+    >
       <Header />
-      <main className="flex">{children}</main>
+      {children}
       <Footer />
     </div>
   );
