@@ -44,6 +44,7 @@ export const ResourceProgress = ({
             height={22}
             alt="progress-border"
             style={{ objectFit: "fill", width: "100%", height: "22px" }}
+            priority
           />
           <Image
             className="absolute left-0 top-0 z-10"
@@ -52,6 +53,7 @@ export const ResourceProgress = ({
             height={22}
             alt="progress-fill"
             style={{ objectFit: "fill", width: `${progress}%`, height: "22px" }}
+            priority
           />
         </div>
       </div>

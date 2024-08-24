@@ -1,30 +1,39 @@
-import { searchParamsType } from "@/app/game/page";
+import { SearchParamsType } from "@/shared/types";
 
-import ResourcesTab from "@/components/game/tabs/ResourcesTab";
-import AugmentationsTab from "@/components/game/tabs/AugmentationsTab";
-import LeaderboardTab from "@/components/game/tabs/LeaderboardTab";
-import MarketTab from "@/components/game/tabs/MarketTab";
-import AboutTab from "../../../components/game/tabs/AboutTab";
-import RefsTab from "../../tabs/referrals/ui";
+import {
+  ResourcesTab,
+  AboutTab,
+  AugmentationsTab,
+  LeaderboardTab,
+  MarketTab,
+  ReferralsTab,
+  InDevelopmentTab,
+} from "@/widgets";
 
 const TabSwitcher = ({
   currentTab,
 }: {
-  currentTab: searchParamsType["tab"];
+  currentTab: SearchParamsType["tab"];
 }) => {
   switch (currentTab) {
     case "resources":
       return <ResourcesTab />;
-    case "augmentations":
-      return <AugmentationsTab />;
+    // case "augmentations":
+    //   return <AugmentationsTab />;
     case "leaderboard":
       return <LeaderboardTab />;
-    case "market":
-      return <MarketTab />;
+    // case "market":
+    //   return <MarketTab />;
     case "about":
       return <AboutTab />;
-    case "refs":
-      return <RefsTab />;
+    // case "refs":
+    //   return <ReferralsTab />;
+    case "none":
+      return;
+    case undefined:
+      return;
+    default:
+      return <InDevelopmentTab />;
   }
 };
 

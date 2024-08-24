@@ -1,12 +1,10 @@
 import Coin from "@/assets/svg/game/coin.svg";
-import CurrentKingdom from "@/widgets/current-kingdom-display/ui/current-kingdom";
 
-import {
-  KingdomTypeProp,
-  KingdomTierProp,
-} from "@/widgets/current-kingdom-display/ui/current-kingdom";
+import { CurrentKingdom } from "@/widgets";
 
-import formatNumber from "@/shared/utils/formatNumber";
+import { KingdomTierProp, KingdomTypeProp } from "@/shared/types";
+
+import { formatNumber } from "@/shared/utils/formatNumber";
 
 export const CurrentKingdomDisplay = ({
   kingdomType,
@@ -30,7 +28,7 @@ export const CurrentKingdomDisplay = ({
     <>
       <CurrentKingdom kingdomType={kingdomType} kingdomTier={kingdomTier} />
       <div className={`${textColors[kingdomType]} flex flex-col gap-2`}>
-        <div className="mx-auto mt-[5%] flex size-fit items-center gap-[8px] border-[1px] px-[10px]">
+        <div className="mx-auto mt-8 flex size-fit items-center gap-[8px] border-[1px] px-[10px]">
           <h6 className="font-normal">{formatNumber(coins)}</h6>
           <Coin />
         </div>

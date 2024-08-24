@@ -1,11 +1,12 @@
-import BuyResource from "./etc/resources/BuyResource";
-import UpdatePoolProgress from "./etc/resources/UpdatePoolProgress";
-import ReferenceButton from "./etc/ReferenceButton";
+import {
+  ReferenceButton,
+  ResourcePool,
+  UpdatePoolProgress,
+  BuyResource,
+  ResourcesProgress,
+} from "@/widgets";
 
-import ResourcePool from "./etc/resources/ResourcePool";
-import Resources from "./etc/resources/Resources";
-
-import styles from "@/styles/game/currentTab.module.css";
+import styles from "@/shared/ui/styles/current-tab/currentTab.module.css";
 
 export const ResourcesTab = () => {
   return (
@@ -21,7 +22,7 @@ export const ResourcesTab = () => {
           resourcePool={7000000000}
           startResourcePool={12000000000}
         />
-        <Resources />
+        <ResourcesProgress />
         <div className="flex flex-col items-end gap-2">
           <UpdatePoolProgress startTime={9800} remainingTime={5378} />
           <BuyResource />

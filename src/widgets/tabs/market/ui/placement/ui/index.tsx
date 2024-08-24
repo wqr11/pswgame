@@ -1,8 +1,8 @@
+import { formatNumber } from "@/shared/utils/formatNumber";
+
 import PlantExtraSmall from "@/assets/svg/game/resource-icons/plant/plant-extrasmall.svg";
 
 import ShoppingCard from "@/assets/svg/game/tabs/market/shopping-card.svg";
-
-import formatNumber from "@/shared/utils/formatNumber";
 
 export const Placement = ({
   placementHolder,

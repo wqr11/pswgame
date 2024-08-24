@@ -11,7 +11,7 @@ import Augmentations from "@/assets/svg/game/augmentations.svg";
 import Leaderboard from "@/assets/svg/game/leaderboard.svg";
 import Market from "@/assets/svg/game/market.svg";
 
-import styles from "@/styles/game/footer.module.css";
+import styles from "./styles/footer.module.css";
 
 export const Footer = () => {
   const searchParams = useSearchParams();

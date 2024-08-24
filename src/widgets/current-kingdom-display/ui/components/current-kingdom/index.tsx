@@ -57,7 +57,7 @@ export const CurrentKingdom = ({
   const Kingdom = kingdoms[kingdomType][kingdomTier];
 
   return (
-    <div className="mt-[5%] flex h-[30%] w-full justify-center">
+    <div className="mx-8 mt-16 flex h-[30%] max-h-[230px] w-auto justify-center">
       <Kingdom />
     </div>
   );

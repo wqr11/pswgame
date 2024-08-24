@@ -1,12 +1,14 @@
-import ReferenceButton from "./etc/ReferenceButton";
-import UserRating from "./etc/leaderboard/UserRating";
-import LeaderboardUnit from "./etc/leaderboard/LeaderboardUnit";
-import TopLeaderboardUnit from "./etc/leaderboard/TopLeaderboardUnit";
-
+import {
+  ReferenceButton,
+  UserRating,
+  TopLeaderboardUnit,
+  LeaderboardUnit,
+} from "@/widgets";
 // import Shadow from "@/assets/svg/game/tabs/leaderboard/leaderboard-shadow.svg";
 
-import styles from "@/styles/game/currentTab.module.css";
-import tabStyles from "@/styles/game/tabs/LeaderboardTab.module.css";
+import styles from "@/shared/ui/styles/current-tab/currentTab.module.css";
+
+import tabStyles from "./styles/LeaderboardTab.module.css";
 
 export const LeaderboardTab = () => {
   // placeholder data until there's an api to request data from
@@ -138,7 +140,7 @@ export const LeaderboardTab = () => {
           ))}
         </div>
         <div
-          className={`${tabStyles.leaders_scroll} mx-auto mb-16 w-[90%] flex-grow overflow-y-scroll`}
+          className={`${tabStyles.leaders_scroll} mx-auto w-[90%] flex-grow overflow-y-scroll`}
         >
           <div className="mt-4 flex w-full flex-col gap-3">
             {leaders.slice(3).map((leader, idx) => (
@@ -154,3 +156,5 @@ export const LeaderboardTab = () => {
     </div>
   );
 };
+
+export * from "./components";

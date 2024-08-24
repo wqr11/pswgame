@@ -1,7 +1,8 @@
-import styles from "@/styles/game/currentTab.module.css";
-import tabStyles from "@/styles/game/tabs/AboutTab.module.css";
+import styles from "@/shared/ui/styles/current-tab/currentTab.module.css";
 
-import ReferenceButton from "./etc/ReferenceButton";
+import tabStyles from "./styles/AboutTab.module.css";
+
+import { ReferenceButton } from "@/widgets";
 
 import GyberLogoGreen from "@/assets/svg/game/gyber-logo-green.svg";
 

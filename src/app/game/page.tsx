@@ -1,24 +1,15 @@
 import { CurrentKingdomDisplay, KingdomSwitcher } from "@/widgets";
 
-import { KingdomStateUnitType } from "@/widgets/kingdom-switcher/ui/kingdom-switch-button";
-
-import { KingdomTypeProp } from "@/shared/types";
+import {
+  KingdomStateUnitType,
+  KingdomTypeProp,
+  SearchParamsType,
+} from "@/shared/types";
 
 import dynamic from "next/dynamic";
 
 // needs to be dynamic as it's stops working when statically renderred
 const TabSwitcher = dynamic(() => import("@/widgets/tab-switcher/ui"));
-
-export type searchParamsType = {
-  tab:
-    | "resources"
-    | "augmentations"
-    | "leaderboard"
-    | "market"
-    | "about"
-    | "refs"
-    | "none";
-};
 
 export type ApiDataType = {
   id: string;
@@ -35,7 +26,7 @@ export type ApiDataType = {
   coinsLast24Hours: number;
 };
 
-const Game = ({ searchParams }: { searchParams: searchParamsType }) => {
+const Game = ({ searchParams }: { searchParams: SearchParamsType }) => {
   const apiData: ApiDataType = {
     id: "2130124912841",
     username: "user2130124912841",
@@ -67,7 +58,7 @@ const Game = ({ searchParams }: { searchParams: searchParamsType }) => {
   };
 
   return (
-    <div className="relative h-[calc(100vh-100px)] w-full overflow-clip">
+    <div className="relative w-full flex-grow overflow-clip">
       {/* Temporary solution for giving <div> the remaining height from the viewport */}
       {/* 100px stand for header height*/}
 

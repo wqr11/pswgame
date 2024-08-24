@@ -8,7 +8,7 @@ export const KingdomSwitcher = ({
   kingdomsState: ApiDataType["kingdomsState"];
 }) => {
   return (
-    <div className="mx-auto mt-5 grid size-fit grid-cols-3 gap-4">
+    <div className="mx-auto mt-8 grid size-fit grid-cols-3 gap-4">
       <KingdomSwitchButton
         resource="electro"
         resourceState={kingdomsState.electro.state}

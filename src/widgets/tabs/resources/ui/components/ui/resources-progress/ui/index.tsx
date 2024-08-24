@@ -1,4 +1,4 @@
-import { ResourceProgress } from "../resource-progress";
+import { ResourceProgress } from "@/widgets";
 
 export const ResourcesProgress = () => {
   return (

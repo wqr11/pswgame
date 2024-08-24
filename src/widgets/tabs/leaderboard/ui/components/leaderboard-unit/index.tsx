@@ -1,6 +1,6 @@
-import formatNumber from "@/shared/utils/formatNumber";
+import { formatNumber } from "@/shared/utils/formatNumber";
 
-const LeaderboardUnit = ({
+export const LeaderboardUnit = ({
   username = "unknown",
   coinsLast24Hours = 999999999,
 }: {
@@ -17,5 +17,3 @@ const LeaderboardUnit = ({
     </div>
   );
 };
-
-export default LeaderboardUnit;

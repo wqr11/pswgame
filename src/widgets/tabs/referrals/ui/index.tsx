@@ -1,11 +1,10 @@
-import styles from "@/styles/game/currentTab.module.css";
-import { ReferenceButton } from "@/widgets/reference-button";
+import { ReferenceButton, LeaderboardUnit } from "@/widgets";
 
 import PaperclipBig from "@/assets/svg/game/paperclip-big.svg";
 
-import LeaderboardUnit from "../../leaderboard/ui/leaderboard-unit";
+import styles from "@/shared/ui/styles/current-tab/currentTab.module.css";
 
-const RefsTab = () => {
+export const ReferralsTab = () => {
   const refsApiData = {
     // placeholder api data
     id: "912309128312",
@@ -103,5 +102,3 @@ const RefsTab = () => {
     </div>
   );
 };
-
-export default RefsTab;

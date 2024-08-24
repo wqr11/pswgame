@@ -1,8 +1,8 @@
-import formatNumber from "@/shared/utils/formatNumber";
+import { formatNumber } from "@/shared/utils/formatNumber";
 
-import styles from "@/styles/game/tabs/etc/leaderboard/TopLeaderboardUnit.module.css";
+import styles from "./styles/TopLeaderboardUnit.module.css";
 
-const TopLeaderboardUnit = ({
+export const TopLeaderboardUnit = ({
   username = "unknown",
   coinsLast24Hours = 999999999,
   place = "first",
@@ -25,5 +25,3 @@ const TopLeaderboardUnit = ({
     </div>
   );
 };
-
-export default TopLeaderboardUnit;

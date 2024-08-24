@@ -1,6 +1,6 @@
 "use client";
 
-import { Link } from "../Link/Link";
+import { Link } from "@/components/Link/Link";
 
 import AquaMedium from "@/assets/svg/game/resource-icons/aqua/aqua-medium.svg";
 import SunMedium from "@/assets/svg/game/resource-icons/sun/sun-medium.svg";
@@ -10,9 +10,7 @@ import ElectroMedium from "@/assets/svg/game/resource-icons/electro/electro-medi
 import Lock from "@/assets/svg/game/resource-icons/lock.svg";
 import LockGreen from "@/assets/svg/game/resource-icons/lock-green.svg";
 
-import { KingdomTypeProp } from "../../widgets/current-kingdom-display/ui/current-kingdom";
-
-export type KingdomStateUnitType = "locked" | "opened" | "available";
+import { KingdomTypeProp, KingdomStateUnitType } from "@/shared/types";
 
 export const KingdomSwitchButton = ({
   resource,

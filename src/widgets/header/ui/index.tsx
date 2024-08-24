@@ -1,12 +1,12 @@
 "use client";
 
-import { Link } from "../Link/Link";
+import { Link } from "@/components/Link/Link";
 
 import GyberLogoGreen from "@/assets/svg/game/gyber-logo-green-w-border.svg";
 import Paperclip from "@/assets/svg/game/paperclip.svg";
 import Message from "@/assets/svg/game/message.svg";
 
-import styles from "@/styles/game/header.module.css";
+import styles from "./styles/header.module.css";
 
 export const Header = () => {
   return (
