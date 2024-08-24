@@ -18,8 +18,8 @@ const TabSwitcher = ({
   switch (currentTab) {
     case "resources":
       return <ResourcesTab />;
-    // case "augmentations":
-    //   return <AugmentationsTab />;
+    case "augmentations":
+      return <AugmentationsTab />;
     case "leaderboard":
       return <LeaderboardTab />;
     // case "market":
