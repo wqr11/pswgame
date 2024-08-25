@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: false,
   // SVGR Settings
   webpack(config) {
     // Grab the existing rule that handles SVG imports

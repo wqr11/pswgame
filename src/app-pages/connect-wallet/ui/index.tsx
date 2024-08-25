@@ -18,8 +18,6 @@ export const ConnectWalletPageUI = () => {
 
   const address = wallet?.account?.address;
 
-  console.log(HOST);
-
   console.log(initData);
 
   const {
@@ -32,21 +30,13 @@ export const ConnectWalletPageUI = () => {
       const res = await axios.post(
         `${HOST}/api/v1/auth/login`,
         JSON.stringify({
-          initData: `\
-          query_id=${initData.user.id}\
-          &first_name=${initData.user.firstName}\
-          &last_name=${initData.user.lastName}\
-          &username=${initData.user.username}\
-          &auth_date=${initData.authDate}\
-          &hash=${initData.hash}\
-          &language_code=${initData.user.languageCode}`,
+          // @ts-ignore
+          initData: `query_id=${initData.user.id}&first_name=${initData.user.firstName}&last_name=${initData.user.lastName}&username=${initData.user.username}&auth_date=${initData.authDate}&hash=${initData.hash}&language_code=${initData.user.languageCode}`,
         }),
       );
       return res;
     },
   });
-
-  console.log(authData);
 
   return (
     <>
