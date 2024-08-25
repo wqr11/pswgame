@@ -28,7 +28,7 @@ export const ConnectWalletPageUI = () => {
     queryKey: ["authQuery"],
     queryFn: async () => {
       const res = axios.post(
-        `${HOST}/api/v1/auth/login`,
+        `https://pswgame.vercel.app/api/v1/auth/login`,
         JSON.stringify({
           initData: `query_id=${initData?.queryId}&user={"id":${initData?.user?.id},"first_name":"${initData?.user?.firstName}","last_name":"${initData?.user?.lastName}","username":"${initData?.user?.username}","language_code":"${initData?.user?.languageCode}"}&auth_date=${initData?.authDate}&hash=${initData?.hash}`,
         }),
