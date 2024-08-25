@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
     },
   });
 
-  // if (!res.ok) return await res.json();
+  if (!res.ok) throw new Error("Error in /v1/auth/login");
 
   const data = await res.json();
 
