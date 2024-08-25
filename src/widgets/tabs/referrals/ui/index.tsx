@@ -94,7 +94,7 @@ export const ReferralsTab = () => {
             <LeaderboardUnit
               key={`ref-${idx}`}
               username={ref.username}
-              coinsLast24Hours={ref.coinsLast24Hours}
+              tokens={ref.coinsLast24Hours}
             />
           ))}
         </div>
