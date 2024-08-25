@@ -13,6 +13,7 @@ export async function POST(req: NextRequest) {
       Accept: "application/json",
       "x-api-key": `${process.env.SECRET_API_KEY}`,
     },
+    cache: "no-store",
   });
 
   if (!res.ok) throw new Error("Error in /v1/auth/login");
