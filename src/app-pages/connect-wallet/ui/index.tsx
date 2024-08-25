@@ -49,6 +49,8 @@ export const ConnectWalletPageUI = () => {
   //   },
   // });
 
+  console.log(authData);
+
   return (
     <>
       {!address && (
@@ -62,6 +64,11 @@ export const ConnectWalletPageUI = () => {
             </div>
           </div>
         </div>
+      )}
+      {address && (
+        <button className="border-[1px] border-white text-center text-white">
+          DISCONNECT
+        </button>
       )}
     </>
   );
