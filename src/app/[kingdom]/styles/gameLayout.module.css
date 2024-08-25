@@ -1,0 +1,6 @@
+.game_layout {
+  position: relative;
+  color: white;
+  user-select: none;
+  -webkit-user-drag: none;
+}

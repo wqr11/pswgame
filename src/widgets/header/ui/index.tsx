@@ -11,7 +11,7 @@ import styles from "./styles/header.module.css";
 export const Header = () => {
   return (
     <header className="sticky left-0 top-0 z-50 mx-[27px] flex h-[100px] items-center justify-between">
-      <Link href="/game?tab=refs" className={styles.header_link}>
+      <Link href="?tab=refs" className={styles.header_link}>
         <div className={`${styles.header_link} relative`}>
           <Paperclip />
           <div className="absolute left-[38px] top-[-8px] size-max">
@@ -24,16 +24,10 @@ export const Header = () => {
           </div>
         </div>
       </Link>
-      <Link
-        href="/game?tab=none"
-        className={`${styles.header_link} justify-center`}
-      >
+      <Link href="?tab=none" className={`${styles.header_link} justify-center`}>
         <GyberLogoGreen />
       </Link>
-      <Link
-        href="/game?tab=about"
-        className={`${styles.header_link} justify-end`}
-      >
+      <Link href="?tab=about" className={`${styles.header_link} justify-end`}>
         <h6 className="h-[45px] text-[14px] text-[#434343]">ABOUT US</h6>
       </Link>
     </header>

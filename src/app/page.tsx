@@ -36,7 +36,7 @@ export default function Home() {
         </Link>
       </Section>
       <Section header="Powerswap">
-        <Link href="/game">
+        <Link href="/plant">
           <Cell subtitle="Game link">Game</Cell>
         </Link>
       </Section>

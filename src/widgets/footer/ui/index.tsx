@@ -21,25 +21,25 @@ export const Footer = () => {
   return (
     <footer className="fixed bottom-0 left-0 z-50 flex h-[100px] w-full items-center justify-between px-[12%]">
       <Link
-        href="/game?tab=resources"
+        href="?tab=resources"
         className={currentTab === "resources" ? styles.link_active : ""}
       >
         <Resources />
       </Link>
       <Link
-        href="/game?tab=augmentations"
+        href="?tab=augmentations"
         className={currentTab === "augmentations" ? styles.link_active : ""}
       >
         <Augmentations />
       </Link>
       <Link
-        href="/game?tab=leaderboard"
+        href="?tab=leaderboard"
         className={currentTab === "leaderboard" ? styles.link_active : ""}
       >
         <Leaderboard />
       </Link>
       <Link
-        href="/game?tab=market"
+        href="?tab=market"
         className={currentTab === "market" ? styles.link_active : ""}
       >
         <Market />

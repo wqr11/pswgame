@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function MainLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
-      <body>
+      <body style={{ backgroundColor: "#0e0e0e" }}>
         <Root>{children}</Root>
       </body>
     </html>

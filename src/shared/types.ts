@@ -12,3 +12,10 @@ export type SearchParamsType = {
     | "none"
     | undefined;
 };
+export type LeaderType = {
+  id: number;
+  user_id: number;
+  user_name: string;
+  tokens_amount: number;
+  resources_amount: Array<number>;
+};

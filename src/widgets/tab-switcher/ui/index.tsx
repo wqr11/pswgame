@@ -1,4 +1,4 @@
-import { SearchParamsType } from "@/shared/types";
+import { KingdomTypeProp, SearchParamsType } from "@/shared/types";
 
 import {
   ResourcesTab,

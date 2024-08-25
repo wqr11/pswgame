@@ -49,7 +49,7 @@ export const ReferenceButton = ({
               translateY: "-50%",
             }}
             transition={{
-              duration: 0.2,
+              duration: 0.15,
             }}
             className="absolute right-0 top-8 z-50"
           >

@@ -6,7 +6,11 @@ import {
   SearchParamsType,
 } from "@/shared/types";
 
+import { getSession } from "@/shared/api/auth";
+
 import dynamic from "next/dynamic";
+
+import { HOST } from "@/shared/utils/host";
 
 // needs to be dynamic as it's stops working when statically renderred
 const TabSwitcher = dynamic(() => import("@/widgets/tab-switcher/ui"));
@@ -26,7 +30,13 @@ export type ApiDataType = {
   coinsLast24Hours: number;
 };
 
-const Game = ({ searchParams }: { searchParams: SearchParamsType }) => {
+const Game = async ({
+  params,
+  searchParams,
+}: {
+  params: { kingdom: KingdomTypeProp };
+  searchParams: SearchParamsType;
+}) => {
   const apiData: ApiDataType = {
     id: "2130124912841",
     username: "user2130124912841",
@@ -57,13 +67,30 @@ const Game = ({ searchParams }: { searchParams: SearchParamsType }) => {
     coinsLast24Hours: 12534,
   };
 
+  const res = await fetch(`${HOST}/api/login`, {
+    method: "POST",
+    body: JSON.stringify({
+      userId: 12312,
+      address: "12312312312312",
+    }),
+    next: {
+      revalidate: 60,
+    },
+  });
+
+  console.log(await res.json());
+
+  const session = await getSession();
+
+  console.log(session);
+
   return (
     <div className="relative w-full flex-grow overflow-clip">
       {/* Temporary solution for giving <div> the remaining height from the viewport */}
       {/* 100px stand for header height*/}
 
       <CurrentKingdomDisplay
-        kingdomType="electro"
+        kingdomType={params.kingdom}
         kingdomTier="fourth"
         coins={apiData.coins}
         coinsLast24Hours={apiData.coinsLast24Hours}

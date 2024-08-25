@@ -1,6 +1,6 @@
 import { KingdomSwitchButton } from "./kingdom-switch-button";
 
-import { ApiDataType } from "@/app/game/page";
+import { ApiDataType } from "@/app/[kingdom]/page";
 
 export const KingdomSwitcher = ({
   kingdomsState,

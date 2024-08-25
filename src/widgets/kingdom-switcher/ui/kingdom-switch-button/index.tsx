@@ -32,7 +32,7 @@ export const KingdomSwitchButton = ({
     case "opened":
       return (
         <Link
-          href=""
+          href={`/${resource}?tab=none`}
           className="max-h-[55px] min-h-[55px] min-w-[55px] max-w-[55px] border-[3px] border-white p-1"
         >
           <ResourceOpenedIcon />

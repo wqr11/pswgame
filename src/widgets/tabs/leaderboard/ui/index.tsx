@@ -4,112 +4,35 @@ import {
   TopLeaderboardUnit,
   LeaderboardUnit,
 } from "@/widgets";
-// import Shadow from "@/assets/svg/game/tabs/leaderboard/leaderboard-shadow.svg";
+
+import { HOST } from "@/shared/utils/host";
+
+import { LeaderType } from "@/shared/types";
 
 import styles from "@/shared/ui/styles/current-tab/currentTab.module.css";
 
 import tabStyles from "./styles/LeaderboardTab.module.css";
 
-export const LeaderboardTab = () => {
-  // placeholder data until there's an api to request data from
-  const leaders = [
-    {
-      username: "user2130124912841",
-      coinsLast24Hours: 156234,
+export const LeaderboardTab = async () => {
+  const res = await fetch(`${HOST}/api/v1/users/get_all`, {
+    method: "POST",
+    body: JSON.stringify({
+      sort_by_tokens: true,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
     },
-    {
-      username: "user2130124912841",
-      coinsLast24Hours: 156234,
+    next: {
+      revalidate: 30,
     },
-    {
-      username: "user2130124912841",
-      coinsLast24Hours: 156234,
-    },
-    {
-      username: "4user2130124912841",
-      coinsLast24Hours: 156234,
-    },
-    {
-      username: "user2130124912841",
-      coinsLast24Hours: 156234,
-    },
-    {
-      username: "user2130124912841",
-      coinsLast24Hours: 156234,
-    },
-    {
-      username: "user2130124912841",
-      coinsLast24Hours: 156234,
-    },
-    {
-      username: "user2130124912841",
-      coinsLast24Hours: 156234,
-    },
-    {
-      username: "user2130124912841",
-      coinsLast24Hours: 156234,
-    },
-    {
-      username: "user2130124912841",
-      coinsLast24Hours: 156234,
-    },
-    {
-      username: "user2130124912841",
-      coinsLast24Hours: 156234,
-    },
-    {
-      username: "user2130124912841",
-      coinsLast24Hours: 156234,
-    },
-    {
-      username: "user2130124912841",
-      coinsLast24Hours: 156234,
-    },
-    {
-      username: "user2130124912841",
-      coinsLast24Hours: 156234,
-    },
-    {
-      username: "user2130124912841",
-      coinsLast24Hours: 156234,
-    },
-    {
-      username: "user2130124912841",
-      coinsLast24Hours: 156234,
-    },
-    {
-      username: "user2130124912841",
-      coinsLast24Hours: 156234,
-    },
-    {
-      username: "user2130124912841",
-      coinsLast24Hours: 156234,
-    },
-    {
-      username: "user2130124912841",
-      coinsLast24Hours: 156234,
-    },
-    {
-      username: "user2130124912841",
-      coinsLast24Hours: 156234,
-    },
-    {
-      username: "user2130124912841",
-      coinsLast24Hours: 156234,
-    },
-    {
-      username: "user2130124912841",
-      coinsLast24Hours: 156234,
-    },
-    {
-      username: "user2130124912841",
-      coinsLast24Hours: 156234,
-    },
-    {
-      username: "99user2130124912841",
-      coinsLast24Hours: 156234,
-    },
-  ];
+  });
+
+  if (!res.ok) throw new Error("Error in leaderboard tab");
+
+  const data = await res.json();
+
+  const leaders: LeaderType[] = data.data;
 
   const places: Array<"first" | "second" | "third"> = [
     "first",
@@ -133,21 +56,21 @@ export const LeaderboardTab = () => {
           {leaders.slice(0, 3).map((leader, idx) => (
             <TopLeaderboardUnit
               key={`top-leader-${idx}`}
-              username={leader.username}
-              coinsLast24Hours={leader.coinsLast24Hours}
+              username={leader.user_name}
+              tokens={leader.tokens_amount}
               place={places[idx]}
             />
           ))}
         </div>
         <div
-          className={`${tabStyles.leaders_scroll} mx-auto w-[90%] flex-grow overflow-y-scroll`}
+          className={`${tabStyles.leaders_scroll} mx-auto w-[90%] overflow-y-scroll`}
         >
           <div className="mt-4 flex w-full flex-col gap-3">
             {leaders.slice(3).map((leader, idx) => (
               <LeaderboardUnit
                 key={`leader-${idx}`}
-                username={leader.username}
-                coinsLast24Hours={leader.coinsLast24Hours}
+                username={leader.user_name}
+                tokens={leader.tokens_amount}
               />
             ))}
           </div>
