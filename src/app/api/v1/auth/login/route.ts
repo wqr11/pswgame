@@ -16,6 +16,12 @@ export async function POST(req: NextRequest) {
     cache: "no-store",
   });
 
+  console.log(
+    JSON.stringify({
+      init_data: body.initData,
+    }),
+  );
+
   if (!res.ok) throw new Error("Error in /v1/auth/login");
 
   const data = await res.json();

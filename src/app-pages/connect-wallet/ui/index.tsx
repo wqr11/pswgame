@@ -18,6 +18,8 @@ export const ConnectWalletPageUI = () => {
 
   const address = wallet?.account?.address;
 
+  console.log(`QUERYID -> ${initData?.queryId}`);
+
   const {
     data: authData,
     isFetching: authIsFetching,
