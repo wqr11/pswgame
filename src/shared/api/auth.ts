@@ -12,7 +12,7 @@ export const encrypt = async (payload: any) => {
   return await new SignJWT(payload)
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
-    .setExpirationTime("60 sec from now")
+    .setExpirationTime(`${process.env.AUTH_TIMEOUT} sec from now`)
     .sign(key);
 };
 
@@ -24,7 +24,9 @@ export const decrypt = async (input: string) => {
 };
 
 export const login = async (user: { userId: number; address: string }) => {
-  const expires = new Date(Date.now() + 60 * 1000);
+  const expires = new Date(
+    Date.now() + parseInt(`${process.env.AUTH_TIMEOUT}`) * 1000,
+  );
 
   const session = await encrypt({ user, expires });
 
@@ -54,7 +56,9 @@ export const updateSession = async (req: NextRequest) => {
   if (!session) return;
 
   const parsed = await decrypt(session);
-  parsed.expires = new Date(Date.now() + 60 * 1000);
+  parsed.expires = new Date(
+    Date.now() + parseInt(`${process.env.AUTH_TIMEOUT}`) * 1000,
+  );
 
   const res = NextResponse.next();
 

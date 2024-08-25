@@ -2,6 +2,7 @@ import type { PropsWithChildren } from "react";
 import type { Metadata } from "next";
 
 import { Root } from "@/components/Root/Root";
+import { QueryProvider } from "@/shared/utils/QueryProvider";
 
 import "@telegram-apps/telegram-ui/dist/styles.css";
 import "normalize.css";
@@ -16,7 +17,9 @@ export default function MainLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
       <body style={{ backgroundColor: "#0e0e0e" }}>
-        <Root>{children}</Root>
+        <Root>
+          <QueryProvider>{children}</QueryProvider>
+        </Root>
       </body>
     </html>
   );

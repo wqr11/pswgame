@@ -1,5 +1,7 @@
 {
-  "url": "https://ton.vote",
-  "name": "TON Vote",
-  "iconUrl": "https://ton.vote/logo.png"
+  "url": "https://powerswap.io",
+  "name": "PSWMeta",
+  "iconUrl": "https://powerswap.io/pswmeta-icon.png",
+  "termsOfUseUrl": "https://powerswap.io/terms-of-use.txt",
+  "privacyPolicyUrl": "https://powerswap.io/privacy-policy.txt"
 }

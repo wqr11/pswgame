@@ -8,13 +8,45 @@ import { useRouter } from "next/navigation";
 import { useTonWallet, TonConnectButton } from "@tonconnect/ui-react";
 import { useInitData } from "@telegram-apps/sdk-react";
 
+import { HOST } from "@/shared/utils/host";
+
 export const ConnectWalletPageUI = () => {
   const router = useRouter();
 
   const wallet = useTonWallet();
   const initData = useInitData();
-  const userId = initData?.user?.id;
+
   const address = wallet?.account?.address;
+
+  console.log(HOST);
+
+  console.log(initData);
+
+  const {
+    data: authData,
+    isFetching: authIsFetching,
+    isError: authIsError,
+  } = useQuery({
+    queryKey: ["authQuery"],
+    queryFn: async () => {
+      const res = await axios.post(
+        `${HOST}/api/v1/auth/login`,
+        JSON.stringify({
+          initData: `\
+          query_id=${initData.user.id}\
+          &first_name=${initData.user.firstName}\
+          &last_name=${initData.user.lastName}\
+          &username=${initData.user.username}\
+          &auth_date=${initData.authDate}\
+          &hash=${initData.hash}\
+          &language_code=${initData.user.languageCode}`,
+        }),
+      );
+      return res;
+    },
+  });
+
+  console.log(authData);
 
   return (
     <>

@@ -1,8 +1,6 @@
 "use client";
-// { Link } import needs the component to be client, as it has onClick property under the hood
 
-// need this in order to protect app from going to external links
-import { Link } from "../../../components/Link/Link";
+import { Link } from "@/components/Link/Link";
 
 import { useSearchParams } from "next/navigation";
 
@@ -16,10 +14,12 @@ import styles from "./styles/footer.module.css";
 export const Footer = () => {
   const searchParams = useSearchParams();
 
-  const currentTab: string | null = searchParams.get("tab"); // null for no tab selected
+  const currentTab: string | null = searchParams.get("tab");
 
   return (
-    <footer className="fixed bottom-0 left-0 z-50 flex h-[100px] w-full items-center justify-between px-[12%]">
+    <footer
+      className={`${styles.footer} fixed bottom-0 left-0 z-50 flex h-[100px] w-full items-center justify-between px-[12%]`}
+    >
       <Link
         href="?tab=resources"
         className={currentTab === "resources" ? styles.link_active : ""}

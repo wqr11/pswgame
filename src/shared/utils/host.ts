@@ -1,4 +1,4 @@
 export const HOST =
   process.env.NODE_ENV === "development"
-    ? process.env.HOST_LOCAL_URL
-    : process.env.HOST_SERVER_URL;
+    ? process.env.NEXT_PUBLIC_HOST_LOCAL_URL
+    : process.env.NEXT_PUBLIC_HOST_SERVER_URL;

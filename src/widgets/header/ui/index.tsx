@@ -28,7 +28,9 @@ export const Header = () => {
         <GyberLogoGreen />
       </Link>
       <Link href="?tab=about" className={`${styles.header_link} justify-end`}>
-        <h6 className="h-[45px] text-[14px] text-[#434343]">ABOUT US</h6>
+        <h6 className="h-[45px] text-end text-[14px] text-[#434343]">
+          ABOUT US
+        </h6>
       </Link>
     </header>
   );
