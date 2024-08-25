@@ -18,8 +18,6 @@ export const ConnectWalletPageUI = () => {
 
   const address = wallet?.account?.address;
 
-  console.log(initData);
-
   const {
     data: authData,
     isFetching: authIsFetching,
@@ -27,16 +25,22 @@ export const ConnectWalletPageUI = () => {
   } = useQuery({
     queryKey: ["authQuery"],
     queryFn: async () => {
-      const res = await axios.post(
-        `${HOST}/api/v1/auth/login`,
-        JSON.stringify({
-          // @ts-ignore
-          initData: `query_id=${initData.user.id}&first_name=${initData.user.firstName}&last_name=${initData.user.lastName}&username=${initData.user.username}&auth_date=${initData.authDate}&hash=${initData.hash}&language_code=${initData.user.languageCode}`,
+      const res = await fetch(`${HOST}/api/v1/auth/login`, {
+        method: "POST",
+        body: JSON.stringify({
+          initData: `query_id=${initData?.queryId}&user={id=${initData?.user?.id},first_name=${initData?.user?.firstName},last_name=${initData?.user?.lastName},username=${initData?.user?.username},language_code=${initData?.user?.languageCode}}&auth_date=${initData?.authDate}&hash=${initData?.hash}`,
         }),
-      );
-      return res;
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      });
+
+      return await res.json();
     },
   });
+
+  console.log(authData);
 
   return (
     <>
