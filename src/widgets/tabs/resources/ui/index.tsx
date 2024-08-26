@@ -8,7 +8,7 @@ import {
 
 import styles from "@/shared/ui/styles/current-tab/currentTab.module.css";
 
-export const ResourcesTab = () => {
+export const ResourcesTab = async () => {
   return (
     <div className={`${styles.tab_wrapper} flex flex-col gap-1`}>
       <div className="flex w-full justify-end">
