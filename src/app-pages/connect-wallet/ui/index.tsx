@@ -30,7 +30,7 @@ export const ConnectWalletPageUI = () => {
       // fix later -> HOST
       const res = axios.post(
         `https://pswgame.vercel.app/api/v1/auth/login`,
-        initDataRaw,
+        `${initDataRaw}`,
       );
 
       return res;
