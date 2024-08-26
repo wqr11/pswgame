@@ -28,9 +28,21 @@ export const ConnectWalletPageUI = () => {
       console.log(initDataRaw);
 
       // fix later -> HOST
+      // const res = axios.post(
+      //   `https://pswgame.vercel.app/api/v1/auth/login`,
+      //   `${initDataRaw}`,
+      // );
+
       const res = axios.post(
-        `https://pswgame.vercel.app/api/v1/auth/login`,
-        `${initDataRaw}`,
+        `https://game.powerswap.io/api/v1/auth/login`,
+        {
+          init_data: initDataRaw,
+        },
+        {
+          headers: {
+            "x-api-key": "0xsfdjewjrkwjerksdfksdfopewprfoqeroiejfisdfksdfk",
+          },
+        },
       );
 
       return res;
