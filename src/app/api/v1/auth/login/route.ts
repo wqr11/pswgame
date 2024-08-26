@@ -8,7 +8,9 @@ export async function POST(req: NextRequest) {
 
   const res = await axios.post(
     `${process.env.API_URL}/api/v1/auth/login`,
-    body.initDataRaw,
+    {
+      init_data: body.initDataRaw,
+    },
     {
       headers: {
         "x-api-key": `${process.env.SECRET_API_KEY}`,
