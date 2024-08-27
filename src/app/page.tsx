@@ -1,5 +1,5 @@
-import { ConnectWalletPageUI } from "@/app-pages";
+import { AuthPageUI } from "@/app-pages";
 
-const Home = () => <ConnectWalletPageUI />;
+const Home = () => <AuthPageUI />;
 
 export default Home;
