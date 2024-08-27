@@ -4,5 +4,5 @@ import { HOST } from "../model/host";
 
 export const authHost = axios.create({
   baseURL: `${HOST}/api/`,
-  timeout: 1000,
+  timeout: 5000,
 });
