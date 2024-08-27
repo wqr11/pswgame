@@ -1,14 +1,13 @@
 "use client";
 
-import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 
 import { useRouter } from "next/navigation";
 
+import { authHost } from "@/shared/api/authHost";
+
 import { useTonWallet, TonConnectButton } from "@tonconnect/ui-react";
 import { retrieveLaunchParams } from "@telegram-apps/sdk";
-
-import { HOST } from "@/shared/utils/host";
 
 export const ConnectWalletPageUI = () => {
   const router = useRouter();
@@ -17,7 +16,6 @@ export const ConnectWalletPageUI = () => {
   const { initDataRaw } = retrieveLaunchParams();
 
   const address = wallet?.account?.address;
-
   const {
     data: authData,
     isFetching: authIsFetching,
@@ -25,33 +23,13 @@ export const ConnectWalletPageUI = () => {
   } = useQuery({
     queryKey: ["authQuery"],
     queryFn: async () => {
-      console.log(initDataRaw);
-
       // fix later -> HOST
-      // const res = axios.post(
-      //   `https://pswgame.vercel.app/api/v1/auth/login`,
-      //   `${initDataRaw}`,
-      // );
-
-      const res = axios.post(
-        `https://game.powerswap.io/api/v1/auth/login`,
-        {
-          init_data: initDataRaw,
-        },
-        {
-          headers: {
-            "x-api-key": "0xsfdjewjrkwjerksdfksdfopewprfoqeroiejfisdfksdfk",
-          },
-        },
-      );
-
+      const res = authHost.post("auth/login", {
+        init_data: initDataRaw,
+      });
       return res;
     },
   });
-
-  // initData: `query_id=${initData?.queryId}&user={"id":${initData?.user?.id},"first_name":"${initData?.user?.firstName}","last_name":"${initData?.user?.lastName}","username":"${initData?.user?.username}","language_code":"${initData?.user?.languageCode}"}&auth_date=${initData?.authDate}&hash=${initData?.hash}`,
-
-  console.log(authData);
 
   return (
     <div className="flex h-[100vh] w-[100vw] items-center justify-center">

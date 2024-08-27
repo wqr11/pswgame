@@ -5,34 +5,29 @@ import {
   LeaderboardUnit,
 } from "@/widgets";
 
-import { HOST } from "@/shared/utils/host";
-
 import { LeaderType } from "@/shared/types";
+
+import { authHost } from "@/shared/api/authHost";
 
 import styles from "@/shared/ui/styles/current-tab/currentTab.module.css";
 
 import tabStyles from "./styles/LeaderboardTab.module.css";
 
 export const LeaderboardTab = async () => {
-  const res = await fetch(`${HOST}/api/v1/users/get_all`, {
-    method: "POST",
-    body: JSON.stringify({
+  const res = await authHost.post(
+    "users/get_all",
+    {
       sort_by_tokens: true,
-    }),
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
     },
-    next: {
-      revalidate: 30,
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
     },
-  });
+  );
 
-  if (!res.ok) throw new Error("Error in leaderboard tab");
-
-  const data = await res.json();
-
-  const leaders: LeaderType[] = data.data;
+  const leaders: LeaderType[] = res.data.data;
 
   const places: Array<"first" | "second" | "third"> = [
     "first",

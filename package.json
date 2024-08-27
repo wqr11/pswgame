@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@effector/next": "^0.7.0",
     "@tanstack/react-query": "^5.52.1",
     "@telegram-apps/react-router-integration": "^1.0.0",
     "@telegram-apps/sdk": "^1.1.3",
@@ -17,6 +18,8 @@
     "@telegram-apps/telegram-ui": "^2.1.5",
     "@tonconnect/ui-react": "^2.0.5",
     "axios": "^1.7.5",
+    "effector": "^23.2.2",
+    "effector-react": "^23.2.1",
     "eruda": "^3.0.1",
     "framer-motion": "^11.3.30",
     "jose": "^5.7.0",
@@ -27,6 +30,7 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@effector/swc-plugin": "0.5.0",
     "@svgr/webpack": "^8.1.0",
     "@types/node": "^20",
     "@types/react": "^18",
