@@ -23,7 +23,6 @@ export const ConnectWalletPageUI = () => {
   } = useQuery({
     queryKey: ["authQuery"],
     queryFn: async () => {
-      // fix later -> HOST
       const res = authHost.post("auth/login", {
         init_data: initDataRaw,
       });
