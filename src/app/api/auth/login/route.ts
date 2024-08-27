@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json(res, { status: (await res).status });
-  } catch (err) {
+  } catch (err: any) {
     return NextResponse.json(
       { error: err.message },
       { statusText: err.message, status: 502 },
