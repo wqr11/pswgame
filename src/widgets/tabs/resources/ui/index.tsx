@@ -1,4 +1,6 @@
-import axios from "axios";
+import { authHost } from "@/shared/api/authHost";
+
+import { PoolResourcesType } from "@/shared/types";
 
 import {
   ReferenceButton,
@@ -11,9 +13,11 @@ import {
 import styles from "@/shared/ui/styles/current-tab/currentTab.module.css";
 
 export const ResourcesTab = async () => {
-  const res = await axios.get("kingdom/pool_resources/-1");
+  const res: { data: PoolResourcesType } = await authHost.get(
+    "kingdom/pool_resources/-1",
+  );
 
-  console.log(res);
+  console.log(res.data);
 
   return (
     <div className={`${styles.tab_wrapper} flex flex-col gap-1`}>
@@ -25,8 +29,8 @@ export const ResourcesTab = async () => {
       </div>
       <div className={`${styles.section_with_border} relative overflow-y-auto`}>
         <ResourcePool
-          resourcePool={7000000000}
-          startResourcePool={12000000000}
+          sharedResources={res.data.data.shared_resources}
+          sharedTotalResouces={res.data.data.shared_total_resources}
         />
         <ResourcesProgress />
         <div className="flex flex-col items-end gap-2">

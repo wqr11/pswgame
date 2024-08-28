@@ -5,7 +5,7 @@ import {
   LeaderboardUnit,
 } from "@/widgets";
 
-import { LeaderType } from "@/shared/types";
+import { UsersGetAllType } from "@/shared/types";
 
 import { authHost } from "@/shared/api/authHost";
 
@@ -14,7 +14,7 @@ import styles from "@/shared/ui/styles/current-tab/currentTab.module.css";
 import tabStyles from "./styles/LeaderboardTab.module.css";
 
 export const LeaderboardTab = async () => {
-  const res = await authHost.post(
+  const res: { data: UsersGetAllType } = await authHost.post(
     "users/get_all",
     {
       sort_by_tokens: true,
@@ -27,7 +27,7 @@ export const LeaderboardTab = async () => {
     },
   );
 
-  const leaders: LeaderType[] = res.data.data;
+  const leaders: UsersGetAllType["data"] = res.data.data;
 
   const places: Array<"first" | "second" | "third"> = [
     "first",

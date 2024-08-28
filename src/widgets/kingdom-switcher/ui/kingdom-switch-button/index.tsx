@@ -2,10 +2,10 @@
 
 import { Link } from "@/components/Link/Link";
 
-import AquaMedium from "@/assets/svg/game/resource-icons/aqua/aqua-medium.svg";
-import SunMedium from "@/assets/svg/game/resource-icons/sun/sun-medium.svg";
-import PlantMedium from "@/assets/svg/game/resource-icons/plant/plant-medium.svg";
-import ElectroMedium from "@/assets/svg/game/resource-icons/electro/electro-medium.svg";
+import MinerIcon from "@/shared/ui/icons/kingdoms/miner.svg";
+import GrowerIcon from "@/shared/ui/icons/kingdoms/grower.svg";
+import PowerIcon from "@/shared/ui/icons/kingdoms/power.svg";
+import TraderIcon from "@/shared/ui/icons/kingdoms/trader.svg";
 
 import Lock from "@/assets/svg/game/resource-icons/lock.svg";
 import LockGreen from "@/assets/svg/game/resource-icons/lock-green.svg";
@@ -20,10 +20,10 @@ export const KingdomSwitchButton = ({
   resourceState: KingdomStateUnitType;
 }) => {
   const resourceIcons = {
-    aqua: AquaMedium,
-    sun: SunMedium,
-    plant: PlantMedium,
-    electro: ElectroMedium,
+    miner: MinerIcon,
+    grower: GrowerIcon,
+    power: PowerIcon,
+    trader: TraderIcon,
   };
 
   const ResourceOpenedIcon = resourceIcons[resource];

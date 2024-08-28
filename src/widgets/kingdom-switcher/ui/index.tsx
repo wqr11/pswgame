@@ -9,7 +9,7 @@ export const KingdomSwitcher = ({
 }) => {
   return (
     <div className="mx-auto mt-8 grid size-fit grid-cols-3 gap-4">
-      <KingdomSwitchButton
+      {/* <KingdomSwitchButton
         resource="electro"
         resourceState={kingdomsState.electro.state}
       />
@@ -26,7 +26,7 @@ export const KingdomSwitcher = ({
           resource="plant"
           resourceState={kingdomsState.plant.state}
         />
-      </div>
+      </div> */}
     </div>
   );
 };

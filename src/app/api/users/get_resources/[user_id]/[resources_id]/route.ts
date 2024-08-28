@@ -8,16 +8,16 @@ export async function GET(
 ) {
   const jwtToken = `${cookies().get(`${process.env.ACCESS_TOKEN_NAME}`)}`;
 
-  return NextResponse.json(
-    await axios.get(
-      `${process.env.API_URL}/api/v1/users/get_resources/${params.user_id}/${params.resources_id}`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          "jwt-token": jwtToken,
-        },
+  const res = await axios.get(
+    `${process.env.API_URL}/api/v1/users/get_resources/${params.user_id}/${params.resources_id}`,
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "jwt-token": jwtToken,
       },
-    ),
+    },
   );
+
+  return NextResponse.json(res.data, { status: res.status });
 }

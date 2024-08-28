@@ -1,34 +1,47 @@
 import Image from "next/image";
 
-import PlantMedium from "@/assets/svg/game/resource-icons/plant/plant-medium.svg";
-import SunMedium from "@/assets/svg/game/resource-icons/sun/sun-medium.svg";
-import ElectroMedium from "@/assets/svg/game/resource-icons/electro/electro-medium.svg";
-import AquaMedium from "@/assets/svg/game/resource-icons/aqua/aqua-medium.svg";
+// ## CHANGE ALL OF THIS AFTER DESIGN FIXES ##
+import PowerIcon from "@/shared/ui/icons/kingdoms/power.svg";
+import GrowerIcon from "@/shared/ui/icons/kingdoms/grower.svg";
+import MinerIcon from "@/shared/ui/icons/kingdoms/miner.svg";
+
+import GrowerFill from "./assets/fills/grower.svg";
+import PowerFill from "./assets/fills/power.svg";
+import MinerFill from "./assets/fills/miner.svg";
+import TraderFill from "./assets/fills/trader.svg";
+// ##
+
+import { ResourceProp } from "@/shared/types";
 
 export const ResourceProgress = ({
   progress,
   resource,
 }: {
   progress: number;
-  resource: "aqua" | "electro" | "sun" | "plant";
+  resource: ResourceProp;
 }) => {
-  const icons = {
-    aqua: AquaMedium,
-    electro: ElectroMedium,
-    sun: SunMedium,
-    plant: PlantMedium,
+  const assets = {
+    crypto: {
+      icon: MinerIcon,
+      fill: MinerFill,
+    },
+    heat: {
+      icon: PowerIcon,
+      fill: PowerFill,
+    },
+    food: {
+      icon: GrowerIcon,
+      fill: GrowerFill,
+    },
+    energy: {
+      icon: PowerIcon,
+      fill: PowerFill,
+    },
   };
 
-  const fills = {
-    aqua: "/game/tabs/resources/fills/aqua-progress-fill.svg",
-    sun: "/game/tabs/resources/fills/sun-progress-fill.svg",
-    electro: "/game/tabs/resources/fills/electro-progress-fill.svg",
-    plant: "/game/tabs/resources/fills/plant-progress-fill.svg",
-  };
+  const ResourceIcon = assets[resource].icon;
 
-  const ResourceIcon = icons[resource];
-
-  const resourceFill = fills[resource];
+  const ResourceFill = assets[resource].fill;
 
   return (
     <div className="relative flex items-center">
@@ -48,7 +61,7 @@ export const ResourceProgress = ({
           />
           <Image
             className="absolute left-0 top-0 z-10"
-            src={resourceFill}
+            src={ResourceFill}
             width={200}
             height={22}
             alt="progress-fill"

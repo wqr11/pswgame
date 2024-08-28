@@ -2,9 +2,9 @@
 
 import { Link } from "@/components/Link/Link";
 
-import GyberLogoGreen from "@/assets/svg/game/gyber-logo-green-w-border.svg";
-import Paperclip from "@/assets/svg/game/paperclip.svg";
-import Message from "@/assets/svg/game/message.svg";
+import GyberLogoGreen from "./assets/gyber-logo-green-w-border.svg";
+import Paperclip from "./assets/paperclip.svg";
+import Message from "./assets/message.svg";
 
 import styles from "./styles/header.module.css";
 

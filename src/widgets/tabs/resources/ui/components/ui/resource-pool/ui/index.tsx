@@ -2,14 +2,14 @@ import { formatNumber } from "@/shared/utils/formatNumber";
 
 import Image from "next/image";
 
-import Flame from "@/assets/svg/game/tabs/resources/flame.svg";
+import Flame from "../../../../assets/flame.svg";
 
 export const ResourcePool = ({
-  resourcePool,
-  startResourcePool,
+  sharedResources,
+  sharedTotalResouces,
 }: {
-  resourcePool: number;
-  startResourcePool: number;
+  sharedResources: number;
+  sharedTotalResouces: number;
 }) => {
   return (
     <div className="mx-auto mt-8 flex flex-col gap-[12px]">
@@ -34,7 +34,9 @@ export const ResourcePool = ({
         <div className="absolute left-0 top-0 w-full">
           <div
             className="relative"
-            style={{ width: `${(resourcePool / startResourcePool) * 100}%` }}
+            style={{
+              width: `${(sharedResources / sharedTotalResouces) * 100}%`,
+            }}
           >
             <div className="relative z-10">
               <Image
@@ -58,7 +60,7 @@ export const ResourcePool = ({
       </div>
       <div className="text-center">
         <h6 className="text-lg tracking-widest">
-          {formatNumber(resourcePool)}
+          {formatNumber(sharedResources)}
         </h6>
         <p className="text-sm font-normal uppercase tracking-wide">
           resource pool

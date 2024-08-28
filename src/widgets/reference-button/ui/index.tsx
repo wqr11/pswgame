@@ -4,8 +4,8 @@ import { useState } from "react";
 
 import { motion, AnimatePresence } from "framer-motion";
 
-import QuestionMark from "@/assets/svg/game/question.svg";
-import ReferenceBorder from "@/assets/svg/game/reference-border.svg";
+import QuestionMark from "./assets/question.svg";
+import ReferenceBorder from "./assets/reference-border.svg";
 
 export const ReferenceButton = ({
   reference,

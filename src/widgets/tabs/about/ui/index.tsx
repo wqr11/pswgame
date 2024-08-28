@@ -1,10 +1,10 @@
-import styles from "@/shared/ui/styles/current-tab/currentTab.module.css";
-
-import tabStyles from "./styles/AboutTab.module.css";
+import GyberLogoGreen from "./assets/gyber-logo-green.svg";
 
 import { ReferenceButton } from "@/widgets";
 
-import GyberLogoGreen from "@/assets/svg/game/gyber-logo-green.svg";
+import styles from "@/shared/ui/styles/current-tab/currentTab.module.css";
+
+import tabStyles from "./styles/AboutTab.module.css";
 
 export const AboutTab = () => {
   return (

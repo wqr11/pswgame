@@ -1,4 +1,4 @@
-import Coin from "@/assets/svg/game/coin.svg";
+import Coin from "./assets/coin.svg";
 
 import { CurrentKingdom } from "@/widgets";
 
@@ -18,10 +18,10 @@ export const CurrentKingdomDisplay = ({
   coinsLast24Hours: number;
 }) => {
   const textColors = {
-    sun: "text-[#FFAD31]",
-    plant: "text-[#B1FF82]",
-    electro: "text-[#EE71E2]",
-    aqua: "text-[#7CB1FF]",
+    power: "text-[#FFAD31]",
+    grower: "text-[#B1FF82]",
+    miner: "text-[#EE71E2]",
+    trader: "text-[#7CB1FF]",
   };
 
   return (

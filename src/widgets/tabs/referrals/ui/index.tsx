@@ -1,6 +1,6 @@
 import { ReferenceButton, LeaderboardUnit } from "@/widgets";
 
-import PaperclipBig from "@/assets/svg/game/paperclip-big.svg";
+import PaperclipBig from "./assets/paperclip-big.svg";
 
 import styles from "@/shared/ui/styles/current-tab/currentTab.module.css";
 

@@ -1,5 +1,5 @@
-import Trophy from "@/assets/svg/game/tabs/leaderboard/trophy.svg";
-import UserRatingBorder from "@/assets/svg/game/tabs/leaderboard/user-rating-border.svg";
+import Trophy from "../../assets/trophy.svg";
+import UserRatingBorder from "../../assets/user-rating-border.svg";
 
 export const UserRating = ({
   username,

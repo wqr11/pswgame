@@ -4,10 +4,10 @@ import { Link } from "@/components/Link/Link";
 
 import { useSearchParams } from "next/navigation";
 
-import Resources from "@/assets/svg/game/resources.svg";
-import Augmentations from "@/assets/svg/game/augmentations.svg";
-import Leaderboard from "@/assets/svg/game/leaderboard.svg";
-import Market from "@/assets/svg/game/market.svg";
+import Resources from "./assets/resources.svg";
+import Augmentations from "./assets/augmentations.svg";
+import Leaderboard from "./assets/leaderboard.svg";
+import Market from "./assets/market.svg";
 
 import styles from "./styles/footer.module.css";
 
