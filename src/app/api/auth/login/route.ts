@@ -16,5 +16,7 @@ export async function POST(req: NextRequest) {
     },
   );
 
+  console.log(res)
+
   return NextResponse.json(res.data, { status: res.status });
 }
