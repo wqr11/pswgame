@@ -50,7 +50,7 @@ export const ResourceProgress = ({
       </div>
       <div className="absolute w-full">
         <div className="relative w-full">
-          <Image
+          {/* <Image
             className="relative z-20"
             src="/game/tabs/resources/progress-border.svg"
             width={282}
@@ -58,8 +58,8 @@ export const ResourceProgress = ({
             alt="progress-border"
             style={{ objectFit: "fill", width: "100%", height: "22px" }}
             priority
-          />
-          <Image
+          /> */}
+          {/* <Image
             className="absolute left-0 top-0 z-10"
             src={ResourceFill}
             width={200}
@@ -67,7 +67,7 @@ export const ResourceProgress = ({
             alt="progress-fill"
             style={{ objectFit: "fill", width: `${progress}%`, height: "22px" }}
             priority
-          />
+          /> */}
         </div>
       </div>
     </div>
