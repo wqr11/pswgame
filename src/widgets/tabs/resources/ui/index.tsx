@@ -32,10 +32,10 @@ export const ResourcesTab = async () => {
           sharedResources={res.data.data.shared_resources}
           sharedTotalResouces={res.data.data.shared_total_resources}
         />
-        <ResourcesProgress />
+        {/* <ResourcesProgress /> */}
         <div className="flex flex-col items-end gap-2">
           <UpdatePoolProgress startTime={9800} remainingTime={5378} />
-          <BuyResource />
+          {/* <BuyResource /> */}
         </div>
       </div>
     </div>
