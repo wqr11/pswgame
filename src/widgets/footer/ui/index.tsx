@@ -23,24 +23,28 @@ export const Footer = () => {
       <Link
         href="?tab=resources"
         className={currentTab === "resources" ? styles.link_active : ""}
+        prefetch
       >
         <Resources />
       </Link>
       <Link
         href="?tab=augmentations"
         className={currentTab === "augmentations" ? styles.link_active : ""}
+        prefetch
       >
         <Augmentations />
       </Link>
       <Link
         href="?tab=leaderboard"
         className={currentTab === "leaderboard" ? styles.link_active : ""}
+        prefetch
       >
         <Leaderboard />
       </Link>
       <Link
         href="?tab=market"
         className={currentTab === "market" ? styles.link_active : ""}
+        prefetch
       >
         <Market />
       </Link>

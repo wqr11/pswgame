@@ -1,40 +1,43 @@
-import { KingdomTypeProp, SearchParamsType } from "@/shared/types";
+'use client';
+
+import { motion } from 'framer-motion';
 
 import {
   ResourcesTab,
   AboutTab,
   AugmentationsTab,
   LeaderboardTab,
-  MarketTab,
-  ReferralsTab,
   InDevelopmentTab,
-} from "@/widgets";
+} from '@/widgets';
 
-const TabSwitcher = ({
-  currentTab,
-}: {
-  currentTab: SearchParamsType["tab"];
-}) => {
-  switch (currentTab) {
-    case "resources":
-      return <ResourcesTab />;
-    case "augmentations":
-      return <AugmentationsTab />;
-    case "leaderboard":
-      return <LeaderboardTab />;
-    // case "market":
-    //   return <MarketTab />;
-    case "about":
-      return <AboutTab />;
-    // case "refs":
-    //   return <ReferralsTab />;
-    case "none":
-      return;
-    case undefined:
-      return;
-    default:
-      return <InDevelopmentTab />;
-  }
+import { useUnit } from 'effector-react';
+import { $tab } from '@/shared/model';
+
+import TabAnimated from './TabAnimated';
+
+const TabSwitcher = () => {
+  const tab = useUnit($tab);
+
+  const getTab = (key: string) => {
+    switch (tab) {
+      case 'resources':
+        return <ResourcesTab key={key} />;
+      case 'augmentations':
+        return <AugmentationsTab key={key} />;
+      case 'leaderboard':
+        return <LeaderboardTab key={key} />;
+      case 'about':
+        return <AboutTab key={key} />;
+      case 'none':
+        return;
+      case undefined:
+        return;
+      default:
+        return <InDevelopmentTab key={key} />;
+    }
+  };
+
+  return <TabAnimated>{getTab('tab')}</TabAnimated>;
 };
 
 export default TabSwitcher;

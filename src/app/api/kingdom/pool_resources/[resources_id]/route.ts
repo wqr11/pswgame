@@ -5,16 +5,24 @@ export async function GET(
   req: NextRequest,
   { params }: { params: { resources_id: string } },
 ) {
-  const res = await axios.get(
-    `${process.env.API_URL}/api/v1/kingdom/pool_resources/${params.resources_id}`,
-    {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "x-admin-key": `${process.env.SECRET_ADMIN_API_KEY}`,
+  try {
+    const res = await axios.get(
+      `${process.env.API_URL}/api/v1/kingdom/pool_resources/${params.resources_id}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "x-api-key": `${process.env.SECRET_X_API_KEY}`,
+        },
       },
-    },
-  );
+    );
 
-  return NextResponse.json(res.data, { status: res.status });
+    return NextResponse.json(res.data, { status: res.status });
+
+  } catch (error) {
+
+    if (axios.isAxiosError(error)) {
+      return NextResponse.json({ error: error.message }, { status: error.response?.status })
+    }
+  }
 }

@@ -1,23 +1,14 @@
-export type KingdomTypeProp = "miner" | "grower" | "power" | "trader";
+export type KingdomType = "miner" | "grower" | "power" | "trader";
 
 export type ResourceProp = "crypto" | "heat" | "food" | "energy";
 
-export type KingdomTierProp = 1 | 2 | 3 | 4;
+export type KingdomTier = 1 | 2 | 3 | 4;
 
 export type KingdomStateUnitType = "locked" | "opened" | "available";
 
-export type SearchParamsType = {
-  tab:
-    | "resources"
-    | "augmentations"
-    | "leaderboard"
-    | "market"
-    | "about"
-    | "refs"
-    | "none"
-    | undefined;
-};
+export type TabType = "resources" | "augmentations" | "leaderboard" | "market" | "about" | "refs" | "none";
 
+export type ResultType = 'success' | 'failed';
 export type LeaderboardUnitType = {
   id: number;
   user_id: number;
@@ -37,16 +28,30 @@ export type LeaderboardUnitType = {
 };
 
 export type PoolResourcesType = {
-  result: "success" | "error";
+  result: ResultType;
   data: {
-    current_resources: [number, number, number, number];
-    total_resources: [number, number, number, number];
+    crypto: {
+      current: number;
+      total: number;
+    };
+    heat: {
+      current: number;
+      total: number;
+    };
+    food: {
+      current: number;
+      total: number;
+    };
+    energy: {
+      current: number;
+      total: number;
+    };
     shared_resources: number;
     shared_total_resources: number;
   };
 };
 
 export type UsersGetAllType = {
-  result: "success" | "error";
+  result: ResultType;
   data: LeaderboardUnitType[];
 };

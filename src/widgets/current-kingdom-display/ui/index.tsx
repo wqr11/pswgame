@@ -1,10 +1,10 @@
-import Coin from "./assets/coin.svg";
+import Coin from './assets/coin.svg';
 
-import { CurrentKingdom } from "@/widgets";
+import { CurrentKingdom } from '@/widgets';
 
-import { KingdomTierProp, KingdomTypeProp } from "@/shared/types";
+import { KingdomTier, KingdomType } from '@/shared/types';
 
-import { formatNumber } from "@/shared/utils/formatNumber";
+import { formatNumber } from '@/shared/utils/formatNumber';
 
 export const CurrentKingdomDisplay = ({
   kingdomType,
@@ -12,21 +12,24 @@ export const CurrentKingdomDisplay = ({
   coins,
   coinsLast24Hours,
 }: {
-  kingdomType: KingdomTypeProp;
-  kingdomTier: KingdomTierProp;
+  kingdomType: KingdomType;
+  kingdomTier: KingdomTier;
   coins: number;
   coinsLast24Hours: number;
 }) => {
   const textColors = {
-    power: "text-[#FFAD31]",
-    grower: "text-[#B1FF82]",
-    miner: "text-[#EE71E2]",
-    trader: "text-[#7CB1FF]",
+    power: 'text-[#FFAD31]',
+    grower: 'text-[#B1FF82]',
+    miner: 'text-[#EE71E2]',
+    trader: 'text-[#7CB1FF]',
   };
 
   return (
     <>
-      <CurrentKingdom kingdomType={kingdomType} kingdomTier={kingdomTier} />
+      <CurrentKingdom
+        kingdomType={kingdomType}
+        kingdomTier={kingdomTier}
+      />
       <div className={`${textColors[kingdomType]} flex flex-col gap-2`}>
         <div className="mx-auto mt-8 flex size-fit items-center gap-[8px] border-[1px] px-[10px]">
           <h6 className="font-normal">{formatNumber(coins)}</h6>

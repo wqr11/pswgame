@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from '@tanstack/react-query';
 
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation';
 
-import { authHost } from "@/shared/api/authHost";
+import { authHost } from '@/shared/api/authHost';
 
-import { setCookies } from "@/actions/setCookies";
+import { setCookies } from '@/actions/setCookies';
 
-import { LoadingPageUI } from "@/app-pages";
+import { LoadingPageUI } from '@/app-pages';
 
-import { retrieveLaunchParams } from "@telegram-apps/sdk";
+import { retrieveLaunchParams } from '@telegram-apps/sdk';
 
 export const AuthPageUI = () => {
   const router = useRouter();
@@ -22,15 +22,13 @@ export const AuthPageUI = () => {
     isFetching: authIsFetching,
     isError: authIsError,
   } = useQuery({
-    queryKey: ["authQuery"],
+    queryKey: ['authQuery'],
     queryFn: async () => {
-      const res = await authHost.post("auth/login", {
+      const res = await authHost.post('auth/login', {
         init_data: initDataRaw,
       });
 
-      console.log(res);
-
-      await setCookies("TEST1", "TESTREFR1");
+      await setCookies('ACCESS_TOKen', 'REFRESH');
 
       return res;
     },
