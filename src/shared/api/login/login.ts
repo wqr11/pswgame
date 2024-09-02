@@ -1,6 +1,7 @@
 'use server';
 
 import axios, { isAxiosError } from 'axios';
+import { cookies } from 'next/headers';
 
 export async function login(init_data: string) {
   try {
@@ -15,7 +16,10 @@ export async function login(init_data: string) {
       },
     );
 
-    console.log(res.data);
+    cookies().set(`${process.env.ACCESS_TOKEN_NAME}`, res.data.access_token);
+    cookies().set(`${process.env.REFRESH_TOKEN_NAME}`, res.data.resresh_token);
+
+    console.log(cookies().getAll());
 
     return res;
   } catch (error) {
