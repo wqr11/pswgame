@@ -1,12 +1,3 @@
-@keyframes appearFromBeneath {
-  from {
-    transform: translateY(100vh);
-  }
-  to {
-    transform: translateY(0px);
-  }
-}
-
 .tab_wrapper {
   display: flex;
   flex-direction: column;
@@ -19,7 +10,6 @@
   height: 100%;
   max-height: calc(100vh - 100px);
   background-color: rgb(14, 14, 14, 0.95);
-  animation: appearFromBeneath 0.2s ease-in-out 1;
 }
 
 .section_with_border {

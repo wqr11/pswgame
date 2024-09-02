@@ -1,4 +1,5 @@
 export type KingdomType = "miner" | "grower" | "power" | "trader";
+export const KingdomTypeArray: KingdomType[] = ["miner", "grower", "power", "trader"]
 
 export type ResourceProp = "crypto" | "heat" | "food" | "energy";
 
@@ -27,25 +28,16 @@ export type LeaderboardUnitType = {
   };
 };
 
+export type ResourceDataType = {
+  name: ResourceProp,
+  current: number;
+  total: number;
+}
+
 export type PoolResourcesType = {
   result: ResultType;
   data: {
-    crypto: {
-      current: number;
-      total: number;
-    };
-    heat: {
-      current: number;
-      total: number;
-    };
-    food: {
-      current: number;
-      total: number;
-    };
-    energy: {
-      current: number;
-      total: number;
-    };
+    entities: ResourceDataType[];
     shared_resources: number;
     shared_total_resources: number;
   };

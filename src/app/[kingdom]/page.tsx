@@ -1,6 +1,8 @@
+import { redirect } from 'next/navigation';
+
 import { CurrentKingdomDisplay, KingdomSwitcher } from '@/widgets';
 
-import { KingdomType } from '@/shared/types';
+import { KingdomType, KingdomTypeArray } from '@/shared/types';
 
 import dynamic from 'next/dynamic';
 
@@ -8,6 +10,10 @@ import dynamic from 'next/dynamic';
 const TabSwitcher = dynamic(() => import('@/widgets/tab-switcher/ui'));
 
 const Game = async ({ params }: { params: { kingdom: KingdomType } }) => {
+  if (!KingdomTypeArray.includes(params.kingdom)) {
+    redirect('/');
+  }
+
   return (
     <div className="relative w-full flex-grow overflow-clip">
       <CurrentKingdomDisplay
