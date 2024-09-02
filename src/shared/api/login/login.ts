@@ -1,11 +1,13 @@
 'use server';
 
+import { AuthDataType } from '@/shared/types';
+
 import axios, { isAxiosError } from 'axios';
 import { cookies } from 'next/headers';
 
 export async function login(init_data: string) {
   try {
-    const res = await axios.post(
+    const res = await axios.post<AuthDataType>(
       `${process.env.API_URL}/api/v1/auth/login`,
       { init_data },
       {
@@ -16,10 +18,14 @@ export async function login(init_data: string) {
       },
     );
 
-    cookies().set(`${process.env.ACCESS_TOKEN_NAME}`, res.data.access_token);
-    cookies().set(`${process.env.REFRESH_TOKEN_NAME}`, res.data.resresh_token);
-
-    console.log(cookies().getAll());
+    cookies().set(
+      `${process.env.ACCESS_TOKEN_NAME}`,
+      res.data.data.access_token,
+    );
+    cookies().set(
+      `${process.env.REFRESH_TOKEN_NAME}`,
+      res.data.data.refresh_token,
+    );
 
     return res;
   } catch (error) {

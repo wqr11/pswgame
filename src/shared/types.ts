@@ -1,15 +1,36 @@
-export type KingdomType = "miner" | "grower" | "power" | "trader";
-export const KingdomTypeArray: KingdomType[] = ["miner", "grower", "power", "trader"]
+export type KingdomType = 'miner' | 'grower' | 'power' | 'trader';
+export const KingdomTypeArray: KingdomType[] = [
+  'miner',
+  'grower',
+  'power',
+  'trader',
+];
 
-export type ResourceProp = "crypto" | "heat" | "food" | "energy";
+export type ResourceProp = 'crypto' | 'heat' | 'food' | 'energy';
 
 export type KingdomTier = 1 | 2 | 3 | 4;
 
-export type KingdomStateUnitType = "locked" | "opened" | "available";
+export type KingdomStateUnitType = 'locked' | 'opened' | 'available';
 
-export type TabType = "resources" | "augmentations" | "leaderboard" | "market" | "about" | "refs" | "none";
+export type TabType =
+  | 'resources'
+  | 'augmentations'
+  | 'leaderboard'
+  | 'market'
+  | 'about'
+  | 'refs'
+  | 'none';
 
 export type ResultType = 'success' | 'failed';
+
+export type AuthDataType = {
+  result: ResultType;
+  data: {
+    access_token: string;
+    refresh_token: string;
+  };
+};
+
 export type LeaderboardUnitType = {
   id: number;
   user_id: number;
@@ -29,10 +50,10 @@ export type LeaderboardUnitType = {
 };
 
 export type ResourceDataType = {
-  name: ResourceProp,
+  name: ResourceProp;
   current: number;
   total: number;
-}
+};
 
 export type PoolResourcesType = {
   result: ResultType;

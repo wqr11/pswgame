@@ -21,11 +21,13 @@ export const AuthPageUI = () => {
   } = useQuery({
     queryKey: ['loginQuery'],
     queryFn: async () => {
-      return await login(`${initDataRaw}`);
+      const res = await login(`${initDataRaw}`);
+
+      router.push('/grower');
+
+      return res;
     },
   });
-
-  console.log(authData);
 
   return <LoadingPageUI />;
 };
