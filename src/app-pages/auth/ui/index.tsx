@@ -1,22 +1,31 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useQuery } from '@tanstack/react-query';
 
-import { login } from '@/shared/api/login/login';
+import { useRouter } from 'next/navigation';
 
 import { LoadingPageUI } from '@/app-pages';
 
 import { retrieveLaunchParams } from '@telegram-apps/sdk';
-import { useEffect } from 'react';
+import { login } from '@/shared/api/login/login';
 
 export const AuthPageUI = () => {
   const router = useRouter();
 
   const { initDataRaw } = retrieveLaunchParams();
 
-  useEffect(() => {
-    login(`${initDataRaw}`);
-  }, []);
+  const {
+    data: authData,
+    isFetching: isAuthenticating,
+    isError,
+  } = useQuery({
+    queryKey: ['loginQuery'],
+    queryFn: async () => {
+      return await login(`${initDataRaw}`);
+    },
+  });
+
+  console.log(authData);
 
   return <LoadingPageUI />;
 };
