@@ -1,5 +1,3 @@
-'use server';
-
 import axios, { isAxiosError } from 'axios';
 
 import { cookies } from 'next/headers';
