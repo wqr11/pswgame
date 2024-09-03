@@ -1,5 +1,9 @@
 'use client';
 
+import { useQuery } from '@tanstack/react-query';
+
+import { useState } from 'react';
+
 import { motion, AnimatePresence } from 'framer-motion';
 
 import GrowerKingdomTier1 from './assets/kingdoms/grower/tier-1.svg';
@@ -24,6 +28,11 @@ import TraderKingdomTier4 from './assets/kingdoms/trader/tier-4.svg';
 
 import { KingdomTier, KingdomType } from '@/shared/types';
 
+import { useUnit } from 'effector-react';
+import { $userId } from '@/shared/model';
+
+import { postTap } from '@/shared/api/endpoints/postTap';
+
 export const CurrentKingdom = ({
   kingdomType,
   kingdomTier,
@@ -32,13 +41,47 @@ export const CurrentKingdom = ({
   kingdomTier: KingdomTier;
 }) => {
   const kingdoms = {
-    grower: [GrowerKingdomTier1, GrowerKingdomTier2, GrowerKingdomTier3, GrowerKingdomTier4],
-    miner: [MinerKingdomTier1, MinerKingdomTier2, MinerKingdomTier3, MinerKingdomTier4],
-    power: [PowerKingdomTier1, PowerKingdomTier2, PowerKingdomTier3, PowerKingdomTier4],
-    trader: [TraderKingdomTier1, TraderKingdomTier2, TraderKingdomTier3, TraderKingdomTier4],
+    grower: [
+      GrowerKingdomTier1,
+      GrowerKingdomTier2,
+      GrowerKingdomTier3,
+      GrowerKingdomTier4,
+    ],
+    miner: [
+      MinerKingdomTier1,
+      MinerKingdomTier2,
+      MinerKingdomTier3,
+      MinerKingdomTier4,
+    ],
+    power: [
+      PowerKingdomTier1,
+      PowerKingdomTier2,
+      PowerKingdomTier3,
+      PowerKingdomTier4,
+    ],
+    trader: [
+      TraderKingdomTier1,
+      TraderKingdomTier2,
+      TraderKingdomTier3,
+      TraderKingdomTier4,
+    ],
   };
 
   const Kingdom = kingdoms[kingdomType][kingdomTier - 1];
+
+  const userId = useUnit($userId);
+
+  const {} = useQuery({
+    queryKey: ['tapQuery'],
+    queryFn: async () => {
+      if (userId) {
+        console.log(await postTap(userId, 1));
+      } else {
+        console.log('STORE USERID IS NULL!');
+      }
+    },
+    // enabled: false,
+  });
 
   return (
     <AnimatePresence>
@@ -59,7 +102,7 @@ export const CurrentKingdom = ({
         }}
         className="mt-16 h-[220px] w-full"
       >
-        <div className="flex h-full w-auto justify-center px-8">
+        <div className="flex h-full w-auto justify-center px-16">
           <Kingdom />
         </div>
       </motion.button>
