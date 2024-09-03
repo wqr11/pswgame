@@ -1,3 +1,7 @@
+'use client';
+
+import { useQuery } from '@tanstack/react-query';
+
 import Coin from './assets/coin.svg';
 
 import { CurrentKingdom } from '@/widgets';
@@ -5,6 +9,10 @@ import { CurrentKingdom } from '@/widgets';
 import { KingdomTier, KingdomType } from '@/shared/types';
 
 import { formatNumber } from '@/shared/utils/formatNumber';
+
+import { useUnit } from 'effector-react';
+import { $userId } from '@/shared/model';
+import { getUser } from '@/shared/api/endpoints/getUser';
 
 export const CurrentKingdomDisplay = ({
   kingdomType,
@@ -23,6 +31,18 @@ export const CurrentKingdomDisplay = ({
     miner: 'text-[#EE71E2]',
     trader: 'text-[#7CB1FF]',
   };
+
+  const userId = useUnit($userId);
+
+  const { data: userData } = useQuery({
+    queryKey: ['userQuery'],
+    queryFn: async () => {
+      // @ts-ignore
+      return await getUser(userId);
+    },
+  });
+
+  console.log(userData?.data);
 
   return (
     <>

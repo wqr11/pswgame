@@ -2,8 +2,6 @@
 
 import { useQuery } from '@tanstack/react-query';
 
-import { useState } from 'react';
-
 import { motion, AnimatePresence } from 'framer-motion';
 
 import GrowerKingdomTier1 from './assets/kingdoms/grower/tier-1.svg';
@@ -29,9 +27,7 @@ import TraderKingdomTier4 from './assets/kingdoms/trader/tier-4.svg';
 import { KingdomTier, KingdomType } from '@/shared/types';
 
 import { useUnit } from 'effector-react';
-import { $userId } from '@/shared/model';
-
-import { postTap } from '@/shared/api/endpoints/postTap';
+import { $tap, $userId, requestTap } from '@/shared/model';
 
 export const CurrentKingdom = ({
   kingdomType,
@@ -70,18 +66,7 @@ export const CurrentKingdom = ({
   const Kingdom = kingdoms[kingdomType][kingdomTier - 1];
 
   const userId = useUnit($userId);
-
-  const {} = useQuery({
-    queryKey: ['tapQuery'],
-    queryFn: async () => {
-      if (userId) {
-        console.log(await postTap(userId, 1));
-      } else {
-        console.log('STORE USERID IS NULL!');
-      }
-    },
-    // enabled: false,
-  });
+  const taps = useUnit($tap);
 
   return (
     <AnimatePresence>
