@@ -69,9 +69,9 @@ export const CurrentKingdom = ({
         initial={{ scale: 1, opacity: 1 }}
         animate={{
           scale: [0.9, 1],
-          opacity: [0.8, 1],
-          translateY: [40, 0],
-          transition: { duration: 1, ease: 'circInOut' },
+          opacity: [0.6, 1],
+          translateY: [10, 0],
+          transition: { duration: 0.4, ease: 'easeInOut' },
         }}
         exit={{
           scale: [1, 1.2],

@@ -1,18 +1,23 @@
-import { getResources } from '@/shared/api/endpoints/getResources';
+'use client';
+
 import { PoolResourcesType } from '@/shared/entities/resources';
 
 import { ResourceProgress } from '@/widgets';
 
-export const ResourcesProgress = async () => {
+export const ResourcesProgress = ({
+  resources,
+}: {
+  resources: PoolResourcesType['data']['entities'];
+}) => {
   return (
     <div className="mt-2 flex flex-col gap-4">
-      {/* {resources.map((resource, idx) => (
+      {resources.map((resource, idx) => (
         <ResourceProgress
           key={`resource-progress-${idx}`}
           resource={resource.name}
-          progress={resource.current / resource.total}
+          progress={(resource.current / resource.total) * 100}
         />
-      ))} */}
+      ))}
     </div>
   );
 };

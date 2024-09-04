@@ -13,15 +13,15 @@ import { $tab } from '@/shared/entities/tab';
 
 import TabAnimated from './TabAnimated';
 
-const TabSwitcher = () => {
+export const TabSwitcher = () => {
   const tab = useUnit($tab);
 
   const getTab = (key: string) => {
     switch (tab) {
       case 'resources':
         return <ResourcesTab key={key} />;
-      case 'augmentations':
-        return <AugmentationsTab key={key} />;
+      // case 'augmentations':
+      //   return <AugmentationsTab key={key} />;
       case 'leaderboard':
         return <LeaderboardTab key={key} />;
       case 'about':
@@ -37,5 +37,3 @@ const TabSwitcher = () => {
 
   return <TabAnimated>{getTab('tab')}</TabAnimated>;
 };
-
-export default TabSwitcher;

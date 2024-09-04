@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 
 import ResourcePoolBorder from './assets/pool-progress-border.svg?url';
@@ -28,7 +30,6 @@ export const ResourcePool = ({
               height: '32px',
             }}
             alt="resource-pool"
-            priority
           />
         </div>
 
@@ -50,7 +51,6 @@ export const ResourcePool = ({
                   height: '32px',
                 }}
                 alt="resource-pool-fill"
-                priority
               />
             </div>
             <div className="absolute bottom-1 left-[calc(100%-20px)] z-30 h-12 w-10">
@@ -60,8 +60,12 @@ export const ResourcePool = ({
         </div>
       </div>
       <div className="text-center">
-        <h6 className="text-lg tracking-widest">{formatNumber(sharedResources)}</h6>
-        <p className="text-sm font-normal uppercase tracking-wide">resource pool</p>
+        <h6 className="text-lg tracking-widest">
+          {formatNumber(sharedResources)}
+        </h6>
+        <p className="text-sm font-normal uppercase tracking-wide">
+          resource pool
+        </p>
       </div>
     </div>
   );

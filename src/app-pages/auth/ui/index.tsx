@@ -2,65 +2,51 @@
 
 import { useEffect } from 'react';
 
-import { useQuery } from '@tanstack/react-query';
-
 import { useRouter } from 'next/navigation';
 
 import { LoadingPageUI } from '@/app-pages';
 
-import { retrieveLaunchParams } from '@telegram-apps/sdk';
+// import { retrieveLaunchParams } from '@telegram-apps/sdk';
 
 import { useInitData } from '@telegram-apps/sdk-react';
-
-import { login } from '@/shared/api/auth/login';
 
 import { setUserId } from '@/shared/entities/user';
 
 import { useUnit } from 'effector-react';
-import { $resources } from '@/shared/entities/resources';
-
-import { setResources } from '@/shared/entities/resources';
-import { getResources } from '@/shared/api/endpoints/getResources';
+import { $init, initialize } from '@/shared/entities/init';
 
 export const AuthPageUI = () => {
   const router = useRouter();
 
-  const { initDataRaw } = retrieveLaunchParams();
+  // const { initDataRaw } = retrieveLaunchParams();
 
   const initData = useInitData();
 
-  const resourcesStore = useUnit($resources);
+  const init = useUnit($init);
 
   useEffect(() => {
     if (initData?.user?.id) {
       setUserId(initData.user.id);
     }
-  });
+    initialize();
+  }, []);
 
-  const { data: auth, isError } = useQuery({
-    queryKey: ['loginQuery'],
-    queryFn: async () => {
-      const res = await login(`${initDataRaw}`);
+  useEffect(() => {
+    if (init) {
+      router.push('/game');
+    }
+  }, [init]);
 
-      router.push('/grower');
+  // const { data: auth, isError } = useQuery({
+  //   queryKey: ['loginQuery'],
+  //   queryFn: async () => {
+  //     const res = await login(`${initDataRaw}`);
 
-      return res;
-    },
-  });
+  //     router.push('/grower');
 
-  console.log(auth);
-
-  const { data: resources } = useQuery({
-    queryKey: ['resourcesQuery'],
-    queryFn: async () => {
-      const res = await getResources();
-      setResources(res?.data);
-      return res;
-    },
-  });
-
-  console.log(resources);
-  console.log(resourcesStore);
+  //     return res;
+  //   },
+  // });
 
   return <LoadingPageUI />;
 };

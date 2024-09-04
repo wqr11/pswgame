@@ -6,7 +6,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const res = await axios.post(
-      `${process.env.API_URL}/api/v1/users/get_all`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/get_all`,
       body,
       {
         headers: {

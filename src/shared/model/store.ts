@@ -8,8 +8,6 @@ import { createStore, createEvent, createEffect, sample } from 'effector';
 
 import { KingdomType } from '../types';
 
-export const setKingdom = createEvent<KingdomType>();
-
 export const $kingdom = createStore<KingdomType | null>(null).on(
   setKingdom,
   (_, data) => data,
@@ -19,7 +17,7 @@ export const postTap = createEffect(async (user_id: number, taps: number) => {
   const access = Cookies.get(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`);
   try {
     const res = await axios.post(
-      `${process.env.API_URL}/api/v1/actions/tap`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/actions/tap`,
       {
         user_id: user_id,
         taps_amount: taps,

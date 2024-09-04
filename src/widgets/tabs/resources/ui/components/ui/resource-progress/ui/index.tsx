@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 
 // ## CHANGE ALL OF THIS AFTER DESIGN FIXES ##
@@ -11,10 +13,12 @@ import MinerFill from './assets/fills/miner.svg?url';
 import TraderFill from './assets/fills/trader.svg?url';
 // ##
 
+import ProgressBorder from './assets/border/progress-border.svg?url';
+
 import { ResourceProp } from '@/shared/entities/resources';
 
 export const ResourceProgress = ({
-  progress,
+  progress = 100,
   resource,
 }: {
   progress: number;
@@ -44,20 +48,23 @@ export const ResourceProgress = ({
   const ResourceFill = assets[resource].fill;
 
   return (
-    <div className="relative flex items-center">
+    <div className="relative flex items-center gap-0">
       <div className="z-30 min-h-[48px] min-w-[48px] border-[3px] border-white bg-[#0e0e0e] p-2">
         <ResourceIcon />
       </div>
-      <div className="absolute w-full">
+      <div className="w-full">
         <div className="relative w-full">
           <Image
             className="relative z-20"
-            src="/game/tabs/resources/progress-border.svg"
+            src={ProgressBorder}
             width={282}
             height={22}
             alt="progress-border"
-            style={{ objectFit: 'fill', width: '100%', height: '22px' }}
-            priority
+            style={{
+              objectFit: 'fill',
+              width: '100%',
+              height: '22px',
+            }}
           />
           <Image
             className="absolute left-0 top-0 z-10"
@@ -65,8 +72,11 @@ export const ResourceProgress = ({
             width={200}
             height={22}
             alt="progress-fill"
-            style={{ objectFit: 'fill', width: `${progress}%`, height: '22px' }}
-            priority
+            style={{
+              objectFit: 'fill',
+              width: `${progress}%`,
+              height: '22px',
+            }}
           />
         </div>
       </div>

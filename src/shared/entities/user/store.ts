@@ -2,7 +2,7 @@
 
 import axios, { isAxiosError } from 'axios';
 
-import { createEvent, createStore, createEffect } from 'effector';
+import { createEvent, createStore, createEffect, allSettled } from 'effector';
 
 import { UserType } from './types';
 
@@ -20,7 +20,7 @@ export const $userId = createStore<number | null>(null).on(
 //   const access = Cookies.get(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`);
 //   try {
 //     const res: { data: UserType } = await axios.get(
-//       `${process.env.API_URL}/api/v1/users/${user_id}`,
+//       `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/${user_id}`,
 //       {
 //         headers: {
 //           Accept: 'application/json',

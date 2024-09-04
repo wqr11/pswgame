@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
 // @ts-ignore
-import ProgressBar from "react-customizable-progressbar";
+import ProgressBar from 'react-customizable-progressbar';
 
 export const UpdatePoolProgress = ({
   startTime = 7200,
@@ -17,23 +17,17 @@ export const UpdatePoolProgress = ({
       </h6>
       <div className="flex items-center border-[3px] border-white py-1 pl-4">
         <p className="flex gap-1">
-          <span>
-            {Math.floor(remainingTime / 3600) < 10
-              ? `0${Math.floor(remainingTime / 3600)}`
-              : Math.floor(remainingTime / 3600)}
-          </span>
+          {Math.floor(remainingTime / 3600) < 10
+            ? `0${Math.floor(remainingTime / 3600)}`
+            : Math.floor(remainingTime / 3600)}
           :
-          <span>
-            {Math.floor((remainingTime % 3600) / 60) < 10
-              ? `0${Math.floor((remainingTime % 3600) / 60)}`
-              : Math.floor((remainingTime % 3600) / 60)}
-          </span>
+          {Math.floor((remainingTime % 3600) / 60) < 10
+            ? `0${Math.floor((remainingTime % 3600) / 60)}`
+            : Math.floor((remainingTime % 3600) / 60)}
           :
-          <span>
-            {(remainingTime % 3600) % 60 < 10
-              ? `0${(remainingTime % 3600) % 60}`
-              : (remainingTime % 3600) % 60}
-          </span>
+          {(remainingTime % 3600) % 60 < 10
+            ? `0${(remainingTime % 3600) % 60}`
+            : (remainingTime % 3600) % 60}
         </p>
         <ProgressBar
           className="flex h-[18px] items-center"

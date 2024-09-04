@@ -7,7 +7,7 @@ export async function GET(
 ) {
   try {
     const res = await axios.get(
-      `${process.env.API_URL}/api/v1/kingdom/pool_resources/${params.resources_id}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/kingdom/pool_resources/${params.resources_id}`,
       {
         headers: {
           'Content-Type': 'application/json',

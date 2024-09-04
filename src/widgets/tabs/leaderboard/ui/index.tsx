@@ -1,39 +1,32 @@
+'use client';
+
 import {
   ReferenceButton,
   UserRating,
   TopLeaderboardUnit,
   LeaderboardUnit,
-} from "@/widgets";
+} from '@/widgets';
 
-import { UsersGetAllType } from "@/shared/types";
+import { useUnit } from 'effector-react';
+import { $leaderboard, getLeaders } from '@/shared/entities/leaderboard/store';
 
-import { authHost } from "@/shared/api/authHost";
+import styles from '@/shared/ui/styles/current-tab/currentTab.module.css';
 
-import styles from "@/shared/ui/styles/current-tab/currentTab.module.css";
+import tabStyles from './styles/LeaderboardTab.module.css';
+import { useEffect } from 'react';
 
-import tabStyles from "./styles/LeaderboardTab.module.css";
-
-export const LeaderboardTab = async () => {
-  const res: { data: UsersGetAllType } = await authHost.post(
-    "users/get_all",
-    {
-      sort_by_tokens: true,
-    },
-    {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    },
-  );
-
-  const leaders: UsersGetAllType["data"] = res.data.data;
-
-  const places: Array<"first" | "second" | "third"> = [
-    "first",
-    "second",
-    "third",
+export const LeaderboardTab = () => {
+  const places: Array<'first' | 'second' | 'third'> = [
+    'first',
+    'second',
+    'third',
   ];
+
+  const leaders = useUnit($leaderboard);
+
+  useEffect(() => {
+    getLeaders();
+  }, []);
 
   return (
     <div className={`${styles.tab_wrapper} relative flex flex-col gap-1`}>
@@ -45,10 +38,13 @@ export const LeaderboardTab = async () => {
       </div>
       <div className={`${styles.section_with_border} flex flex-col`}>
         <div className="mt-1 flex justify-center">
-          <UserRating username="user2130124912841" coinsLast24Hours={156234} />
+          <UserRating
+            username="user2130124912841"
+            coinsLast24Hours={156234}
+          />
         </div>
         <div className="mx-auto mt-4 flex w-full flex-col gap-3">
-          {leaders.slice(0, 3).map((leader, idx) => (
+          {leaders?.slice(0, 3).map((leader, idx) => (
             <TopLeaderboardUnit
               key={`top-leader-${idx}`}
               username={leader.user_name}
@@ -61,7 +57,7 @@ export const LeaderboardTab = async () => {
           className={`${tabStyles.leaders_scroll} mx-auto w-[90%] overflow-y-scroll`}
         >
           <div className="mt-4 flex w-full flex-col gap-3">
-            {leaders.slice(3).map((leader, idx) => (
+            {leaders?.slice(3).map((leader, idx) => (
               <LeaderboardUnit
                 key={`leader-${idx}`}
                 username={leader.user_name}
@@ -75,4 +71,4 @@ export const LeaderboardTab = async () => {
   );
 };
 
-export * from "./components";
+export * from './components';

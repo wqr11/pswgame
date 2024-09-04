@@ -1,6 +1,6 @@
-import { authHost } from '@/shared/api/authHost';
+'use client';
 
-import { PoolResourcesType } from '@/shared/entities/resources';
+import { useEffect } from 'react';
 
 import {
   ReferenceButton,
@@ -8,14 +8,22 @@ import {
   UpdatePoolProgress,
   BuyResource,
   ResourcesProgress,
+  LoadingFallback,
 } from '@/widgets';
+
+import { useUnit } from 'effector-react';
+import { $resources, getResources } from '@/shared/entities/resources';
 
 import styles from '@/shared/ui/styles/current-tab/currentTab.module.css';
 
-export const ResourcesTab = async () => {
-  const res: { data: PoolResourcesType } = await authHost.get(
-    'kingdom/pool_resources/-1',
-  );
+export const ResourcesTab = () => {
+  const resources = useUnit($resources);
+
+  useEffect(() => {
+    if (!resources) {
+      getResources();
+    }
+  }, []);
 
   return (
     <div className={`${styles.tab_wrapper} flex flex-col gap-1`}>
@@ -26,18 +34,24 @@ export const ResourcesTab = async () => {
         />
       </div>
       <div className={`${styles.section_with_border} relative overflow-clip`}>
-        <ResourcePool
-          sharedResources={res.data.data.shared_resources}
-          sharedTotalResouces={res.data.data.shared_total_resources}
-        />
-        {/* <ResourcesProgress /> */}
-        <div className="flex flex-col items-end gap-2">
-          <UpdatePoolProgress
-            startTime={9800}
-            remainingTime={5378}
-          />
-          {/* <BuyResource /> */}
-        </div>
+        {resources ? (
+          <>
+            <ResourcePool
+              sharedResources={resources?.shared_resources}
+              sharedTotalResouces={resources?.shared_total_resources}
+            />
+            <ResourcesProgress resources={resources?.entities} />
+            <div className="flex flex-col items-end gap-2">
+              <UpdatePoolProgress
+                startTime={9800}
+                remainingTime={5378}
+              />
+              {/* <BuyResource /> */}
+            </div>
+          </>
+        ) : (
+          <LoadingFallback />
+        )}
       </div>
     </div>
   );

@@ -9,7 +9,7 @@ export async function GET(
   const jwtToken = `${cookies().get(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`)}`;
 
   const res = await axios.get(
-    `${process.env.API_URL}/api/v1/users/get_resources/${params.user_id}/${params.resources_id}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/get_resources/${params.user_id}/${params.resources_id}`,
     {
       headers: {
         'Content-Type': 'application/json',
