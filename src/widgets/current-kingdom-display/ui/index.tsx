@@ -1,7 +1,5 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
-
 import Coin from './assets/coin.svg';
 
 import { CurrentKingdom } from '@/widgets';
@@ -11,8 +9,7 @@ import { KingdomTier, KingdomType } from '@/shared/types';
 import { formatNumber } from '@/shared/utils/formatNumber';
 
 import { useUnit } from 'effector-react';
-import { $userId } from '@/shared/model';
-import { getUser } from '@/shared/api/endpoints/getUser';
+import { $tap } from '@/shared/model';
 
 export const CurrentKingdomDisplay = ({
   kingdomType,
@@ -32,17 +29,7 @@ export const CurrentKingdomDisplay = ({
     trader: 'text-[#7CB1FF]',
   };
 
-  const userId = useUnit($userId);
-
-  const { data: userData } = useQuery({
-    queryKey: ['userQuery'],
-    queryFn: async () => {
-      // @ts-ignore
-      return await getUser(userId);
-    },
-  });
-
-  console.log(userData?.data);
+  const taps = useUnit($tap);
 
   return (
     <>
@@ -52,12 +39,12 @@ export const CurrentKingdomDisplay = ({
       />
       <div className={`${textColors[kingdomType]} flex flex-col gap-2`}>
         <div className="mx-auto mt-8 flex size-fit items-center gap-[8px] border-[1px] px-[10px]">
-          <h6 className="font-normal">{formatNumber(coins)}</h6>
+          <h6 className="font-normal">{formatNumber(taps)}</h6>
           <Coin />
         </div>
         <div>
           <p className="mx-auto flex size-fit gap-[10px] border-[1px] border-white px-[10px]">
-            {formatNumber(coinsLast24Hours)}
+            {formatNumber(taps)}
           </p>
         </div>
       </div>

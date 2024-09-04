@@ -9,7 +9,7 @@ import {
 } from '@/widgets';
 
 import { useUnit } from 'effector-react';
-import { $tab } from '@/shared/model';
+import { $tab } from '@/shared/entities/tab';
 
 import TabAnimated from './TabAnimated';
 

@@ -4,7 +4,7 @@ import GyberLogoGreen from './assets/gyber-logo-green-w-border.svg';
 import Paperclip from './assets/paperclip.svg';
 import Message from './assets/message.svg';
 
-import { setTab } from '@/shared/model';
+import { setTab } from '@/shared/entities/tab';
 
 import styles from './styles/header.module.css';
 
@@ -43,7 +43,9 @@ export const Header = () => {
         }}
         className={`${styles.header_link} justify-end`}
       >
-        <h6 className="h-[45px] text-end text-[14px] text-[#434343]">ABOUT US</h6>
+        <h6 className="h-[45px] text-end text-[14px] text-[#434343]">
+          ABOUT US
+        </h6>
       </button>
     </header>
   );

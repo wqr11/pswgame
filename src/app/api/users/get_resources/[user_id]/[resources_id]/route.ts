@@ -6,7 +6,7 @@ export async function GET(
   req: NextRequest,
   { params }: { params: { user_id: string; resources_id: string } },
 ) {
-  const jwtToken = `${cookies().get(`${process.env.ACCESS_TOKEN_NAME}`)}`;
+  const jwtToken = `${cookies().get(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`)}`;
 
   const res = await axios.get(
     `${process.env.API_URL}/api/v1/users/get_resources/${params.user_id}/${params.resources_id}`,

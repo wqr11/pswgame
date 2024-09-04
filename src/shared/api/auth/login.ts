@@ -19,11 +19,11 @@ export async function login(init_data: string) {
     );
 
     cookies().set(
-      `${process.env.ACCESS_TOKEN_NAME}`,
+      `${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`,
       res.data.data.access_token,
     );
     cookies().set(
-      `${process.env.REFRESH_TOKEN_NAME}`,
+      `${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`,
       res.data.data.refresh_token,
     );
 

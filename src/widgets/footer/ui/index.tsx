@@ -5,9 +5,7 @@ import Leaderboard from './assets/leaderboard.svg';
 import Market from './assets/market.svg';
 
 import { useUnit } from 'effector-react';
-import { $tab } from '@/shared/model';
-import { setTab } from '@/shared/model';
-
+import { $tab, setTab } from '@/shared/entities/tab';
 import styles from './styles/footer.module.css';
 
 export const Footer = () => {

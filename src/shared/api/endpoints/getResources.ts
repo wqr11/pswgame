@@ -1,5 +1,3 @@
-'use server';
-
 import axios, { isAxiosError } from 'axios';
 
 export async function getResources(resources_id: number = -1) {

@@ -1,7 +1,5 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
-
 import { motion, AnimatePresence } from 'framer-motion';
 
 import GrowerKingdomTier1 from './assets/kingdoms/grower/tier-1.svg';
@@ -26,8 +24,7 @@ import TraderKingdomTier4 from './assets/kingdoms/trader/tier-4.svg';
 
 import { KingdomTier, KingdomType } from '@/shared/types';
 
-import { useUnit } from 'effector-react';
-import { $tap, $userId, requestTap } from '@/shared/model';
+import { tap } from '@/shared/model';
 
 export const CurrentKingdom = ({
   kingdomType,
@@ -65,13 +62,10 @@ export const CurrentKingdom = ({
 
   const Kingdom = kingdoms[kingdomType][kingdomTier - 1];
 
-  const userId = useUnit($userId);
-  const taps = useUnit($tap);
-
   return (
     <AnimatePresence>
-      <motion.button
-        key="kingdom"
+      <motion.div
+        className="mt-12 flex h-[240px] w-full items-center justify-center"
         initial={{ scale: 1, opacity: 1 }}
         animate={{
           scale: [0.9, 1],
@@ -85,12 +79,23 @@ export const CurrentKingdom = ({
           translateY: [0, 40],
           transition: { duration: 0.6, ease: 'circInOut' },
         }}
-        className="mt-16 h-[220px] w-full"
       >
-        <div className="flex h-full w-auto justify-center px-16">
-          <Kingdom />
-        </div>
-      </motion.button>
+        <motion.button
+          key="kingdom"
+          initial={{ scale: 1, opacity: 1 }}
+          whileTap={{
+            scale: 0.95,
+            opacity: 0.9,
+          }}
+          transition={{ duration: 0.05 }}
+          onClick={() => tap()}
+          className="aspect-square h-[220px]"
+        >
+          <div className="flex h-full w-auto items-center">
+            <Kingdom />
+          </div>
+        </motion.button>
+      </motion.div>
     </AnimatePresence>
   );
 };
