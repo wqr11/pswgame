@@ -1,17 +1,17 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 // ## CHANGE ALL OF THIS AFTER DESIGN FIXES ##
-import PowerIcon from "@/shared/ui/icons/kingdoms/power.svg";
-import GrowerIcon from "@/shared/ui/icons/kingdoms/grower.svg";
-import MinerIcon from "@/shared/ui/icons/kingdoms/miner.svg";
+import PowerIcon from '@/shared/ui/icons/kingdoms/power.svg';
+import GrowerIcon from '@/shared/ui/icons/kingdoms/grower.svg';
+import MinerIcon from '@/shared/ui/icons/kingdoms/miner.svg';
 
-import GrowerFill from "./assets/fills/grower.svg?url";
-import PowerFill from "./assets/fills/power.svg?url";
-import MinerFill from "./assets/fills/miner.svg?url";
-import TraderFill from "./assets/fills/trader.svg?url";
+import GrowerFill from './assets/fills/grower.svg?url';
+import PowerFill from './assets/fills/power.svg?url';
+import MinerFill from './assets/fills/miner.svg?url';
+import TraderFill from './assets/fills/trader.svg?url';
 // ##
 
-import { ResourceProp } from "@/shared/types";
+import { ResourceProp } from '@/shared/entities/resources';
 
 export const ResourceProgress = ({
   progress,
@@ -56,7 +56,7 @@ export const ResourceProgress = ({
             width={282}
             height={22}
             alt="progress-border"
-            style={{ objectFit: "fill", width: "100%", height: "22px" }}
+            style={{ objectFit: 'fill', width: '100%', height: '22px' }}
             priority
           />
           <Image
@@ -65,7 +65,7 @@ export const ResourceProgress = ({
             width={200}
             height={22}
             alt="progress-fill"
-            style={{ objectFit: "fill", width: `${progress}%`, height: "22px" }}
+            style={{ objectFit: 'fill', width: `${progress}%`, height: '22px' }}
             priority
           />
         </div>

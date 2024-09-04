@@ -1,6 +1,6 @@
 import { authHost } from '@/shared/api/authHost';
 
-import { PoolResourcesType } from '@/shared/types';
+import { PoolResourcesType } from '@/shared/entities/resources';
 
 import {
   ReferenceButton,
@@ -13,7 +13,9 @@ import {
 import styles from '@/shared/ui/styles/current-tab/currentTab.module.css';
 
 export const ResourcesTab = async () => {
-  const res: { data: PoolResourcesType } = await authHost.get('kingdom/pool_resources/-1');
+  const res: { data: PoolResourcesType } = await authHost.get(
+    'kingdom/pool_resources/-1',
+  );
 
   return (
     <div className={`${styles.tab_wrapper} flex flex-col gap-1`}>

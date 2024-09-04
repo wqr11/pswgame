@@ -1,5 +1,5 @@
 import { getResources } from '@/shared/api/endpoints/getResources';
-import { PoolResourcesType } from '@/shared/types';
+import { PoolResourcesType } from '@/shared/entities/resources';
 
 import { ResourceProgress } from '@/widgets';
 
