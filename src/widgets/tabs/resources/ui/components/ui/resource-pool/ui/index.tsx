@@ -30,6 +30,7 @@ export const ResourcePool = ({
               height: '32px',
             }}
             alt="resource-pool"
+            priority
           />
         </div>
 
@@ -51,6 +52,7 @@ export const ResourcePool = ({
                   height: '32px',
                 }}
                 alt="resource-pool-fill"
+                priority
               />
             </div>
             <div className="absolute bottom-1 left-[calc(100%-20px)] z-30 h-12 w-10">

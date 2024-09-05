@@ -2,16 +2,18 @@
 
 import axios, { isAxiosError } from "axios";
 
-import { createEffect, createStore, createEvent, sample } from "effector";
+import { createEffect, createStore, createEvent, sample, merge } from "effector";
 
 import { $auth } from "../auth";
 import { $userId } from "../user";
+
+import { TapDataType } from "./types";
 
 export const postTap = createEffect(async (taps: number) => {
   const access = $auth.getState()?.access;
   const userId = $userId.getState();
   try {
-    const res = await axios.post(
+    const res: { data: TapDataType } = await axios.post(
       `${process.env.NEXT_PUBLIC_API_URL}/api/v1/actions/tap`,
       {
         user_id: userId,
@@ -26,9 +28,7 @@ export const postTap = createEffect(async (taps: number) => {
       },
     );
 
-    console.log(res.data);
-
-    return res;
+    return res.data.data.tokens_amount;
   } catch (error) {
     if (isAxiosError(error)) {
       throw new Error(error.message);
@@ -45,3 +45,4 @@ sample({
   filter: (taps) => taps >= 10,
   target: postTap,
 });
+

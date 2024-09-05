@@ -10,6 +10,7 @@ import { formatNumber } from '@/shared/utils/formatNumber';
 
 import { useUnit } from 'effector-react';
 import { $tap } from '@/shared/entities/tap';
+import { $tokens } from '@/shared/entities/tokens';
 
 export const CurrentKingdomDisplay = ({
   kingdomType,
@@ -26,6 +27,7 @@ export const CurrentKingdomDisplay = ({
   };
 
   const taps = useUnit($tap);
+  const tokens = useUnit($tokens);
 
   return (
     <>
@@ -35,7 +37,7 @@ export const CurrentKingdomDisplay = ({
       />
       <div className={`${textColors[kingdomType]} flex flex-col gap-2`}>
         <div className="mx-auto mt-8 flex size-fit items-center gap-[8px] border-[1px] px-[10px]">
-          <h6 className="font-normal">{formatNumber(taps)}</h6>
+          <h6 className="font-normal">{formatNumber(tokens)}</h6>
           <Coin />
         </div>
         <div>
