@@ -3,7 +3,7 @@ import Spinner from './assets/Spinner.svg';
 import styles from './styles/LoadingPageUI.module.css';
 
 export const LoadingFallback = () => (
-  <div className="flex h-[100px] w-full justify-center">
+  <div className="flex size-full items-center justify-center">
     <div
       className={`${styles.pulsating} flex size-[100px] items-center justify-center text-center`}
     >

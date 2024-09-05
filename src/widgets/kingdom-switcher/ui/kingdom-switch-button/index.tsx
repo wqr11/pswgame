@@ -1,7 +1,5 @@
 'use client';
 
-import { Link } from '@/components/Link/Link';
-
 import MinerIcon from '@/shared/ui/icons/kingdoms/miner.svg';
 import GrowerIcon from '@/shared/ui/icons/kingdoms/grower.svg';
 import PowerIcon from '@/shared/ui/icons/kingdoms/power.svg';
@@ -10,14 +8,16 @@ import TraderIcon from '@/shared/ui/icons/kingdoms/trader.svg';
 import Lock from '../assets/Lock.svg';
 import LockGreen from '../assets/Lock-green.svg';
 
-import { KingdomType, KingdomStateUnitType } from '@/shared/types';
+import { KingdomType, KingdomStateUnitType } from '@/shared/entities/kingdom';
+
+import { setKingdom } from '@/shared/entities/kingdom';
 
 export const KingdomSwitchButton = ({
-  resource,
-  resourceState,
+  kingdom,
+  kingdomState,
 }: {
-  resource: KingdomType;
-  resourceState: KingdomStateUnitType;
+  kingdom: KingdomType;
+  kingdomState: KingdomStateUnitType;
 }) => {
   const resourceIcons = {
     miner: MinerIcon,
@@ -26,10 +26,10 @@ export const KingdomSwitchButton = ({
     trader: TraderIcon,
   };
 
-  const ResourceOpenedIcon = resourceIcons[resource];
+  const ResourceOpenedIcon = resourceIcons[kingdom];
 
   const getResourceIcon = () => {
-    switch (resourceState) {
+    switch (kingdomState) {
       case 'opened':
         return <ResourceOpenedIcon />;
 
@@ -41,37 +41,16 @@ export const KingdomSwitchButton = ({
     }
   };
 
-  // switch (resourceState) {
-  //   case 'opened':
-  //     return (
-  //       <Link
-  //         href={`/${resource}?tab=none`}
-  //         className="max-h-[55px] min-h-[55px] min-w-[55px] max-w-[55px] border-[3px] border-white p-1"
-  //       >
-  //         <ResourceOpenedIcon />
-  //       </Link>
-  //     );
-  //   case 'locked':
-  //     return (
-  //       <div>
-  //         <Lock />
-  //       </div>
-  //     );
-  //   case 'available':
-  //     return (
-  //       <div className="max-h-[55px] min-h-[55px] min-w-[55px] max-w-[55px] border-[3px] border-white p-1">
-  //         <LockGreen />
-  //       </div>
-  //     );
-  // }
+  const handleClick = () => {
+    setKingdom(kingdom);
+  };
 
   return (
-    <Link
-      href={resourceState === 'opened' ? `/${resource}` : ''}
+    <button
       className="max-h-[55px] min-h-[55px] min-w-[55px] max-w-[55px] border-[3px] border-white p-1"
-      prefetch
+      onClick={handleClick}
     >
       {getResourceIcon()}
-    </Link>
+    </button>
   );
 };

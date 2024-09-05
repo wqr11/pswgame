@@ -4,7 +4,7 @@ import Coin from './assets/coin.svg';
 
 import { CurrentKingdom } from '@/widgets';
 
-import { KingdomTier, KingdomType } from '@/shared/types';
+import { KingdomTier, KingdomType } from '@/shared/entities/kingdom';
 
 import { formatNumber } from '@/shared/utils/formatNumber';
 

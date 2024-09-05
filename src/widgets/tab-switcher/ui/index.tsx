@@ -3,7 +3,6 @@
 import {
   ResourcesTab,
   AboutTab,
-  AugmentationsTab,
   LeaderboardTab,
   InDevelopmentTab,
 } from '@/widgets';
@@ -19,19 +18,15 @@ export const TabSwitcher = () => {
   const getTab = (key: string) => {
     switch (tab) {
       case 'resources':
-        return <ResourcesTab key={key} />;
-      // case 'augmentations':
-      //   return <AugmentationsTab key={key} />;
+        return <ResourcesTab />;
       case 'leaderboard':
-        return <LeaderboardTab key={key} />;
+        return <LeaderboardTab />;
       case 'about':
-        return <AboutTab key={key} />;
+        return <AboutTab />;
       case 'none':
         return;
-      case undefined:
-        return;
       default:
-        return <InDevelopmentTab key={key} />;
+        return <InDevelopmentTab />;
     }
   };
 

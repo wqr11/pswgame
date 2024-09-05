@@ -22,7 +22,7 @@ import TraderKingdomTier2 from './assets/kingdoms/trader/tier-2.svg';
 import TraderKingdomTier3 from './assets/kingdoms/trader/tier-3.svg';
 import TraderKingdomTier4 from './assets/kingdoms/trader/tier-4.svg';
 
-import { KingdomTier, KingdomType } from '@/shared/types';
+import { KingdomTier, KingdomType } from '@/shared/entities/kingdom';
 
 import { tap } from '@/shared/model';
 

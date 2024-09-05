@@ -5,6 +5,7 @@ import {
   UserRating,
   TopLeaderboardUnit,
   LeaderboardUnit,
+  LoadingFallback,
 } from '@/widgets';
 
 import { useUnit } from 'effector-react';
@@ -43,29 +44,36 @@ export const LeaderboardTab = () => {
             coinsLast24Hours={156234}
           />
         </div>
-        <div className="mx-auto mt-4 flex w-full flex-col gap-3">
-          {leaders?.slice(0, 3).map((leader, idx) => (
-            <TopLeaderboardUnit
-              key={`top-leader-${idx}`}
-              username={leader.user_name}
-              tokens={leader.tokens_amount}
-              place={places[idx]}
-            />
-          ))}
-        </div>
-        <div
-          className={`${tabStyles.leaders_scroll} mx-auto w-[90%] overflow-y-scroll`}
-        >
-          <div className="mt-4 flex w-full flex-col gap-3">
-            {leaders?.slice(3).map((leader, idx) => (
-              <LeaderboardUnit
-                key={`leader-${idx}`}
-                username={leader.user_name}
-                tokens={leader.tokens_amount}
-              />
-            ))}
-          </div>
-        </div>
+
+        {leaders ? (
+          <>
+            <div className="mx-auto mt-4 flex w-full flex-col gap-3">
+              {leaders?.slice(0, 3).map((leader, idx) => (
+                <TopLeaderboardUnit
+                  key={`top-leader-${idx}`}
+                  username={leader.user_name}
+                  tokens={leader.tokens_amount}
+                  place={places[idx]}
+                />
+              ))}
+            </div>
+            <div
+              className={`${tabStyles.leaders_scroll} mx-auto w-[90%] overflow-y-scroll`}
+            >
+              <div className="mt-4 flex w-full flex-col gap-3">
+                {leaders?.slice(3).map((leader, idx) => (
+                  <LeaderboardUnit
+                    key={`leader-${idx}`}
+                    username={leader.user_name}
+                    tokens={leader.tokens_amount}
+                  />
+                ))}
+              </div>
+            </div>
+          </>
+        ) : (
+          <LoadingFallback />
+        )}
       </div>
     </div>
   );

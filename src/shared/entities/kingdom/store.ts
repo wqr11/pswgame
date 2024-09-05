@@ -1,7 +1,9 @@
 'use client';
 
-import { createStore } from 'effector';
+import { createEvent, createStore } from 'effector';
 
 import { KingdomType } from './types';
 
-export const $kingdom = createStore<KingdomType | null>(null);
+export const setKingdom = createEvent<KingdomType>();
+
+export const $kingdom = createStore<KingdomType | null>(null).on(setKingdom, (_, kingdom) => kingdom);

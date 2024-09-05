@@ -6,13 +6,6 @@ import Cookies from 'js-cookie';
 
 import { createStore, createEvent, createEffect, sample } from 'effector';
 
-import { KingdomType } from '../types';
-
-export const $kingdom = createStore<KingdomType | null>(null).on(
-  setKingdom,
-  (_, data) => data,
-);
-
 export const postTap = createEffect(async (user_id: number, taps: number) => {
   const access = Cookies.get(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`);
   try {

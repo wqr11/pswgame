@@ -9,3 +9,5 @@ export const KingdomTypeArray: KingdomType[] = [
 export type KingdomTier = 1 | 2 | 3 | 4;
 
 export type KingdomStateUnitType = 'locked' | 'opened' | 'available';
+
+export type KingdomDataType = {};

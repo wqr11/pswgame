@@ -14,6 +14,8 @@ import { setUserId } from '@/shared/entities/user';
 
 import { useUnit } from 'effector-react';
 import { $init, initialize } from '@/shared/entities/init';
+import { getResources } from '@/shared/entities/resources';
+import { getLeaders } from '@/shared/entities/leaderboard';
 
 export const AuthPageUI = () => {
   const router = useRouter();
@@ -28,7 +30,8 @@ export const AuthPageUI = () => {
     if (initData?.user?.id) {
       setUserId(initData.user.id);
     }
-    initialize();
+    getResources();
+    getLeaders();
   }, []);
 
   useEffect(() => {
