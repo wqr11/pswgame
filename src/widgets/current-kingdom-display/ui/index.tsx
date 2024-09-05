@@ -14,13 +14,9 @@ import { $tap } from '@/shared/model';
 export const CurrentKingdomDisplay = ({
   kingdomType,
   kingdomTier,
-  coins,
-  coinsLast24Hours,
 }: {
   kingdomType: KingdomType;
   kingdomTier: KingdomTier;
-  coins: number;
-  coinsLast24Hours: number;
 }) => {
   const textColors = {
     power: 'text-[#FFAD31]',

@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 const TabAnimated = ({ children }: { children: React.ReactNode }) => {
   return (
     <motion.div
+      key="tab-div"
       initial={{ translateY: '100%', opacity: 0.8 }}
       animate={{
         translateY: 0,

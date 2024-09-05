@@ -58,7 +58,7 @@ export const LeaderboardTab = () => {
               ))}
             </div>
             <div
-              className={`${tabStyles.leaders_scroll} mx-auto w-[90%] overflow-y-scroll`}
+              className={`${tabStyles.leaders_scroll} mx-auto mb-[100px] w-[90%] overflow-y-auto`}
             >
               <div className="mt-4 flex w-full flex-col gap-3">
                 {leaders?.slice(3).map((leader, idx) => (

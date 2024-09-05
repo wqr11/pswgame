@@ -6,13 +6,16 @@ import Cookies from 'js-cookie';
 
 import { createStore, createEvent, createEffect, sample } from 'effector';
 
-export const postTap = createEffect(async (user_id: number, taps: number) => {
+import { $userId } from '../entities/user';
+
+export const postTap = createEffect(async (taps: number) => {
   const access = Cookies.get(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`);
+  const userId = $userId.getState();
   try {
     const res = await axios.post(
       `${process.env.NEXT_PUBLIC_API_URL}/api/v1/actions/tap`,
       {
-        user_id: user_id,
+        user_id: userId,
         taps_amount: taps,
       },
       {
@@ -36,7 +39,13 @@ export const postTap = createEffect(async (user_id: number, taps: number) => {
 
 export const tap = createEvent<void>();
 
-export const $tap = createStore<number>(0).on(tap, (taps) => taps + 1);
+export const $tap = createStore<number>(0).on(tap, (taps) => taps + 1).reset(postTap);
+
+sample({
+  source: $tap,
+  filter: (taps) => taps >= 10,
+  target: postTap,
+});
 
 export const setCoins = createEvent<number>();
 

@@ -19,8 +19,6 @@ const GameUI = () => {
         <CurrentKingdomDisplay
           kingdomType={kingdom}
           kingdomTier={4}
-          coins={100}
-          coinsLast24Hours={50}
         />
       ) : (
         <LoadingFallback />
