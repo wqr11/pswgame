@@ -6,10 +6,10 @@ import { createEffect, createStore } from 'effector';
 
 import { PoolResourcesType } from './types';
 
-export const getResources = createEffect(async (resources_id: number = -1) => {
+export const getResources = createEffect(async () => {
   try {
     const res = await axios.get<PoolResourcesType>(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/kingdom/pool_resources/${resources_id}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/kingdom/pool_resources/-1`,
       {
         headers: {
           Accept: 'application/json',

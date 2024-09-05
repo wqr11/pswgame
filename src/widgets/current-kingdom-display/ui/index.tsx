@@ -9,7 +9,7 @@ import { KingdomTier, KingdomType } from '@/shared/entities/kingdom';
 import { formatNumber } from '@/shared/utils/formatNumber';
 
 import { useUnit } from 'effector-react';
-import { $tap } from '@/shared/model';
+import { $tap } from '@/shared/entities/tap';
 
 export const CurrentKingdomDisplay = ({
   kingdomType,

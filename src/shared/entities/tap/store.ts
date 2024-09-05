@@ -1,15 +1,14 @@
 'use client';
 
-import axios, { isAxiosError } from 'axios';
+import axios, { isAxiosError } from "axios";
 
-import Cookies from 'js-cookie';
+import { createEffect, createStore, createEvent, sample } from "effector";
 
-import { createStore, createEvent, createEffect, sample } from 'effector';
-
-import { $userId } from '../entities/user';
+import { $auth } from "../auth";
+import { $userId } from "../user";
 
 export const postTap = createEffect(async (taps: number) => {
-  const access = Cookies.get(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`);
+  const access = $auth.getState()?.access;
   const userId = $userId.getState();
   try {
     const res = await axios.post(
@@ -46,7 +45,3 @@ sample({
   filter: (taps) => taps >= 10,
   target: postTap,
 });
-
-export const setCoins = createEvent<number>();
-
-export const $coins = createStore<number>(0).on(setCoins, (_, coins) => coins);

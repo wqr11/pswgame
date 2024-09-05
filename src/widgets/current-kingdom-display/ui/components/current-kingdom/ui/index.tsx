@@ -24,7 +24,7 @@ import TraderKingdomTier4 from './assets/kingdoms/trader/tier-4.svg';
 
 import { KingdomTier, KingdomType } from '@/shared/entities/kingdom';
 
-import { tap } from '@/shared/model';
+import { tap } from '@/shared/entities/tap';
 
 export const CurrentKingdom = ({
   kingdomType,
