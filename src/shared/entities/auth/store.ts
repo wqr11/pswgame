@@ -29,10 +29,10 @@ export const authenticate = createEffect(async (init_data: string) => {
       }
     });
 
-    Cookies.set(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`, res.data.accessToken);
-    Cookies.set(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`, res.data.refreshToken);
+    Cookies.set(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`, res.data.access_token);
+    Cookies.set(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`, res.data.refresh_token);
 
-    return { access: res.data.accessToken, refresh: res.data.refreshToken } as TokensType;
+    return { access: res.data.access_token, refresh: res.data.refresh_token } as TokensType;
   } catch (error) {
     return null;
   }
