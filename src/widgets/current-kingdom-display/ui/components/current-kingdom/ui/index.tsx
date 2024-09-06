@@ -65,7 +65,7 @@ export const CurrentKingdom = ({
   return (
     <AnimatePresence>
       <motion.div
-        className="mt-12 flex h-[240px] w-full items-center justify-center"
+        className="flex h-[240px] w-full items-center justify-center"
         initial={{ scale: 1, opacity: 1 }}
         animate={{
           scale: [0.9, 1],

@@ -29,6 +29,9 @@ export const authenticate = createEffect(async (init_data: string) => {
       }
     });
 
+    Cookies.set(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`, res.data.accessToken);
+    Cookies.set(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`, res.data.refreshToken);
+
     return { access: res.data.accessToken, refresh: res.data.refreshToken } as TokensType;
   } catch (error) {
     return null;

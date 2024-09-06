@@ -14,7 +14,7 @@ const GameUI = () => {
   const kingdom = useUnit($kingdom);
 
   return (
-    <div className="relative w-full flex-grow overflow-clip">
+    <div className="relative my-auto w-full flex-grow overflow-clip">
       {kingdom ? (
         <CurrentKingdomDisplay
           kingdomType={kingdom}
