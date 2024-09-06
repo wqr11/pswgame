@@ -63,8 +63,9 @@ export const CurrentKingdom = ({
   const Kingdom = kingdoms[kingdomType][kingdomTier - 1];
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       <motion.div
+        key="kingdom-wrapper"
         className="flex h-[240px] w-full items-center justify-center"
         initial={{ scale: 1, opacity: 1 }}
         animate={{

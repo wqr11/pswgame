@@ -10,30 +10,25 @@ import {
 import { useUnit } from 'effector-react';
 import { $tab } from '@/shared/entities/tab';
 
-import TabAnimated from './TabAnimated';
 import { AnimatePresence } from 'framer-motion';
 
 export const TabSwitcher = () => {
   const tab = useUnit($tab);
 
-  const getTab = (key: string) => {
+  const getTab = (tab: string) => {
     switch (tab) {
       case 'resources':
-        return <ResourcesTab key={key} />;
+        return <ResourcesTab />;
       case 'leaderboard':
         return <LeaderboardTab />;
       case 'about':
         return <AboutTab />;
       case 'none':
-        return;
+        return null;
       default:
         return <InDevelopmentTab />;
     }
   };
 
-  return (
-    <AnimatePresence>
-      <TabAnimated>{getTab('tab')}</TabAnimated>
-    </AnimatePresence>
-  );
+  return <AnimatePresence mode="wait">{getTab(tab)}</AnimatePresence>;
 };

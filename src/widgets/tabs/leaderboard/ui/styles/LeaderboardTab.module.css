@@ -1,6 +1,22 @@
-.leaders_scroll {
-  scrollbar-width: none;
+.leaders {
+  margin: 0 auto 80px auto;
+  width: 90%;
+  padding-inline: 16px;
+  scrollbar-color: white;
 }
-.leaders_scroll::-webkit-scrollbar {
-  display: none;
+.leaders::-webkit-scrollbar-thumb {
+  color: white;
+}
+
+.user_rating {
+  position: sticky;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-block: 16px;
+  -webkit-backdrop-filter: blur(1px);
+          backdrop-filter: blur(1px);
+  background-color: rgba(14, 14, 14, 0.6);
 }/*# sourceMappingURL=LeaderboardTab.module.css.map */

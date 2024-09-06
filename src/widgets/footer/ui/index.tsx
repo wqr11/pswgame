@@ -12,9 +12,7 @@ export const Footer = () => {
   const tab = useUnit($tab);
 
   return (
-    <footer
-      className={`${styles.footer} fixed bottom-0 left-0 z-50 flex h-[100px] w-full items-center justify-between px-[12%]`}
-    >
+    <footer className={styles.footer}>
       <button
         onClick={() => {
           setTab(tab !== 'resources' ? 'resources' : 'none');

@@ -4,9 +4,11 @@ import styles from '@/shared/ui/styles/current-tab/currentTab.module.css';
 
 import glitchStyles from '@/shared/ui/styles/glitch/glitch.module.css';
 
+import { TabAnimated } from '@/widgets/tab-switcher/ui/TabAnimated';
+
 export const InDevelopmentTab = () => {
   return (
-    <div className={styles.tab_wrapper}>
+    <TabAnimated className={styles.tab_wrapper}>
       <div className={styles.section_with_border}>
         <div className="flex size-full flex-col items-center justify-center text-center uppercase">
           <h6 className="font-bold text-[#FEF164]">In Development</h6>
@@ -30,6 +32,6 @@ export const InDevelopmentTab = () => {
           </div>
         </div>
       </div>
-    </div>
+    </TabAnimated>
   );
 };

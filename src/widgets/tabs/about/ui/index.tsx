@@ -1,16 +1,21 @@
-import GyberLogoGreen from "./assets/gyber-logo-green.svg";
+import GyberLogoGreen from './assets/gyber-logo-green.svg';
 
-import { ReferenceButton } from "@/widgets";
+import { ReferenceButton } from '@/widgets';
 
-import styles from "@/shared/ui/styles/current-tab/currentTab.module.css";
+import styles from '@/shared/ui/styles/current-tab/currentTab.module.css';
 
-import tabStyles from "./styles/AboutTab.module.css";
+import tabStyles from './styles/AboutTab.module.css';
+
+import { TabAnimated } from '@/widgets/tab-switcher/ui/TabAnimated';
 
 export const AboutTab = () => {
   return (
-    <div className={`${styles.tab_wrapper} flex flex-col gap-1`}>
+    <TabAnimated className={`${styles.tab_wrapper} flex flex-col gap-1`}>
       <div className="flex justify-end">
-        <ReferenceButton reference="About us page" direction="fromRight" />
+        <ReferenceButton
+          reference="About us page"
+          direction="fromRight"
+        />
       </div>
       <div
         className={`${styles.section_with_border} flex flex-col items-center`}
@@ -32,6 +37,6 @@ export const AboutTab = () => {
           </p>
         </div>
       </div>
-    </div>
+    </TabAnimated>
   );
 };

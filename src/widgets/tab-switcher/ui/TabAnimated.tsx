@@ -2,21 +2,24 @@
 
 import { motion } from 'framer-motion';
 
-const TabAnimated = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <motion.div
-      key="tab-div"
-      initial={{ translateY: '100%', opacity: 0.8 }}
-      animate={{
-        translateY: 0,
-        opacity: 1,
-      }}
-      transition={{ duration: 0.5, ease: 'circInOut' }}
-      exit={{ translateY: '100%', opacity: 0.8 }}
-    >
-      {children}
-    </motion.div>
-  );
-};
+interface TabAnimatedProps {
+  children: React.ReactNode;
+  className: string;
+}
 
-export default TabAnimated;
+export const TabAnimated = ({ children, className }: TabAnimatedProps) => (
+  <motion.div
+    key="tab"
+    initial={{ translateY: '100%', opacity: 0.9, scale: 0.95 }}
+    animate={{ translateY: ['100%', 0], opacity: [0.9, 1], scale: [1.3, 1] }}
+    exit={{ translateY: [0, '100%'], opacity: [1, 0], scale: [1, 1.3] }}
+    transition={{
+      duration: 0.4,
+      type: 'spring',
+      bounce: 0.25,
+    }}
+    className={className}
+  >
+    {children}
+  </motion.div>
+);

@@ -11,10 +11,13 @@ import {
   LoadingFallback,
 } from '@/widgets';
 
+import { motion } from 'framer-motion';
+
 import { useUnit } from 'effector-react';
 import { $resources, getResources } from '@/shared/entities/resources';
 
 import styles from '@/shared/ui/styles/current-tab/currentTab.module.css';
+import { TabAnimated } from '@/widgets/tab-switcher/ui/TabAnimated';
 
 export const ResourcesTab = () => {
   const resources = useUnit($resources);
@@ -26,7 +29,7 @@ export const ResourcesTab = () => {
   }, []);
 
   return (
-    <div className={`${styles.tab_wrapper} flex flex-col gap-1`}>
+    <TabAnimated className={`${styles.tab_wrapper} flex flex-col gap-1`}>
       <div className="flex w-full justify-end">
         <ReferenceButton
           direction="fromRight"
@@ -53,6 +56,6 @@ export const ResourcesTab = () => {
           <LoadingFallback />
         )}
       </div>
-    </div>
+    </TabAnimated>
   );
 };

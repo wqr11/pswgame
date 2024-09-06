@@ -1,18 +1,18 @@
-import { formatNumber } from "@/shared/utils/formatNumber";
+import { formatNumber } from '@/shared/utils/formatNumber';
 
-import styles from "./styles/TopLeaderboardUnit.module.css";
+import styles from './styles/TopLeaderboardUnit.module.css';
 
 export const TopLeaderboardUnit = ({
-  username = "unknown",
+  username = 'unknown',
   tokens = 999999999,
-  place = "first",
+  place = 'first',
 }: {
   username: string;
   tokens: number;
-  place: "first" | "second" | "third";
+  place: 'first' | 'second' | 'third';
 }) => {
   return (
-    <div className="flex max-h-[30px] min-h-[30px] w-full items-center justify-between bg-[#1B1B1B] px-4 transition-transform duration-75 ease-in-out active:scale-95">
+    <div className="flex max-h-[30px] min-h-[30px] w-full items-center justify-between bg-[#1B1B1B] px-4">
       <h6
         className={`${styles.top_leader} ${styles[place]} relative text-[12px] uppercase text-white`}
       >
