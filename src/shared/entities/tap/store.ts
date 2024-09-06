@@ -2,16 +2,16 @@
 
 import axios, { isAxiosError } from "axios";
 
-import { createEffect, createStore, createEvent, sample, merge } from "effector";
+import { createEffect, createStore, createEvent, sample } from "effector";
 
-import { $auth } from "../auth";
+import { $auth, TokensType } from "../auth";
 import { $userId } from "../user";
 
 import { TapDataType } from "./types";
+import { PostTapParams } from "./types";
 
-export const postTap = createEffect(async (taps: number) => {
-  const access = $auth.getState()?.access;
-  const userId = $userId.getState();
+export const postTap = createEffect(async ({ access, userId, taps }: PostTapParams) => {
+  console.log(access, userId, taps)
   try {
     const res: { data: TapDataType } = await axios.post(
       `${process.env.NEXT_PUBLIC_API_URL}/api/v1/actions/tap`,
@@ -36,13 +36,22 @@ export const postTap = createEffect(async (taps: number) => {
   }
 });
 
+export const initTap = createEvent<void>();
+
 export const tap = createEvent<void>();
 
-export const $tap = createStore<number>(0).on(tap, (taps) => taps + 1).reset(postTap);
+export const $taps = createStore<number>(0).on(tap, (taps) => taps + 1).reset(postTap);
 
 sample({
-  source: $tap,
+  source: $taps,
   filter: (taps) => taps >= 10,
-  target: postTap,
+  target: initTap,
 });
 
+sample({
+  clock: initTap,
+  source: { auth: $auth, userId: $userId, taps: $taps },
+  filter: ({ auth, userId }) => !!auth && !!userId,
+  fn: ({ auth, userId, taps }: { auth: TokensType | null, userId: number | null, taps: number }) => ({ access: auth?.access, userId, taps } as PostTapParams),
+  target: postTap
+})

@@ -9,7 +9,7 @@ import { KingdomTier, KingdomType } from '@/shared/entities/kingdom';
 import { formatNumber } from '@/shared/utils/formatNumber';
 
 import { useUnit } from 'effector-react';
-import { $tap } from '@/shared/entities/tap';
+import { $taps } from '@/shared/entities/tap';
 import { $tokens } from '@/shared/entities/tokens';
 
 export const CurrentKingdomDisplay = ({
@@ -26,7 +26,7 @@ export const CurrentKingdomDisplay = ({
     trader: 'text-[#7CB1FF]',
   };
 
-  const taps = useUnit($tap);
+  const taps = useUnit($taps);
   const tokens = useUnit($tokens);
 
   return (
