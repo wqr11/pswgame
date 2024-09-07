@@ -2,10 +2,6 @@
   margin: 0 auto 80px auto;
   width: 90%;
   padding-inline: 16px;
-  scrollbar-color: white;
-  &::-webkit-scrollbar-thumb {
-    color: white;
-  }
   // &::after {
   //   content: '';
   //   width: 100%;
@@ -16,6 +12,13 @@
   //   background-color: rgba(14, 14, 14, 0.6);
   //   z-index: 0;
   // }
+}
+
+.scroll {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .user_rating {

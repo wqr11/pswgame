@@ -7,7 +7,7 @@ import { createEffect, createStore, sample } from 'effector';
 import { PoolResourcesType } from './types';
 import { loggedIn } from '../auth';
 
-export const getResources = createEffect<void, PoolResourcesType['data'] | undefined, AxiosError>(async () => {
+export const getResourcePool = createEffect<void, PoolResourcesType['data'] | undefined, AxiosError>(async () => {
   try {
     const res = await axios.get<PoolResourcesType>(
       `${process.env.NEXT_PUBLIC_API_URL}/api/v1/kingdom/pool_resources/-1`,
@@ -27,11 +27,11 @@ export const getResources = createEffect<void, PoolResourcesType['data'] | undef
   }
 });
 
-export const $resources = createStore<PoolResourcesType['data'] | null>(
+export const $resourcePool = createStore<PoolResourcesType['data'] | null>(
   null,
-).on(getResources.doneData, (_, resources) => resources ?? null);
+).on(getResourcePool.doneData, (_, resources) => resources ?? null);
 
 sample({
   clock: loggedIn,
-  target: getResources
+  target: getResourcePool
 })

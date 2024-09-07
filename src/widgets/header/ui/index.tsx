@@ -1,5 +1,7 @@
 'use client';
 
+import { Link } from '@/components/Link/Link';
+
 import GyberLogoGreen from './assets/gyber-logo-green-w-border.svg';
 import Paperclip from './assets/paperclip.svg';
 import Message from './assets/message.svg';
@@ -11,10 +13,8 @@ import styles from './styles/header.module.css';
 export const Header = () => {
   return (
     <header className="sticky left-0 top-0 z-50 mx-[27px] flex h-[100px] items-center justify-between">
-      <button
-        onClick={() => {
-          setTab('refs');
-        }}
+      <Link
+        href={`${process.env.NEXT_PUBLIC_REFERRAL_GAME_LINK}`}
         className={styles.header_link}
       >
         <div className={`${styles.header_link} relative`}>
@@ -28,7 +28,7 @@ export const Header = () => {
             </div>
           </div>
         </div>
-      </button>
+      </Link>
       <button
         onClick={() => {
           setTab('none');

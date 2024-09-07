@@ -5,7 +5,7 @@ import axios, { isAxiosError } from "axios";
 import { createEffect, createStore, createEvent, sample, combine } from "effector";
 
 import { $auth, TokensType } from "../auth";
-import { $userId, $user } from "../user";
+import { $userId, $user, setTokens, $tokens } from "../user";
 
 import { TapDataType } from "./types";
 import { PostTapParams } from "./types";
@@ -44,7 +44,15 @@ export const postTap = createEffect(async ({ access, userId, taps }: PostTapPara
 
 export const $taps = createStore<number>(0).on(tap, (taps) => taps + 1).reset(postTap);
 
-export const $tap_multiplier = combine($user, (user) => user?.game_information.tap_multiplier ?? 1);
+export const $tap_multiplier = createStore<number>(1);
+
+sample({
+  source: $user,
+  filter: (user) => !!user?.tokens_amount,
+  // @ts-ignore
+  fn: (user) => user.tokens_amount,
+  target: $tap_multiplier,
+})
 
 sample({
   clock: tap,
@@ -71,4 +79,16 @@ sample({
   filter: ({ auth, userId }) => !!auth && !!userId,
   fn: ({ auth, userId, taps }: { auth: TokensType | null, userId: number | null, taps: number }) => ({ access: auth?.access, userId, taps } as PostTapParams),
   target: postTap
+})
+
+sample({
+  clock: tap,
+  source: { tokens: $tokens, multiplier: $tap_multiplier },
+  fn: ({ tokens, multiplier }) => tokens + 100 * multiplier,
+  target: setTokens,
+})
+
+sample({
+  source: postTap.doneData,
+  target: setTokens,
 })

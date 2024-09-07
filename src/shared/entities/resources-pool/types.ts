@@ -1,9 +1,9 @@
 import { ResultType } from '@/shared/types';
 
-export type ResourceProp = 'crypto' | 'heat' | 'food' | 'energy';
+export type ResourceType = 'crypto' | 'heat' | 'food' | 'energy';
 
-export type ResourceDataType = {
-  name: ResourceProp;
+export type PoolResourceType = {
+  name: ResourceType;
   current: number;
   total: number;
 };
@@ -11,7 +11,7 @@ export type ResourceDataType = {
 export type PoolResourcesType = {
   result: ResultType;
   data: {
-    entities: ResourceDataType[];
+    entities: PoolResourceType[];
     shared_resources: number;
     shared_total_resources: number;
   };

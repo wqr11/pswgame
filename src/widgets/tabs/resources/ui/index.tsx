@@ -11,20 +11,21 @@ import {
   LoadingFallback,
 } from '@/widgets';
 
-import { motion } from 'framer-motion';
-
 import { useUnit } from 'effector-react';
-import { $resources, getResources } from '@/shared/entities/resources';
+import {
+  $resourcePool,
+  getResourcePool,
+} from '@/shared/entities/resources-pool';
 
 import styles from '@/shared/ui/styles/current-tab/currentTab.module.css';
 import { TabAnimated } from '@/widgets/tab-switcher/ui/TabAnimated';
 
 export const ResourcesTab = () => {
-  const resources = useUnit($resources);
+  const resources = useUnit($resourcePool);
 
   useEffect(() => {
     if (!resources) {
-      getResources();
+      getResourcePool();
     }
   }, []);
 

@@ -8,15 +8,17 @@ import TraderIcon from '@/shared/ui/icons/kingdoms/trader.svg';
 import Lock from '../assets/Lock.svg';
 import LockGreen from '../assets/Lock-green.svg';
 
+import { motion } from 'framer-motion';
+
 import { KingdomType, KingdomStateUnitType } from '@/shared/entities/kingdom';
 
 import { setKingdom } from '@/shared/entities/kingdom';
 
 export const KingdomSwitchButton = ({
-  kingdom,
+  kingdomType,
   kingdomState,
 }: {
-  kingdom: KingdomType;
+  kingdomType: KingdomType;
   kingdomState: KingdomStateUnitType;
 }) => {
   const resourceIcons = {
@@ -26,7 +28,7 @@ export const KingdomSwitchButton = ({
     trader: TraderIcon,
   };
 
-  const ResourceOpenedIcon = resourceIcons[kingdom];
+  const ResourceOpenedIcon = resourceIcons[kingdomType];
 
   const getResourceIcon = () => {
     switch (kingdomState) {
@@ -42,15 +44,31 @@ export const KingdomSwitchButton = ({
   };
 
   const handleClick = () => {
-    setKingdom(kingdom);
+    switch (kingdomState) {
+      case 'opened':
+        setKingdom(kingdomType);
+        break;
+      default:
+        break;
+    }
   };
 
   return (
-    <button
-      className="max-h-[55px] min-h-[55px] min-w-[55px] max-w-[55px] border-[3px] border-white p-1"
+    <motion.button
+      initial={{ scale: 1, opacity: 1 }}
+      whileTap={{
+        scale: 0.9,
+        opacity: 0.9,
+        transition: {
+          duration: 0.2,
+          type: 'spring',
+          bounce: 0.6,
+        },
+      }}
+      className="flex max-h-[55px] min-h-[55px] min-w-[55px] max-w-[55px] items-center justify-center border-[3px] border-white p-1"
       onClick={handleClick}
     >
       {getResourceIcon()}
-    </button>
+    </motion.button>
   );
 };

@@ -3,10 +3,10 @@ import UserRatingBorder from '../../assets/user-rating-border.svg';
 
 export const UserRating = ({
   username,
-  coinsLast24Hours,
+  tokens,
 }: {
   username: string;
-  coinsLast24Hours: number;
+  tokens: number;
 }) => {
   return (
     <div className="flex flex-col items-center gap-2">
@@ -22,7 +22,7 @@ export const UserRating = ({
             {username}
           </h6>
           <p className="text-[13px] text-green-400">
-            {coinsLast24Hours} <span className="text-yellow-200">24h</span>
+            {tokens} <span className="text-yellow-200">24h</span>
           </p>
         </div>
       </div>

@@ -2,10 +2,13 @@
   margin: 0 auto 80px auto;
   width: 90%;
   padding-inline: 16px;
-  scrollbar-color: white;
 }
-.leaders::-webkit-scrollbar-thumb {
-  color: white;
+
+.scroll {
+  scrollbar-width: none;
+}
+.scroll::-webkit-scrollbar {
+  display: none;
 }
 
 .user_rating {

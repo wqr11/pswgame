@@ -2,44 +2,43 @@
 
 import Image from 'next/image';
 
-// ## CHANGE ALL OF THIS AFTER DESIGN FIXES ##
-import PowerIcon from '@/shared/ui/icons/kingdoms/power.svg';
-import GrowerIcon from '@/shared/ui/icons/kingdoms/grower.svg';
-import MinerIcon from '@/shared/ui/icons/kingdoms/miner.svg';
+import Heat from '@/shared/ui/icons/resources/heat.svg';
+import Energy from '@/shared/ui/icons/resources/energy.svg';
+import Crypto from '@/shared/ui/icons/resources/crypto.svg';
+import Food from '@/shared/ui/icons/resources/food.svg';
 
-import GrowerFill from './assets/fills/grower.svg?url';
-import PowerFill from './assets/fills/power.svg?url';
-import MinerFill from './assets/fills/miner.svg?url';
-import TraderFill from './assets/fills/trader.svg?url';
-// ##
+import HeatFill from './assets/fills/heat.svg?url';
+import EnergyFill from './assets/fills/energy.svg?url';
+import CryptoFill from './assets/fills/crypto.svg?url';
+import FoodFill from './assets/fills/food.svg?url';
 
 import ProgressBorder from './assets/border/progress-border.svg?url';
 
-import { ResourceProp } from '@/shared/entities/resources';
+import { ResourceType } from '@/shared/entities/resources-pool';
 
 export const ResourceProgress = ({
   progress = 100,
   resource,
 }: {
   progress: number;
-  resource: ResourceProp;
+  resource: ResourceType;
 }) => {
   const assets = {
     crypto: {
-      icon: MinerIcon,
-      fill: MinerFill,
+      icon: Crypto,
+      fill: CryptoFill,
     },
     heat: {
-      icon: PowerIcon,
-      fill: PowerFill,
+      icon: Heat,
+      fill: HeatFill,
     },
     food: {
-      icon: GrowerIcon,
-      fill: GrowerFill,
+      icon: Food,
+      fill: FoodFill,
     },
     energy: {
-      icon: PowerIcon,
-      fill: PowerFill,
+      icon: Energy,
+      fill: EnergyFill,
     },
   };
 

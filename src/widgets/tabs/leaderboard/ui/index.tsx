@@ -18,6 +18,7 @@ import styles from '@/shared/ui/styles/current-tab/currentTab.module.css';
 import tabStyles from './styles/LeaderboardTab.module.css';
 
 import { TabAnimated } from '@/widgets/tab-switcher/ui/TabAnimated';
+import { $tokens, $user } from '@/shared/entities/user';
 
 export const LeaderboardTab = () => {
   const places: Array<'first' | 'second' | 'third'> = [
@@ -27,11 +28,11 @@ export const LeaderboardTab = () => {
   ];
 
   const leaders = useUnit($leaderboard);
+  const user = useUnit($user);
+  const tokens = useUnit($tokens);
 
   useEffect(() => {
-    if (!leaders) {
-      getLeaders();
-    }
+    getLeaders();
   }, []);
 
   return (
@@ -45,12 +46,12 @@ export const LeaderboardTab = () => {
         />
       </div>
       <div
-        className={`${styles.section_with_border} flex max-h-[100%] flex-col overflow-auto`}
+        className={`${styles.section_with_border} ${tabStyles.scroll} flex max-h-[100%] flex-col overflow-auto`}
       >
         <div className={tabStyles.user_rating}>
           <UserRating
-            username="user2130124912841"
-            coinsLast24Hours={156234}
+            username={user?.user_name ?? 'UNKNOWN'}
+            tokens={tokens}
           />
         </div>
 

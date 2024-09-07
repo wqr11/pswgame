@@ -66,13 +66,13 @@ export const CurrentKingdom = ({
     <AnimatePresence mode="wait">
       <motion.div
         key="kingdom-wrapper"
-        className="flex h-[240px] w-full items-center justify-center"
+        className="mt-8 flex h-fit w-full items-center justify-center"
         initial={{ scale: 1, opacity: 1 }}
         animate={{
-          scale: [0.9, 1],
+          scale: [0.8, 1],
           opacity: [0.6, 1],
-          translateY: [10, 0],
-          transition: { duration: 0.4, ease: 'easeInOut' },
+          translateY: [40, 0],
+          transition: { duration: 0.3, ease: 'easeInOut' },
         }}
         exit={{
           scale: [1, 1.2],
@@ -85,14 +85,14 @@ export const CurrentKingdom = ({
           key="kingdom"
           initial={{ scale: 1, opacity: 1 }}
           whileTap={{
-            scale: 0.95,
+            scale: 0.9,
             opacity: 0.9,
+            transition: { duration: 0.03, ease: 'easeInOut' },
           }}
-          transition={{ duration: 0.05 }}
           onClick={() => tap()}
           className="aspect-square h-[220px]"
         >
-          <div className="flex h-full w-auto items-center">
+          <div className="flex aspect-square h-[220px] w-auto items-center justify-center">
             <Kingdom />
           </div>
         </motion.button>

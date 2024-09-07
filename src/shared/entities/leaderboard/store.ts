@@ -1,3 +1,5 @@
+'use client';
+
 import { createStore, createEffect, sample } from 'effector';
 
 import { LeaderboardDataType, LeaderboardUnitType } from './types';
