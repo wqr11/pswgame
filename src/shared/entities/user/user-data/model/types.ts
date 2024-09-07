@@ -1,5 +1,5 @@
 import { ResultType } from '@/shared/types';
-import { TokensType } from '../auth';
+import { TokensType } from '../../../auth';
 
 export type UserType = {
   result: ResultType;

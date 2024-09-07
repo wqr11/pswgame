@@ -2,14 +2,21 @@
 
 import axios, { isAxiosError } from "axios";
 
-import { createEffect, createStore, createEvent, sample } from "effector";
+import { createEffect, createStore, createEvent, sample, combine } from "effector";
 
 import { $auth, TokensType } from "../auth";
-import { $userId } from "../user";
+import { $userId, $user } from "../user";
 
 import { TapDataType } from "./types";
 import { PostTapParams } from "./types";
 
+export const clearTimeoutId = createEffect<NodeJS.Timeout, void, Error>((timeout: NodeJS.Timeout) => {
+  clearTimeout(timeout);
+});
+export const $tapTimeoutId = createStore<NodeJS.Timeout | null>(null).reset(clearTimeoutId);
+
+export const tap = createEvent<void>();
+export const initTap = createEvent<void>();
 export const postTap = createEffect(async ({ access, userId, taps }: PostTapParams) => {
   try {
     const res: { data: TapDataType } = await axios.post(
@@ -35,11 +42,21 @@ export const postTap = createEffect(async ({ access, userId, taps }: PostTapPara
   }
 });
 
-export const initTap = createEvent<void>();
-
-export const tap = createEvent<void>();
-
 export const $taps = createStore<number>(0).on(tap, (taps) => taps + 1).reset(postTap);
+
+export const $tap_multiplier = combine($user, (user) => user?.game_information.tap_multiplier ?? 1);
+
+sample({
+  clock: tap,
+  source: $tapTimeoutId,
+  fn: (timeout) => {
+    if (timeout) {
+      clearTimeoutId(timeout);
+    }
+    return setTimeout(() => initTap(), 1000)
+  },
+  target: $tapTimeoutId
+});
 
 sample({
   source: $taps,

@@ -18,7 +18,7 @@ const GameUI = () => {
       {kingdom ? (
         <CurrentKingdomDisplay
           kingdomType={kingdom}
-          kingdomTier={4}
+          kingdomTier={1}
         />
       ) : (
         <LoadingFallback />

@@ -10,7 +10,7 @@ import { formatNumber } from '@/shared/utils/formatNumber';
 
 import { useUnit } from 'effector-react';
 import { $taps } from '@/shared/entities/tap';
-import { $tokens } from '@/shared/entities/tokens';
+import { $tokens } from '@/shared/entities/user/tokens/model';
 
 export const CurrentKingdomDisplay = ({
   kingdomType,

@@ -29,7 +29,9 @@ export const LeaderboardTab = () => {
   const leaders = useUnit($leaderboard);
 
   useEffect(() => {
-    getLeaders();
+    if (!leaders) {
+      getLeaders();
+    }
   }, []);
 
   return (

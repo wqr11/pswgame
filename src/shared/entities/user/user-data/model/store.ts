@@ -4,7 +4,7 @@ import axios, { isAxiosError } from 'axios';
 
 import { createEvent, createStore, createEffect, sample } from 'effector';
 import { UserType, GetUserParams } from './types';
-import { $auth, loggedIn, logout, TokensType } from '../auth';
+import { $auth, loggedIn, logout, TokensType } from '../../../auth';
 
 export const setUserId = createEvent<number>();
 
