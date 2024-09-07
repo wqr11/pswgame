@@ -10,8 +10,8 @@ import { $userId, $user } from "../user";
 import { TapDataType } from "./types";
 import { PostTapParams } from "./types";
 
-export const clearTimeoutId = createEffect<NodeJS.Timeout, void, Error>((timeout: NodeJS.Timeout) => {
-  clearTimeout(timeout);
+export const clearTimeoutId = createEffect<NodeJS.Timeout | null, void, Error>((timeout: NodeJS.Timeout | null) => {
+  if (timeout) { clearTimeout(timeout) };
 });
 export const $tapTimeoutId = createStore<NodeJS.Timeout | null>(null).reset(clearTimeoutId);
 
@@ -49,14 +49,15 @@ export const $tap_multiplier = combine($user, (user) => user?.game_information.t
 sample({
   clock: tap,
   source: $tapTimeoutId,
-  fn: (timeout) => {
-    if (timeout) {
-      clearTimeoutId(timeout);
-    }
-    return setTimeout(() => initTap(), 1000)
-  },
+  target: clearTimeoutId
+})
+
+sample({
+  clock: tap,
+  fn: () => setTimeout(() => initTap(), 1000),
   target: $tapTimeoutId
 });
+
 
 sample({
   source: $taps,
