@@ -1,4 +1,5 @@
 import { ResultType } from '@/shared/types';
+import { TokensType } from '../auth';
 
 export type UserType = {
   result: ResultType;
@@ -29,3 +30,5 @@ export type UserType = {
     };
   };
 };
+
+export type GetUserParams = { access: TokensType['access']; userId: number };
