@@ -1,9 +1,11 @@
-import { createStore, createEffect } from 'effector';
+import { createStore, createEffect, sample } from 'effector';
 
 import { LeaderboardDataType, LeaderboardUnitType } from './types';
 import { authHost } from '@/shared/api/authHost';
+import { AxiosError, isAxiosError } from 'axios';
+import { loggedIn } from '../auth';
 
-export const getLeaders = createEffect(async () => {
+export const getLeaders = createEffect<void, LeaderboardUnitType[] | undefined, AxiosError>(async () => {
   try {
     const res: { data: LeaderboardDataType } = await authHost.post(
       '/users/get_all',
@@ -13,12 +15,19 @@ export const getLeaders = createEffect(async () => {
     );
 
     return res.data.data;
-  } catch {
-    return null;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      throw new Error(error.message)
+    }
   }
 });
 
 export const $leaderboard = createStore<LeaderboardUnitType[] | null>(null).on(
   getLeaders.doneData,
-  (_, leaders) => leaders,
+  (_, leaders) => leaders ?? null,
 );
+
+sample({
+  clock: loggedIn,
+  target: getLeaders
+})

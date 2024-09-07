@@ -11,7 +11,6 @@ import { TapDataType } from "./types";
 import { PostTapParams } from "./types";
 
 export const postTap = createEffect(async ({ access, userId, taps }: PostTapParams) => {
-  console.log(access, userId, taps)
   try {
     const res: { data: TapDataType } = await axios.post(
       `${process.env.NEXT_PUBLIC_API_URL}/api/v1/actions/tap`,

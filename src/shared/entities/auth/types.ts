@@ -11,4 +11,4 @@ export type AuthDataType = {
     access_token: string;
     refresh_token: string;
   }
-} 
+}

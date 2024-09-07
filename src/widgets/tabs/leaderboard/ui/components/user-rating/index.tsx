@@ -1,5 +1,5 @@
-import Trophy from "../../assets/trophy.svg";
-import UserRatingBorder from "../../assets/user-rating-border.svg";
+import Trophy from '../../assets/trophy.svg';
+import UserRatingBorder from '../../assets/user-rating-border.svg';
 
 export const UserRating = ({
   username,
@@ -9,7 +9,7 @@ export const UserRating = ({
   coinsLast24Hours: number;
 }) => {
   return (
-    <div className="flex flex-col items-center gap-1">
+    <div className="flex flex-col items-center gap-2">
       <div className="size-[26px]">
         <Trophy />
       </div>

@@ -16,7 +16,4 @@
   justify-content: center;
   width: 100%;
   padding-block: 16px;
-  -webkit-backdrop-filter: blur(1px);
-          backdrop-filter: blur(1px);
-  background-color: rgba(14, 14, 14, 0.6);
 }/*# sourceMappingURL=LeaderboardTab.module.css.map */

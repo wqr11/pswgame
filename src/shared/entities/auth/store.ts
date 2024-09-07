@@ -1,6 +1,6 @@
 'use client';
 
-import axios from "axios";
+import axios, { AxiosError, isAxiosError } from "axios";
 
 import Cookies from "js-cookie";
 
@@ -8,10 +8,7 @@ import { createStore, createEffect, sample, createEvent } from "effector";
 
 import { AuthDataType, TokensType } from "./types";
 
-import { getResources } from "../resources";
-import { getLeaders } from "../leaderboard";
-
-export const login = createEffect(async (init_data: string) => {
+export const login = createEffect<string, TokensType | undefined, AxiosError>(async (init_data: string) => {
   const access = Cookies.get(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`);
   const refresh = Cookies.get(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`);
 
@@ -34,21 +31,32 @@ export const login = createEffect(async (init_data: string) => {
 
     return { access: res.data.data.access_token, refresh: res.data.data.refresh_token } as TokensType;
   } catch (error) {
-    return null;
+    if (isAxiosError(error)) {
+      throw new Error(error.message)
+    }
   }
 });
 
-export const logout = createEffect<void, void, Error>(() => {
+export const loggedIn = createEvent<void>();
+
+export const logoutFx = createEffect<void, void, Error>(() => {
   Cookies.remove(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`);
   Cookies.remove(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`);
   return;
 });
+
+export const logout = createEvent<void>();
 
 export const $auth = createStore<TokensType | null>(null)
   .on(login.doneData, (_, auth) => auth)
   .reset(logout);
 
 sample({
-  clock: login,
-  target: [getResources, getLeaders]
-})
+  clock: login.doneData,
+  target: loggedIn,
+});
+
+sample({
+  clock: logout,
+  target: logoutFx,
+});
