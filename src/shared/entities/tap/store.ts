@@ -48,9 +48,9 @@ export const $tap_multiplier = createStore<number>(1);
 
 sample({
   source: $user,
-  filter: (user) => !!user?.tokens_amount,
+  filter: (user) => !!user?.game_information.tap_multiplier,
   // @ts-ignore
-  fn: (user) => user.tokens_amount,
+  fn: (user) => user.game_information.tap_multiplier,
   target: $tap_multiplier,
 })
 
