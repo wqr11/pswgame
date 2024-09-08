@@ -8,6 +8,8 @@ import { $auth, TokensType, loggedIn, logout } from "../auth";
 import { PingDataType } from "./types";
 
 export const ping = createEffect<TokensType['access'], PingDataType['data'] | undefined, AxiosError>(async (access: TokensType['access']) => {
+  console.log("PING")
+  console.log(access)
   try {
     const res: { data: PingDataType } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/ping`, {
       headers: {

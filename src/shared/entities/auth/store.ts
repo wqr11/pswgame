@@ -13,6 +13,7 @@ export const login = createEffect<string, TokensType | undefined, AxiosError>(as
   const refresh = Cookies.get(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`);
 
   if (access && refresh) {
+    console.log({ access: access, refresh: refresh })
     return { access: access, refresh: refresh } as TokensType;
   }
 
