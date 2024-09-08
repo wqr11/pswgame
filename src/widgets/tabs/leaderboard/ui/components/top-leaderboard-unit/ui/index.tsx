@@ -13,9 +13,7 @@ export const TopLeaderboardUnit = ({
 }) => {
   return (
     <div className="flex max-h-[30px] min-h-[30px] w-full items-center justify-between bg-[#1B1B1B] px-4">
-      <h6
-        className={`${styles.top_leader} ${styles[place]} relative text-[12px] uppercase text-white`}
-      >
+      <h6 className={`${styles[place]} text-[12px] uppercase text-white`}>
         {username}
       </h6>
       <h6 className="text-[12px] uppercase text-green-400">

@@ -4,7 +4,7 @@ import axios, { isAxiosError } from "axios";
 
 import { createEffect, createStore, createEvent, sample, combine } from "effector";
 
-import { $auth, TokensType } from "../auth";
+import { $auth, TokensType, logout } from "../auth";
 import { $userId, $user, setTokens, $tokens } from "../user";
 
 import { TapDataType } from "./types";
@@ -89,6 +89,6 @@ sample({
 })
 
 sample({
-  source: postTap.doneData,
-  target: setTokens,
+  clock: postTap.fail,
+  target: logout
 })
