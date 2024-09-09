@@ -27,8 +27,8 @@ export const login = createEffect<string, TokensType | undefined, AxiosError>(as
       }
     });
 
-    Cookies.set(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`, res.data.data.access_token, { secure: true, expires: Date.now() + 86_400_000 });
-    Cookies.set(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`, res.data.data.refresh_token, { secure: true, expires: Date.now() + 86_400_000 });
+    Cookies.set(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`, res.data.data.access_token, { secure: true, expires: 86_400_000, sameSite: "strict" });
+    Cookies.set(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`, res.data.data.refresh_token, { secure: true, expires: 86_400_000, sameSite: "strict" });
 
     return { access: res.data.data.access_token, refresh: res.data.data.refresh_token } as TokensType;
   } catch (error) {
