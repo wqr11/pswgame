@@ -95,7 +95,13 @@ export const CurrentKingdom = ({
           className="aspect-square h-[220px]"
         >
           <div className="flex aspect-square h-[220px] w-auto items-center justify-center">
-            <Image src={kingdomSrc} height={220} width={220} alt="kingdom" />
+            <Image
+              src={kingdomSrc}
+              height={220}
+              width={220}
+              alt="kingdom"
+              priority
+            />
           </div>
         </motion.button>
       </motion.div>

@@ -71,6 +71,7 @@ export const KingdomSwitchButton = ({
         height={55}
         width={55}
         alt="Kingdom Switch button"
+        priority
       />
     </motion.button>
   );
