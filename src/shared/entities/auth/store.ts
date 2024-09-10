@@ -67,7 +67,7 @@ export const loggedIn = createEvent<void>();
 export const logoutFx = createEffect<void, void, Error>(() => {
   Cookies.remove(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`);
   Cookies.remove(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`);
-  window.location.reload();
+  window.location.href = '/';
 });
 
 export const logout = createEvent<void>();

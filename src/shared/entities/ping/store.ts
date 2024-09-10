@@ -27,7 +27,13 @@ export const ping = createEffect<
     return res.data.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      throw new Error(error.message);
+      switch (error.status) {
+        case 401:
+          logout();
+          break;
+        default:
+          throw new Error(error.message);
+      }
     }
   }
 });
@@ -39,7 +45,7 @@ export const startPingInterval = createEffect<
 >((access: TokensType['access']) => {
   return setInterval(() => {
     ping(access);
-  }, 180000); // 180 секунд
+  }, 5000); // 180 секунд ** ВЕРНУТЬ
 });
 
 export const stopPingInterval = createEffect<NodeJS.Timeout, void, Error>(
@@ -58,8 +64,8 @@ sample({
   source: { auth: $auth },
   filter: ({ auth }) => !!auth?.access,
   //@ts-ignore
-  fn: ({ auth }) => ({ access: auth.access }) as TokensType['access'],
-  target: ping, // change to startPingInterval
+  fn: ({ auth }) => auth?.access as TokensType['access'],
+  target: startPingInterval,
 });
 
 sample({
