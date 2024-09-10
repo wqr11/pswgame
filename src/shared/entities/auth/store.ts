@@ -36,12 +36,12 @@ export const login = createEffect<string, TokensType | undefined, AxiosError>(
       Cookies.set(
         `${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`,
         res.data.data.access_token,
-        { secure: true, sameSite: 'strict' }
+        { secure: true, sameSite: 'Lax' }
       );
       Cookies.set(
         `${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`,
         res.data.data.refresh_token,
-        { secure: true, sameSite: 'strict' }
+        { secure: true, sameSite: 'Lax' }
       );
 
       return {
