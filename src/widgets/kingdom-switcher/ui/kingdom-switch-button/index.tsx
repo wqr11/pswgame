@@ -1,12 +1,14 @@
 'use client';
 
-import MinerIcon from '@/shared/ui/icons/kingdoms/miner.svg';
-import GrowerIcon from '@/shared/ui/icons/kingdoms/grower.svg';
-import PowerIcon from '@/shared/ui/icons/kingdoms/power.svg';
-import TraderIcon from '@/shared/ui/icons/kingdoms/trader.svg';
+import Image from 'next/image';
 
-import Lock from '../assets/Lock.svg';
-import LockGreen from '../assets/Lock-green.svg';
+import MinerIcon from '@/shared/ui/icons/kingdoms/miner.svg?url';
+import GrowerIcon from '@/shared/ui/icons/kingdoms/grower.svg?url';
+import PowerIcon from '@/shared/ui/icons/kingdoms/power.svg?url';
+import TraderIcon from '@/shared/ui/icons/kingdoms/trader.svg?url';
+
+import Lock from '../assets/Lock.svg?url';
+import LockGreen from '../assets/Lock-green.svg?url';
 
 import { motion } from 'framer-motion';
 
@@ -28,18 +30,14 @@ export const KingdomSwitchButton = ({
     trader: TraderIcon,
   };
 
-  const ResourceOpenedIcon = resourceIcons[kingdomType];
-
-  const getResourceIcon = () => {
+  const getIcon = (): string => {
     switch (kingdomState) {
       case 'opened':
-        return <ResourceOpenedIcon />;
-
-      case 'locked':
-        return <Lock />;
-
+        return resourceIcons[kingdomType];
       case 'available':
-        return <LockGreen />;
+        return LockGreen;
+      case 'locked':
+        return Lock;
     }
   };
 
@@ -68,7 +66,12 @@ export const KingdomSwitchButton = ({
       className="flex max-h-[55px] min-h-[55px] min-w-[55px] max-w-[55px] items-center justify-center border-[3px] border-white p-1"
       onClick={handleClick}
     >
-      {getResourceIcon()}
+      <Image
+        src={getIcon()}
+        height={55}
+        width={55}
+        alt="Kingdom Switch button"
+      />
     </motion.button>
   );
 };
