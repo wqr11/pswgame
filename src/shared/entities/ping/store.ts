@@ -43,6 +43,7 @@ export const startPingInterval = createEffect<
   NodeJS.Timeout,
   Error
 >((access: TokensType['access']) => {
+  ping(access);
   return setInterval(() => {
     ping(access);
   }, 180000); // 180 секунд
