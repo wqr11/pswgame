@@ -1,26 +1,28 @@
 'use client';
 
+import Image from 'next/image';
+
 import { motion, AnimatePresence } from 'framer-motion';
 
-import GrowerKingdomTier1 from './assets/kingdoms/grower/tier-1.svg';
-import GrowerKingdomTier2 from './assets/kingdoms/grower/tier-2.svg';
-import GrowerKingdomTier3 from './assets/kingdoms/grower/tier-3.svg';
-import GrowerKingdomTier4 from './assets/kingdoms/grower/tier-4.svg';
+import GrowerKingdomTier1 from './assets/kingdoms/grower/tier-1.svg?url';
+import GrowerKingdomTier2 from './assets/kingdoms/grower/tier-2.svg?url';
+import GrowerKingdomTier3 from './assets/kingdoms/grower/tier-3.svg?url';
+import GrowerKingdomTier4 from './assets/kingdoms/grower/tier-4.svg?url';
 
-import MinerKingdomTier1 from './assets/kingdoms/miner/tier-1.svg';
-import MinerKingdomTier2 from './assets/kingdoms/miner/tier-2.svg';
-import MinerKingdomTier3 from './assets/kingdoms/miner/tier-3.svg';
-import MinerKingdomTier4 from './assets/kingdoms/miner/tier-4.svg';
+import MinerKingdomTier1 from './assets/kingdoms/miner/tier-1.svg?url';
+import MinerKingdomTier2 from './assets/kingdoms/miner/tier-2.svg?url';
+import MinerKingdomTier3 from './assets/kingdoms/miner/tier-3.svg?url';
+import MinerKingdomTier4 from './assets/kingdoms/miner/tier-4.svg?url';
 
-import PowerKingdomTier1 from './assets/kingdoms/power/tier-1.svg';
-import PowerKingdomTier2 from './assets/kingdoms/power/tier-2.svg';
-import PowerKingdomTier3 from './assets/kingdoms/power/tier-3.svg';
-import PowerKingdomTier4 from './assets/kingdoms/power/tier-4.svg';
+import PowerKingdomTier1 from './assets/kingdoms/power/tier-1.svg?url';
+import PowerKingdomTier2 from './assets/kingdoms/power/tier-2.svg?url';
+import PowerKingdomTier3 from './assets/kingdoms/power/tier-3.svg?url';
+import PowerKingdomTier4 from './assets/kingdoms/power/tier-4.svg?url';
 
-import TraderKingdomTier1 from './assets/kingdoms/trader/tier-1.svg';
-import TraderKingdomTier2 from './assets/kingdoms/trader/tier-2.svg';
-import TraderKingdomTier3 from './assets/kingdoms/trader/tier-3.svg';
-import TraderKingdomTier4 from './assets/kingdoms/trader/tier-4.svg';
+import TraderKingdomTier1 from './assets/kingdoms/trader/tier-1.svg?url';
+import TraderKingdomTier2 from './assets/kingdoms/trader/tier-2.svg?url';
+import TraderKingdomTier3 from './assets/kingdoms/trader/tier-3.svg?url';
+import TraderKingdomTier4 from './assets/kingdoms/trader/tier-4.svg?url';
 
 import { KingdomTier, KingdomType } from '@/shared/entities/kingdom';
 
@@ -60,7 +62,7 @@ export const CurrentKingdom = ({
     ],
   };
 
-  const Kingdom = kingdoms[kingdomType][kingdomTier - 1];
+  const kingdomSrc = kingdoms[kingdomType][kingdomTier - 1];
 
   return (
     <AnimatePresence mode="wait">
@@ -93,7 +95,7 @@ export const CurrentKingdom = ({
           className="aspect-square h-[220px]"
         >
           <div className="flex aspect-square h-[220px] w-auto items-center justify-center">
-            <Kingdom />
+            <Image src={kingdomSrc} height={220} width={220} alt="kingdom" />
           </div>
         </motion.button>
       </motion.div>
