@@ -12,8 +12,7 @@ export const login = createEffect<string, TokensType | undefined, AxiosError>(as
   const access = Cookies.get(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`);
   const refresh = Cookies.get(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`);
 
-  if (access && refresh) {
-    console.log({ access: access, refresh: refresh })
+  if (!!access && !!refresh) {
     return { access: access, refresh: refresh } as TokensType;
   }
 
@@ -33,7 +32,14 @@ export const login = createEffect<string, TokensType | undefined, AxiosError>(as
     return { access: res.data.data.access_token, refresh: res.data.data.refresh_token } as TokensType;
   } catch (error) {
     if (isAxiosError(error)) {
-      throw new Error(error.message)
+      console.log(error.status)
+      switch (error.status) {
+        case 401:
+          logout();
+          break;
+        default:
+          throw new Error(error.message)
+      }
     }
   }
 });
@@ -43,7 +49,7 @@ export const loggedIn = createEvent<void>();
 export const logoutFx = createEffect<void, void, Error>(() => {
   Cookies.remove(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`);
   Cookies.remove(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`);
-  return;
+  window.location.reload();
 });
 
 export const logout = createEvent<void>();
