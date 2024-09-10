@@ -19,7 +19,7 @@ export const UserRating = ({
         </div>
         <div className="absolute left-0 top-1 flex size-full flex-col items-center uppercase">
           <h6 className="max-w-[80%] overflow-clip text-center text-[13px]">
-            {(!!username && username) ?? 'UNKNOWN'}
+            {username && username.length > 0 ? username : 'UNKNOWN'}
           </h6>
           <p className="text-[13px] text-green-400">
             {tokens} <span className="text-yellow-200">24h</span>
