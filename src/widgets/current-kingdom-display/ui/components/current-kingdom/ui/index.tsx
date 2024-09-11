@@ -100,6 +100,8 @@ export const CurrentKingdom = ({
               height={220}
               width={220}
               alt="kingdom"
+              loading="eager"
+              style={{ objectFit: 'contain' }}
               priority
             />
           </div>
