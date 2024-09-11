@@ -1,9 +1,11 @@
 'use client';
 
-import Heat from '@/shared/ui/icons/resources/heat.svg';
-import Food from '@/shared/ui/icons/resources/food.svg';
-import Energy from '@/shared/ui/icons/resources/energy.svg';
-import Crypto from '@/shared/ui/icons/resources/crypto.svg';
+import Image from 'next/image';
+
+import Heat from '@/shared/ui/icons/resources/heat.svg?url';
+import Food from '@/shared/ui/icons/resources/food.svg?url';
+import Energy from '@/shared/ui/icons/resources/energy.svg?url';
+import Crypto from '@/shared/ui/icons/resources/crypto.svg?url';
 
 import { useUnit } from 'effector-react';
 import { $resources } from '@/shared/entities/user/resources/model';
@@ -20,7 +22,7 @@ export const KingdomResource = ({
   const resources = useUnit($resources);
 
   const icons: {
-    [resource in ResourceType]: React.FC<React.SVGProps<SVGElement>>;
+    [resource in ResourceType]: string;
   } = {
     energy: Energy,
     heat: Heat,
@@ -37,7 +39,7 @@ export const KingdomResource = ({
     trader: 'crypto',
   };
 
-  const Resource = icons[kingdomsResources[kingdomType]];
+  const resourceIconUrl = icons[kingdomsResources[kingdomType]];
 
   return (
     <div className="mx-auto flex size-fit items-center justify-center gap-[10px] border-[1px] border-white px-3 py-1">
@@ -49,7 +51,14 @@ export const KingdomResource = ({
         })}
       </h6>
       <div className="flex size-[18px] items-center justify-center">
-        <Resource />
+        <Image
+          src={resourceIconUrl}
+          height={18}
+          width={18}
+          alt="kingdom-resource"
+          loading="eager"
+          priority
+        />
       </div>
     </div>
   );
