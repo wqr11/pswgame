@@ -2,7 +2,7 @@
 
 import { Link } from '@/components/Link/Link';
 
-import GyberLogoGreen from './assets/gyber-logo-green-w-border.svg';
+import Queen from './assets/queen.svg';
 import Paperclip from './assets/paperclip.svg';
 import Message from './assets/message.svg';
 
@@ -13,10 +13,7 @@ import styles from './styles/header.module.css';
 export const Header = () => {
   return (
     <header className="sticky left-0 top-0 z-50 mx-[27px] flex h-[100px] items-center justify-between">
-      <Link
-        href={`${process.env.NEXT_PUBLIC_REFERRAL_GAME_LINK}`}
-        className={styles.header_link}
-      >
+      <Link href={`${process.env.NEXT_PUBLIC_REFERRAL_GAME_LINK}`} className={styles.header_link}>
         <div className={`${styles.header_link} relative`}>
           <Paperclip />
           <div className="absolute left-[38px] top-[-8px] size-max">
@@ -35,7 +32,9 @@ export const Header = () => {
         }}
         className={`${styles.header_link} justify-center`}
       >
-        <GyberLogoGreen />
+        <div className="size-[72px]">
+          <Queen />
+        </div>
       </button>
       <button
         onClick={() => {
@@ -43,9 +42,7 @@ export const Header = () => {
         }}
         className={`${styles.header_link} justify-end`}
       >
-        <h6 className="h-[45px] text-end text-[14px] text-[#434343]">
-          ABOUT US
-        </h6>
+        <h6 className="h-[45px] text-end text-[14px] text-[#434343]">ABOUT US</h6>
       </button>
     </header>
   );

@@ -7,16 +7,20 @@ import { createEffect, createStore, sample } from 'effector';
 import { PoolResourcesType } from './types';
 import { loggedIn } from '../auth';
 
-export const getResourcePool = createEffect<void, PoolResourcesType['data'] | undefined, AxiosError>(async () => {
+export const getResourcePool = createEffect<
+  void,
+  PoolResourcesType['data'] | undefined,
+  AxiosError
+>(async () => {
   try {
     const res = await axios.get<PoolResourcesType>(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/kingdom/pool_resources/-1`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/kingdom/pool_resources/all`,
       {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/ json',
         },
-      },
+      }
     );
 
     return res.data.data;
@@ -27,11 +31,12 @@ export const getResourcePool = createEffect<void, PoolResourcesType['data'] | un
   }
 });
 
-export const $resourcePool = createStore<PoolResourcesType['data'] | null>(
-  null,
-).on(getResourcePool.doneData, (_, resources) => resources ?? null);
+export const $resourcePool = createStore<PoolResourcesType['data'] | null>(null).on(
+  getResourcePool.doneData,
+  (_, resources) => resources ?? null
+);
 
 sample({
   clock: loggedIn,
-  target: getResourcePool
-})
+  target: getResourcePool,
+});

@@ -14,11 +14,7 @@ import { KingdomType, ResourceType } from '@/shared/entities';
 
 import { formatNumber } from '@/shared/utils/formatNumber';
 
-export const KingdomResource = ({
-  kingdomType,
-}: {
-  kingdomType: KingdomType;
-}) => {
+export const KingdomResource = ({ kingdomType }: { kingdomType: KingdomType }) => {
   const resources = useUnit($resources);
 
   const icons: {
@@ -57,7 +53,6 @@ export const KingdomResource = ({
           width={18}
           alt="kingdom-resource"
           loading="eager"
-          priority
         />
       </div>
     </div>

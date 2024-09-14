@@ -1,11 +1,6 @@
 'use client';
 
-import {
-  ResourcesTab,
-  AboutTab,
-  LeaderboardTab,
-  InDevelopmentTab,
-} from '@/widgets';
+import { ResourcesTab, AboutTab, LeaderboardTab, InDevelopmentTab } from '@/widgets';
 
 import { useUnit } from 'effector-react';
 import { $tab } from '@/shared/entities/tab';
@@ -30,5 +25,9 @@ export const TabSwitcher = () => {
     }
   };
 
-  return <AnimatePresence mode="wait">{getTab(tab)}</AnimatePresence>;
+  return (
+    <AnimatePresence mode="popLayout" initial={false}>
+      {getTab(tab)}
+    </AnimatePresence>
+  );
 };
