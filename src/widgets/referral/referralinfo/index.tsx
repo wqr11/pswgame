@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 import { formatNumber } from "@/shared/utils/formatNumber";
 
-const ReferralInfo = ({ refPoints = 0 }: { refPoints: number }) => {
+export const ReferralInfo = ({ refPoints = 0 }: { refPoints: number }) => {
   return (
     <div className="flex flex-col items-center">
       <h6 className="text-lg uppercase text-white">{"title"}</h6>
@@ -14,5 +14,3 @@ const ReferralInfo = ({ refPoints = 0 }: { refPoints: number }) => {
     </div>
   );
 };
-
-export default ReferralInfo;

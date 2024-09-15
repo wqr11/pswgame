@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 import PaperclipBig from "@/shared/assets/paperclip-big.svg";
 
-const LoadingUIMain = () => {
+export const LoadingUIMain = () => {
   return (
     <motion.div
       initial={{ opacity: 0.6, scale: 1 }}
@@ -21,5 +21,3 @@ const LoadingUIMain = () => {
     </motion.div>
   );
 };
-
-export default LoadingUIMain;

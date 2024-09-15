@@ -8,7 +8,7 @@ import Image from "next/image";
 
 import { useTranslation } from "react-i18next";
 
-const SideQuests = () => {
+export const SideQuests = () => {
   const { t } = useTranslation("translation", {
     keyPrefix: "pages.main.sections.quests.inviteQuests",
   });
@@ -42,5 +42,3 @@ const SideQuests = () => {
     </motion.button>
   );
 };
-
-export default SideQuests;

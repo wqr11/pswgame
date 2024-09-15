@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 import PaperclipBig from "@/shared/assets/paperclip-big.svg";
 
-const MainPageLink = () => {
+export const MainPageLink = () => {
   const router = useRouter();
 
   return (
@@ -21,5 +21,3 @@ const MainPageLink = () => {
     </button>
   );
 };
-
-export default MainPageLink;

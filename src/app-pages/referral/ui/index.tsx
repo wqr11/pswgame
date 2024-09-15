@@ -1,5 +1,67 @@
-import { ReferallUi } from "@/widgets";
+"use client";
 
-export const ReferralPage = () => {
-  return <ReferallUi />;
+import { AnimatePresence, motion } from "framer-motion";
+
+import { useEffect } from "react";
+// import { useParams } from "next/navigation";
+// import { useTranslation } from "react-i18next";
+// import { Languages } from "@/shared/utils/langTypes";
+
+import { useUnit } from "effector-react";
+import { $refs, getRefs } from "@/shared/entities";
+
+import {
+  SideQuests,
+  Missions,
+  MainPageLink,
+  CopySection,
+  ReferralInfo,
+  LoadingUIMain,
+} from "@/widgets";
+
+export const ReferallUi = () => {
+  const refs = useUnit($refs);
+  const getReferrals = useUnit(getRefs);
+
+  useEffect(() => {
+    getReferrals();
+  }, []);
+
+  // @ts-ignore
+  // const params: {
+  //   params: Languages;
+  // } = useParams();
+
+  // const { t, i18n } = useTranslation("translation", {
+  //   keyPrefix: "pages.main",
+  // });
+
+  // useEffect(() => {
+  //   // @ts-ignore
+  //   i18n.changeLanguage(params.lang);
+  // }, []);
+
+  return (
+    <AnimatePresence>
+      {!!refs && (
+        <motion.div
+          key="mainui"
+          initial={{ opacity: 0, scale: 0.95, translateY: 10 }}
+          animate={{ opacity: 1, scale: 1, translateY: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="items-center flex justify-center"
+        >
+          <MainPageLink />
+          <CopySection copied={"sections.url.myUrl"} />
+          <ReferralInfo
+            // locale={locale}
+            refPoints={refs.referrals_points}
+          />
+          <Missions title={"sections.quests.inviteQuests.title"} refs={refs} />
+          <SideQuests />
+        </motion.div>
+      )}
+      {!refs && <LoadingUIMain key="loading" />}
+    </AnimatePresence>
+  );
 };
