@@ -1,18 +1,12 @@
-import { RefsApiData } from "@/shared/entities/referral/types";
+import { RefsApiData } from '@/shared/entities/referrals';
 
-import InviteQuests from "./invite-quests";
+import InviteQuests from './invite-quests';
 
-const Missions = ({
-  title,
-  refsData,
-}: {
-  title: string;
-  refsData: RefsApiData;
-}) => {
+const Missions = ({ title, refs }: { title: string; refs: RefsApiData['data'] }) => {
   return (
     <div className="mb-6 mt-5 flex flex-col gap-2">
       <h6 className="text-lg uppercase text-white">{title}</h6>
-      <InviteQuests refsCount={refsData.data.referrals_count} />
+      <InviteQuests refsCount={refs.referrals_count} />
     </div>
   );
 };
