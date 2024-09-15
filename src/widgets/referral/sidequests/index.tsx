@@ -6,12 +6,12 @@ import { motion } from 'framer-motion';
 
 import Image from 'next/image';
 
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 
 export const SideQuests = () => {
-  const { t } = useTranslation('translation', {
-    keyPrefix: 'pages.main.sections.quests.inviteQuests',
-  });
+  // const { t } = useTranslation('translation', {
+  //   keyPrefix: 'pages.main.sections.quests.inviteQuests',
+  // });
 
   // const handleClick = () => {
   //   setTab("side-quests");
@@ -36,7 +36,8 @@ export const SideQuests = () => {
         />
         <h6 className="absolute left-0 top-0 w-full text-lg uppercase text-[#FFE350]">
           {/* {t("sideQuestsButton")} */}
-          {t('soon')}
+          {/* {t('soon')} */}
+          Soon
         </h6>
       </div>
     </motion.button>

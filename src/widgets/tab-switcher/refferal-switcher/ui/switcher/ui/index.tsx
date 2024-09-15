@@ -2,7 +2,7 @@
 
 import { AnimatePresence } from 'framer-motion';
 
-import { AboutTab, InDevelopmentTab, SideQuests } from '@/widgets';
+import { ReferralAboutTab, InDevelopmentTab, SideQuests } from '@/widgets';
 
 import { useUnit } from 'effector-react';
 import { $RefTab, ReferralTabType } from '@/entities';
@@ -13,7 +13,7 @@ export const RefTabSwitcher = () => {
   const getTab = (tab: ReferralTabType) => {
     switch (tab) {
       case 'about':
-        return <AboutTab />;
+        return <ReferralAboutTab />;
       case 'side-quest':
         return <SideQuests />;
       case 'none':

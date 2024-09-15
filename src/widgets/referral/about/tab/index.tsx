@@ -7,9 +7,9 @@ import styles from '../styles/AboutUs.module.css';
 
 import Queen from './assets/mystical-queen-card.svg';
 
-import { GoBackButton } from './goback-button';
-import { SocialLinks } from './social-links';
-import { TextSection } from './text';
+import { GoBackButton } from './goback-button/ui';
+import { SocialLinks } from './social-links/ui';
+import { TextSection } from './text/ui';
 import { ReferralTabAnimated } from '@/widgets';
 
 export const ReferralAboutTab = () => {
