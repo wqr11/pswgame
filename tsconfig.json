@@ -23,7 +23,7 @@
       "@/assets/*": ["./assets/*"],
       "@/styles/*": ["./src/styles/*"],
       "@/fonts": ["./src/shared/ui/fonts.ts"],
-      "@/entities": ["./src/shared/entities"]
+      "@/entities/*": ["./src/shared/entities/*"]
     }
   },
   "include": ["svgr.d.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
