@@ -1,5 +1,10 @@
 import localFont from "next/font/local";
 
-export const tickerbitMono = localFont({
-  src: "../ui/fonts/Tickerbit-mono.woff2",
+export const mainFont = localFont({
+  src: "./fonts/Tickerbit-regular.woff2",
+  adjustFontFallback: false,
+});
+
+export const fallbackFont = localFont({
+  src: "./fonts/Hardpixel.otf",
 });

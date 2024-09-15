@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
-import { LoadingPageUI } from '@/app-pages';
+import { LoadingPageUI } from "@/app-pages";
 
-import { retrieveLaunchParams } from '@telegram-apps/sdk';
+import { retrieveLaunchParams } from "@telegram-apps/sdk";
 
-import { useInitData } from '@telegram-apps/sdk-react';
+import { useInitData } from "@telegram-apps/sdk-react";
 
-import { setUserId } from '@/shared/entities/user';
+import { setUserId } from "@/shared/entities/user";
 
-import { useUnit } from 'effector-react';
-import { login, $auth } from '@/shared/entities/auth';
+import { useUnit } from "effector-react";
+import { login, $auth } from "@/shared/entities/auth";
 
 export const AuthPageUI = () => {
   const router = useRouter();
@@ -36,7 +36,7 @@ export const AuthPageUI = () => {
 
   useEffect(() => {
     if (!!auth) {
-      router.push('/game');
+      router.push("/referral");
     }
   }, [auth]);
 
