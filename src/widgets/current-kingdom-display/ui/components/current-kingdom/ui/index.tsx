@@ -22,9 +22,7 @@ import TraderKingdomTier2 from './assets/kingdoms/trader/tier-2.svg';
 import TraderKingdomTier3 from './assets/kingdoms/trader/tier-3.svg';
 import TraderKingdomTier4 from './assets/kingdoms/trader/tier-4.svg';
 
-import { KingdomTier, KingdomType } from '@/entities/kingdom';
-
-import { tap } from '@/entities/tap';
+import { KingdomTier, KingdomType, tap } from '@/entities';
 
 export const CurrentKingdom = ({
   kingdomType,

@@ -14,7 +14,7 @@ import FoodFill from './assets/fills/food.svg?url';
 
 import ProgressBorder from './assets/border/progress-border.svg?url';
 
-import { ResourceType } from '@/entities/resources-pool';
+import { ResourceType } from '@/entities';
 
 export const ResourceProgress = ({
   progress = 100,

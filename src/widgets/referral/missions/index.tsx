@@ -1,4 +1,4 @@
-import { RefsApiData } from '@/entities/referrals';
+import { RefsApiData } from '@/entities';
 
 import InviteQuests from './invite-quests';
 

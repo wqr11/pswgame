@@ -1,6 +1,6 @@
 'use client';
 
-import { PoolResourcesType } from '@/entities/resources-pool';
+import { PoolResourcesType } from '@/entities';
 
 import { ResourceProgress } from '@/widgets';
 

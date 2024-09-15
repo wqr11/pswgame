@@ -10,10 +10,10 @@ import { retrieveLaunchParams } from '@telegram-apps/sdk';
 
 import { useInitData } from '@telegram-apps/sdk-react';
 
-import { $user, setUserId } from '@/entities/user';
+import { $user, setUserId } from '@/entities';
 
 import { useUnit } from 'effector-react';
-import { login, $auth } from '@/entities/auth';
+import { login, $auth } from '@/entities';
 
 export const AuthPageUI = () => {
   const router = useRouter();

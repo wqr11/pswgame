@@ -12,7 +12,7 @@ import {
 } from '@/widgets';
 
 import { useUnit } from 'effector-react';
-import { $resourcePool, getResourcePool } from '@/entities/resources-pool';
+import { $resourcePool, getResourcePool } from '@/entities';
 
 import styles from '@/shared/ui/styles/current-tab/currentTab.module.css';
 import { TabAnimated } from '@/widgets/tab-switcher/game-switcher/TabAnimated';

@@ -3,7 +3,7 @@
 import { ResourcesTab, AboutTab, LeaderboardTab, InDevelopmentTab } from '@/widgets';
 
 import { useUnit } from 'effector-react';
-import { $tab } from '@/entities/tab';
+import { $tab } from '@/entities';
 
 import { AnimatePresence } from 'framer-motion';
 
