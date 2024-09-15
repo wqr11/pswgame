@@ -12,10 +12,7 @@ import {
 } from '@/widgets';
 
 import { useUnit } from 'effector-react';
-import {
-  $resourcePool,
-  getResourcePool,
-} from '@/shared/entities/resources-pool';
+import { $resourcePool, getResourcePool } from '@/shared/entities/resources-pool';
 
 import styles from '@/shared/ui/styles/current-tab/currentTab.module.css';
 import { TabAnimated } from '@/widgets/tab-switcher/ui/TabAnimated';
@@ -46,10 +43,7 @@ export const ResourcesTab = () => {
             />
             <ResourcesProgress resources={resources?.entities} />
             <div className="flex flex-col items-end gap-2">
-              <UpdatePoolProgress
-                startTime={9800}
-                remainingTime={5378}
-              />
+              <UpdatePoolProgress startTime={9800} remainingTime={5378} />
               {/* <BuyResource /> */}
             </div>
           </>

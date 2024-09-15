@@ -1,4 +1,4 @@
-import GameUI from '@/app-pages/game/ui';
+import { GameUI } from '@/app-pages';
 
 const Game = () => {
   return <GameUI />;

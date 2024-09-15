@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation';
 
-import { LoadingPageUI } from "@/app-pages";
+import { LoadingPageUI } from '@/app-pages';
 
-import { retrieveLaunchParams } from "@telegram-apps/sdk";
+import { retrieveLaunchParams } from '@telegram-apps/sdk';
 
-import { useInitData } from "@telegram-apps/sdk-react";
+import { useInitData } from '@telegram-apps/sdk-react';
 
-import { setUserId } from "@/shared/entities/user";
+import { $user, setUserId } from '@/shared/entities/user';
 
-import { useUnit } from "effector-react";
-import { login, $auth } from "@/shared/entities/auth";
+import { useUnit } from 'effector-react';
+import { login, $auth } from '@/shared/entities/auth';
 
 export const AuthPageUI = () => {
   const router = useRouter();
@@ -23,6 +23,7 @@ export const AuthPageUI = () => {
   const initData = useInitData();
 
   const auth = useUnit($auth);
+  const user = useUnit($user);
 
   useEffect(() => {
     if (initData?.user?.id) {
@@ -35,10 +36,10 @@ export const AuthPageUI = () => {
   }, [initDataRaw]);
 
   useEffect(() => {
-    if (!!auth) {
-      router.push("/referral");
+    if (!!auth && !!user) {
+      router.push('/referral');
     }
-  }, [auth]);
+  }, [auth, user]);
 
   return <LoadingPageUI />;
 };

@@ -28,18 +28,16 @@ export const KingdomSwitchButton = ({
     trader: TraderIcon,
   };
 
-  const ResourceOpenedIcon = resourceIcons[kingdomType];
+  const Resource = resourceIcons[kingdomType];
 
-  const getResourceIcon = () => {
+  const getIcon = () => {
     switch (kingdomState) {
       case 'opened':
-        return <ResourceOpenedIcon />;
-
-      case 'locked':
-        return <Lock />;
-
+        return <Resource />;
       case 'available':
         return <LockGreen />;
+      case 'locked':
+        return <Lock />;
     }
   };
 
@@ -68,7 +66,8 @@ export const KingdomSwitchButton = ({
       className="flex max-h-[55px] min-h-[55px] min-w-[55px] max-w-[55px] items-center justify-center border-[3px] border-white p-1"
       onClick={handleClick}
     >
-      {getResourceIcon()}
+      {/* <Image src={getIcon()} height={55} width={55} alt="Kingdom Switch button" priority /> */}
+      {getIcon()}
     </motion.button>
   );
 };

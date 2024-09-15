@@ -1,18 +1,24 @@
 'use client';
 
-import axios, { isAxiosError } from "axios";
+import axios, { isAxiosError } from 'axios';
 
-import { createEffect, createStore, createEvent, sample, combine } from "effector";
+import { createEffect, createStore, createEvent, sample, combine } from 'effector';
 
-import { $auth, TokensType, logout } from "../auth";
-import { $userId, $user, setTokens, $tokens } from "../user";
+import { $auth, TokensType, logout } from '../auth';
+import { $userId, $user, setTokens, $tokens } from '../user';
 
-import { TapDataType } from "./types";
-import { PostTapParams } from "./types";
+import { TapDataType } from './types';
+import { PostTapParams } from './types';
 
-export const clearTimeoutId = createEffect<NodeJS.Timeout | null, void, Error>((timeout: NodeJS.Timeout | null) => {
-  if (timeout) { clearTimeout(timeout) };
-});
+import { tapsChunk } from '@/shared/config/tap';
+
+export const clearTimeoutId = createEffect<NodeJS.Timeout | null, void, Error>(
+  (timeout: NodeJS.Timeout | null) => {
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+  }
+);
 export const $tapTimeoutId = createStore<NodeJS.Timeout | null>(null).reset(clearTimeoutId);
 
 export const tap = createEvent<void>();
@@ -31,7 +37,7 @@ export const postTap = createEffect(async ({ access, userId, taps }: PostTapPara
           'Content-Type': 'application/json',
           'jwt-token': `${access}`,
         },
-      },
+      }
     );
 
     return res.data.data.tokens_amount;
@@ -42,7 +48,9 @@ export const postTap = createEffect(async ({ access, userId, taps }: PostTapPara
   }
 });
 
-export const $taps = createStore<number>(0).on(tap, (taps) => taps + 1).reset(postTap);
+export const $taps = createStore<number>(0)
+  .on(tap, (taps) => taps + 1)
+  .reset(postTap);
 
 export const $tap_multiplier = createStore<number>(1);
 
@@ -52,24 +60,23 @@ sample({
   // @ts-ignore
   fn: (user) => user.game_information.tap_multiplier,
   target: $tap_multiplier,
-})
+});
 
 sample({
   clock: tap,
   source: $tapTimeoutId,
-  target: clearTimeoutId
-})
+  target: clearTimeoutId,
+});
 
 sample({
   clock: tap,
   fn: () => setTimeout(() => initTap(), 1000),
-  target: $tapTimeoutId
+  target: $tapTimeoutId,
 });
-
 
 sample({
   source: $taps,
-  filter: (taps) => taps >= 10,
+  filter: (taps) => taps >= tapsChunk,
   target: initTap,
 });
 
@@ -77,18 +84,19 @@ sample({
   clock: initTap,
   source: { auth: $auth, userId: $userId, taps: $taps },
   filter: ({ auth, userId }) => !!auth && !!userId,
-  fn: ({ auth, userId, taps }: { auth: TokensType | null, userId: number | null, taps: number }) => ({ access: auth?.access, userId, taps } as PostTapParams),
-  target: postTap
-})
+  fn: ({ auth, userId, taps }: { auth: TokensType | null; userId: number | null; taps: number }) =>
+    ({ access: auth?.access, userId, taps }) as PostTapParams,
+  target: postTap,
+});
 
 sample({
   clock: tap,
   source: { tokens: $tokens, multiplier: $tap_multiplier },
   fn: ({ tokens, multiplier }) => tokens + 100 * multiplier,
   target: setTokens,
-})
+});
 
 sample({
   clock: postTap.fail,
-  target: logout
-})
+  target: logout,
+});
