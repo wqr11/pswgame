@@ -14,7 +14,7 @@ export const MainPageLink = () => {
       className="transition-transform duration-75 ease-in-out active:scale-95"
       onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        router.push(`/$?tab=none`);
+        router.push(`/game`);
       }}
     >
       <PaperclipBig />
