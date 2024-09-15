@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
 // import { Languages } from "@/shared/utils/langTypes";
 
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation';
 
-import PaperclipBig from "@/shared/assets/paperclip-big.svg";
+import PaperclipBig from '@/shared/assets/paperclip-big.svg';
 
 export const MainPageLink = () => {
   const router = useRouter();

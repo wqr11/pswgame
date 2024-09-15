@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from 'framer-motion';
 
-import { useEffect } from "react";
+import { useEffect } from 'react';
 // import { useParams } from "next/navigation";
 // import { useTranslation } from "react-i18next";
 // import { Languages } from "@/shared/utils/langTypes";
 
-import { useUnit } from "effector-react";
-import { $refs, getRefs } from "@/shared/entities";
+import { useUnit } from 'effector-react';
+import { $refs, getRefs } from '@/shared/entities';
 
 import {
   SideQuests,
@@ -17,7 +17,7 @@ import {
   CopySection,
   ReferralInfo,
   LoadingUIMain,
-} from "@/widgets";
+} from '@/widgets';
 
 export const ReferallUi = () => {
   const refs = useUnit($refs);
@@ -25,7 +25,7 @@ export const ReferallUi = () => {
 
   useEffect(() => {
     getReferrals();
-  }, []);
+  }, [getReferrals]);
 
   // @ts-ignore
   // const params: {
@@ -52,12 +52,15 @@ export const ReferallUi = () => {
           className="items-center flex justify-center flex-col"
         >
           <MainPageLink />
-          <CopySection copied={"sections.url.myUrl"} />
+          <CopySection copied={'sections.url.myUrl'} />
           <ReferralInfo
             // locale={locale}
             refPoints={refs.referrals_points}
           />
-          <Missions title={"sections.quests.inviteQuests.title"} refs={refs} />
+          <Missions
+            title={'sections.quests.inviteQuests.title'}
+            refs={refs}
+          />
           <SideQuests />
         </motion.div>
       )}

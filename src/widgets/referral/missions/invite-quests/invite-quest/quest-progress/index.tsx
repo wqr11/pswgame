@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import Image from "next/image";
+import Image from 'next/image';
 
-import ProgressBorder from "./assets/progress-border.svg?url";
-import ProgressFill from "./assets/progress-fill.svg?url";
-import SuccessMark from "./assets/success-mark.svg";
-import NotFinishedMark from "./assets/not-finished-mark.svg";
+import ProgressBorder from './assets/progress-border.svg?url';
+import ProgressFill from './assets/progress-fill.svg?url';
+import SuccessMark from './assets/success-mark.svg';
+import NotFinishedMark from './assets/not-finished-mark.svg';
 
 const QuestProgress = ({ progress = 0 }: { progress: number }) => {
   return (
@@ -15,7 +15,7 @@ const QuestProgress = ({ progress = 0 }: { progress: number }) => {
           src={ProgressBorder}
           width={262}
           height={29}
-          style={{ objectFit: "fill", width: "100%", height: "29px" }}
+          style={{ objectFit: 'fill', width: '100%', height: '29px' }}
           alt="progress-border"
           priority
         />
@@ -28,7 +28,7 @@ const QuestProgress = ({ progress = 0 }: { progress: number }) => {
           src={ProgressFill}
           width={262}
           height={27}
-          style={{ objectFit: "fill", width: `${progress}%`, height: "27px" }}
+          style={{ objectFit: 'fill', width: `${progress}%`, height: '27px' }}
           alt="progress-fill"
           priority
         />

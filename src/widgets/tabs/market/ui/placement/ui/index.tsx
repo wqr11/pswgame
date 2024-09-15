@@ -1,6 +1,6 @@
-import { formatNumber } from "@/shared/utils/formatNumber";
+import { formatNumber } from '@/shared/utils/formatNumber';
 
-import ShoppingCard from "../../assets/shopping-card.svg";
+import ShoppingCard from '../../assets/shopping-card.svg';
 
 export const Placement = ({
   placementHolder,

@@ -33,7 +33,7 @@ export const postTap = createEffect(async ({ access, userId, taps }: PostTapPara
       },
       {
         headers: {
-          Accept: 'application/json',
+          'Accept': 'application/json',
           'Content-Type': 'application/json',
           'jwt-token': `${access}`,
         },
@@ -49,16 +49,16 @@ export const postTap = createEffect(async ({ access, userId, taps }: PostTapPara
 });
 
 export const $taps = createStore<number>(0)
-  .on(tap, (taps) => taps + 1)
+  .on(tap, taps => taps + 1)
   .reset(postTap);
 
 export const $tap_multiplier = createStore<number>(1);
 
 sample({
   source: $user,
-  filter: (user) => !!user?.game_information.tap_multiplier,
+  filter: user => !!user?.game_information.tap_multiplier,
   // @ts-ignore
-  fn: (user) => user.game_information.tap_multiplier,
+  fn: user => user.game_information.tap_multiplier,
   target: $tap_multiplier,
 });
 
@@ -76,7 +76,7 @@ sample({
 
 sample({
   source: $taps,
-  filter: (taps) => taps >= tapsChunk,
+  filter: taps => taps >= tapsChunk,
   target: initTap,
 });
 

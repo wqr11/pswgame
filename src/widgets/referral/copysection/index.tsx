@@ -1,4 +1,4 @@
-import CopyButton from "./copy-button";
+import CopyButton from './copy-button';
 
 export const CopySection = ({ copied }: { copied: string }) => {
   return (

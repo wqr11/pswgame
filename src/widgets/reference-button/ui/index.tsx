@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import { useState } from "react";
+import { useState } from 'react';
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from 'framer-motion';
 
-import QuestionMark from "./assets/question.svg";
-import ReferenceBorder from "./assets/reference-border.svg";
+import QuestionMark from './assets/question.svg';
+import ReferenceBorder from './assets/reference-border.svg';
 
 export const ReferenceButton = ({
   reference,
-  direction = "fromLeft",
+  direction = 'fromLeft',
 }: {
   reference: string; // change this to ReactNode
-  direction: "fromLeft" | "fromRight";
+  direction: 'fromLeft' | 'fromRight';
 }) => {
   const [referenceShown, setReferenceShown] = useState<boolean>(false);
 
@@ -33,8 +33,8 @@ export const ReferenceButton = ({
             initial={{
               opacity: 0,
               scale: 0,
-              translateX: "50%",
-              translateY: "-50%",
+              translateX: '50%',
+              translateY: '-50%',
             }}
             animate={{
               opacity: 1,
@@ -45,8 +45,8 @@ export const ReferenceButton = ({
             exit={{
               opacity: 0,
               scale: 0,
-              translateX: "50%",
-              translateY: "-50%",
+              translateX: '50%',
+              translateY: '-50%',
             }}
             transition={{
               duration: 0.15,

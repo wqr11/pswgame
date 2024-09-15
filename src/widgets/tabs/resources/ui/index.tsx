@@ -15,7 +15,7 @@ import { useUnit } from 'effector-react';
 import { $resourcePool, getResourcePool } from '@/shared/entities/resources-pool';
 
 import styles from '@/shared/ui/styles/current-tab/currentTab.module.css';
-import { TabAnimated } from '@/widgets/tab-switcher/ui/TabAnimated';
+import { TabAnimated } from '@/widgets/tab-switcher/ui/game-switcher/TabAnimated';
 
 export const ResourcesTab = () => {
   const resources = useUnit($resourcePool);
@@ -24,7 +24,7 @@ export const ResourcesTab = () => {
     if (!resources) {
       getResourcePool();
     }
-  }, []);
+  }, [resources]);
 
   return (
     <TabAnimated className={`${styles.tab_wrapper} flex flex-col gap-1`}>
@@ -43,7 +43,10 @@ export const ResourcesTab = () => {
             />
             <ResourcesProgress resources={resources?.entities} />
             <div className="flex flex-col items-end gap-2">
-              <UpdatePoolProgress startTime={9800} remainingTime={5378} />
+              <UpdatePoolProgress
+                startTime={9800}
+                remainingTime={5378}
+              />
               {/* <BuyResource /> */}
             </div>
           </>

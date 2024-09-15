@@ -6,4 +6,7 @@ import { KingdomType } from './types';
 
 export const setKingdom = createEvent<KingdomType>();
 
-export const $kingdom = createStore<KingdomType | null>(null).on(setKingdom, (_, kingdom) => kingdom);
+export const $kingdom = createStore<KingdomType | null>(null).on(
+  setKingdom,
+  (_, kingdom) => kingdom
+);

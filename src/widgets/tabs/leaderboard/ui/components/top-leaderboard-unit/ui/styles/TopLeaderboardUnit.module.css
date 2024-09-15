@@ -3,12 +3,12 @@
   color: transparent;
   background: linear-gradient(90deg, #7aff87 0%, #e479ff 49.65%, #ff4158 100%);
   -webkit-background-clip: text;
-          background-clip: text;
+  background-clip: text;
   -webkit-backdrop-filter: blur(1px);
-          backdrop-filter: blur(1px);
+  backdrop-filter: blur(1px);
 }
 .first::before {
-  content: "";
+  content: '';
   width: 100%;
   height: 10%;
   top: 45%;
@@ -27,4 +27,4 @@
 .third {
   color: #71f6ff;
   filter: drop-shadow(0 0 1px #71f6ff);
-}/*# sourceMappingURL=TopLeaderboardUnit.module.css.map */
+} /*# sourceMappingURL=TopLeaderboardUnit.module.css.map */

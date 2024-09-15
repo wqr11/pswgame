@@ -40,7 +40,7 @@ export const KingdomResource = ({ kingdomType }: { kingdomType: KingdomType }) =
   return (
     <div className="mx-auto flex size-fit items-center justify-center gap-[10px] border-[1px] border-white px-3 py-1">
       <h6 className="text-[16px]">
-        {resources?.map((resource) => {
+        {resources?.map(resource => {
           if (resource.name === kingdomsResources[kingdomType]) {
             return formatNumber(resource.current);
           }

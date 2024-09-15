@@ -1,4 +1,4 @@
-import styles from "./styles/ErrorPageUI.module.css";
+import styles from './styles/ErrorPageUI.module.css';
 
 export const ErrorPageUI = () => (
   <div className="flex h-[100vh] w-[100vw] items-center justify-center">

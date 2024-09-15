@@ -1,4 +1,4 @@
-import { ReferallUi } from "@/app-pages/referral/ui";
+import { ReferallUi } from '@/app-pages';
 
 const Referral = () => {
   return <ReferallUi />;

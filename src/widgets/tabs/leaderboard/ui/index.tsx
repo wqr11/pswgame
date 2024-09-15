@@ -17,15 +17,11 @@ import styles from '@/shared/ui/styles/current-tab/currentTab.module.css';
 
 import tabStyles from './styles/LeaderboardTab.module.css';
 
-import { TabAnimated } from '@/widgets/tab-switcher/ui/TabAnimated';
+import { TabAnimated } from '@/widgets/tab-switcher/ui/game-switcher/TabAnimated';
 import { $tokens, $user } from '@/shared/entities/user';
 
 export const LeaderboardTab = () => {
-  const places: Array<'first' | 'second' | 'third'> = [
-    'first',
-    'second',
-    'third',
-  ];
+  const places: Array<'first' | 'second' | 'third'> = ['first', 'second', 'third'];
 
   const leaders = useUnit($leaderboard);
   const user = useUnit($user);
@@ -36,9 +32,7 @@ export const LeaderboardTab = () => {
   }, []);
 
   return (
-    <TabAnimated
-      className={`${styles.tab_wrapper} relative flex flex-col gap-1`}
-    >
+    <TabAnimated className={`${styles.tab_wrapper} relative flex flex-col gap-1`}>
       <div className="flex justify-end">
         <ReferenceButton
           direction="fromRight"
@@ -61,9 +55,7 @@ export const LeaderboardTab = () => {
               {leaders?.slice(0, 3).map((leader, idx) => (
                 <TopLeaderboardUnit
                   key={`top-leader-${idx}`}
-                  username={
-                    leader.user_name.length > 0 ? leader.user_name : 'UNKNOWN'
-                  }
+                  username={leader.user_name.length > 0 ? leader.user_name : 'UNKNOWN'}
                   tokens={leader.tokens_amount}
                   place={places[idx]}
                 />
@@ -74,9 +66,7 @@ export const LeaderboardTab = () => {
                 {leaders?.slice(3, 100).map((leader, idx) => (
                   <LeaderboardUnit
                     key={`leader-${idx}`}
-                    username={
-                      leader.user_name.length > 0 ? leader.user_name : 'UNKNOWN'
-                    }
+                    username={leader.user_name.length > 0 ? leader.user_name : 'UNKNOWN'}
                     tokens={leader.tokens_amount}
                   />
                 ))}

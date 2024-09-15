@@ -17,7 +17,7 @@ export const getResourcePool = createEffect<
       `${process.env.NEXT_PUBLIC_API_URL}/api/v1/kingdom/pool_resources/all`,
       {
         headers: {
-          Accept: 'application/json',
+          'Accept': 'application/json',
           'Content-Type': 'application/ json',
         },
       }

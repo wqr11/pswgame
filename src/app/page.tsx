@@ -1,4 +1,4 @@
-import { AuthPageUI } from "@/app-pages";
+import { AuthPageUI } from '@/app-pages';
 
 const Home = () => <AuthPageUI />;
 

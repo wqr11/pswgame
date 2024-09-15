@@ -1,0 +1,25 @@
+.about_us {
+  color: transparent;
+  background: linear-gradient(90deg, #d660ff 0%, #73ff81 52.01%, #ff35ba 100%);
+  background-clip: text;
+  position: relative;
+}
+
+.tab_wrapper {
+  position: fixed;
+  bottom: 81px;
+  left: 0;
+  width: 100vw;
+  height: 65%;
+  border-top: 1px white solid;
+  border-radius: 20px;
+  background: rgba(14, 14, 14, 0.98);
+  z-index: 40;
+}
+
+.no_scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

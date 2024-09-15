@@ -1,16 +1,16 @@
-import { TokensType } from "@/shared/entities/auth"
-import { ResultType } from "@/shared/types"
+import { TokensType } from '@/shared/entities/auth';
+import { ResultType } from '@/shared/types';
 
-export type GetResourcesParams = { access: TokensType['access'], userId: number }
+export type GetResourcesParams = { access: TokensType['access']; userId: number };
 
 export type UserResourceType = {
-  name: string,
-  current: number,
-}
+  name: string;
+  current: number;
+};
 
 export type UserResourcesType = {
-  result: ResultType,
+  result: ResultType;
   data: {
-    entities: UserResourceType[]
-  }
-}
+    entities: UserResourceType[];
+  };
+};

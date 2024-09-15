@@ -6,7 +6,7 @@ export async function GET(req: NextRequest) {
     const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/get_all`, {
       headers: {
         'Content-Type': 'application/json',
-        Accept: 'application/json',
+        'Accept': 'application/json',
         'x-api-key': `${process.env.SECRET_X_API_KEY}`,
       },
     });
@@ -16,5 +16,6 @@ export async function GET(req: NextRequest) {
     if (axios.isAxiosError(error)) {
       return NextResponse.json({ error: error.message }, { status: error.response?.status || 500 });
     }
+    return NextResponse.json({ error: 'An unexpected error occurred' }, { status: 500 });
   }
 }

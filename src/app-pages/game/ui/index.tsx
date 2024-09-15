@@ -14,19 +14,21 @@ export const GameUI = () => {
   const router = useRouter();
 
   const kingdom = useUnit($kingdom);
-
   const user = useUnit($user);
 
   useEffect(() => {
     if (!user) {
       router.push('/');
     }
-  }, []);
+  }, [user, router]);
 
   return (
     <div className="relative my-auto w-full flex-grow overflow-clip">
       {kingdom ? (
-        <CurrentKingdomDisplay kingdomType={kingdom} kingdomTier={1} />
+        <CurrentKingdomDisplay
+          kingdomType={kingdom}
+          kingdomTier={1}
+        />
       ) : (
         <LoadingFallback />
       )}

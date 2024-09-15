@@ -1,21 +1,21 @@
-"use client";
+'use client';
 
-import { useState } from "react";
+import { useState } from 'react';
 
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 
-import { useInitData } from "@telegram-apps/sdk-react";
+import { useInitData } from '@telegram-apps/sdk-react';
 
-import CopyIcon from "./assets/copy-button.svg";
+import CopyIcon from './assets/copy-button.svg';
 
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 const CopyButton = () => {
   const initData = useInitData();
   const userId = initData?.user?.id;
 
-  const { t } = useTranslation("translation", {
-    keyPrefix: "pages.main.sections.url",
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'pages.main.sections.url',
   });
 
   const [copied, setCopied] = useState(false);
@@ -33,9 +33,7 @@ const CopyButton = () => {
       onClick={async (e: React.PointerEvent<HTMLButtonElement>) => {
         setCopied(true);
         // @ts-ignore
-        await navigator.clipboard.writeText(
-          `${process.env.NEXT_PUBLIC_REF_LINK}${userId}`
-        );
+        await navigator.clipboard.writeText(`${process.env.NEXT_PUBLIC_REF_LINK}${userId}`);
 
         setTimeout(handleCopy, 1000);
       }}
@@ -44,7 +42,7 @@ const CopyButton = () => {
 
       {copied && (
         <h6 className="absolute bottom-0 left-0 flex w-full justify-center text-lg uppercase text-[#83FF9E]">
-          {t("copied")}
+          {t('copied')}
         </h6>
       )}
     </motion.button>

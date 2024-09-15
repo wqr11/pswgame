@@ -1,14 +1,8 @@
-import { RefsApiData } from "@/shared/entities/referrals";
+import { RefsApiData } from '@/shared/entities/referrals';
 
-import InviteQuests from "./invite-quests";
+import InviteQuests from './invite-quests';
 
-export const Missions = ({
-  title,
-  refs,
-}: {
-  title: string;
-  refs: RefsApiData["data"];
-}) => {
+export const Missions = ({ title, refs }: { title: string; refs: RefsApiData['data'] }) => {
   return (
     <div className="mb-6 mt-5 flex flex-col gap-2">
       <h6 className="text-lg uppercase text-white">{title}</h6>

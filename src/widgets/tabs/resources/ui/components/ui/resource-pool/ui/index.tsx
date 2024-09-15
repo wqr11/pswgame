@@ -62,12 +62,8 @@ export const ResourcePool = ({
         </div>
       </div>
       <div className="text-center">
-        <h6 className="text-lg tracking-widest">
-          {formatNumber(sharedResources)}
-        </h6>
-        <p className="text-sm font-normal uppercase tracking-wide">
-          resource pool
-        </p>
+        <h6 className="text-lg tracking-widest">{formatNumber(sharedResources)}</h6>
+        <p className="text-sm font-normal uppercase tracking-wide">resource pool</p>
       </div>
     </div>
   );

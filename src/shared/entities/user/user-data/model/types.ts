@@ -15,11 +15,11 @@ export type UserType = {
       tap_multiplier: number;
     };
     upgrades_information: {
-      miner: {
+      'miner': {
         level: number;
         multiplier: number;
       };
-      grower: {
+      'grower': {
         level: number;
         multiplier: number;
       };

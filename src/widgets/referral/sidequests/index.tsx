@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 
 // import { setTab } from "@/shared/model";
 
-import Image from "next/image";
+import Image from 'next/image';
 
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 export const SideQuests = () => {
-  const { t } = useTranslation("translation", {
-    keyPrefix: "pages.main.sections.quests.inviteQuests",
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'pages.main.sections.quests.inviteQuests',
   });
 
   // const handleClick = () => {
@@ -30,13 +30,13 @@ export const SideQuests = () => {
           src="/pages/main/quests/side-quests-border.svg"
           width={186}
           height={29}
-          style={{ objectFit: "fill", width: "100%", height: "29px" }}
+          style={{ objectFit: 'fill', width: '100%', height: '29px' }}
           alt="side-quests-border"
           priority
         />
         <h6 className="absolute left-0 top-0 w-full text-lg uppercase text-[#FFE350]">
           {/* {t("sideQuestsButton")} */}
-          {t("soon")}
+          {t('soon')}
         </h6>
       </div>
     </motion.button>

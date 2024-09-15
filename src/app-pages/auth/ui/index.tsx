@@ -39,7 +39,7 @@ export const AuthPageUI = () => {
     if (!!auth && !!user) {
       router.push('/referral');
     }
-  }, [auth, user]);
+  }, [auth, user, router]);
 
   return <LoadingPageUI />;
 };

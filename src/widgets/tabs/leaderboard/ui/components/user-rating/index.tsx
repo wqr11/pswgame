@@ -1,13 +1,7 @@
 import Trophy from '../../assets/trophy.svg';
 import UserRatingBorder from '../../assets/user-rating-border.svg';
 
-export const UserRating = ({
-  username,
-  tokens,
-}: {
-  username: string;
-  tokens: number;
-}) => {
+export const UserRating = ({ username, tokens }: { username: string; tokens: number }) => {
   return (
     <div className="flex flex-col items-center gap-2">
       <div className="size-[26px]">

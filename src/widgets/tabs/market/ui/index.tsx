@@ -1,6 +1,6 @@
-import { ReferenceButton, Placement } from "@/widgets";
+import { ReferenceButton, Placement } from '@/widgets';
 
-import styles from "@/shared/ui/styles/current-tab/currentTab.module.css";
+import styles from '@/shared/ui/styles/current-tab/currentTab.module.css';
 
 export const MarketTab = () => {
   return (

@@ -26,7 +26,10 @@ export const TabSwitcher = () => {
   };
 
   return (
-    <AnimatePresence mode="popLayout" initial={false}>
+    <AnimatePresence
+      mode="popLayout"
+      initial={false}
+    >
       {getTab(tab)}
     </AnimatePresence>
   );

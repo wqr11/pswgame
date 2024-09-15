@@ -33,6 +33,6 @@ export const $refs = createStore<RefsApiData['data'] | null>(null).on(
 sample({
   clock: getRefs,
   source: $userId,
-  filter: (userId) => userId !== null,
+  filter: userId => userId !== null,
   target: getRefsFx,
 });

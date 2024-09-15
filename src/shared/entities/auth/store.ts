@@ -11,9 +11,7 @@ import { AuthDataType, TokensType } from './types';
 export const login = createEffect<string, TokensType | undefined, AxiosError>(
   async (init_data: string) => {
     const access = Cookies.get(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`);
-    const refresh = Cookies.get(
-      `${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`
-    );
+    const refresh = Cookies.get(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`);
 
     if (!!access && !!refresh) {
       return { access: access, refresh: refresh } as TokensType;
@@ -27,20 +25,14 @@ export const login = createEffect<string, TokensType | undefined, AxiosError>(
         },
         {
           headers: {
-            Accept: 'application/json',
+            'Accept': 'application/json',
             'Content-Type': 'application/json',
           },
         }
       );
 
-      Cookies.set(
-        `${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`,
-        res.data.data.access_token
-      );
-      Cookies.set(
-        `${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`,
-        res.data.data.refresh_token
-      );
+      Cookies.set(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`, res.data.data.access_token);
+      Cookies.set(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`, res.data.data.refresh_token);
 
       return {
         access: res.data.data.access_token,

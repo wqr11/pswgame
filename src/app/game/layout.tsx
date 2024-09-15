@@ -1,8 +1,8 @@
-import type { PropsWithChildren } from "react";
+import type { PropsWithChildren } from 'react';
 
-import { Header, Footer } from "@/widgets";
+import { Header, Footer } from '@/widgets';
 
-import styles from "./styles/gameLayout.module.css";
+import styles from './styles/gameLayout.module.css';
 
 export default function GameLayout({ children }: PropsWithChildren) {
   return (

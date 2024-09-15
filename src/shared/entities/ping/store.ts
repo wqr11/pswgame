@@ -17,7 +17,7 @@ export const ping = createEffect<
       `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/ping`,
       {
         headers: {
-          Accept: 'application/json',
+          'Accept': 'application/json',
           'Content-Type': 'application/json',
           'jwt-token': `${access}`,
         },
@@ -38,16 +38,14 @@ export const ping = createEffect<
   }
 });
 
-export const startPingInterval = createEffect<
-  TokensType['access'],
-  NodeJS.Timeout,
-  Error
->((access: TokensType['access']) => {
-  ping(access);
-  return setInterval(() => {
+export const startPingInterval = createEffect<TokensType['access'], NodeJS.Timeout, Error>(
+  (access: TokensType['access']) => {
     ping(access);
-  }, 180000); // 180 секунд
-});
+    return setInterval(() => {
+      ping(access);
+    }, 180000); // 180 секунд
+  }
+);
 
 export const stopPingInterval = createEffect<NodeJS.Timeout, void, Error>(
   (intervalId: NodeJS.Timeout) => {
@@ -72,6 +70,6 @@ sample({
 sample({
   clock: logout,
   source: $pingIntervalId,
-  filter: (pingIntervalId) => !!pingIntervalId,
+  filter: pingIntervalId => !!pingIntervalId,
   target: stopPingInterval,
 });
