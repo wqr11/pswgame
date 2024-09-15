@@ -13,7 +13,7 @@ export const $userId = createStore<number | null>(null).on(setUserId, (_, userId
 export const getUserFx = createEffect(async ({ access, userId }: GetUserParams) => {
   try {
     const res: { data: UserType } = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/${userId}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/get/${userId}`,
       {
         headers: {
           'Accept': 'application/json',
