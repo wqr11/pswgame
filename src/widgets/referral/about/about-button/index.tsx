@@ -3,16 +3,16 @@
 import { motion } from 'framer-motion';
 
 import { useUnit } from 'effector-react';
-import { $Rtab } from '@/entities';
-import { setRTab } from '@/entities';
+import { $RefTab } from '@/entities';
+import { setRefTab } from '@/entities';
 
 import styles from '../styles/AboutUs.module.css';
 
 export const AboutUs = () => {
-  const tab = useUnit($Rtab);
+  const tab = useUnit($RefTab);
 
   const handleClick = () => {
-    setRTab(tab === 'about' ? `none` : `about`);
+    setRefTab(tab === 'about' ? 'none' : 'about');
   };
 
   return (

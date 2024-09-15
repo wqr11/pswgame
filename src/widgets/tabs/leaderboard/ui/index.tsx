@@ -17,7 +17,7 @@ import styles from '@/shared/ui/styles/current-tab/currentTab.module.css';
 
 import tabStyles from './styles/LeaderboardTab.module.css';
 
-import { TabAnimated } from '@/widgets/tab-switcher/ui/game-switcher/TabAnimated';
+import { TabAnimated } from '@/widgets/tab-switcher/game-switcher/TabAnimated';
 import { $tokens, $user } from '@/shared/entities/user';
 
 export const LeaderboardTab = () => {

@@ -1,16 +1,16 @@
 'use client';
 
+import { AnimatePresence } from 'framer-motion';
+
 import { AboutTab, InDevelopmentTab, SideQuests } from '@/widgets';
 
 import { useUnit } from 'effector-react';
-import { $Rtab } from '@/entities';
+import { $RefTab, ReferralTabType } from '@/entities';
 
-import { AnimatePresence } from 'framer-motion';
+export const RefTabSwitcher = () => {
+  const tab = useUnit($RefTab);
 
-export const RTabSwitcher = () => {
-  const tab = useUnit($Rtab);
-
-  const getTab = (tab: string) => {
+  const getTab = (tab: ReferralTabType) => {
     switch (tab) {
       case 'about':
         return <AboutTab />;

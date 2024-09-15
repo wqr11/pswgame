@@ -4,7 +4,7 @@ import styles from '@/shared/ui/styles/current-tab/currentTab.module.css';
 
 import glitchStyles from '@/shared/ui/styles/glitch/glitch.module.css';
 
-import { TabAnimated } from '@/widgets/tab-switcher/ui/game-switcher/TabAnimated';
+import { TabAnimated } from '@/widgets/tab-switcher/game-switcher/TabAnimated';
 
 export const InDevelopmentTab = () => {
   return (

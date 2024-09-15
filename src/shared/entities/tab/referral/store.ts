@@ -4,6 +4,6 @@ import { createEvent, createStore } from 'effector';
 
 import { ReferralTabType } from './types';
 
-export const setRTab = createEvent<ReferralTabType>();
+export const setRefTab = createEvent<ReferralTabType>();
 
-export const $Rtab = createStore<ReferralTabType>('none').on(setRTab, (_, data) => data);
+export const $RefTab = createStore<ReferralTabType>('none').on(setRefTab, (_, data) => data);

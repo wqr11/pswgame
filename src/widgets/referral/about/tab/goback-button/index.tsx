@@ -1,12 +1,12 @@
 'use client';
 
-import { setRTab } from '@/entities';
+import { setRefTab } from '@/entities';
 
 import GoBack from './assets/go-back.svg';
 
 export const GoBackButton = () => {
   const handleClick = () => {
-    setRTab('none');
+    setRefTab('none');
   };
 
   return (

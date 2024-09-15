@@ -15,7 +15,7 @@ import { useUnit } from 'effector-react';
 import { $resourcePool, getResourcePool } from '@/shared/entities/resources-pool';
 
 import styles from '@/shared/ui/styles/current-tab/currentTab.module.css';
-import { TabAnimated } from '@/widgets/tab-switcher/ui/game-switcher/TabAnimated';
+import { TabAnimated } from '@/widgets/tab-switcher/game-switcher/TabAnimated';
 
 export const ResourcesTab = () => {
   const resources = useUnit($resourcePool);
