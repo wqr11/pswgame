@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 
-// import { useEffect } from "react";
+import { useEffect } from 'react';
 // import { useParams } from "next/navigation";
 // import { useTranslation } from "react-i18next";
 // import { Languages } from "@/shared/utils/langTypes";
@@ -14,12 +14,17 @@ import Missions from './missions';
 import CopySection from './copysection';
 
 import { useUnit } from 'effector-react';
-import { $refs } from '@/shared/entities/referrals';
+import { $refs, getRefs } from '@/shared/entities';
 
 import LoadingUIMain from '@/widgets/loading/[lang]/ui';
 
 export const ReferallUi = () => {
   const refs = useUnit($refs);
+  const getReferrals = useUnit(getRefs);
+
+  useEffect(() => {
+    getReferrals();
+  }, []);
 
   // @ts-ignore
   // const params: {
