@@ -6,7 +6,7 @@ import { createEffect, createStore, sample } from 'effector';
 
 import { UserResourcesType, GetResourcesParams } from './types';
 import { $user, $userId } from '../../user-data';
-import { $auth } from '@/shared/entities/auth';
+import { $auth } from '@/entities/auth';
 
 export const getResources = createEffect<
   GetResourcesParams,

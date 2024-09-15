@@ -11,14 +11,14 @@ import {
 } from '@/widgets';
 
 import { useUnit } from 'effector-react';
-import { $leaderboard, getLeaders } from '@/shared/entities/leaderboard/store';
+import { $leaderboard, getLeaders } from '@/entities/leaderboard/store';
 
 import styles from '@/shared/ui/styles/current-tab/currentTab.module.css';
 
 import tabStyles from './styles/LeaderboardTab.module.css';
 
 import { TabAnimated } from '@/widgets/tab-switcher/game-switcher/TabAnimated';
-import { $tokens, $user } from '@/shared/entities/user';
+import { $tokens, $user } from '@/entities/user';
 
 export const LeaderboardTab = () => {
   const places: Array<'first' | 'second' | 'third'> = ['first', 'second', 'third'];

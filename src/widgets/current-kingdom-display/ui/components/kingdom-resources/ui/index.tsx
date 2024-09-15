@@ -8,9 +8,9 @@ import Energy from '@/shared/ui/icons/resources/energy.svg?url';
 import Crypto from '@/shared/ui/icons/resources/crypto.svg?url';
 
 import { useUnit } from 'effector-react';
-import { $resources } from '@/shared/entities/user/resources/model';
+import { $resources } from '@/entities/user/resources/model';
 
-import { KingdomType, ResourceType } from '@/shared/entities';
+import { KingdomType, ResourceType } from '@/entities';
 
 import { formatNumber } from '@/shared/utils/formatNumber';
 

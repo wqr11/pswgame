@@ -4,8 +4,8 @@ import { useEffect } from 'react';
 
 import { useRouter } from 'next/navigation';
 
-import { $user } from '@/shared/entities';
-import { $kingdom } from '@/shared/entities/kingdom';
+import { $user } from '@/entities';
+import { $kingdom } from '@/entities/kingdom';
 import { CurrentKingdomDisplay, KingdomSwitcher, LoadingFallback, TabSwitcher } from '@/widgets';
 
 import { useUnit } from 'effector-react';

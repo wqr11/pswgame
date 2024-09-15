@@ -10,9 +10,9 @@ import LockGreen from '../assets/Lock-green.svg';
 
 import { motion } from 'framer-motion';
 
-import { KingdomType, KingdomStateUnitType } from '@/shared/entities/kingdom';
+import { KingdomType, KingdomStateUnitType } from '@/entities/kingdom';
 
-import { setKingdom } from '@/shared/entities/kingdom';
+import { setKingdom } from '@/entities/kingdom';
 
 export const KingdomSwitchButton = ({
   kingdomType,

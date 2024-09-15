@@ -1,4 +1,4 @@
-import { TokensType } from '@/shared/entities/auth';
+import { TokensType } from '@/entities/auth';
 import { ResultType } from '@/shared/types';
 
 export type GetResourcesParams = { access: TokensType['access']; userId: number };

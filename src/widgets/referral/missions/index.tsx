@@ -1,4 +1,4 @@
-import { RefsApiData } from '@/shared/entities/referrals';
+import { RefsApiData } from '@/entities/referrals';
 
 import InviteQuests from './invite-quests';
 

@@ -3,7 +3,7 @@
 import Coin from '../../../assets/coin.svg';
 
 import { useUnit } from 'effector-react';
-import { $tokens } from '@/shared/entities';
+import { $tokens } from '@/entities';
 
 import { formatNumber } from '@/shared/utils/formatNumber';
 

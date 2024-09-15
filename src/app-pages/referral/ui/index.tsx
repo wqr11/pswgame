@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 // import { Languages } from "@/shared/utils/langTypes";
 
 import { useUnit } from 'effector-react';
-import { $refs, getRefs } from '@/shared/entities';
+import { $refs, getRefs } from '@/entities';
 
 import {
   SideQuests,

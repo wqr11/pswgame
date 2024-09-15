@@ -6,7 +6,7 @@ import Queen from './assets/queen.svg';
 import Paperclip from './assets/paperclip.svg';
 import Message from './assets/message.svg';
 
-import { setTab } from '@/shared/entities/tab';
+import { setTab } from '@/entities/tab';
 
 import styles from './styles/header.module.css';
 

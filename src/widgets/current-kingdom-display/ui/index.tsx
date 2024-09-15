@@ -2,7 +2,7 @@
 
 import { CurrentKingdom, KingdomResource, TokensDisplay } from '@/widgets';
 
-import { KingdomTier, KingdomType } from '@/shared/entities/kingdom';
+import { KingdomTier, KingdomType } from '@/entities/kingdom';
 
 export const CurrentKingdomDisplay = ({
   kingdomType,
