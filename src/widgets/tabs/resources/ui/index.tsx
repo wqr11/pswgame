@@ -43,10 +43,7 @@ export const ResourcesTab = () => {
             />
             <ResourcesProgress resources={resources?.entities} />
             <div className="flex flex-col items-end gap-2">
-              <UpdatePoolProgress
-                startTime={9800}
-                remainingTime={5378}
-              />
+              <UpdatePoolProgress />
               {/* <BuyResource /> */}
             </div>
           </>
