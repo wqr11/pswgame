@@ -2,26 +2,19 @@
 
 import { combine, createStore, createEffect, createEvent, sample } from 'effector';
 
-import { $resourcePool } from '@/entities/resources-pool';
+import { $resourcePool, getResourcePool } from '@/entities';
+import { logout } from '@/entities/auth';
 
-import { loggedIn, logout } from '@/entities/auth';
+const $startTime = combine($resourcePool, pool => pool?.start_reset_time ?? 0);
+const $endTime = combine($resourcePool, pool => pool?.end_reset_time ?? 0);
+const $totalTime = combine($startTime, $endTime, (start, end) => end - start);
 
-const $startTime = combine($resourcePool, pool => pool?.start_reset_time);
-const $endTime = combine($resourcePool, pool => pool?.end_reset_time);
-const $totalTime = combine($startTime, $endTime, (start, end) => {
-  if (!!start && !!end) {
-    return end - start;
-  }
-  throw new Error('Start OR End Timestamp for timer IS NOT known');
-});
 export const $estimatedTime = createStore<number>(0);
-
-export const $timerProgress = combine($estimatedTime, $totalTime, (estimated, total) => {
-  if (!!estimated && !!total) {
-    return (estimated / total) * 100;
-  }
-  throw new Error('EstimatedTime OR TotalTime Timestamp for timer IS NOT known');
-});
+export const $timerProgress = combine(
+  $estimatedTime,
+  $totalTime,
+  (estimated, total) => (estimated / total) * 100
+);
 
 const tick = createEvent<void>();
 
@@ -41,7 +34,7 @@ const $timerId = createStore<NodeJS.Timeout | null>(null);
 
 // set estimated time on tick and login
 sample({
-  clock: [tick, loggedIn],
+  clock: [tick, getResourcePool.doneData],
   source: $endTime,
   filter: end => !!end,
   // @ts-ignore
@@ -49,16 +42,16 @@ sample({
   target: $estimatedTime,
 });
 
+// start on get timestamps
+sample({
+  clock: getResourcePool.doneData,
+  target: startTimerInterval,
+});
+
 // set timerId
 sample({
   source: startTimerInterval.doneData,
   target: $timerId,
-});
-
-// start on login
-sample({
-  clock: loggedIn,
-  target: startTimerInterval,
 });
 
 // stop on logout
