@@ -7,3 +7,4 @@ export * from './tab';
 export * from './tap';
 export * from './user';
 export * from './referrals';
+export * from './timer';

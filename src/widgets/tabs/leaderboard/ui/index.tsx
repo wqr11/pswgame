@@ -28,7 +28,7 @@ export const LeaderboardTab = () => {
 
   useEffect(() => {
     getLeaders();
-  }, [tokens]);
+  }, []);
 
   return (
     <TabAnimated className={`${styles.tab_wrapper} relative flex flex-col gap-1`}>

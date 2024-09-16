@@ -8,4 +8,4 @@ export type TapDataType = {
   };
 };
 
-export type PostTapParams = { access: TokensType['access']; userId: number | null; taps: number };
+export type postTapFxParams = { access: TokensType['access']; userId: number | null; taps: number };

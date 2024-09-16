@@ -2,13 +2,13 @@
 
 import axios, { isAxiosError } from 'axios';
 
-import { createEffect, createStore, createEvent, sample, combine } from 'effector';
+import { createEffect, createStore, createEvent, sample } from 'effector';
 
 import { $auth, TokensType, logout } from '../auth';
 import { $userId, $user, setTokens, $tokens } from '../user';
 
 import { TapDataType } from './types';
-import { PostTapParams } from './types';
+import { postTapFxParams } from './types';
 
 import { tapsChunk } from '@/shared/config/tap';
 
@@ -22,8 +22,8 @@ export const clearTimeoutId = createEffect<NodeJS.Timeout | null, void, Error>(
 export const $tapTimeoutId = createStore<NodeJS.Timeout | null>(null).reset(clearTimeoutId);
 
 export const tap = createEvent<void>();
-export const initTap = createEvent<void>();
-export const postTap = createEffect(async ({ access, userId, taps }: PostTapParams) => {
+export const postTap = createEvent<void>();
+export const postTapFx = createEffect(async ({ access, userId, taps }: postTapFxParams) => {
   try {
     const res: { data: TapDataType } = await axios.post(
       `${process.env.NEXT_PUBLIC_API_URL}/api/v1/actions/tap`,
@@ -50,7 +50,7 @@ export const postTap = createEffect(async ({ access, userId, taps }: PostTapPara
 
 export const $taps = createStore<number>(0)
   .on(tap, taps => taps + 1)
-  .reset(postTap);
+  .reset(postTapFx);
 
 export const $tap_multiplier = createStore<number>(1);
 
@@ -70,23 +70,23 @@ sample({
 
 sample({
   clock: tap,
-  fn: () => setTimeout(() => initTap(), 1000),
+  fn: () => setTimeout(() => postTap(), 1000),
   target: $tapTimeoutId,
 });
 
 sample({
   source: $taps,
   filter: taps => taps >= tapsChunk,
-  target: initTap,
+  target: postTap,
 });
 
 sample({
-  clock: initTap,
+  clock: postTap,
   source: { auth: $auth, userId: $userId, taps: $taps },
   filter: ({ auth, userId }) => !!auth && !!userId,
   fn: ({ auth, userId, taps }: { auth: TokensType | null; userId: number | null; taps: number }) =>
-    ({ access: auth?.access, userId, taps }) as PostTapParams,
-  target: postTap,
+    ({ access: auth?.access, userId, taps }) as postTapFxParams,
+  target: postTapFx,
 });
 
 sample({
@@ -97,6 +97,6 @@ sample({
 });
 
 sample({
-  clock: postTap.fail,
+  clock: postTapFx.fail,
   target: logout,
 });
