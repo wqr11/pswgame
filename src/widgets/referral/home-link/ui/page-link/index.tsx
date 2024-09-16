@@ -8,10 +8,14 @@ import Paperclip from '@/shared/assets/paperclip-big.svg';
 // import PaperclipBg from '@/assets/pages/main/PaperclipBg.svg';
 
 import styles from './styles/mainPageLink.module.css';
+import { useRouter } from 'next/navigation';
 
 export const PageLink = () => {
+  const router = useRouter();
+
   const handleClick = () => {
     setRefTab('none');
+    router.push('/game');
   };
 
   return (
