@@ -17,7 +17,7 @@ const QuestProgress = ({ progress = 0 }: { progress: number }) => {
           height={29}
           style={{ objectFit: 'fill', width: '100%', height: '29px' }}
           alt="progress-border"
-          priority
+          loading="eager"
         />
         <div className="absolute right-2 top-0 flex h-[27px] items-center">
           {progress >= 100 ? <SuccessMark /> : <NotFinishedMark />}
@@ -30,7 +30,7 @@ const QuestProgress = ({ progress = 0 }: { progress: number }) => {
           height={27}
           style={{ objectFit: 'fill', width: `${progress}%`, height: '27px' }}
           alt="progress-fill"
-          priority
+          loading="eager"
         />
       </div>
     </div>

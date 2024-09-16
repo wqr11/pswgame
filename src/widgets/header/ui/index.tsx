@@ -17,7 +17,10 @@ export const Header = () => {
         href={`${process.env.NEXT_PUBLIC_REFERRAL_GAME_LINK}`}
         className={styles.header_link}
       >
-        <div className={`${styles.header_link} relative`}>
+        <Link
+          href="/referral"
+          className={`${styles.header_link} relative`}
+        >
           <Paperclip />
           <div className="absolute left-[38px] top-[-8px] size-max">
             <div className="relative h-[24px] w-[24px]">
@@ -27,7 +30,7 @@ export const Header = () => {
               </small>
             </div>
           </div>
-        </div>
+        </Link>
       </Link>
       <button
         onClick={() => {

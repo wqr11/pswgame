@@ -1,10 +1,12 @@
 'use client';
 
+import Image from 'next/image';
+
 import { motion } from 'framer-motion';
 
-// import { setTab } from "@/shared/model";
+import SideQuestsBorder from './assets/side-quests-border.svg?url';
 
-import Image from 'next/image';
+// import { setTab } from "@/shared/model";
 
 // import { useTranslation } from 'react-i18next';
 
@@ -27,12 +29,12 @@ export const SideQuests = () => {
     >
       <div className="relative">
         <Image
-          src="/pages/main/quests/side-quests-border.svg"
+          src={SideQuestsBorder}
           width={186}
           height={29}
           style={{ objectFit: 'fill', width: '100%', height: '29px' }}
           alt="side-quests-border"
-          priority
+          loading="eager"
         />
         <h6 className="absolute left-0 top-0 w-full text-lg uppercase text-[#FFE350]">
           {/* {t("sideQuestsButton")} */}

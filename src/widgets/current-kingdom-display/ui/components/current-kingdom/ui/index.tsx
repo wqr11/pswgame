@@ -70,9 +70,6 @@ export const CurrentKingdom = ({
           onClick={() => tap()}
           className="w-auto h-[220px]"
         >
-          {/* <div className="flex aspect-square h-[220px] w-auto items-center justify-center">
-            <Image src={kingdomSrc} height={220} width={220} alt="kingdom" loading="eager" />
-          </div> */}
           <Kingdom
             height={220}
             width={220}

@@ -69,7 +69,6 @@ export const KingdomSwitchButton = ({
       className="flex max-h-[55px] min-h-[55px] min-w-[55px] max-w-[55px] items-center justify-center border-[3px] border-white p-1"
       onClick={handleClick}
     >
-      {/* <Image src={getIcon()} height={55} width={55} alt="Kingdom Switch button" priority /> */}
       {getIcon()}
     </motion.button>
   );

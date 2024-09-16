@@ -64,7 +64,6 @@ export const ResourceProgress = ({
               width: '100%',
               height: '22px',
             }}
-            priority
             loading="eager"
           />
           <Image
@@ -78,7 +77,6 @@ export const ResourceProgress = ({
               width: `${progress}%`,
               height: '22px',
             }}
-            priority
             loading="eager"
           />
         </div>
