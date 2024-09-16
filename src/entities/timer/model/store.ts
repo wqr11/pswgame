@@ -13,7 +13,7 @@ export const $estimatedTime = createStore<number>(0);
 export const $timerProgress = combine(
   $estimatedTime,
   $totalTime,
-  (estimated, total) => (estimated / total) * 100
+  (estimated, total) => Math.floor(estimated / total) * 100
 );
 
 const tick = createEvent<void>();
