@@ -73,7 +73,11 @@ export const CurrentKingdom = ({
           {/* <div className="flex aspect-square h-[220px] w-auto items-center justify-center">
             <Image src={kingdomSrc} height={220} width={220} alt="kingdom" loading="eager" />
           </div> */}
-          <Kingdom />
+          <Kingdom
+            height={220}
+            width={220}
+            preserveAspectRatio="meet"
+          />
         </motion.button>
       </motion.div>
     </AnimatePresence>

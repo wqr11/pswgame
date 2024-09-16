@@ -3,9 +3,9 @@
 import { motion } from 'framer-motion';
 import { setRefTab } from '@/entities';
 
-import Paperclip from '@/assets/pages/main/Paperclip.svg';
+import Paperclip from '@/shared/assets/paperclip-big.svg';
 
-import PaperclipBg from '@/assets/pages/main/PaperclipBg.svg';
+// import PaperclipBg from '@/assets/pages/main/PaperclipBg.svg';
 
 import styles from './styles/mainPageLink.module.css';
 
@@ -36,7 +36,7 @@ export const PageLink = () => {
               <Paperclip />
             </span>
           </div>
-          <PaperclipBg />
+          {/* <PaperclipBg /> */}
         </div>
       </motion.button>
     </div>

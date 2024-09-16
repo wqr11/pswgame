@@ -2,16 +2,19 @@
 
 import QuestProgress from './quest-progress';
 
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 
 const InviteQuest = ({ numberToInvite, invited }: { numberToInvite: number; invited: number }) => {
-  const { t } = useTranslation('translation', {
-    keyPrefix: 'pages.main.sections.quests.inviteQuests',
-  });
+  // const { t } = useTranslation('translation', {
+  //   keyPrefix: 'pages.main.sections.quests.inviteQuests',
+  // });
 
   return (
     <div>
-      <h6 className="text-sm uppercase text-white">{t(`invite${numberToInvite}`)}</h6>
+      <h6 className="text-sm uppercase text-white">
+        {/* {t(`invite${numberToInvite}`)} */}
+        invite
+      </h6>
       <QuestProgress progress={(invited / numberToInvite) * 100} />
     </div>
   );

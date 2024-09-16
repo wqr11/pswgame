@@ -31,7 +31,12 @@ export const KingdomSwitchButton = ({
   const getIcon = () => {
     switch (kingdomState) {
       case 'opened':
-        return <Resource />;
+        return (
+          <Resource
+            height={55}
+            width={55}
+          />
+        );
       case 'available':
         return <LockGreen />;
       case 'locked':

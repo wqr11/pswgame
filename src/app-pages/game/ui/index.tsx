@@ -15,11 +15,11 @@ export const GameUI = () => {
   const kingdom = useUnit($kingdom);
   const user = useUnit($user);
 
-  useEffect(() => {
-    if (!user) {
-      router.push('/');
-    }
-  }, [user, router]);
+  // useEffect(() => {
+  //   if (!user) {
+  //     router.push('/');
+  //   }
+  // }, [user, router]);
 
   return (
     <div className="relative my-auto w-full flex-grow overflow-clip">

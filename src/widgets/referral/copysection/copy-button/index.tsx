@@ -8,15 +8,15 @@ import { useInitData } from '@telegram-apps/sdk-react';
 
 import CopyIcon from './assets/copy-button.svg';
 
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 
 const CopyButton = () => {
   const initData = useInitData();
   const userId = initData?.user?.id;
 
-  const { t } = useTranslation('translation', {
-    keyPrefix: 'pages.main.sections.url',
-  });
+  // const { t } = useTranslation('translation', {
+  //   keyPrefix: 'pages.main.sections.url',
+  // });
 
   const [copied, setCopied] = useState(false);
 
@@ -42,7 +42,8 @@ const CopyButton = () => {
 
       {copied && (
         <h6 className="absolute bottom-0 left-0 flex w-full justify-center text-lg uppercase text-[#83FF9E]">
-          {t('copied')}
+          {/* {t('copied')} */}
+          copied
         </h6>
       )}
     </motion.button>
