@@ -38,7 +38,7 @@ sample({
   source: $endTime,
   filter: end => !!end,
   // @ts-ignore
-  fn: end => end - new Date().getTime() / 1000,
+  fn: end => end - Math.floor(new Date().getTime() / 1000),
   target: $estimatedTime,
 });
 
