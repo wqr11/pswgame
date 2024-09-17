@@ -12,7 +12,7 @@ import {
 } from '@/widgets';
 
 import { useUnit } from 'effector-react';
-import { $resourcePool, $timerProgress, getResourcePool } from '@/entities';
+import { $resourcePool, getResourcePool } from '@/entities';
 
 import styles from '@/shared/ui/styles/current-tab/currentTab.module.css';
 import { TabAnimated } from '@/widgets/tab-switcher/game-switcher/TabAnimated';
@@ -20,15 +20,11 @@ import { TabAnimated } from '@/widgets/tab-switcher/game-switcher/TabAnimated';
 export const ResourcesTab = () => {
   const resources = useUnit($resourcePool);
 
-  // FOR DEBUG ONLY
-  const timer = useUnit($timerProgress);
-
   useEffect(() => {
-    console.log(timer);
     if (!resources) {
       getResourcePool();
     }
-  }, [resources, timer]);
+  }, [resources]);
 
   return (
     <TabAnimated className={`${styles.tab_wrapper} flex flex-col gap-1`}>
@@ -58,3 +54,5 @@ export const ResourcesTab = () => {
     </TabAnimated>
   );
 };
+
+export * from './components';
