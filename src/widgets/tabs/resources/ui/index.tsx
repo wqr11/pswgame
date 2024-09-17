@@ -24,12 +24,11 @@ export const ResourcesTab = () => {
   const timer = useUnit($timerProgress);
 
   useEffect(() => {
+    console.log(timer);
     if (!resources) {
       getResourcePool();
     }
-  }, [resources]);
-
-  console.log(timer);
+  }, [resources, timer]);
 
   return (
     <TabAnimated className={`${styles.tab_wrapper} flex flex-col gap-1`}>
