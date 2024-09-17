@@ -6,6 +6,7 @@ import { LeaderboardDataType, LeaderboardUnitType } from './types';
 import { authHost } from '@/shared/api/authHost';
 import { AxiosError, isAxiosError } from 'axios';
 import { loggedIn } from '../auth';
+import { postTapFx } from '../tap';
 
 export const getLeaders = createEffect<void, LeaderboardUnitType[] | undefined, AxiosError>(
   async () => {
@@ -27,6 +28,6 @@ export const $leaderboard = createStore<LeaderboardUnitType[] | null>(null).on(
 );
 
 sample({
-  clock: loggedIn,
+  clock: [loggedIn, postTapFx.doneData],
   target: getLeaders,
 });

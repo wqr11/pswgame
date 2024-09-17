@@ -5,10 +5,10 @@ import { AnimatePresence } from 'framer-motion';
 import { ReferralAboutTab, InDevelopmentTab, SideQuests } from '@/widgets';
 
 import { useUnit } from 'effector-react';
-import { $RefTab, ReferralTabType } from '@/entities';
+import { $refTab, ReferralTabType } from '@/entities';
 
 export const RefTabSwitcher = () => {
-  const tab = useUnit($RefTab);
+  const tab = useUnit($refTab);
 
   const getTab = (tab: ReferralTabType) => {
     switch (tab) {

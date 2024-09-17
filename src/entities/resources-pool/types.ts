@@ -14,5 +14,7 @@ export type PoolResourcesType = {
     entities: PoolResourceType[];
     shared_resources: number;
     shared_total_resources: number;
+    start_reset_time: number;
+    end_reset_time: number;
   };
 };
