@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 
-import PaperclipBig from '@/shared/assets/paperclip-big.svg';
+import PaperclipBig from '@/shared/assets/Paperclip-big.svg';
 
 export const LoadingUIMain = () => {
   return (

@@ -6,7 +6,7 @@ import { useUnit } from 'effector-react';
 import { $refTab } from '@/entities';
 import { setRefTab } from '@/entities';
 
-import styles from '../styles/AboutUs.module.css';
+import styles from '../../styles/AboutUs.module.css';
 
 export const AboutUs = () => {
   const tab = useUnit($refTab);

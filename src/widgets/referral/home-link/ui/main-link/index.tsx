@@ -2,9 +2,9 @@
 
 import { motion } from 'framer-motion';
 
-import Paperclip from '@/shared/assets/paperclip-big.svg';
+import Paperclip from '@/shared/assets/Paperclip.svg';
+import PaperclipBg from '@/shared/assets/Paperclip-bg.svg';
 
-import PaperclipBg from '@/shared/assets/PaperclipBg.svg';
 import { useRouter } from 'next/navigation';
 
 import styles from './styles/mainPageLink.module.css';

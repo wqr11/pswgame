@@ -43,7 +43,7 @@ export const ReferralUI = () => {
 
   return (
     <AnimatePresence>
-      {!!refs && (
+      {!!refs ? (
         <motion.div
           key="mainui"
           initial={{ opacity: 0, scale: 0.95, translateY: 10 }}
@@ -63,8 +63,9 @@ export const ReferralUI = () => {
           />
           <SideQuests />
         </motion.div>
+      ) : (
+        <LoadingUIMain key="loading" />
       )}
-      {!refs && <LoadingUIMain key="loading" />}
     </AnimatePresence>
   );
 };
