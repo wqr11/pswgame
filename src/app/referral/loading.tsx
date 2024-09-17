@@ -1,5 +1,5 @@
-import { LoadingFallback } from '@/widgets';
+import { LoadingUIMain } from '@/widgets';
 
-const RefLoadingPage = () => <LoadingFallback />;
+const RefLoadingPage = () => <LoadingUIMain />;
 
 export default RefLoadingPage;

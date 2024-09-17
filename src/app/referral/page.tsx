@@ -1,7 +1,7 @@
-import { ReferallUi } from '@/app-pages';
+import { ReferralUI } from '@/app-pages';
 
 const Referral = () => {
-  return <ReferallUi />;
+  return <ReferralUI />;
 };
 
 export default Referral;

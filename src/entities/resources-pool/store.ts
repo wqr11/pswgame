@@ -6,7 +6,6 @@ import { createEffect, createStore, sample, createEvent } from 'effector';
 
 import { PoolResourcesType } from './types';
 import { loggedIn } from '../auth';
-import { $estimatedTime } from '../timer';
 
 export const getResourcePool = createEffect<
   void,
@@ -41,10 +40,4 @@ export const $resourcePool = createStore<PoolResourcesType['data'] | null>(null)
 sample({
   clock: loggedIn,
   target: getResourcePool,
-});
-
-sample({
-  source: $estimatedTime,
-  filter: estimated => estimated === 0,
-  target: [resetResourcePool, getResourcePool],
 });

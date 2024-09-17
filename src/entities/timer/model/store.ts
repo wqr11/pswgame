@@ -2,8 +2,7 @@
 
 import { combine, createStore, createEffect, createEvent, sample } from 'effector';
 
-import { $resourcePool, getResourcePool } from '@/entities';
-import { logout } from '@/entities/auth';
+import { $resourcePool, getResourcePool, resetResourcePool, logout } from '@/entities';
 
 const $startTime = combine($resourcePool, pool => pool?.start_reset_time ?? 0);
 const $endTime = combine($resourcePool, pool => pool?.end_reset_time ?? 0);
@@ -38,7 +37,12 @@ sample({
   source: $endTime,
   filter: end => !!end,
   // @ts-ignore
-  fn: end => end - Math.floor(new Date().getTime() / 1000),
+  fn: end => {
+    if (end - Math.floor(new Date().getTime() / 1000) >= 0) {
+      return end - Math.floor(new Date().getTime() / 1000);
+    }
+    return 0;
+  },
   target: $estimatedTime,
 });
 
@@ -52,6 +56,13 @@ sample({
 sample({
   source: startTimerInterval.doneData,
   target: $timerId,
+});
+
+// update resources-pool when time's up
+sample({
+  source: $estimatedTime,
+  filter: estimated => estimated === 0,
+  target: [resetResourcePool, getResourcePool],
 });
 
 // stop on logout

@@ -19,7 +19,7 @@ import {
   LoadingUIMain,
 } from '@/widgets';
 
-export const ReferallUi = () => {
+export const ReferralUI = () => {
   const refs = useUnit($refs);
   const getReferrals = useUnit(getRefs);
 
