@@ -2,7 +2,7 @@
   color: transparent;
   background: linear-gradient(90deg, #d660ff 0%, #73ff81 52.01%, #ff35ba 100%);
   -webkit-background-clip: text;
-  background-clip: text;
+          background-clip: text;
   position: relative;
 }
 
@@ -23,4 +23,4 @@
 }
 .no_scrollbar::-webkit-scrollbar {
   display: none;
-} /*# sourceMappingURL=AboutUs.module.css.map */
+}/*# sourceMappingURL=AboutUs.module.css.map */

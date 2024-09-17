@@ -13,7 +13,7 @@ import { $refs, getRefs } from '@/entities';
 import {
   SideQuests,
   Missions,
-  PageLink,
+  MainPageLink,
   CopySection,
   ReferralInfo,
   LoadingUIMain,
@@ -51,7 +51,7 @@ export const ReferallUi = () => {
           transition={{ duration: 0.5, delay: 0.5 }}
           className="items-center flex justify-center flex-col"
         >
-          <PageLink />
+          <MainPageLink />
           <CopySection copied={'sections.url.myUrl'} />
           <ReferralInfo
             // locale={locale}
