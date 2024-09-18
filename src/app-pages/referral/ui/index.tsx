@@ -11,12 +11,12 @@ import { useUnit } from 'effector-react';
 import { $refs, getRefs } from '@/entities';
 
 import {
-  SideQuests,
   Missions,
   MainPageLink,
   CopySection,
   ReferralInfo,
   LoadingUIMain,
+  SideQuestsButton,
 } from '@/widgets';
 
 export const ReferralUI = () => {
@@ -61,7 +61,7 @@ export const ReferralUI = () => {
             title={'sections.quests.inviteQuests.title'}
             refs={refs}
           />
-          <SideQuests />
+          <SideQuestsButton />
         </motion.div>
       ) : (
         <LoadingUIMain key="loading" />

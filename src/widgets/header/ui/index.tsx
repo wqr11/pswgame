@@ -2,7 +2,7 @@
 
 import { Link } from '@/components/Link/Link';
 
-import Queen from './assets/queen.svg';
+import Queen from '@/shared/assets/queen.svg';
 import Paperclip from './assets/paperclip.svg';
 import Message from './assets/message.svg';
 

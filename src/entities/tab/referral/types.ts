@@ -1,1 +1,1 @@
-export type ReferralTabType = 'about' | 'side-quest' | 'none';
+export type ReferralTabType = 'about' | 'side-quests' | 'none';

@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 
-export const ReferralTabAnimated = (props: { children?: React.ReactNode; className: string }) => {
+export const TabAnimated = (props: { children?: React.ReactNode; className: string }) => {
   return (
     <motion.div
       key="tab"

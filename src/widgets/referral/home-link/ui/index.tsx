@@ -1,16 +1,17 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { setRefTab } from '@/entities';
 
-import Paperclip from '@/shared/assets/Paperclip.svg';
-import PaperclipBg from '@/shared/assets/Paperclip-bg.svg';
-
-import { useRouter } from 'next/navigation';
+import Paperclip from '@/shared/assets/paperclip-big.svg';
+import PaperclipBg from '@/shared/assets/PaperclipBg.svg';
 
 import styles from './styles/mainPageLink.module.css';
 
 export const MainPageLink = () => {
-  const router = useRouter();
+  const handleClick = () => {
+    setRefTab('none');
+  };
   return (
     <div className="relative mx-auto mt-[32px] h-[120px] w-[120px]">
       <motion.button
@@ -18,10 +19,7 @@ export const MainPageLink = () => {
         whileTap={{ scale: 0.95 }}
         transition={{ duration: 0.05 }}
         className={styles.main_page_button}
-        onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
-          e.preventDefault();
-          router.push(`/game`);
-        }}
+        onClick={handleClick}
       >
         <Paperclip />
         <div className="absolute left-0 top-0 -z-10">
