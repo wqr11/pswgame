@@ -1,12 +1,16 @@
 'use client';
 
-import { AboutUs, RefTabSwitcher } from '@/widgets';
 import { useState, useEffect, type PropsWithChildren } from 'react';
+import { mainFont, fallbackFont } from '@/shared/ui/fonts';
+import { AboutUs, RefTabSwitcher, ExitButton } from '@/widgets';
+
+import { Link } from '@/components/Link/Link';
+import Queen from '@/shared/assets/queen.svg';
 import styles from '@/app-pages/referral/styles/referral.module.css';
-import 'normalize.css';
+import 'normalize.css/normalize.css';
 
 export default function ReferralLayout({ children }: PropsWithChildren) {
-  const [_, setScale] = useState(1);
+  const [scale, setScale] = useState(1);
   useEffect(() => {
     const updateScale = () => {
       const viewportHeight = window.innerHeight;
@@ -24,16 +28,39 @@ export default function ReferralLayout({ children }: PropsWithChildren) {
     return () => window.removeEventListener('resize', updateScale);
   }, []);
   return (
-    <main className="h-[100vh] w-[100vw] bg-[#0e0e0e] p-t-[29px]">
-      <div
-        className={`${styles.scroll} max-h-[800px] max-size-full relative z-30 flex size-full flex-col items-center overflow-x-clip text-center`}
-      >
-        {children}
+    <main
+      style={{
+        fontFamily: `${mainFont.style.fontFamily}, ${fallbackFont.style.fontFamily}`,
+      }}
+      className="h-[100vh] w-[100vw] bg-[#0e0e0e]"
+    >
+      <div className="relative mx-auto h-screen w-screen overflow-y-hidden">
+        <div
+          className="origin-top"
+          style={{
+            transform: `scale(${scale})`,
+          }}
+        >
+          <div
+            className={`${styles.scroll} max-size-full relative z-30 flex size-full flex-col items-center overflow-x-clip text-center`}
+          >
+            {children}
+          </div>
+        </div>
+        <RefTabSwitcher />
+        <div className="fixed bottom-0 left-0 z-50 flex h-[80px] w-full items-center justify-center rounded-t-[20px] border-t-[1px] border-[#dcdcdce6] bg-[#0e0e0e]">
+          <AboutUs />
+        </div>
+        <Link
+          href="/game"
+          className="fixed left-8 top-7 z-50 size-[48px] rotate-[15deg]"
+        >
+          <Queen />
+        </Link>
+        <div className="fixed right-8 top-7 z-50 flex w-full flex-row-reverse">
+          <ExitButton />
+        </div>
       </div>
-      <div className="fixed bottom-0 left-0 z-50 flex h-[80px] w-full items-center justify-center rounded-t-[20px] border-t-[1px] border-[#dcdcdce6] bg-[#0e0e0e]">
-        <AboutUs />
-      </div>
-      <RefTabSwitcher />
     </main>
   );
 }

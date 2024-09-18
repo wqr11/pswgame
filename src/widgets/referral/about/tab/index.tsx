@@ -3,14 +3,14 @@
 // import { useTranslation, Trans } from 'react-i18next';
 import { mainFont, fallbackFont } from '@/fonts';
 
-import styles from '../styles/AboutUs.module.css';
+import styles from '@/shared/ui/styles/referall-tab/referral.module.css';
 
 import Queen from './assets/mystical-queen-card.svg';
 
-import { GoBackButton } from './goback-button/ui';
+import { GoBackButton } from '../../goback-button/ui';
 import { SocialLinks } from './social-links/ui';
 import { TextSection } from './text/ui';
-import { ReferralTabAnimated } from '@/widgets';
+import { TabAnimated } from '@/widgets';
 
 export const ReferralAboutTab = () => {
   // const { t } = useTranslation('translation', {
@@ -18,7 +18,7 @@ export const ReferralAboutTab = () => {
   // });
 
   return (
-    <ReferralTabAnimated className={`${styles.tab_wrapper} flex flex-col items-center`}>
+    <TabAnimated className={`${styles.tab_wrapper} flex flex-col items-center`}>
       <div className="my-3 flex w-full justify-center">
         <Queen />
       </div>
@@ -53,6 +53,6 @@ export const ReferralAboutTab = () => {
           </div>
         </div>
       </div>
-    </ReferralTabAnimated>
+    </TabAnimated>
   );
 };

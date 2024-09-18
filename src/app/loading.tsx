@@ -1,5 +1,5 @@
-import { LoadingFallback } from '@/widgets';
+import { LoadingPageUI } from '@/app-pages';
 
-const GameLoadingPage = () => <LoadingFallback />;
+const GameLoadingPage = () => <LoadingPageUI />;
 
 export default GameLoadingPage;

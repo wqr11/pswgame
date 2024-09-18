@@ -37,7 +37,7 @@ export const AuthPageUI = () => {
 
   useEffect(() => {
     if (!!auth && !!user) {
-      router.push('/referral');
+      router.push('/game');
     }
   }, [auth, user, router]);
 

@@ -19,7 +19,7 @@ const QuestProgress = ({ progress = 0 }: { progress: number }) => {
           alt="progress-border"
           loading="eager"
         />
-        <div className="absolute right-2 top-0 flex h-[27px] items-center">
+        <div className="absolute right-[3.1rem] top-0 flex h-[27px] items-center">
           {progress >= 100 ? <SuccessMark /> : <NotFinishedMark />}
         </div>
       </div>

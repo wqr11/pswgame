@@ -14,8 +14,8 @@ export const RefTabSwitcher = () => {
     switch (tab) {
       case 'about':
         return <ReferralAboutTab />;
-      case 'side-quest':
-        return <SideQuests />;
+      // case 'side-quests':
+      //   return <SideQuests />;
       case 'none':
         return null;
       default:

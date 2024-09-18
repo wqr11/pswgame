@@ -4,3 +4,6 @@ export * from './home-link';
 export * from './missions';
 export * from './referralinfo';
 export * from './sidequests';
+export * from './exit-button';
+export * from './goback-button';
+export * from './sidequests';
