@@ -4,7 +4,7 @@ import { useUnit } from 'effector-react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-import { setRefTab, $RefTab } from '@/entities';
+import { setRefTab, $refTab } from '@/entities';
 
 import SideQuestsBorder from '../assets/side-quests-border.svg?url';
 
@@ -15,7 +15,7 @@ export const SideQuestsButton = () => {
   //   keyPrefix: 'pages.main.sections.quests.inviteQuests',
   // });
 
-  const tab = useUnit($RefTab);
+  const tab = useUnit($refTab);
 
   const handleClick = () => {
     setRefTab(tab === 'side-quests' ? 'none' : 'side-quests');

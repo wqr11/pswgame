@@ -1,13 +1,12 @@
 'use client';
 
 import { useState, useEffect, type PropsWithChildren } from 'react';
-import { mainFont, fallbackFont } from '@/shared/ui/fonts';
 import { AboutUs, RefTabSwitcher, ExitButton } from '@/widgets';
 
 import { Link } from '@/components/Link/Link';
 import Queen from '@/shared/assets/queen.svg';
 
-import styles from '@/app-pages/referral/styles/referral.module.css';
+import styles from '@/shared/ui/styles/referall-tab/referral.module.css';
 
 import 'normalize.css/normalize.css';
 
@@ -30,12 +29,7 @@ export default function ReferralLayout({ children }: PropsWithChildren) {
     return () => window.removeEventListener('resize', updateScale);
   }, []);
   return (
-    <main
-      style={{
-        fontFamily: `${mainFont.style.fontFamily}, ${fallbackFont.style.fontFamily}`,
-      }}
-      className="h-[100vh] w-[100vw] bg-[#0e0e0e]"
-    >
+    <main className="h-[100vh] w-[100vw]">
       <div className="relative mx-auto h-screen w-screen overflow-y-hidden">
         <div
           className="origin-top"
