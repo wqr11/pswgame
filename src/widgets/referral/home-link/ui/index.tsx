@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { setRefTab } from '@/entities';
 
-import Paperclip from '@/shared/assets/Paperclip-big.svg';
+import Paperclip from '@/shared/assets/Paperclip.svg';
 import PaperclipBg from '@/shared/assets/Paperclip-bg.svg';
 
 import styles from './styles/mainPageLink.module.css';

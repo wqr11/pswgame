@@ -49,7 +49,7 @@ export default function ReferralLayout({ children }: PropsWithChildren) {
         </div>
         <Link
           href="/game"
-          className="fixed left-8 top-7 z-50 size-[48px] rotate-[15deg]"
+          className="fixed left-8 top-7 z-50 size-[64px]"
         >
           <Queen />
         </Link>

@@ -7,10 +7,9 @@ import styles from '@/shared/ui/styles/referall-tab/referral.module.css';
 
 import Queen from './assets/mystical-queen-card.svg';
 
-import { GoBackButton } from '../../goback-button/ui';
+import { GoBackButton, TabAnimated } from '@/widgets';
 import { SocialLinks } from './social-links/ui';
 import { TextSection } from './text/ui';
-import { TabAnimated } from '@/widgets';
 
 export const ReferralAboutTab = () => {
   // const { t } = useTranslation('translation', {

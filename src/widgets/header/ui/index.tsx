@@ -2,15 +2,19 @@
 
 import { Link } from '@/components/Link/Link';
 
-import Queen from '@/shared/assets/queen.svg';
 import Paperclip from './assets/paperclip.svg';
 import Message from './assets/message.svg';
 
-import { setTab } from '@/entities';
+import { useUnit } from 'effector-react';
+import { setTab, $tab } from '@/entities';
+
+// import { HomeButton } from './components';
 
 import styles from './styles/header.module.css';
 
 export const Header = () => {
+  const tab = useUnit($tab);
+
   return (
     <header className="sticky left-0 top-0 z-50 mx-[27px] flex h-[100px] items-center justify-between">
       <Link
@@ -27,19 +31,10 @@ export const Header = () => {
           </div>
         </div>
       </Link>
+      {/* <HomeButton /> */}
       <button
         onClick={() => {
-          setTab('none');
-        }}
-        className={`${styles.header_link} justify-center`}
-      >
-        <div className="size-[72px]">
-          <Queen />
-        </div>
-      </button>
-      <button
-        onClick={() => {
-          setTab('about');
+          setTab(tab === 'about' ? 'none' : 'about');
         }}
         className={`${styles.header_link} justify-end`}
       >
@@ -48,3 +43,5 @@ export const Header = () => {
     </header>
   );
 };
+
+export * from './components';

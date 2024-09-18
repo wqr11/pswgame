@@ -2,7 +2,7 @@
 
 import { AnimatePresence } from 'framer-motion';
 
-import { ReferralAboutTab, InDevelopmentTab, SideQuests } from '@/widgets';
+import { ReferralAboutTab, InDevelopmentTab } from '@/widgets';
 
 import { useUnit } from 'effector-react';
 import { $refTab, ReferralTabType } from '@/entities';

@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 // import { Languages } from "@/shared/utils/langTypes";
 
 import { useUnit } from 'effector-react';
-import { $refs, getRefs } from '@/entities';
+import { $refs, getRefsFx } from '@/entities';
 
 import {
   Missions,
@@ -21,10 +21,10 @@ import {
 
 export const ReferralUI = () => {
   const refs = useUnit($refs);
-  const getReferrals = useUnit(getRefs);
+  const getReferrals = useUnit(getRefsFx);
 
   useEffect(() => {
-    getReferrals();
+    getReferrals(99281932);
   }, [getReferrals]);
 
   // @ts-ignore
