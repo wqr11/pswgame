@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 
@@ -11,6 +11,7 @@ import { useUnit } from 'effector-react';
 
 export const GameUI = () => {
   const router = useRouter();
+  const [scale, setScale] = useState(1);
 
   const kingdom = useUnit($kingdom);
   const user = useUnit($user);
@@ -21,16 +22,40 @@ export const GameUI = () => {
     }
   }, [user, router]);
 
+  useEffect(() => {
+    const updateScale = () => {
+      const viewportHeight = window.innerHeight;
+      const baseHeight = 800;
+      const newScale = Math.min(
+        viewportHeight / baseHeight,
+        parseInt(`${process.env.NEXT_PUBLIC_MAX_APP_SCALING}`)
+      );
+      setScale(newScale);
+    };
+
+    updateScale();
+    window.addEventListener('resize', updateScale);
+
+    return () => window.removeEventListener('resize', updateScale);
+  }, []);
+
   return (
-    <div className="relative my-auto w-full flex-grow overflow-clip">
-      {kingdom ? (
-        <CurrentKingdomDisplay
-          kingdomType={kingdom}
-          kingdomTier={1}
-        />
-      ) : (
-        <LoadingFallback />
-      )}
+    <div
+      className="origin-top"
+      style={{
+        transform: `scale(${scale})`,
+      }}
+    >
+      <div className="relative my-auto w-full flex-grow overflow-clip">
+        {kingdom ? (
+          <CurrentKingdomDisplay
+            kingdomType={kingdom}
+            kingdomTier={1}
+          />
+        ) : (
+          <LoadingFallback />
+        )}
+      </div>
 
       <KingdomSwitcher />
 
