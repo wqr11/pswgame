@@ -11,6 +11,7 @@ export const ReferralInfo = ({ refPoints = 0 }: { refPoints: number }) => {
     <div className="flex flex-col items-center">
       <h6 className="text-lg uppercase text-white">{'title'}</h6>
       <h4 className="text-white">{formatNumber(refPoints)}</h4>
+      <h5 className="text-[16px] uppercase text-white">PSWMeta Points</h5>
     </div>
   );
 };
