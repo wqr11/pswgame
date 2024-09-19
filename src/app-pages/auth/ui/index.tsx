@@ -36,9 +36,9 @@ export const AuthPageUI = () => {
   }, [initDataRaw]);
 
   useEffect(() => {
-    // if (!!auth && !!user) {
+    if (!!auth && !!user) {
     router.push('/game');
-    // }
+    }
   }, [auth, user, router]);
 
   return <LoadingPageUI />;
