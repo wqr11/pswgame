@@ -11,7 +11,7 @@ export const ReferenceButton = ({
   reference,
   direction = 'fromLeft',
 }: {
-  reference: string; // change this to ReactNode
+  reference: string;
   direction: 'fromLeft' | 'fromRight';
 }) => {
   const [referenceShown, setReferenceShown] = useState<boolean>(false);

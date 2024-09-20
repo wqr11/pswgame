@@ -5,17 +5,18 @@ import { AboutUs, RefTabSwitcher, ExitButton } from '@/widgets';
 
 import Queen from '@/shared/assets/queen.svg';
 
-import { useUnit } from 'effector-react';
-import { sRedirect } from '@/entities';
+// import { useUnit } from 'effector-react';
+// import { sRedirect } from '@/entities';
 
 import styles from '@/shared/ui/styles/referall-tab/referral.module.css';
 
 import 'normalize.css/normalize.css';
+import { useRouter } from 'next/navigation';
 
 export default function ReferralLayout({ children }: PropsWithChildren) {
   const [scale, setScale] = useState(1);
 
-  const redirect = useUnit(sRedirect);
+  const router = useRouter();
 
   useEffect(() => {
     const updateScale = () => {
@@ -54,7 +55,7 @@ export default function ReferralLayout({ children }: PropsWithChildren) {
           <AboutUs />
         </div>
         <button
-          onClick={() => redirect('game')}
+          onClick={() => router.push('/game')}
           className="fixed left-8 top-7 z-50 size-[64px]"
         >
           <Queen />

@@ -1,12 +1,13 @@
 'use client';
 
 import { createEffect, sample } from 'effector';
-
 import { LastOpenedPageType, $lastOpenedPage } from '@/entities';
+import { useRouter } from 'next/navigation';
 
 export const sRedirect = createEffect<LastOpenedPageType, LastOpenedPageType, Error>(
   (page: LastOpenedPageType) => {
-    window.location.href = `/${page}`;
+    const router = useRouter();
+    router.push(`/${page}`);
     return page;
   }
 );
