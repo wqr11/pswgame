@@ -6,7 +6,7 @@ import { createEffect, createEvent, sample, createStore } from 'effector';
 
 import { $userId } from '../../user-data';
 
-import { $kingdom, KingdomType, sRedirect, KingdomTypeArray } from '@/entities';
+import { $kingdom, KingdomType, KingdomTypeArray } from '@/entities';
 import { UpdateStateType, UpdateStateProps, LastOpenedPageType } from './types';
 
 export const updateState = createEvent<void>();
