@@ -3,6 +3,8 @@ import type { Metadata } from 'next';
 
 import { Root } from '@/components/Root/Root';
 
+import '../shared/i18n';
+
 import '@telegram-apps/telegram-ui/dist/styles.css';
 import 'normalize.css';
 import './_assets/globals.css';

@@ -1,19 +1,19 @@
 'use client';
 
-import { useUnit } from 'effector-react';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-import { setRefTab, $refTab } from '@/entities';
-
+import Image from 'next/image';
 import SideQuestsBorder from '../assets/side-quests-border.svg?url';
 
-// import { useTranslation } from 'react-i18next';
+import { useUnit } from 'effector-react';
+import { setRefTab, $refTab } from '@/entities';
+
+import { useTranslation } from 'react-i18next';
 
 export const SideQuestsButton = () => {
-  // const { t } = useTranslation('translation', {
-  //   keyPrefix: 'pages.main.sections.quests.inviteQuests',
-  // });
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'referral.pages.main.sections.quests.inviteQuests',
+  });
 
   const tab = useUnit($refTab);
 
@@ -39,9 +39,7 @@ export const SideQuestsButton = () => {
           loading="eager"
         />
         <h6 className="absolute left-0 top-0 w-full text-lg uppercase text-[#FFE350]">
-          {/* {t("sideQuestsButton")} */}
-          {/* {t('soon')} */}
-          Soon
+          {t('soon')}
         </h6>
       </div>
     </motion.button>

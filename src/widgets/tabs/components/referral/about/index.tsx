@@ -1,6 +1,5 @@
 'use client';
 
-// import { useTranslation, Trans } from 'react-i18next';
 import { mainFont, fallbackFont } from '@/fonts';
 
 import styles from '@/shared/ui/styles/referall-tab/referral.module.css';
@@ -11,10 +10,12 @@ import { GoBackButton, TabAnimatedReferral } from '@/widgets';
 import { SocialLinks } from './social-links/ui';
 import { TextSection } from './text/ui';
 
+import { useTranslation, Trans } from 'react-i18next';
+
 export const ReferralAboutTab = () => {
-  // const { t } = useTranslation('translation', {
-  //   keyPrefix: 'pages.aboutUs.sections',
-  // });
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'referral.pages.aboutUs.sections',
+  });
 
   return (
     <TabAnimatedReferral className={`${styles.tab_wrapper} flex flex-col items-center`}>
@@ -25,21 +26,21 @@ export const ReferralAboutTab = () => {
         <div
           className="flex flex-col gap-10"
           style={{
-            fontFamily: `${fallbackFont.style.fontFamily}, ${mainFont.style.fontFamily}`,
+            fontFamily: fallbackFont.style.fontFamily,
           }}
         >
           <h6 className="mx-auto w-[95%] max-w-[800px] text-sm font-medium">
-            {/* <Trans i18nKey="pages.aboutUs.sections.mainTitle.text"> */}
-            <span className="text-[#FC6AFF]"></span>
-            {/* </Trans> */}
+            <Trans i18nKey="referral.pages.aboutUs.sections.mainTitle.text">
+              <span className="text-[#FC6AFF]"></span>
+            </Trans>
           </h6>
           <TextSection
-            title={'articles.0.title'}
-            text={'articles.0.text'}
+            title={t('articles.0.title')}
+            text={t('articles.0.text')}
           />
           <TextSection
-            title={'articles.1.title'}
-            text={'articles.1.text'}
+            title={t('articles.1.title')}
+            text={t('articles.1.text')}
           />
         </div>
         <div>

@@ -3,9 +3,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { useEffect } from 'react';
-// import { useParams } from "next/navigation";
-// import { useTranslation } from "react-i18next";
-// import { Languages } from "@/shared/utils/langTypes";
+import { useTranslation } from 'react-i18next';
 
 import { useUnit } from 'effector-react';
 import { $refs, getRefs } from '@/entities';
@@ -27,19 +25,9 @@ export const ReferralUI = () => {
     getReferrals();
   }, [getReferrals]);
 
-  // @ts-ignore
-  // const params: {
-  //   params: Languages;
-  // } = useParams();
-
-  // const { t, i18n } = useTranslation("translation", {
-  //   keyPrefix: "pages.main",
-  // });
-
-  // useEffect(() => {
-  //   // @ts-ignore
-  //   i18n.changeLanguage(params.lang);
-  // }, []);
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'referral.pages.main',
+  });
 
   return (
     <AnimatePresence>
@@ -52,13 +40,10 @@ export const ReferralUI = () => {
           className="items-center flex justify-center flex-col"
         >
           <MainPageLink />
-          <CopySection copied={'sections.url.myUrl'} />
-          <ReferralInfo
-            // locale={locale}
-            refPoints={refs.referrals_points}
-          />
+          <CopySection copied={t('sections.url.myUrl')} />
+          <ReferralInfo refPoints={refs.referrals_points} />
           <Missions
-            title={'sections.quests.inviteQuests.title'}
+            title={t('sections.quests.inviteQuests.title')}
             refs={refs}
           />
           <SideQuestsButton />
