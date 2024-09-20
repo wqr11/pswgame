@@ -3,8 +3,10 @@
 import { useState, useEffect, type PropsWithChildren } from 'react';
 import { AboutUs, RefTabSwitcher, ExitButton } from '@/widgets';
 
-import { Link } from '@/components/Link/Link';
 import Queen from '@/shared/assets/queen.svg';
+
+import { useUnit } from 'effector-react';
+import { sRedirect } from '@/entities';
 
 import styles from '@/shared/ui/styles/referall-tab/referral.module.css';
 
@@ -12,6 +14,9 @@ import 'normalize.css/normalize.css';
 
 export default function ReferralLayout({ children }: PropsWithChildren) {
   const [scale, setScale] = useState(1);
+
+  const redirect = useUnit(sRedirect);
+
   useEffect(() => {
     const updateScale = () => {
       const viewportHeight = window.innerHeight;
@@ -28,6 +33,7 @@ export default function ReferralLayout({ children }: PropsWithChildren) {
 
     return () => window.removeEventListener('resize', updateScale);
   }, []);
+
   return (
     <main className="h-[100vh] w-[100vw] relative text-white overflow-hidden">
       <div className="relative mx-auto h-screen w-screen overflow-y-hidden">
@@ -47,12 +53,12 @@ export default function ReferralLayout({ children }: PropsWithChildren) {
         <div className="fixed bottom-0 left-0 z-50 flex h-[80px] w-full items-center justify-center rounded-t-[20px] border-t-[1px] border-[#dcdcdce6] bg-[#0e0e0e]">
           <AboutUs />
         </div>
-        <Link
-          href="/game"
+        <button
+          onClick={() => redirect('game')}
           className="fixed left-8 top-7 z-50 size-[64px]"
         >
           <Queen />
-        </Link>
+        </button>
         <div className="fixed right-8 top-7 z-50 flex w-full flex-row-reverse">
           <ExitButton />
         </div>

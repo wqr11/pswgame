@@ -1,15 +1,19 @@
-import { ResultType } from '@/shared/types';
+import { KingdomType } from '@/entities/kingdom';
 import { TokensType } from '../../../auth';
+import { LastOpenedPageType, LastActiveResourceType } from '../../last-opened-state';
 
 export type UserType = {
-  result: ResultType;
   data: {
     id: number;
     user_id: number;
     user_name: string;
     tokens_amount: number;
     referrals_tokens_amount: number;
-    resources_amount: [number, number, number, number];
+    resources_amount: {
+      [kingdomType in KingdomType]: {
+        value: number;
+      };
+    };
     game_information: {
       current_level: number;
       tap_multiplier: number;
@@ -27,6 +31,10 @@ export type UserType = {
         level: number;
         multiplier: number;
       };
+    };
+    state: {
+      last_active_resource: LastActiveResourceType;
+      last_opened_page: LastOpenedPageType;
     };
   };
 };
