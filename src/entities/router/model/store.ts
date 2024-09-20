@@ -1,8 +1,8 @@
 'use client';
 
-import { createEffect } from 'effector';
+import { createEffect, sample } from 'effector';
 
-import { LastOpenedPageType } from '@/entities/user';
+import { LastOpenedPageType, $lastOpenedPage } from '@/entities';
 
 export const sRedirect = createEffect<LastOpenedPageType, LastOpenedPageType, Error>(
   (page: LastOpenedPageType) => {
@@ -10,3 +10,8 @@ export const sRedirect = createEffect<LastOpenedPageType, LastOpenedPageType, Er
     return page;
   }
 );
+
+sample({
+  clock: sRedirect.doneData,
+  target: $lastOpenedPage,
+});

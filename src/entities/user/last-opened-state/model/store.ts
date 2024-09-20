@@ -6,7 +6,7 @@ import { createEffect, createEvent, sample, createStore } from 'effector';
 
 import { $userId } from '../../user-data';
 
-import { $kingdom, KingdomType, sRedirect } from '@/entities';
+import { $kingdom, KingdomType, sRedirect, KingdomTypeArray } from '@/entities';
 import { UpdateStateType, UpdateStateProps, LastOpenedPageType } from './types';
 
 export const updateState = createEvent<void>();
@@ -60,8 +60,9 @@ sample({
 });
 
 sample({
-  clock: sRedirect,
-  target: $lastOpenedPage,
+  source: $lastActiveResource,
+  filter: resource => !!resource && KingdomTypeArray.includes(resource),
+  target: $kingdom,
 });
 
 sample({
