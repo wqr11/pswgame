@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import plugin from 'tailwindcss/plugin';
 
 const config: Config = {
   content: [
@@ -12,9 +13,25 @@ const config: Config = {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      }, // path here are relative to globals.css file in src/app/_assets folder
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addUtilities }) {
+      const newUtilities = {
+        '.no-user-drag': {
+          WebkitUserDrag: 'none' as string,
+          WebkitTouchCallout: 'none',
+          touchAction: 'none',
+          WebkitUserSelect: 'none',
+          MozUserSelect: 'none',
+          msUserSelect: 'none',
+          userSelect: 'none',
+        } as Record<string, string>,
+      };
+      addUtilities(newUtilities);
+    }),
+  ],
 };
+
 export default config;

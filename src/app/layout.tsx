@@ -18,6 +18,7 @@ export default function MainLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
       <body
+        className="no-user-drag h-[100dvh]"
         style={{
           color: 'white',
           backgroundColor: '#0e0e0e',

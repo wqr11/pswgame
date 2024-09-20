@@ -2,11 +2,9 @@ import type { PropsWithChildren } from 'react';
 
 import { Header, Footer } from '@/widgets';
 
-import styles from './styles/gameLayout.module.css';
-
 export default function GameLayout({ children }: PropsWithChildren) {
   return (
-    <div className={styles.game_layout}>
+    <div className="relative text-white overflow-hidden">
       <Header />
       {children}
       <Footer />

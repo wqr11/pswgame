@@ -29,7 +29,7 @@ export default function ReferralLayout({ children }: PropsWithChildren) {
     return () => window.removeEventListener('resize', updateScale);
   }, []);
   return (
-    <main className="h-[100vh] w-[100vw]">
+    <main className="h-[100vh] w-[100vw] relative text-white overflow-hidden">
       <div className="relative mx-auto h-screen w-screen overflow-y-hidden">
         <div
           className="origin-top"
