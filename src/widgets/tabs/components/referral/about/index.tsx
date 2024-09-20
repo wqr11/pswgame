@@ -44,7 +44,7 @@ export const ReferralAboutTab = () => {
           />
         </div>
         <div>
-          <h6 className="text-xl uppercase tracking-widest">{'socials.mainTitle'}</h6>
+          <h6 className="text-xl uppercase tracking-widest">{t('socials.mainTitle')}</h6>
           <div className="mt-4">
             <SocialLinks />
           </div>
