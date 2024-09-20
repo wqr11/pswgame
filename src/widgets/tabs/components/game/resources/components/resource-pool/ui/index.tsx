@@ -4,8 +4,9 @@ import Image from 'next/image';
 
 import ResourcePoolBorder from './assets/pool-progress-border.svg?url';
 import ResourcePoolFill from './assets/pool-progress-fill.svg?url';
-
 import Flame from '../../../assets/flame.svg';
+
+import { useTranslation } from 'react-i18next';
 
 import { formatNumber } from '@/shared/utils/formatNumber';
 
@@ -16,6 +17,8 @@ export const ResourcePool = ({
   sharedResources: number;
   sharedTotalResouces: number;
 }) => {
+  const { t } = useTranslation('translation', { keyPrefix: 'game.tabs.resources' });
+
   return (
     <div className="mx-auto mt-8 flex flex-col gap-[12px]">
       <div className="relative">
@@ -63,7 +66,7 @@ export const ResourcePool = ({
       </div>
       <div className="text-center">
         <h6 className="text-lg tracking-widest">{formatNumber(sharedResources)}</h6>
-        <p className="text-sm font-normal uppercase tracking-wide">resource pool</p>
+        <p className="text-sm font-normal uppercase tracking-wide">{t('resourcePool.title')}</p>
       </div>
     </div>
   );
