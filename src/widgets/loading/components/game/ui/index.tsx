@@ -7,7 +7,6 @@ export const LoadingFallback = () => (
     <div
       className={`${styles.pulsating} flex size-[100px] items-center justify-center text-center`}
     >
-      {/* <h6 className="text-2xl uppercase text-white">Loading</h6> */}
       <div className={styles.spinner}>
         <Spinner />
       </div>
