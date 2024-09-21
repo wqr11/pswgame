@@ -6,20 +6,21 @@ import Paperclip from './assets/paperclip.svg';
 import Message from './assets/message.svg';
 
 import { useUnit } from 'effector-react';
-import { setTab, $tab, sRedirect } from '@/entities';
+import { setTab, $tab } from '@/entities';
 
 // import { HomeButton } from './components';
 
 import styles from './styles/header.module.css';
+import { useRouter } from 'next/navigation';
 
 export const Header = () => {
   const tab = useUnit($tab);
-  const redirect = useUnit(sRedirect);
+  const router = useRouter();
 
   return (
     <header className="sticky left-0 top-0 z-50 mx-[27px] flex h-[100px] items-center justify-between">
       <button
-        onClick={() => redirect('referral')}
+        onClick={() => router.push('/referral')}
         className={`${styles.header_link} relative`}
       >
         <Paperclip />
@@ -44,5 +45,3 @@ export const Header = () => {
     </header>
   );
 };
-
-export * from './components';

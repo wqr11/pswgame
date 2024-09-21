@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { useUnit } from 'effector-react';
 import { $refTab } from '@/entities';
 import { setRefTab } from '@/entities';
+import { useTranslation } from 'react-i18next';
 
 import styles from './styles/AboutUs.module.css';
 
@@ -15,6 +16,10 @@ export const AboutUs = () => {
     setRefTab(tab === 'about' ? 'none' : 'about');
   };
 
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'game.header',
+  });
+
   return (
     <motion.button
       initial={{ scale: 1 }}
@@ -23,7 +28,7 @@ export const AboutUs = () => {
       className="h-full w-fit px-16"
       onClick={handleClick}
     >
-      <h6 className={`${styles.about_us} text-base font-normal uppercase`}>О нас</h6>
+      <h6 className={`${styles.about_us} text-base font-normal uppercase`}> {t('about')}</h6>
     </motion.button>
   );
 };
