@@ -8,8 +8,10 @@ import { $auth, loggedIn, logout } from '../../../auth';
 import { $lastOpenedPage, LastOpenedPageType } from '../../last-opened-state';
 
 export const setUserId = createEvent<number>();
-
 export const $userId = createStore<number | null>(null).on(setUserId, (_, userId) => userId);
+
+export const setUsername = createEvent<string>();
+export const $username = createStore<string | null>(null);
 
 export const getUserFx = createEffect(async ({ access, userId }: GetUserParams) => {
   try {
@@ -37,8 +39,6 @@ export const getUser = createEvent<void>();
 export const $user = createStore<UserType['data'] | null>(null)
   .on(getUserFx.doneData, (_, user) => user ?? null)
   .reset(logout);
-
-export const updateUser = createEvent<string>();
 
 export const updateUserFx = createEffect<UpdateUserParams, UserType['data'] | undefined, Error>(
   async ({ access, userId, username }: UpdateUserParams) => {
@@ -82,10 +82,11 @@ sample({
 });
 
 sample({
-  clock: updateUser,
-  source: { auth: $auth, userId: $userId },
-  // filter: ({ auth, userId }, username) => !!auth && !!auth?.access && !!userId && !!username,
-  fn: ({ auth, userId }, username) =>
+  clock: $user,
+  source: { auth: $auth, userId: $userId, username: $username },
+  // filter: (source, user) =>
+  //   !!source.auth && !!source.userId && !!source.username && user?.user_name === '',
+  fn: ({ auth, userId, username }) =>
     ({
       access: auth?.access,
       userId: userId,

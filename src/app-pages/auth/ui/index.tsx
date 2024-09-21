@@ -10,7 +10,7 @@ import { retrieveLaunchParams } from '@telegram-apps/sdk';
 
 import { useInitData } from '@telegram-apps/sdk-react';
 
-import { $user, setUserId } from '@/entities';
+import { $user, setUserId as setUserIdEvent, setUsername as setUsernameEvent } from '@/entities';
 
 import { useUnit } from 'effector-react';
 import { login, $auth, $lastOpenedPage } from '@/entities';
@@ -22,6 +22,9 @@ export const AuthPageUI = () => {
 
   const initData = useInitData();
 
+  const setUserId = useUnit(setUserIdEvent);
+  const setUsername = useUnit(setUsernameEvent);
+
   const auth = useUnit($auth);
   const user = useUnit($user);
   const lastPage = useUnit($lastOpenedPage);
@@ -30,7 +33,10 @@ export const AuthPageUI = () => {
     if (initData?.user?.id) {
       setUserId(initData.user.id);
     }
-  }, [initData]);
+    if (initData?.user?.username) {
+      setUsername(initData.user.username);
+    }
+  }, [initData, setUserId, setUsername]);
 
   useEffect(() => {
     login(`${initDataRaw}`);

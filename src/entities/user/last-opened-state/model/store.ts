@@ -15,8 +15,6 @@ import {
 } from '@/entities';
 import { UpdateStateType, UpdateStateProps, LastOpenedPageType } from './types';
 
-export const updateState = createEvent<void>();
-
 export const updateStateFx = createEffect<
   UpdateStateProps,
   UpdateStateType['data']['state'] | undefined,
@@ -43,33 +41,6 @@ export const $lastActiveResource = createStore<KingdomType | null>(null);
 
 export const $lastOpenedPage = createStore<LastOpenedPageType | null>(null);
 
-export const usernameRedirectFx = createEffect<void, void, Error>(user => {
-  window.location.href = '/create-username';
-});
-
-export const lastPageRedirectFx = createEffect<LastOpenedPageType | null, void, Error>(
-  (lastOpenedPage: LastOpenedPageType | null) => {
-    window.location.href = `/${lastOpenedPage ?? 'game'}`;
-  }
-);
-
-sample({
-  clock: updateState,
-  source: {
-    userId: $userId,
-    lastActiveResource: $lastActiveResource,
-    lastOpenedPage: $lastOpenedPage,
-  },
-  filter: ({ userId, lastActiveResource, lastOpenedPage }) =>
-    !!userId && !!lastActiveResource && !!lastOpenedPage,
-  fn: ({ userId, lastActiveResource, lastOpenedPage }) => ({
-    userId: userId,
-    lastActiveResource: lastActiveResource,
-    lastOpenedPage: lastOpenedPage,
-  }),
-  target: updateStateFx,
-});
-
 sample({
   source: $kingdom,
   target: $lastActiveResource,
@@ -79,26 +50,4 @@ sample({
   source: $lastActiveResource,
   filter: resource => !!resource && KingdomTypeArray.includes(resource),
   target: $kingdom,
-});
-
-sample({
-  clock: [$lastActiveResource, $lastOpenedPage],
-  target: updateState,
-});
-
-sample({
-  clock: $user,
-  source: { user: $user, lastOpenedPage: $lastOpenedPage, auth: $auth },
-  filter: ({ user, auth }) => !!user && user.user_name === '' && !!auth && !!auth?.access,
-  fn: ({ user, lastOpenedPage }) => ({
-    user: user,
-    lastOpenedPage: lastOpenedPage,
-  }),
-  target: usernameRedirectFx,
-});
-
-sample({
-  clock: updateUserFx.doneData,
-  source: $lastOpenedPage,
-  target: lastPageRedirectFx,
 });
