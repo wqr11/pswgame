@@ -98,5 +98,11 @@
   "errorPage": {
     "title": "Fehler!",
     "button": "Zurückkehren"
+  },
+  "createUsername": {
+    "usernameField": "Benutzername",
+    "loginButton": {
+      "text": "Eingeben"
+    }
   }
 }

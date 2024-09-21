@@ -3,8 +3,9 @@
 import axios, { isAxiosError } from 'axios';
 
 import { createEvent, createStore, createEffect, sample } from 'effector';
-import { UserType, GetUserParams } from './types';
-import { $auth, loggedIn, logout, TokensType } from '../../../auth';
+import { UserType, GetUserParams, UpdateUserParams, UsernameRedirectParams } from './types';
+import { $auth, loggedIn, logout } from '../../../auth';
+import { $lastOpenedPage } from '../../last-opened-state';
 
 export const setUserId = createEvent<number>();
 
@@ -37,6 +38,38 @@ export const $user = createStore<UserType['data'] | null>(null)
   .on(getUserFx.doneData, (_, user) => user ?? null)
   .reset(logout);
 
+export const updateUser = createEvent<string>();
+
+export const updateUserFx = createEffect<UpdateUserParams, UserType['data'] | undefined, Error>(
+  async ({ access, userId, username }: UpdateUserParams) => {
+    try {
+      const res: { data: UserType } = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/update`,
+        {
+          user_id: userId,
+          user_name: username,
+        },
+        {
+          headers: {
+            'jwt-token': `${access}`,
+          },
+        }
+      );
+      return res.data.data;
+    } catch (error) {
+      if (isAxiosError(error)) {
+        throw new Error(error.message);
+      }
+    }
+  }
+);
+
+export const usernameRedirectFx = createEffect<UsernameRedirectParams, void, Error>(
+  ({ user, lastOpenedPage }: UsernameRedirectParams) => {
+    window.location.href = user.user_name === '' ? '/set-username' : `/${lastOpenedPage ?? 'game'}`;
+  }
+);
+
 sample({
   clock: loggedIn,
   target: getUser,
@@ -48,4 +81,33 @@ sample({
   filter: ({ auth, userId }) => !!auth && !!userId && !!auth?.access,
   fn: ({ auth, userId }) => ({ access: `${auth?.access}`, userId }) as GetUserParams,
   target: getUserFx,
+});
+
+sample({
+  clock: updateUser,
+  source: { auth: $auth, userId: $userId },
+  filter: ({ auth, userId }, username) => !!auth && !!auth.access && !!userId && !!username,
+  fn: ({ auth, userId }, username) => ({
+    access: auth?.access ?? null,
+    userId: userId,
+    username: username,
+  }),
+  target: updateUserFx,
+});
+
+sample({
+  source: updateUserFx.doneData,
+  filter: userData => !!userData,
+  target: $user,
+});
+
+sample({
+  source: { user: $user, lastOpenedPage: $lastOpenedPage },
+  filter: ({ user }) => !!user && user.user_name === '',
+  fn: ({ user, lastOpenedPage }) =>
+    ({
+      user: user,
+      lastOpenedPage: lastOpenedPage,
+    }) as UsernameRedirectParams,
+  target: usernameRedirectFx,
 });

@@ -40,3 +40,14 @@ export type UserType = {
 };
 
 export type GetUserParams = { access: TokensType['access']; userId: number };
+
+export type UpdateUserParams = {
+  access: TokensType['access'] | null;
+  userId: number | null;
+  username: string;
+};
+
+export type UsernameRedirectParams = {
+  user: UserType['data'];
+  lastOpenedPage: LastOpenedPageType | null;
+};

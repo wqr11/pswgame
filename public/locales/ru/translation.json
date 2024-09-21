@@ -98,5 +98,11 @@
       "title": "Ошибка",
       "button": "Выход"
     }
+  },
+  "createUsername": {
+    "usernameField": "Имя пользователя",
+    "loginButton": {
+      "text": "Войти"
+    }
   }
 }
