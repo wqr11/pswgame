@@ -4,7 +4,15 @@ import axios, { isAxiosError } from 'axios';
 
 import { createEffect, createEvent, sample, createStore } from 'effector';
 
-import { $kingdom, KingdomType, KingdomTypeArray, $user, updateUserFx, $userId } from '@/entities';
+import {
+  $kingdom,
+  KingdomType,
+  KingdomTypeArray,
+  $user,
+  updateUserFx,
+  $userId,
+  $auth,
+} from '@/entities';
 import { UpdateStateType, UpdateStateProps, LastOpenedPageType } from './types';
 
 export const updateState = createEvent<void>();
@@ -80,8 +88,8 @@ sample({
 
 sample({
   clock: $user,
-  source: { user: $user, lastOpenedPage: $lastOpenedPage },
-  filter: ({ user }) => !!user && user.user_name === '',
+  source: { user: $user, lastOpenedPage: $lastOpenedPage, auth: $auth },
+  filter: ({ user, auth }) => !!user && user.user_name === '' && !!auth && !!auth?.access,
   fn: ({ user, lastOpenedPage }) => ({
     user: user,
     lastOpenedPage: lastOpenedPage,
