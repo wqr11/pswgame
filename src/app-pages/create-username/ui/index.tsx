@@ -20,7 +20,10 @@ export const CreateUsernamePageUI = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'createUsername' });
 
   return (
-    <div className="border-[1px] border-white flex flex-col items-center justify-evenly p-[32px] size-full">
+    <form
+      onSubmit={handleClick}
+      className="border-[1px] border-white flex flex-col items-center justify-evenly p-[32px] size-full"
+    >
       <GyberLogoGreen />
       <div className="flex flex-col gap-[2px] text-left mx-[24px]">
         <label className="text-white uppercase text-sm">{t('usernameField')}</label>
@@ -34,7 +37,7 @@ export const CreateUsernamePageUI = () => {
         ></input>
       </div>
       <button
-        onClick={handleClick}
+        type="submit"
         className="relative flex justify-center items-center text-white"
       >
         <LoginBorder />
@@ -42,6 +45,6 @@ export const CreateUsernamePageUI = () => {
           {t('loginButton.text')}
         </h6>
       </button>
-    </div>
+    </form>
   );
 };

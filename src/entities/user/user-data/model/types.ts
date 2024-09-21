@@ -46,8 +46,3 @@ export type UpdateUserParams = {
   userId: number;
   username: string;
 };
-
-export type UsernameRedirectParams = {
-  user: UserType['data'];
-  lastOpenedPage: LastOpenedPageType | null;
-};

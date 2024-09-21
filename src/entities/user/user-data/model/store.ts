@@ -3,9 +3,9 @@
 import axios, { isAxiosError } from 'axios';
 
 import { createEvent, createStore, createEffect, sample } from 'effector';
-import { UserType, GetUserParams, UpdateUserParams, UsernameRedirectParams } from './types';
+import { UserType, GetUserParams, UpdateUserParams, LastPageRedirectProps } from './types';
 import { $auth, loggedIn, logout } from '../../../auth';
-import { $lastOpenedPage } from '../../last-opened-state';
+import { $lastOpenedPage, LastOpenedPageType } from '../../last-opened-state';
 
 export const setUserId = createEvent<number>();
 
@@ -64,9 +64,13 @@ export const updateUserFx = createEffect<UpdateUserParams, UserType['data'] | un
   }
 );
 
-export const usernameRedirectFx = createEffect<UsernameRedirectParams, void, Error>(
-  ({ user, lastOpenedPage }: UsernameRedirectParams) => {
-    window.location.href = user.user_name === '' ? '/set-username' : `/${lastOpenedPage ?? 'game'}`;
+export const usernameRedirectFx = createEffect<void, void, Error>(user => {
+  window.location.href = '/set-username';
+});
+
+export const lastPageRedirectFx = createEffect<LastOpenedPageType | null, void, Error>(
+  (lastOpenedPage: LastOpenedPageType | null) => {
+    window.location.href = `/${lastOpenedPage ?? 'game'}`;
   }
 );
 
@@ -101,4 +105,10 @@ sample({
   source: updateUserFx.doneData,
   filter: userData => !!userData,
   target: $user,
+});
+
+sample({
+  clock: updateUserFx.doneData,
+  source: $lastOpenedPage,
+  target: lastPageRedirectFx,
 });
