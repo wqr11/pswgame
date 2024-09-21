@@ -85,7 +85,10 @@ sample({
   clock: $user,
   source: { auth: $auth, userId: $userId, username: $username },
   filter: (source, user) =>
-    !!source.auth && !!source.userId && !!source.username && user?.user_name === '',
+    !!source.auth &&
+    !!source.userId &&
+    !!source.username &&
+    (user?.user_name === '' || user?.user_name === 'Unknown'),
   fn: ({ auth, userId, username }) =>
     ({
       access: auth?.access,
