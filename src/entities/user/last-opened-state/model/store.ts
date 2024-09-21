@@ -4,9 +4,16 @@ import axios, { isAxiosError } from 'axios';
 
 import { createEffect, createEvent, sample, createStore } from 'effector';
 
-import { $userId } from '../../user-data';
-
-import { $kingdom, KingdomType, KingdomTypeArray, $user, usernameRedirectFx } from '@/entities';
+import {
+  $kingdom,
+  KingdomType,
+  KingdomTypeArray,
+  $user,
+  usernameRedirectFx,
+  updateUserFx,
+  $userId,
+  lastPageRedirectFx,
+} from '@/entities';
 import { UpdateStateType, UpdateStateProps, LastOpenedPageType } from './types';
 
 export const updateState = createEvent<void>();
@@ -79,4 +86,10 @@ sample({
     lastOpenedPage: lastOpenedPage,
   }),
   target: usernameRedirectFx,
+});
+
+sample({
+  clock: updateUserFx.doneData,
+  source: $lastOpenedPage,
+  target: lastPageRedirectFx,
 });

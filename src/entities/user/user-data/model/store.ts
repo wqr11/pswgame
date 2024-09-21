@@ -3,7 +3,7 @@
 import axios, { isAxiosError } from 'axios';
 
 import { createEvent, createStore, createEffect, sample } from 'effector';
-import { UserType, GetUserParams, UpdateUserParams, LastPageRedirectProps } from './types';
+import { UserType, GetUserParams, UpdateUserParams } from './types';
 import { $auth, loggedIn, logout } from '../../../auth';
 import { $lastOpenedPage, LastOpenedPageType } from '../../last-opened-state';
 
@@ -90,7 +90,7 @@ sample({
 sample({
   clock: updateUser,
   source: { auth: $auth, userId: $userId },
-  filter: ({ auth, userId }, username) => !!auth && !!auth.access && !!userId && !!username,
+  filter: ({ auth, userId }, username) => !!auth && !!auth?.access && !!userId && !!username,
   fn: ({ auth, userId }, username) =>
     ({
       // @ts-ignore
@@ -105,10 +105,4 @@ sample({
   source: updateUserFx.doneData,
   filter: userData => !!userData,
   target: $user,
-});
-
-sample({
-  clock: updateUserFx.doneData,
-  source: $lastOpenedPage,
-  target: lastPageRedirectFx,
 });
