@@ -42,6 +42,7 @@ export const updateUser = createEvent<string>();
 
 export const updateUserFx = createEffect<UpdateUserParams, UserType['data'] | undefined, Error>(
   async ({ access, userId, username }: UpdateUserParams) => {
+    console.log(access, userId, username);
     try {
       const res: { data: UserType } = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/update`,
@@ -55,22 +56,15 @@ export const updateUserFx = createEffect<UpdateUserParams, UserType['data'] | un
           },
         }
       );
+      console.log(res.data);
+
       return res.data.data;
     } catch (error) {
       if (isAxiosError(error)) {
+        console.log('error in updateUserFx');
         throw new Error(error.message);
       }
     }
-  }
-);
-
-export const usernameRedirectFx = createEffect<void, void, Error>(user => {
-  window.location.href = '/create-username';
-});
-
-export const lastPageRedirectFx = createEffect<LastOpenedPageType | null, void, Error>(
-  (lastOpenedPage: LastOpenedPageType | null) => {
-    window.location.href = `/${lastOpenedPage ?? 'game'}`;
   }
 );
 

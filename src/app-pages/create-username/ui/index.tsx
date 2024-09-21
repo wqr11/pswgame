@@ -14,6 +14,7 @@ export const CreateUsernamePageUI = () => {
 
   const setUserData = useUnit(updateUser);
   const handleClick = () => {
+    console.log(username);
     setUserData(username);
   };
 

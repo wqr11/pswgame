@@ -4,16 +4,7 @@ import axios, { isAxiosError } from 'axios';
 
 import { createEffect, createEvent, sample, createStore } from 'effector';
 
-import {
-  $kingdom,
-  KingdomType,
-  KingdomTypeArray,
-  $user,
-  usernameRedirectFx,
-  updateUserFx,
-  $userId,
-  lastPageRedirectFx,
-} from '@/entities';
+import { $kingdom, KingdomType, KingdomTypeArray, $user, updateUserFx, $userId } from '@/entities';
 import { UpdateStateType, UpdateStateProps, LastOpenedPageType } from './types';
 
 export const updateState = createEvent<void>();
@@ -43,6 +34,16 @@ export const updateStateFx = createEffect<
 export const $lastActiveResource = createStore<KingdomType | null>(null);
 
 export const $lastOpenedPage = createStore<LastOpenedPageType | null>(null);
+
+export const usernameRedirectFx = createEffect<void, void, Error>(user => {
+  window.location.href = '/create-username';
+});
+
+export const lastPageRedirectFx = createEffect<LastOpenedPageType | null, void, Error>(
+  (lastOpenedPage: LastOpenedPageType | null) => {
+    window.location.href = `/${lastOpenedPage ?? 'game'}`;
+  }
+);
 
 sample({
   clock: updateState,
