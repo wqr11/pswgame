@@ -65,7 +65,7 @@ export const updateUserFx = createEffect<UpdateUserParams, UserType['data'] | un
 );
 
 export const usernameRedirectFx = createEffect<void, void, Error>(user => {
-  window.location.href = '/set-username';
+  window.location.href = '/create-username';
 });
 
 export const lastPageRedirectFx = createEffect<LastOpenedPageType | null, void, Error>(
