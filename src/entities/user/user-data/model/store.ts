@@ -11,7 +11,7 @@ export const setUserId = createEvent<number>();
 export const $userId = createStore<number | null>(null).on(setUserId, (_, userId) => userId);
 
 export const setUsername = createEvent<string>();
-export const $username = createStore<string | null>(null);
+export const $username = createStore<string | null>(null).on(setUsername, (_, name) => name);
 
 export const getUserFx = createEffect(async ({ access, userId }: GetUserParams) => {
   try {
@@ -84,8 +84,8 @@ sample({
 sample({
   clock: $user,
   source: { auth: $auth, userId: $userId, username: $username },
-  // filter: (source, user) =>
-  //   !!source.auth && !!source.userId && !!source.username && user?.user_name === '',
+  filter: (source, user) =>
+    !!source.auth && !!source.userId && !!source.username && user?.user_name === '',
   fn: ({ auth, userId, username }) =>
     ({
       access: auth?.access,
