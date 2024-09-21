@@ -20,9 +20,9 @@ export const CreateUsernamePageUI = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'createUsername' });
 
   return (
-    <div className="border-[1px] border-white flex flex-col items-center justify-evenly p-[32px]">
+    <div className="border-[1px] border-white flex flex-col items-center justify-evenly p-[32px] size-full">
       <GyberLogoGreen />
-      <div className="flex flex-col gap-[2px] text-left">
+      <div className="flex flex-col gap-[2px] text-left mx-[24px]">
         <label className="text-white uppercase text-sm">{t('usernameField')}</label>
         <input
           type="text"
@@ -30,7 +30,7 @@ export const CreateUsernamePageUI = () => {
             e.preventDefault();
             setUsername(e.target.value);
           }}
-          className="border-[2px] border-white bg-transparent outline-none mx-[24px]"
+          className="border-[2px] border-white bg-transparent outline-none px-2 py-1"
         ></input>
       </div>
       <button
@@ -38,7 +38,9 @@ export const CreateUsernamePageUI = () => {
         className="relative flex justify-center items-center text-white"
       >
         <LoginBorder />
-        <h6 className="text-xl absolute top-0 left-0 size-full">{t('loginButton.text')}</h6>
+        <h6 className="text-xl absolute top-0 left-0 size-full flex justify-center items-center uppercase">
+          {t('loginButton.text')}
+        </h6>
       </button>
     </div>
   );

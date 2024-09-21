@@ -78,6 +78,7 @@ sample({
 });
 
 sample({
+  clock: $user,
   source: { user: $user, lastOpenedPage: $lastOpenedPage },
   filter: ({ user }) => !!user && user.user_name === '',
   fn: ({ user, lastOpenedPage }) =>

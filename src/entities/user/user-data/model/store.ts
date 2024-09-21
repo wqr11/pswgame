@@ -87,11 +87,13 @@ sample({
   clock: updateUser,
   source: { auth: $auth, userId: $userId },
   filter: ({ auth, userId }, username) => !!auth && !!auth.access && !!userId && !!username,
-  fn: ({ auth, userId }, username) => ({
-    access: auth?.access ?? null,
-    userId: userId,
-    username: username,
-  }),
+  fn: ({ auth, userId }, username) =>
+    ({
+      // @ts-ignore
+      access: auth.access,
+      userId: userId,
+      username: username,
+    }) as UpdateUserParams,
   target: updateUserFx,
 });
 
