@@ -6,7 +6,14 @@ import { createEffect, createEvent, sample, createStore } from 'effector';
 
 import { $userId } from '../../user-data';
 
-import { $kingdom, KingdomType, KingdomTypeArray } from '@/entities';
+import {
+  $kingdom,
+  KingdomType,
+  KingdomTypeArray,
+  $user,
+  UsernameRedirectParams,
+  usernameRedirectFx,
+} from '@/entities';
 import { UpdateStateType, UpdateStateProps, LastOpenedPageType } from './types';
 
 export const updateState = createEvent<void>();
@@ -68,4 +75,15 @@ sample({
 sample({
   clock: [$lastActiveResource, $lastOpenedPage],
   target: updateState,
+});
+
+sample({
+  source: { user: $user, lastOpenedPage: $lastOpenedPage },
+  filter: ({ user }) => !!user && user.user_name === '',
+  fn: ({ user, lastOpenedPage }) =>
+    ({
+      user: user,
+      lastOpenedPage: lastOpenedPage,
+    }) as UsernameRedirectParams,
+  target: usernameRedirectFx,
 });

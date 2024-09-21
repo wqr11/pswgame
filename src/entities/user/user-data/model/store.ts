@@ -100,14 +100,3 @@ sample({
   filter: userData => !!userData,
   target: $user,
 });
-
-sample({
-  source: { user: $user, lastOpenedPage: $lastOpenedPage },
-  filter: ({ user }) => !!user && user.user_name === '',
-  fn: ({ user, lastOpenedPage }) =>
-    ({
-      user: user,
-      lastOpenedPage: lastOpenedPage,
-    }) as UsernameRedirectParams,
-  target: usernameRedirectFx,
-});
