@@ -12,10 +12,11 @@ import { useTranslation } from 'react-i18next';
 export const CreateUsernamePageUI = () => {
   const [username, setUsername] = useState<string>('');
 
-  const setUserData = useUnit(updateUser);
-  const handleClick = () => {
+  const updateUserData = useUnit(updateUser);
+  const handleClick = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     console.log(username);
-    setUserData(username);
+    updateUserData(username);
   };
 
   const { t } = useTranslation('translation', { keyPrefix: 'createUsername' });
