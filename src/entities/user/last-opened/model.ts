@@ -4,15 +4,7 @@ import axios, { isAxiosError } from 'axios';
 
 import { createEffect, createEvent, sample, createStore } from 'effector';
 
-import {
-  $kingdom,
-  KingdomType,
-  KingdomTypeArray,
-  $user,
-  updateUserFx,
-  $userId,
-  $auth,
-} from '@/entities';
+import { $kingdom, KingdomType, KingdomTypeArray } from '@/entities';
 import { UpdateStateType, UpdateStateProps, LastOpenedPageType } from './types';
 
 export const updateStateFx = createEffect<
@@ -38,16 +30,18 @@ export const updateStateFx = createEffect<
 });
 
 export const $lastActiveResource = createStore<KingdomType | null>(null);
-
 export const $lastOpenedPage = createStore<LastOpenedPageType | null>(null);
 
+// Samples
 sample({
   source: $kingdom,
   target: $lastActiveResource,
 });
 
 sample({
-  source: $lastActiveResource,
-  filter: resource => !!resource && KingdomTypeArray.includes(resource),
+  source: { resource: $lastActiveResource, kingdom: $kingdom },
+  filter: ({ resource, kingdom }) =>
+    !!resource && KingdomTypeArray.includes(resource) && kingdom !== resource,
+  fn: ({ resource }) => resource,
   target: $kingdom,
 });

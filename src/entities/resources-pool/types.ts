@@ -8,8 +8,7 @@ export type PoolResourceType = {
   total: number;
 };
 
-export type PoolResourcesType = {
-  result: ResultType;
+export type PoolResourcesDataType = {
   data: {
     entities: PoolResourceType[];
     shared_resources: number;

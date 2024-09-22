@@ -1,13 +1,13 @@
 'use client';
 
-import { PoolResourcesType } from '@/entities';
+import { PoolResourcesDataType } from '@/entities';
 
 import { ResourceProgress } from '@/widgets';
 
 export const ResourcesProgress = ({
   resources,
 }: {
-  resources: PoolResourcesType['data']['entities'];
+  resources: PoolResourcesDataType['data']['entities'];
 }) => {
   return (
     <div className="mt-2 flex flex-col gap-4">

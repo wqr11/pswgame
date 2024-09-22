@@ -5,7 +5,6 @@ export * from './ping';
 export * from './resources-pool';
 export * from './tab';
 export * from './tap';
-export * from './user';
 export * from './referrals';
 export * from './timer';
-export * from './router';
+export * from './user';
