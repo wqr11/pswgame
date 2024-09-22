@@ -2,7 +2,7 @@
 
 import { PoolResourcesDataType } from '@/entities';
 
-import { ResourceProgress } from '@/widgets';
+import { ResourceProgress } from '../resource-progress';
 
 export const ResourcesProgress = ({
   resources,
