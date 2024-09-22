@@ -12,6 +12,8 @@ export const UpdatePoolProgress = () => {
   const estimatedTime = useUnit($estimatedTime);
   const timerProgress = useUnit($timerProgress);
 
+  console.log(timerProgress);
+
   const { t } = useTranslation('translation', { keyPrefix: 'game.tabs.resources' });
 
   return (

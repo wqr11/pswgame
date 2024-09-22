@@ -21,7 +21,7 @@ export const RefLink = () => {
       className={`${styles.header_link} relative`}
     >
       <Paperclip />
-      {refs && (
+      {!!refs && refs.referrals_count > 0 && (
         <div className="absolute left-[38px] top-[-8px] size-max">
           <div className="relative h-[24px] w-[24px]">
             <Message />
