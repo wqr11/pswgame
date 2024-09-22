@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 
 import { setTab } from '@/entities';
 
-import styles from '../../../styles/header.module.css';
+import styles from '../../styles/header.module.css';
 
 export const HomeButton = () => {
   return (

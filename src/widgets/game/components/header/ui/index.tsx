@@ -8,10 +8,11 @@ import Message from './assets/message.svg';
 import { useUnit } from 'effector-react';
 import { setTab, $tab } from '@/entities';
 
-// import { HomeButton } from './components';
+import { HomeButton } from './components';
 
 import styles from './styles/header.module.css';
 import { useRouter } from 'next/navigation';
+import { RefLink } from './components/ref-link';
 
 export const Header = () => {
   const tab = useUnit($tab);
@@ -19,21 +20,8 @@ export const Header = () => {
 
   return (
     <header className="sticky left-0 top-0 z-50 mx-[27px] flex h-[100px] items-center justify-between">
-      <button
-        onClick={() => router.push('/referral')}
-        className={`${styles.header_link} relative`}
-      >
-        <Paperclip />
-        <div className="absolute left-[38px] top-[-8px] size-max">
-          <div className="relative h-[24px] w-[24px]">
-            <Message />
-            <small className="absolute left-0 top-0 size-full text-center text-white">
-              99 {/* Only values between 1 and 99 */}
-            </small>
-          </div>
-        </div>
-      </button>
-      {/* <HomeButton /> */}
+      <RefLink />
+      <HomeButton />
       <button
         onClick={() => {
           setTab(tab === 'about' ? 'none' : 'about');

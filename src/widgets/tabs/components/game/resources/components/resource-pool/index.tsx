@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 import ResourcePoolBorder from './assets/pool-progress-border.svg?url';
 import ResourcePoolFill from './assets/pool-progress-fill.svg?url';
-import Flame from '../../../assets/flame.svg';
+import Flame from '../../assets/flame.svg';
 
 import { useTranslation } from 'react-i18next';
 

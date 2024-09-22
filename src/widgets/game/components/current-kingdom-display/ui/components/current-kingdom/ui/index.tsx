@@ -68,7 +68,7 @@ export const CurrentKingdom = ({
             transition: { duration: 0.03, ease: 'easeInOut' },
           }}
           onClick={() => tap()}
-          className="w-auto h-[220px]"
+          className="w-auto h-[220px] max-h-[220px]"
         >
           <Kingdom
             height={220}
