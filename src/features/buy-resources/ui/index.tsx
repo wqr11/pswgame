@@ -4,7 +4,6 @@ import Heat from '@/shared/ui/icons/resources/heat.svg';
 import Food from '@/shared/ui/icons/resources/food.svg';
 import Crypto from '@/shared/ui/icons/resources/crypto.svg';
 import Energy from '@/shared/ui/icons/resources/energy.svg';
-import BuyResourceIcon from '../../../assets/buy-resource-button.svg';
 
 import { ResourceButton } from './resource';
 
