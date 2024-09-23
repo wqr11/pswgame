@@ -51,7 +51,7 @@ export const ReferenceButton = ({
             transition={{
               duration: 0.15,
             }}
-            className="absolute right-0 top-8 z-50"
+            className="absolute right-0 top-8 z-[100]"
           >
             <div className="relative">
               <ReferenceBorder />

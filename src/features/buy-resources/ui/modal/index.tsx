@@ -2,35 +2,38 @@
 
 import { motion } from 'framer-motion';
 
-import { useEffect } from 'react';
-
-import Heat from '@/shared/ui/icons/resources/heat.svg';
-import Food from '@/shared/ui/icons/resources/food.svg';
-import Crypto from '@/shared/ui/icons/resources/crypto.svg';
-import Energy from '@/shared/ui/icons/resources/energy.svg';
+import { useEffect, useRef } from 'react';
 
 import { ResourceButton } from '../resource';
+import { ResourceBuySlider } from '../slider';
+import { ResourcesPrice } from '../resources-price';
+import { ResourcesAmount } from '../resources-amount';
 
 import { useUnit } from 'effector-react';
 import { buyResourcesModelInputs } from '../../model';
-import { ResourceBuySlider } from '../slider';
 
 export const BuyResourceModal = () => {
   const buyResourceAmount = useUnit(buyResourcesModelInputs.$buyResourceAmount);
   const chosenResourceKey = useUnit(buyResourcesModelInputs.$chosenResourceKey);
   const toggleModal = useUnit(buyResourcesModelInputs.toggleModal);
 
-  useEffect(() => {
-    window.addEventListener('blur', () => {
-      toggleModal();
-    });
+  const modalRef = useRef<Element | null>(null);
 
-    return () => {
-      window.removeEventListener('blur', () => {
+  useEffect(() => {
+    if (modalRef.current) {
+      modalRef.current.addEventListener('blur', () => {
         toggleModal();
       });
+    }
+
+    return () => {
+      if (modalRef.current) {
+        modalRef.current.removeEventListener('blur', () => {
+          toggleModal();
+        });
+      }
     };
-  }, []);
+  }, [modalRef]);
 
   useEffect(() => {
     console.log(buyResourceAmount, chosenResourceKey);
@@ -46,27 +49,17 @@ export const BuyResourceModal = () => {
         type: 'spring',
         bounce: 0.15,
       }}
-      className="fixed left-0 top-0 z-50 flex h-[300px] w-[calc(100%-72px)] items-start bg-[#0e0e0e]"
+      className="fixed left-0 top-[42px] z-50 flex h-[300px] w-full items-start bg-[#0e0e0e] px-[5%]"
     >
       <div className="flex size-full flex-col items-center justify-evenly border-[1px] border-white">
         <div className="mx-auto mt-2 flex size-fit gap-4 border-[3px] border-white px-2 py-1">
-          <ResourceButton
-            icon={Crypto}
-            resource="crypto"
-          />
-          <ResourceButton
-            icon={Energy}
-            resource="energy"
-          />
-          <ResourceButton
-            icon={Food}
-            resource="food"
-          />
-          <ResourceButton
-            icon={Heat}
-            resource="heat"
-          />
+          <ResourceButton resource="crypto" />
+          <ResourceButton resource="energy" />
+          <ResourceButton resource="food" />
+          <ResourceButton resource="heat" />
         </div>
+        <ResourcesPrice />
+        <ResourcesAmount />
         <ResourceBuySlider />
       </div>
     </motion.div>

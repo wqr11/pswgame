@@ -4,14 +4,7 @@ import axios, { isAxiosError } from 'axios';
 
 import { createEvent, createStore, createEffect, sample } from 'effector';
 
-import {
-  $lastOpenedPage,
-  LastOpenedPageType,
-  $auth,
-  loggedIn,
-  logout,
-  getResourcesFx,
-} from '@/entities';
+import { $auth, loggedIn, logout } from '@/entities';
 
 import { UserType, GetUserParams, UpdateUserParams } from './types';
 

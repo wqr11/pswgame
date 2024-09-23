@@ -8,11 +8,13 @@ import { ReferenceButton, LoadingFallback, TabAnimatedGame } from '@/widgets';
 
 import { useUnit } from 'effector-react';
 import { $resourcePool, getResourcePool } from '@/entities';
+import { buyResourcesModelInputs } from '@/features/buy-resources';
 
 import styles from '@/shared/ui/styles/current-tab/currentTab.module.css';
 
 export const ResourcesTab = () => {
   const resources = useUnit($resourcePool);
+  const modalShown = useUnit(buyResourcesModelInputs.$modalShown);
 
   useEffect(() => {
     if (!resources) {
@@ -45,7 +47,7 @@ export const ResourcesTab = () => {
           <LoadingFallback />
         )}
       </div>
-      <BuyResourceModal />
+      {modalShown && <BuyResourceModal />}
     </TabAnimatedGame>
   );
 };

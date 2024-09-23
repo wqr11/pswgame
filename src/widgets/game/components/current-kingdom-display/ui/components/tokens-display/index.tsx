@@ -1,6 +1,6 @@
 'use client';
 
-import Coin from '../../../assets/coin.svg';
+import Coin from '@/shared/assets/coin.svg';
 
 import { useUnit } from 'effector-react';
 import { $tokens } from '@/entities';
