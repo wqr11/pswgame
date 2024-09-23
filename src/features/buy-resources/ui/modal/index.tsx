@@ -4,13 +4,14 @@ import { motion } from 'framer-motion';
 
 import { useEffect, useRef } from 'react';
 
-import { ResourceButton } from '../resource';
 import { ResourceBuySlider } from '../slider';
-import { ResourcesPrice } from '../resources-price';
-import { ResourcesAmount } from '../resources-amount';
+import { ResourcesPrice } from './resources-price';
+import { ResourcesAmount } from './resources-amount';
 
 import { useUnit } from 'effector-react';
 import { buyResourcesModelInputs } from '../../model';
+import { ResourcesList } from './resources-list';
+import { ResourceBuyButton } from './buy-button';
 
 export const BuyResourceModal = () => {
   const buyResourceAmount = useUnit(buyResourcesModelInputs.$buyResourceAmount);
@@ -52,15 +53,11 @@ export const BuyResourceModal = () => {
       className="fixed left-0 top-[42px] z-50 flex h-[300px] w-full items-start bg-[#0e0e0e] px-[5%]"
     >
       <div className="flex size-full flex-col items-center justify-evenly border-[1px] border-white">
-        <div className="mx-auto mt-2 flex size-fit gap-4 border-[3px] border-white px-2 py-1">
-          <ResourceButton resource="crypto" />
-          <ResourceButton resource="energy" />
-          <ResourceButton resource="food" />
-          <ResourceButton resource="heat" />
-        </div>
+        <ResourcesList />
         <ResourcesPrice />
         <ResourcesAmount />
         <ResourceBuySlider />
+        <ResourceBuyButton />
       </div>
     </motion.div>
   );

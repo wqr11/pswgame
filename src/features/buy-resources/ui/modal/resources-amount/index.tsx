@@ -8,7 +8,7 @@ import Energy from '@/shared/ui/icons/resources/energy.svg';
 import { ResourceType } from '@/entities';
 
 import { useUnit } from 'effector-react';
-import { buyResourcesModelInputs } from '../../model';
+import { buyResourcesModelInputs } from '../../../model';
 import { formatNumber } from '@/shared/utils/formatNumber';
 
 export const ResourcesAmount = () => {
@@ -44,8 +44,8 @@ export const ResourcesAmount = () => {
         {formatNumber(buyResAmount)}
       </h6>
       <Icon
-        height={26}
-        width={26}
+        height={20}
+        width={20}
       />
     </div>
   );

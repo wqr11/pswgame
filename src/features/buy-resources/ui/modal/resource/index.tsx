@@ -8,7 +8,7 @@ import Crypto from '@/shared/ui/icons/resources/crypto.svg';
 import Energy from '@/shared/ui/icons/resources/energy.svg';
 
 import { useUnit } from 'effector-react';
-import { buyResourcesModelInputs } from '../../model';
+import { buyResourcesModelInputs } from '../../../model';
 
 export const ResourceButton = ({
   resource,
@@ -40,7 +40,7 @@ export const ResourceButton = ({
       style={{
         width: `${size}px`,
         height: `${size}px`,
-        filter: chosenResourceKey ? 'grayscale(100%)' : 'none',
+        filter: chosenResourceKey ? 'grayscale(85%)' : 'none',
       }}
       onClick={handleClick}
     >

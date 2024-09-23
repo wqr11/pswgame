@@ -3,7 +3,7 @@
 import { useUnit } from 'effector-react';
 import { buyResourcesModelInputs } from '../../model';
 
-export const BuyResourceButton = () => {
+export const ToggleResourceMenuButton = () => {
   const toggleModal = useUnit(buyResourcesModelInputs.toggleModal);
 
   return (
