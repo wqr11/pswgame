@@ -12,7 +12,7 @@ export const HomeButton = () => {
   return (
     <motion.button
       initial={{ scale: 1 }}
-      whileTap={{ scale: 0.95, transition: { duration: 0.075, ease: 'easeInOut' } }}
+      whileTap={{ scale: 0.92, transition: { duration: 0.02, ease: 'easeInOut' } }}
       onClick={() => {
         setTab('none');
       }}

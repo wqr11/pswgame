@@ -39,14 +39,14 @@ export const BuyResourceModal = () => {
   return (
     <motion.div
       initial={{ translateY: '100%' }}
-      animate={{ translateY: ['100%', 0], opacity: [0.4, 1], scale: [1.3, 1] }}
-      exit={{ translateY: [0, '100%'], opacity: [1, 0], scale: [1, 1.3] }}
+      animate={{ translateY: ['100%', 0], opacity: [0.4, 0.95], scale: [1.3, 1] }}
+      exit={{ translateY: [0, '100%'], opacity: [0.95, 0], scale: [1, 1.3] }}
       transition={{
         duration: 0.4,
         type: 'spring',
         bounce: 0.15,
       }}
-      className="fixed top-[calc(50%-300px)] z-50 flex h-[300px] w-full items-start bg-[#0e0e0e] opacity-[0.98]"
+      className="fixed left-0 top-0 z-50 flex h-[300px] w-[calc(100%-72px)] items-start bg-[#0e0e0e]"
     >
       <div className="flex size-full flex-col items-center justify-evenly border-[1px] border-white">
         <div className="mx-auto mt-2 flex size-fit gap-4 border-[3px] border-white px-2 py-1">

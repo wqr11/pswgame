@@ -12,6 +12,5 @@ export const $chosenResourceData = combine(
       if (entity.name === resource) {
         return entity;
       }
-      throw new Error(`Resource with key ${resource} was not found in resource pool`);
     })[0]
 );
