@@ -34,7 +34,7 @@ export const ResourcesAmount = () => {
   const Icon = icons[chosenResKey ?? 'food'];
 
   return (
-    <div className="flex gap-2 px-2 py-1">
+    <div className="flex items-center gap-2 border-[2px] border-white px-2 py-1">
       <h6
         className="text-lg"
         style={{
@@ -42,8 +42,11 @@ export const ResourcesAmount = () => {
         }}
       >
         {formatNumber(buyResAmount)}
-        <Icon />
       </h6>
+      <Icon
+        height={26}
+        width={26}
+      />
     </div>
   );
 };

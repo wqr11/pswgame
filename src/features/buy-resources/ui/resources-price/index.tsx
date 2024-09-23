@@ -12,7 +12,7 @@ export const ResourcesPrice = () => {
   const buyResAmount = useUnit(buyResourcesModelInputs.$buyResourceAmount);
 
   return (
-    <div className="flex gap-2 px-2 py-1">
+    <div className="flex items-center gap-2 border-[2px] border-white px-2 py-1">
       <h6
         className="text-lg"
         style={{
