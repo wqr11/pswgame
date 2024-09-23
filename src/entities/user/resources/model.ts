@@ -16,7 +16,7 @@ export const getResourcesFx = createEffect<
 >(async ({ access, userId }: GetResourcesParams) => {
   try {
     const res: { data: UserResourcesType } = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/get_resources/${userId}/-1`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/get_resources/${userId}/all`,
       {
         headers: {
           'Accept': 'application/json',
