@@ -46,7 +46,7 @@ export const GameUI = () => {
         transform: `scale(${scale})`,
       }}
     >
-      <div className="relative my-auto w-full flex-grow overflow-clip">
+      <div className="relative my-auto w-full h-full flex-grow max-h-[100vh] overflow-clip">
         {kingdom ? (
           <CurrentKingdomDisplay
             kingdomType={kingdom}
