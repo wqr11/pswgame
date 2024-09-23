@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 
 import { ResourcePool, UpdatePoolProgress, ResourcesProgress } from './components';
-import { BuyResource } from '@/features/buy-resources';
+import { BuyResourceButton, BuyResourceModal } from '@/features/buy-resources';
 import { ReferenceButton, LoadingFallback, TabAnimatedGame } from '@/widgets';
 
 import { useUnit } from 'effector-react';
@@ -38,13 +38,14 @@ export const ResourcesTab = () => {
             <ResourcesProgress resources={resources?.entities} />
             <div className="flex flex-col items-end gap-2">
               <UpdatePoolProgress />
-              <BuyResource />
+              <BuyResourceButton />
             </div>
           </>
         ) : (
           <LoadingFallback />
         )}
       </div>
+      <BuyResourceModal />
     </TabAnimatedGame>
   );
 };

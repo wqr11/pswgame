@@ -1,9 +1,8 @@
-import { ResultType } from '@/shared/types';
-
 export type ResourceType = 'crypto' | 'heat' | 'food' | 'energy';
 
 export type PoolResourceType = {
   name: ResourceType;
+  cost: number;
   current: number;
   total: number;
 };

@@ -3,16 +3,14 @@
 import axios, { isAxiosError } from 'axios';
 import { createEffect, createEvent, sample } from 'effector';
 
-import { $userId, $user } from '@/entities/user';
 import { UserType, $resourcePool, $auth, PoolResourcesDataType } from '@/entities';
 
-import {
-  BuyResourcesFromPoolParams,
-  BuyResourcesFromPoolDataType,
-  BuyResourceFromPoolArgs,
-} from './types';
+import { $userId, $user } from '@/entities/user';
 
-export const buyResourceFromPool = createEvent<BuyResourceFromPoolArgs>();
+import { BuyResourcesFromPoolParams, BuyResourcesFromPoolDataType } from './types';
+import { $buyResourceAmount, $chosenResourceKey } from './inputs';
+
+export const buyResourceFromPool = createEvent<void>();
 export const buyResourceFromPoolFx = createEffect<
   BuyResourcesFromPoolParams,
   BuyResourcesFromPoolDataType['data'] | undefined,
@@ -42,15 +40,20 @@ export const buyResourceFromPoolFx = createEffect<
 
 sample({
   clock: buyResourceFromPool,
-  source: { auth: $auth, userId: $userId },
-  filter: (source, clock) =>
-    !!source.auth?.access && !!source.userId && !!clock.amount && !!clock.resourceKey,
-  fn: (source, clock) =>
+  source: {
+    auth: $auth,
+    userId: $userId,
+    amount: $buyResourceAmount,
+    resourceKey: $chosenResourceKey,
+  },
+  filter: ({ auth, userId, amount, resourceKey }) =>
+    !!auth?.access && !!userId && !!amount && !!resourceKey,
+  fn: ({ auth, userId, amount, resourceKey }) =>
     ({
-      access: source.auth?.access,
-      userId: source.userId,
-      amount: clock.amount,
-      resourceKey: clock.resourceKey,
+      access: auth?.access,
+      userId: userId,
+      amount: amount,
+      resourceKey: resourceKey,
     }) as BuyResourcesFromPoolParams,
   target: buyResourceFromPoolFx,
 });

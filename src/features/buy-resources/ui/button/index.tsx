@@ -1,15 +1,17 @@
 'use client';
 
-export const BuyButton = () => {
+import { useUnit } from 'effector-react';
+import { buyResourcesModelInputs } from '../../model';
+
+export const BuyResourceButton = () => {
+  const toggleModal = useUnit(buyResourcesModelInputs.toggleModal);
+
   return (
     <button
-      className="active:opacity-40 flex justify-center items-center"
-      onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
-        e.preventDefault();
-        // add logic for toggling menu
-      }}
+      className="flex items-center justify-center active:opacity-40"
+      onClick={toggleModal}
     >
-      <div className="p-2 border-white border-[2px]">BUY</div>
+      <div className="border-[2px] border-white p-2">BUY</div>
     </button>
   );
 };
