@@ -1,7 +1,7 @@
 import { TokensType } from '@/entities';
 import { ResultType } from '@/shared/types';
 
-export type GetResourcesParams = { access: TokensType['access']; userId: number };
+export type GetResourcesParams = { userId: number };
 
 export type UserResourceType = {
   name: string;
@@ -9,7 +9,6 @@ export type UserResourceType = {
 };
 
 export type UserResourcesType = {
-  result: ResultType;
   data: {
     entities: UserResourceType[];
   };

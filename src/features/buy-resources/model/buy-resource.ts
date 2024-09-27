@@ -1,6 +1,7 @@
 'use client';
 
-import axios, { isAxiosError } from 'axios';
+import { authHost } from '@/shared/api/axios-hosts';
+import { isAxiosError } from 'axios';
 import { createEffect, createEvent, sample } from 'effector';
 
 import { UserType, $resourcePool, $auth, PoolResourcesDataType } from '@/entities';
@@ -15,19 +16,14 @@ export const buyResourceFromPoolFx = createEffect<
   BuyResourcesFromPoolParams,
   BuyResourcesFromPoolDataType['data'] | undefined,
   Error
->(async ({ access, userId, resourceKey, amount }: BuyResourcesFromPoolParams) => {
+>(async ({ userId, resourceKey, amount }: BuyResourcesFromPoolParams) => {
   try {
-    const res: { data: BuyResourcesFromPoolDataType } = await axios.post(
+    const res: { data: BuyResourcesFromPoolDataType } = await authHost.post(
       `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/buy_resources_from_pool`,
       {
         user_id: userId,
         resource_key: resourceKey,
         amount: amount,
-      },
-      {
-        headers: {
-          'jwt-token': `${access}`,
-        },
       }
     );
     return res.data?.data;
@@ -46,11 +42,9 @@ sample({
     amount: $buyResourceAmount,
     resourceKey: $chosenResourceKey,
   },
-  filter: ({ auth, userId, amount, resourceKey }) =>
-    !!auth?.access && !!userId && !!amount && !!resourceKey,
-  fn: ({ auth, userId, amount, resourceKey }) =>
+  filter: ({ userId, amount, resourceKey }) => !!userId && !!amount && !!resourceKey,
+  fn: ({ userId, amount, resourceKey }) =>
     ({
-      access: auth?.access,
       userId: userId,
       amount: amount,
       resourceKey: resourceKey,

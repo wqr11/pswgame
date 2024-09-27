@@ -1,10 +1,11 @@
 'use client';
 
-import axios, { isAxiosError } from 'axios';
+import { authHost } from '@/shared/api/axios-hosts';
+import { isAxiosError } from 'axios';
 
 import { createEffect, createStore, createEvent, sample } from 'effector';
 
-import { $auth, TokensType, logout } from '../auth';
+import { logout } from '../auth';
 import { $userId, $user, setTokens, $tokens } from '../user';
 
 import { TapDataType } from './types';
@@ -23,20 +24,13 @@ export const $tapTimeoutId = createStore<NodeJS.Timeout | null>(null).reset(clea
 
 export const tap = createEvent<void>();
 export const postTap = createEvent<void>();
-export const postTapFx = createEffect(async ({ access, userId, taps }: postTapFxParams) => {
+export const postTapFx = createEffect(async ({ userId, taps }: postTapFxParams) => {
   try {
-    const res: { data: TapDataType } = await axios.post(
+    const res: { data: TapDataType } = await authHost.post(
       `${process.env.NEXT_PUBLIC_API_URL}/api/v1/actions/tap`,
       {
         user_id: userId,
         taps_amount: taps,
-      },
-      {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'jwt-token': `${access}`,
-        },
       }
     );
 
@@ -82,10 +76,10 @@ sample({
 
 sample({
   clock: postTap,
-  source: { auth: $auth, userId: $userId, taps: $taps },
-  filter: ({ auth, userId }) => !!auth && !!userId,
-  fn: ({ auth, userId, taps }: { auth: TokensType | null; userId: number | null; taps: number }) =>
-    ({ access: auth?.access, userId, taps }) as postTapFxParams,
+  source: { userId: $userId, taps: $taps },
+  filter: ({ userId }) => !!userId,
+  fn: ({ userId, taps }: { userId: number | null; taps: number }) =>
+    ({ userId, taps }) as postTapFxParams,
   target: postTapFx,
 });
 

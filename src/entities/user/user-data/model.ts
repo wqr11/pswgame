@@ -1,10 +1,11 @@
 'use client';
 
-import axios, { isAxiosError } from 'axios';
+import { authHost } from '@/shared/api/axios-hosts';
+import { isAxiosError } from 'axios';
 
 import { createEvent, createStore, createEffect, sample } from 'effector';
 
-import { $auth, loggedIn, logout } from '@/entities';
+import { loggedIn, logout } from '@/entities';
 
 import { UserType, GetUserParams, UpdateUserParams } from './types';
 
@@ -15,17 +16,10 @@ export const setUsername = createEvent<string>();
 export const $username = createStore<string | null>(null).on(setUsername, (_, name) => name);
 
 export const getUser = createEvent<void>();
-export const getUserFx = createEffect(async ({ access, userId }: GetUserParams) => {
+export const getUserFx = createEffect(async ({ userId }: GetUserParams) => {
   try {
-    const res: { data: UserType } = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/get/${userId}`,
-      {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'jwt-token': `${access}`,
-        },
-      }
+    const res: { data: UserType } = await authHost.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/get/${userId}`
     );
 
     return res.data.data;
@@ -37,18 +31,13 @@ export const getUserFx = createEffect(async ({ access, userId }: GetUserParams) 
 });
 
 export const updateUserFx = createEffect<UpdateUserParams, UserType['data'] | undefined, Error>(
-  async ({ access, userId, username }: UpdateUserParams) => {
+  async ({ userId, username }: UpdateUserParams) => {
     try {
-      const res: { data: UserType } = await axios.post(
+      const res: { data: UserType } = await authHost.post(
         `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/update`,
         {
           user_id: userId,
           user_name: username,
-        },
-        {
-          headers: {
-            'jwt-token': `${access}`,
-          },
         }
       );
       return res.data.data;
@@ -75,23 +64,21 @@ sample({
 
 sample({
   clock: getUser,
-  source: { auth: $auth, userId: $userId },
-  filter: ({ auth, userId }) => !!auth && !!userId && !!auth?.access,
-  fn: ({ auth, userId }) => ({ access: `${auth?.access}`, userId }) as GetUserParams,
+  source: { userId: $userId },
+  filter: ({ userId }) => !!userId,
+  fn: ({ userId }) => ({ userId }) as GetUserParams,
   target: getUserFx,
 });
 
 sample({
   clock: $user,
-  source: { auth: $auth, userId: $userId, username: $username },
+  source: { userId: $userId, username: $username },
   filter: (source, user) =>
-    !!source.auth &&
     !!source.userId &&
     !!source.username &&
     (user?.user_name === '' || user?.user_name === 'Unknown'),
-  fn: ({ auth, userId, username }) =>
+  fn: ({ userId, username }) =>
     ({
-      access: auth?.access,
       userId: userId,
       username: username,
     }) as UpdateUserParams,

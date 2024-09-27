@@ -1,27 +1,17 @@
 'use client';
 
-import axios, { isAxiosError, AxiosError } from 'axios';
+import { authHost } from '@/shared/api/axios-hosts';
+import { isAxiosError, AxiosError } from 'axios';
 
 import { createEffect, createStore, sample } from 'effector';
 
-import { $auth, TokensType, loggedIn, logout } from '../auth';
+import { loggedIn, logout } from '../auth';
 import { PingDataType } from './types';
 
-export const ping = createEffect<
-  TokensType['access'],
-  PingDataType['data'] | undefined,
-  AxiosError
->(async (access: TokensType['access']) => {
+export const ping = createEffect<void, PingDataType['data'] | undefined, AxiosError>(async () => {
   try {
-    const res: { data: PingDataType } = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/ping`,
-      {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'jwt-token': `${access}`,
-        },
-      }
+    const res: { data: PingDataType } = await authHost.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/ping`
     );
 
     return res.data.data;
@@ -38,14 +28,12 @@ export const ping = createEffect<
   }
 });
 
-export const startPingInterval = createEffect<TokensType['access'], NodeJS.Timeout, Error>(
-  (access: TokensType['access']) => {
-    ping(access);
-    return setInterval(() => {
-      ping(access);
-    }, 180000); // 180 секунд
-  }
-);
+export const startPingInterval = createEffect<void, NodeJS.Timeout, Error>(() => {
+  ping();
+  return setInterval(() => {
+    ping();
+  }, 180000); // 180 секунд
+});
 
 export const stopPingInterval = createEffect<NodeJS.Timeout, void, Error>(
   (intervalId: NodeJS.Timeout) => {
@@ -60,10 +48,7 @@ export const $pingIntervalId = createStore<NodeJS.Timeout | null>(null)
 
 sample({
   clock: loggedIn,
-  source: { auth: $auth },
-  filter: ({ auth }) => !!auth?.access,
   //@ts-ignore
-  fn: ({ auth }) => auth?.access as TokensType['access'],
   target: startPingInterval,
 });
 

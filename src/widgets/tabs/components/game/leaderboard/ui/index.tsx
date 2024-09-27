@@ -1,7 +1,5 @@
 'use client';
 
-import { useEffect } from 'react';
-
 import {
   ReferenceButton,
   UserRating,
@@ -12,7 +10,7 @@ import {
 } from '@/widgets';
 
 import { useUnit } from 'effector-react';
-import { $leaderboard, getLeaders, $tokens, $user } from '@/entities';
+import { $leaderboard, $tokens, $user } from '@/entities';
 
 import styles from '@/shared/ui/styles/current-tab/currentTab.module.css';
 
@@ -24,10 +22,6 @@ export const LeaderboardTab = () => {
   const leaders = useUnit($leaderboard);
   const user = useUnit($user);
   const tokens = useUnit($tokens);
-
-  useEffect(() => {
-    getLeaders();
-  }, []);
 
   return (
     <TabAnimatedGame className={`${styles.tab_wrapper} relative flex flex-col gap-1`}>

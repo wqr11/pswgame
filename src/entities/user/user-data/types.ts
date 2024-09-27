@@ -37,10 +37,9 @@ export type UserType = {
   };
 };
 
-export type GetUserParams = { access: TokensType['access']; userId: number };
+export type GetUserParams = { userId: number };
 
 export type UpdateUserParams = {
-  access: TokensType['access'];
   userId: number;
   username: string;
 };

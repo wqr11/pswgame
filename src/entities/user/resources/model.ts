@@ -1,29 +1,22 @@
 'use client';
 
-import axios, { AxiosError, isAxiosError } from 'axios';
+import { authHost } from '@/shared/api/axios-hosts';
+import { AxiosError, isAxiosError } from 'axios';
 
 import { createEffect, createStore, sample } from 'effector';
 
 import { UserResourcesType, GetResourcesParams } from './types';
 
 import { $user, $userId } from '../user-data';
-import { $auth } from '@/entities/auth';
 
 export const getResourcesFx = createEffect<
   GetResourcesParams,
   UserResourcesType['data']['entities'] | undefined,
   AxiosError
->(async ({ access, userId }: GetResourcesParams) => {
+>(async ({ userId }: GetResourcesParams) => {
   try {
-    const res: { data: UserResourcesType } = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/get_resources/${userId}/all`,
-      {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'jwt-token': `${access}`,
-        },
-      }
+    const res: { data: UserResourcesType } = await authHost.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/get_resources/${userId}/all`
     );
 
     return res.data.data.entities;
@@ -41,9 +34,9 @@ export const $resources = createStore<UserResourcesType['data']['entities'] | nu
 
 sample({
   clock: $user,
-  source: { auth: $auth, userId: $userId },
-  filter: ({ auth, userId }) => !!auth && !!userId && !!auth.access,
+  source: { userId: $userId },
+  filter: ({ userId }) => !!userId,
   // @ts-ignore
-  fn: ({ auth, userId }) => ({ access: auth.access, userId: userId }) as GetResourcesParams,
+  fn: ({ userId }) => ({ userId: userId }) as GetResourcesParams,
   target: getResourcesFx,
 });

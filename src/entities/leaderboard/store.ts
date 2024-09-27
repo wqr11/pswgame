@@ -3,7 +3,7 @@
 import { createStore, createEffect, sample } from 'effector';
 
 import { LeaderboardDataType, LeaderboardUnitType } from './types';
-import { authHost } from '@/shared/api/authHost';
+import { localHost } from '@/shared/api/axios-hosts';
 import { AxiosError, isAxiosError } from 'axios';
 import { loggedIn } from '../auth';
 import { postTapFx } from '../tap';
@@ -11,7 +11,7 @@ import { postTapFx } from '../tap';
 export const getLeaders = createEffect<void, LeaderboardUnitType[] | undefined, AxiosError>(
   async () => {
     try {
-      const res: { data: LeaderboardDataType } = await authHost.get('/users/get_all');
+      const res: { data: LeaderboardDataType } = await localHost.get('/users/get_all');
 
       return res.data.data;
     } catch (error) {
