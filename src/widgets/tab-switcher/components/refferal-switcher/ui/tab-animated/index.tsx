@@ -9,7 +9,7 @@ export const TabAnimatedReferral = (props: { children?: React.ReactNode; classNa
       initial={{ translateY: '100%' }}
       animate={{ translateY: 0 }}
       exit={{ translateY: '100%' }}
-      transition={{ duration: 0.25, ease: 'easeInOut' }}
+      transition={{ duration: 0.25, ease: 'circOut' }}
       className={props.className}
     >
       {props.children}

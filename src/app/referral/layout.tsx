@@ -5,9 +5,6 @@ import { AboutUs, RefTabSwitcher, ExitButton } from '@/widgets';
 
 import Queen from '@/shared/assets/queen.svg';
 
-// import { useUnit } from 'effector-react';
-// import { sRedirect } from '@/entities';
-
 import styles from '@/shared/ui/styles/referall-tab/referral.module.css';
 
 import 'normalize.css/normalize.css';
@@ -24,7 +21,7 @@ export default function ReferralLayout({ children }: PropsWithChildren) {
       const baseHeight = 800;
       const newScale = Math.min(
         viewportHeight / baseHeight,
-        parseInt(`${process.env.NEXT_PUBLIC_MAX_APP_SCALING}`)
+        parseInt(`${process.env.NEXT_PUBLIC_MAX_APP_SCALING ?? '1'}`)
       );
       setScale(newScale);
     };
@@ -36,7 +33,7 @@ export default function ReferralLayout({ children }: PropsWithChildren) {
   }, []);
 
   return (
-    <main className="h-[100vh] w-[100vw] relative text-white overflow-hidden">
+    <main className="relative h-[100vh] w-[100vw] overflow-hidden text-white">
       <div className="relative mx-auto h-screen w-screen overflow-y-hidden">
         <div
           className="origin-top"

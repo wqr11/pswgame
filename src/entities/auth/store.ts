@@ -9,13 +9,9 @@ import { createStore, createEffect, sample, createEvent } from 'effector';
 import { AuthDataType, TokensType } from './types';
 
 // get a pair of auth tokens
-export const login = createEffect<string, boolean>(async (init_data: string) => {
-  const access = Cookies.get(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`);
-  const refresh = Cookies.get(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`);
-
-  if (!!access && !!refresh) {
-    return true;
-  }
+export const login = createEffect<string, boolean, Error>(async (init_data: string) => {
+  Cookies.remove(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`);
+  Cookies.remove(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`);
 
   try {
     const res: { data: AuthDataType } = await axios.post(
@@ -37,15 +33,15 @@ export const login = createEffect<string, boolean>(async (init_data: string) => 
     return true;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.error(error.message);
+      throw new Error(error.message);
     }
-    return false;
+    throw new Error('Unpredicted error in login');
   }
 });
 
 export const loggedIn = createEvent<void>();
 
-export const $isAuth = createStore<boolean>(false).on(login.doneData, (_, auth) => auth);
+export const $isAuth = createStore<boolean>(false).on(login.doneData, (_, data) => data);
 
 // fire loggedIn event on login.doneData
 sample({

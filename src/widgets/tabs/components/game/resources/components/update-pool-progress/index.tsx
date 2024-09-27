@@ -7,12 +7,15 @@ import { useUnit } from 'effector-react';
 import { $estimatedTime, $timerProgress } from '@/entities';
 
 import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
 
 export const UpdatePoolProgress = () => {
   const estimatedTime = useUnit($estimatedTime);
   const timerProgress = useUnit($timerProgress);
 
-  console.log(timerProgress);
+  useEffect(() => {
+    console.log(timerProgress);
+  }, [timerProgress]);
 
   const { t } = useTranslation('translation', { keyPrefix: 'game.tabs.resources' });
 

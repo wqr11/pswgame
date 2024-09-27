@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
     const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/get_all`, {
       headers: {

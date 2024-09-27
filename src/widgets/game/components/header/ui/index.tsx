@@ -31,7 +31,7 @@ export const Header = () => {
         }}
         className={`${styles.header_link} justify-end`}
       >
-        <h6 className="h-[45px] text-end text-[14px] text-[#434343]">{t('about')}</h6>
+        <h6 className="h-[45px] text-end text-[14px] uppercase text-[#434343]">{t('about')}</h6>
       </button>
     </header>
   );

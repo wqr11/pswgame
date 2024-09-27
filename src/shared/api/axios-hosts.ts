@@ -8,7 +8,6 @@ export const API_URL = `${process.env.NEXT_PUBLIC_API_URL ?? 'URL_NOT_FOUND'}/ap
 
 export const localHost = axios.create({
   baseURL: `${HOST}/api/`,
-  timeout: 10000,
 });
 
 export const authHost = axios.create({
