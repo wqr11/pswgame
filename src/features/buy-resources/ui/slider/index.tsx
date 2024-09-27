@@ -9,7 +9,7 @@ export const ResourceBuySlider = () => {
   const buyResourceAmount = useUnit(buyResourcesModelInputs.$buyResourceAmount);
   const setResourceBuyAmount = useUnit(buyResourcesModelInputs.setResourceBuyAmount);
 
-  const chosenResourceData = useUnit(buyResourcesModelChosenResource.$chosenResourceData);
+  const maxBuyAmount = useUnit(buyResourcesModelChosenResource.$chosenResourceBuyMax);
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -23,8 +23,8 @@ export const ResourceBuySlider = () => {
         onInput={handleInput}
         type="range"
         min={0}
-        max={chosenResourceData?.current ?? 100}
-        disabled={!chosenResourceData}
+        max={maxBuyAmount}
+        disabled={!maxBuyAmount}
         value={buyResourceAmount}
       ></input>
     </div>

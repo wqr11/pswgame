@@ -1,5 +1,7 @@
 'use client';
 
+import { motion } from 'framer-motion';
+
 import { ResourceType } from '@/entities';
 
 import Heat from '@/shared/ui/icons/resources/heat.svg';
@@ -12,7 +14,7 @@ import { buyResourcesModelInputs } from '../../../model';
 
 export const ResourceButton = ({
   resource,
-  size = 26,
+  size = 32,
 }: {
   resource: ResourceType;
   size?: number;
@@ -36,15 +38,23 @@ export const ResourceButton = ({
 
   const Icon = icons[resource];
   return (
-    <button
+    <motion.button
+      initial={{
+        scale: 1,
+      }}
+      animate={{
+        scale: chosenResourceKey === resource ? 0.95 : 1,
+      }}
+      transition={{ duration: 0.02, ease: 'easeInOut' }}
       style={{
         width: `${size}px`,
         height: `${size}px`,
-        filter: chosenResourceKey ? 'grayscale(85%)' : 'none',
+        scale: chosenResourceKey === resource ? 0.95 : 1,
+        filter: chosenResourceKey === resource ? 'grayscale(85%)' : 'none',
       }}
       onClick={handleClick}
     >
       <Icon />
-    </button>
+    </motion.button>
   );
 };

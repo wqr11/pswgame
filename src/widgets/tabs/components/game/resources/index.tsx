@@ -48,7 +48,9 @@ export const ResourcesTab = () => {
           <LoadingFallback />
         )}
       </div>
-      <AnimatePresence>{modalShown && <BuyResourceModal />}</AnimatePresence>
+      <AnimatePresence mode="wait">
+        {modalShown && <BuyResourceModal key="buy-res-modal" />}
+      </AnimatePresence>
     </TabAnimatedGame>
   );
 };

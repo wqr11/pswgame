@@ -3,16 +3,15 @@
 import Coin from '@/shared/assets/coin.svg';
 
 import { useUnit } from 'effector-react';
-import { buyResourcesModelChosenResource, buyResourcesModelInputs } from '../../../model';
+import { buyResourcesModelChosenResource } from '@/features/buy-resources/model';
 
 import { formatNumber } from '@/shared/utils/formatNumber';
 
 export const ResourcesPrice = () => {
-  const chosenResData = useUnit(buyResourcesModelChosenResource.$chosenResourceData);
-  const buyResAmount = useUnit(buyResourcesModelInputs.$buyResourceAmount);
+  const price = useUnit(buyResourcesModelChosenResource.$chosenResourceTotalPrice);
 
   return (
-    <div className="flex items-center gap-2 border-[2px] border-white px-2 py-1">
+    <div className="flex min-w-[50%] max-w-[90%] flex-shrink items-center gap-2 border-[2px] border-white px-2 py-1">
       <h6
         className="text-lg"
         style={{
@@ -21,7 +20,7 @@ export const ResourcesPrice = () => {
           color: 'transparent',
         }}
       >
-        {!!chosenResData && formatNumber(chosenResData.cost * buyResAmount)}
+        {price && formatNumber(price)}
       </h6>
       <Coin />
     </div>

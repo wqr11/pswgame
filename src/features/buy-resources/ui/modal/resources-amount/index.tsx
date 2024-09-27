@@ -34,7 +34,7 @@ export const ResourcesAmount = () => {
   const Icon = icons[chosenResKey ?? 'food'];
 
   return (
-    <div className="flex items-center gap-2 border-[2px] border-white px-2 py-1">
+    <div className="flex min-w-[50%] max-w-[90%] flex-shrink items-center gap-2 border-[2px] border-white px-2 py-1">
       <h6
         className="text-lg"
         style={{
