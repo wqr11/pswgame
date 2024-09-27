@@ -36,7 +36,7 @@ export const ResourcesAmount = () => {
   return (
     <div className="flex min-w-[50%] max-w-[90%] flex-shrink items-center gap-2 border-[2px] border-white px-2 py-1">
       <h6
-        className="text-lg"
+        className="flex size-full items-center justify-center text-lg"
         style={{
           color: textColors[chosenResKey ?? 'food'],
         }}

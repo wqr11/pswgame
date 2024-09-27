@@ -13,7 +13,7 @@ import { useInitData } from '@telegram-apps/sdk-react';
 import { $user, setUserId as setUserIdEvent, setUsername as setUsernameEvent } from '@/entities';
 
 import { useUnit } from 'effector-react';
-import { login, $auth, $lastOpenedPage } from '@/entities';
+import { login, $isAuth, $lastOpenedPage } from '@/entities';
 
 export const AuthPageUI = () => {
   const router = useRouter();
@@ -25,7 +25,7 @@ export const AuthPageUI = () => {
   const setUserId = useUnit(setUserIdEvent);
   const setUsername = useUnit(setUsernameEvent);
 
-  const auth = useUnit($auth);
+  const isAuth = useUnit($isAuth);
   const user = useUnit($user);
   const lastPage = useUnit($lastOpenedPage);
 
@@ -43,10 +43,10 @@ export const AuthPageUI = () => {
   }, [initDataRaw]);
 
   useEffect(() => {
-    if (!!auth && !!user) {
+    if (!!isAuth && !!user) {
       router.push(`/${lastPage ?? 'game'}`);
     }
-  }, [auth, user, router, lastPage]);
+  }, [isAuth, user, router, lastPage]);
 
   return <LoadingPageUI />;
 };

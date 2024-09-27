@@ -2,7 +2,7 @@
 
 import { combine, createStore, createEffect, createEvent, sample } from 'effector';
 
-import { $resourcePool, getResourcePool, resetResourcePool, logout } from '@/entities';
+import { $resourcePool, getResourcePool, resetResourcePool } from '@/entities';
 
 const $startTime = combine($resourcePool, pool => pool?.start_reset_time ?? 0);
 const $endTime = combine($resourcePool, pool => pool?.end_reset_time ?? 0);
@@ -66,8 +66,8 @@ sample({
 });
 
 // stop on logout
-sample({
-  clock: logout,
-  source: $timerId,
-  target: stopTimerInterval,
-});
+// sample({
+//   clock: logout,
+//   source: $timerId,
+//   target: stopTimerInterval,
+// });

@@ -1,6 +1,6 @@
 'use client';
 
-import axios, { AxiosError, isAxiosError } from 'axios';
+import axios, { isAxiosError } from 'axios';
 
 import Cookies from 'js-cookie';
 
@@ -9,73 +9,46 @@ import { createStore, createEffect, sample, createEvent } from 'effector';
 import { AuthDataType, TokensType } from './types';
 
 // get a pair of auth tokens
-export const login = createEffect<string, TokensType | undefined, AxiosError>(
-  async (init_data: string) => {
-    const access = Cookies.get(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`);
-    const refresh = Cookies.get(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`);
+export const login = createEffect<string, boolean>(async (init_data: string) => {
+  const access = Cookies.get(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`);
+  const refresh = Cookies.get(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`);
 
-    if (!!access && !!refresh) {
-      return { access: access, refresh: refresh } as TokensType;
-    }
-
-    try {
-      const res: { data: AuthDataType } = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/login`,
-        {
-          init_data: init_data,
-        },
-        {
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-
-      Cookies.set(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`, res.data.data.access_token);
-      Cookies.set(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`, res.data.data.refresh_token);
-
-      return {
-        access: res.data.data.access_token,
-        refresh: res.data.data.refresh_token,
-      } as TokensType;
-    } catch (error) {
-      if (isAxiosError(error)) {
-        switch (error.status) {
-          case 401:
-            logout();
-            break;
-          default:
-            throw new Error(error.message);
-        }
-      }
-    }
+  if (!!access && !!refresh) {
+    return true;
   }
-);
+
+  try {
+    const res: { data: AuthDataType } = await axios.post(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/login`,
+      {
+        init_data: init_data,
+      },
+      {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+
+    Cookies.set(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`, res.data.data.access_token);
+    Cookies.set(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`, res.data.data.refresh_token);
+
+    return true;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      console.error(error.message);
+    }
+    return false;
+  }
+});
 
 export const loggedIn = createEvent<void>();
 
-export const logoutFx = createEffect<void, void, Error>(() => {
-  Cookies.remove(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`);
-  Cookies.remove(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`);
-  window.location.href = '/';
-  window.location.reload();
-});
-
-export const logout = createEvent<void>();
-
-export const $auth = createStore<TokensType | null>(null)
-  .on(login.doneData, (_, auth) => auth)
-  .reset(logout);
+export const $isAuth = createStore<boolean>(false).on(login.doneData, (_, auth) => auth);
 
 // fire loggedIn event on login.doneData
 sample({
   clock: login.doneData,
   target: loggedIn,
-});
-
-// link logout to logoutFx
-sample({
-  clock: logout,
-  target: logoutFx,
 });

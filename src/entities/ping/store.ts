@@ -5,7 +5,7 @@ import { isAxiosError, AxiosError } from 'axios';
 
 import { createEffect, createStore, sample } from 'effector';
 
-import { loggedIn, logout } from '../auth';
+import { loggedIn } from '../auth';
 import { PingDataType } from './types';
 
 export const ping = createEffect<void, PingDataType['data'] | undefined, AxiosError>(async () => {
@@ -15,13 +15,7 @@ export const ping = createEffect<void, PingDataType['data'] | undefined, AxiosEr
     return res.data.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      switch (error.status) {
-        case 401:
-          logout();
-          break;
-        default:
-          throw new Error(error.message);
-      }
+      throw new Error(error.message);
     }
   }
 });
@@ -41,8 +35,8 @@ export const stopPingInterval = createEffect<NodeJS.Timeout, void, Error>(
 
 export const $pingIntervalId = createStore<NodeJS.Timeout | null>(null)
   .on(startPingInterval.doneData, (_, intervalId) => intervalId)
-  .reset(stopPingInterval.done)
-  .reset(logout);
+  .reset(stopPingInterval.done);
+// .reset(logout);
 
 sample({
   clock: loggedIn,
@@ -50,9 +44,9 @@ sample({
   target: startPingInterval,
 });
 
-sample({
-  clock: logout,
-  source: $pingIntervalId,
-  filter: pingIntervalId => !!pingIntervalId,
-  target: stopPingInterval,
-});
+// sample({
+//   clock: logout,
+//   source: $pingIntervalId,
+//   filter: pingIntervalId => !!pingIntervalId,
+//   target: stopPingInterval,
+// });

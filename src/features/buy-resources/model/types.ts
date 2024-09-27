@@ -3,7 +3,6 @@ import { PoolResourcesDataType, ResourceType } from '@/entities/resources-pool';
 import { UserType } from '@/entities';
 
 export type BuyResourcesFromPoolParams = {
-  access?: TokensType['access'];
   userId?: number;
   resourceKey?: ResourceType;
   amount?: number;

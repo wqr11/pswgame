@@ -4,7 +4,7 @@ import { authHost } from '@/shared/api/axios-hosts';
 import { isAxiosError } from 'axios';
 import { createEffect, createEvent, sample } from 'effector';
 
-import { UserType, $resourcePool, $auth, PoolResourcesDataType } from '@/entities';
+import { UserType, $resourcePool, PoolResourcesDataType } from '@/entities';
 
 import { $user, $userId } from '@/entities/user';
 
@@ -38,7 +38,6 @@ export const buyResourceFromPoolFx = createEffect<
 sample({
   clock: buyResourceFromPool,
   source: {
-    auth: $auth,
     userId: $userId,
     amount: $buyResourceAmount,
     resourceKey: $chosenResourceKey,

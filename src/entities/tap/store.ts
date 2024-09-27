@@ -5,11 +5,12 @@ import { isAxiosError } from 'axios';
 
 import { createEffect, createStore, createEvent, sample } from 'effector';
 
-import { logout } from '../auth';
+// import { logout } from '../auth';
 
 import { $userId } from '../user/tg-data';
 import { $tokens, setTokens } from '../user/tokens';
 import { $user } from '../user';
+import { $kingdom, kingdomToResource } from '../kingdom';
 
 import { TapDataType } from './types';
 import { postTapFxParams } from './types';
@@ -27,11 +28,12 @@ export const $tapTimeoutId = createStore<NodeJS.Timeout | null>(null).reset(clea
 
 export const tap = createEvent<void>();
 export const postTap = createEvent<void>();
-export const postTapFx = createEffect(async ({ userId, taps }: postTapFxParams) => {
+export const postTapFx = createEffect(async ({ userId, taps, resourcesId }: postTapFxParams) => {
   try {
     const res: { data: TapDataType } = await authHost.post('/actions/tap', {
       user_id: userId,
       taps_amount: taps,
+      resources_id: resourcesId,
     });
 
     return res.data.data.tokens_amount;
@@ -78,10 +80,11 @@ sample({
 // link postTap to postTapFx
 sample({
   clock: postTap,
-  source: { userId: $userId, taps: $taps },
-  filter: ({ userId }) => !!userId,
-  fn: ({ userId, taps }: { userId: number | null; taps: number }) =>
-    ({ userId, taps }) as postTapFxParams,
+  source: { userId: $userId, taps: $taps, kingdom: $kingdom },
+  filter: ({ userId, kingdom }) => !!userId && !!kingdom,
+  fn: ({ userId, taps, kingdom }) =>
+    // @ts-ignore
+    ({ userId, taps, resourcesId: kingdomToResource[kingdom] }) as postTapFxParams,
   target: postTapFx,
 });
 
@@ -101,7 +104,7 @@ sample({
 });
 
 // logout on postTap.fail
-sample({
-  clock: postTapFx.fail,
-  target: logout,
-});
+// sample({
+//   clock: postTapFx.fail,
+//   target: logout,
+// });

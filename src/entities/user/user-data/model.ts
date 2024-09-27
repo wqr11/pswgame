@@ -5,7 +5,7 @@ import { isAxiosError } from 'axios';
 
 import { createStore, createEvent, createEffect, sample } from 'effector';
 
-import { loggedIn, logout } from '@/entities';
+import { loggedIn } from '@/entities';
 
 import { $userId, $username } from '../tg-data';
 import { setTokens } from '../tokens';
@@ -41,9 +41,11 @@ export const updateUserFx = createEffect<UpdateUserParams, UserType['data'] | un
   }
 );
 
-export const $user = createStore<UserType['data'] | null>(null)
-  .on(getUserFx.doneData, (_, user) => user ?? null)
-  .reset(logout);
+export const $user = createStore<UserType['data'] | null>(null).on(
+  getUserFx.doneData,
+  (_, user) => user ?? null
+);
+// .reset(logout);
 
 // Samples
 

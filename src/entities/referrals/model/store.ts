@@ -1,6 +1,7 @@
 'use client';
 
-import axios, { AxiosError, isAxiosError } from 'axios';
+import { authHost } from '@/shared/api/axios-hosts';
+import { AxiosError, isAxiosError } from 'axios';
 
 import { createStore, createEffect, createEvent, sample } from 'effector';
 
@@ -12,7 +13,7 @@ export const getRefs = createEvent<void>();
 export const getRefsFx = createEffect<number, RefsApiData['data'] | undefined, AxiosError>(
   async (userId: number) => {
     try {
-      const res: { data: RefsApiData } = await axios.get(`referrals/get_referrals/${userId}`);
+      const res: { data: RefsApiData } = await authHost.get(`/referrals/get_referrals/${userId}`);
 
       return res.data.data;
     } catch (error) {

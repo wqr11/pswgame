@@ -1,5 +1,5 @@
 import { ResultType } from '@/shared/types';
-import { TokensType } from '../auth';
+import { ResourceType } from '../resources-pool';
 
 export type TapDataType = {
   result: ResultType;
@@ -8,4 +8,8 @@ export type TapDataType = {
   };
 };
 
-export type postTapFxParams = { userId: number | null; taps: number };
+export type postTapFxParams = {
+  userId: number | null;
+  taps: number;
+  resourcesId: ResourceType;
+};
