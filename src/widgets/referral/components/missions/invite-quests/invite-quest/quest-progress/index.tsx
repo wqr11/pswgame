@@ -17,10 +17,10 @@ const QuestProgress = ({ progress = 0 }: { progress: number }) => {
           {progress >= 100 ? <SuccessMark /> : <NotFinishedMark />}
         </div>
       </div>
-      <div className="absolute left-0 top-0 z-10">
+      <div className="absolute max-w-[262px] left-0 top-0 z-10">
         <ProgressFill
           width={262}
-          style={{ objectFit: 'fill', width: `${progress}%` }}
+          style={{ objectFit: 'fill', width: `${progress}%`, maxWidth: '100%' }}
         />
       </div>
     </div>
