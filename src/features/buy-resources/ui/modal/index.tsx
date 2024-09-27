@@ -18,7 +18,7 @@ export const BuyResourceModal = () => {
   const chosenResourceKey = useUnit(buyResourcesModelInputs.$chosenResourceKey);
   const toggleModal = useUnit(buyResourcesModelInputs.toggleModal);
 
-  const modalRef = useRef<Element | null>(null);
+  const modalRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (modalRef.current) {
@@ -42,6 +42,7 @@ export const BuyResourceModal = () => {
 
   return (
     <motion.div
+      ref={modalRef}
       initial={{ translateY: '100%' }}
       animate={{ translateY: ['100%', 0], opacity: [0.4, 0.95], scale: [1.3, 1] }}
       exit={{ translateY: [0, '100%'], opacity: [0.95, 0], scale: [1, 1.3] }}

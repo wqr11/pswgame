@@ -1,10 +1,11 @@
 'use client';
 
-import axios, { AxiosError, isAxiosError } from 'axios';
+import { authHost } from '@/shared/api/axios-hosts';
+import { AxiosError, isAxiosError } from 'axios';
 
 import { createEffect, createStore, sample, createEvent } from 'effector';
 
-import { loggedIn } from '@/entities';
+import { loggedIn, $user } from '@/entities';
 
 import { PoolResourcesDataType } from './types';
 
@@ -14,15 +15,7 @@ export const getResourcePool = createEffect<
   AxiosError
 >(async () => {
   try {
-    const res = await axios.get<PoolResourcesDataType>(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/kingdom/pool_resources/all`,
-      {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/ json',
-        },
-      }
-    );
+    const res = await authHost.get<PoolResourcesDataType>('kingdom/pool_resources/all');
 
     return res.data.data;
   } catch (error) {
@@ -38,7 +31,14 @@ export const $resourcePool = createStore<PoolResourcesDataType['data'] | null>(n
   .on(getResourcePool.doneData, (_, resources) => resources ?? null)
   .reset(resetResourcePool);
 
+// get resourcePool on login
 sample({
   clock: loggedIn,
+  target: getResourcePool,
+});
+
+// getResourcePool on $user change (update current pool)
+sample({
+  clock: $user,
   target: getResourcePool,
 });

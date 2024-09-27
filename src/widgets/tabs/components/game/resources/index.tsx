@@ -19,7 +19,7 @@ export const ResourcesTab = () => {
 
   useEffect(() => {
     getResourcePool();
-  }, [resources]);
+  }, []);
 
   return (
     <TabAnimatedGame className={`${styles.tab_wrapper} flex flex-col gap-1`}>

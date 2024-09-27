@@ -6,7 +6,10 @@ import { isAxiosError } from 'axios';
 import { createEffect, createStore, createEvent, sample } from 'effector';
 
 import { logout } from '../auth';
-import { $userId, $user, setTokens, $tokens } from '../user';
+
+import { $userId } from '../user/tg-data';
+import { $tokens, setTokens } from '../user/tokens';
+import { $user } from '../user';
 
 import { TapDataType } from './types';
 import { postTapFxParams } from './types';
@@ -26,13 +29,10 @@ export const tap = createEvent<void>();
 export const postTap = createEvent<void>();
 export const postTapFx = createEffect(async ({ userId, taps }: postTapFxParams) => {
   try {
-    const res: { data: TapDataType } = await authHost.post(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/actions/tap`,
-      {
-        user_id: userId,
-        taps_amount: taps,
-      }
-    );
+    const res: { data: TapDataType } = await authHost.post('/actions/tap', {
+      user_id: userId,
+      taps_amount: taps,
+    });
 
     return res.data.data.tokens_amount;
   } catch (error) {
@@ -48,6 +48,7 @@ export const $taps = createStore<number>(0)
 
 export const $tap_multiplier = createStore<number>(1);
 
+// get tap_multiplier from $user
 sample({
   source: $user,
   filter: user => !!user?.game_information.tap_multiplier,
@@ -56,24 +57,25 @@ sample({
   target: $tap_multiplier,
 });
 
-sample({
-  clock: tap,
-  source: $tapTimeoutId,
-  target: clearTimeoutId,
-});
+// ### TAP TIMEOUT ###
 
+// set timeout on tap, write id in $tapTimeoutId
 sample({
   clock: tap,
   fn: () => setTimeout(() => postTap(), 1000),
   target: $tapTimeoutId,
 });
 
+// clear prev timeout on tap
 sample({
-  source: $taps,
-  filter: taps => taps >= tapsChunk,
-  target: postTap,
+  clock: tap,
+  source: $tapTimeoutId,
+  target: clearTimeoutId,
 });
 
+// ###
+
+// link postTap to postTapFx
 sample({
   clock: postTap,
   source: { userId: $userId, taps: $taps },
@@ -83,6 +85,14 @@ sample({
   target: postTapFx,
 });
 
+// fire postTap if $taps exceeds tapsChunk
+sample({
+  source: $taps,
+  filter: taps => taps >= tapsChunk,
+  target: postTap,
+});
+
+// set tokens from tap
 sample({
   clock: tap,
   source: { tokens: $tokens, multiplier: $tap_multiplier },
@@ -90,6 +100,7 @@ sample({
   target: setTokens,
 });
 
+// logout on postTap.fail
 sample({
   clock: postTapFx.fail,
   target: logout,

@@ -6,7 +6,7 @@ import { createEffect, createEvent, sample } from 'effector';
 
 import { UserType, $resourcePool, $auth, PoolResourcesDataType } from '@/entities';
 
-import { $userId, $user } from '@/entities/user';
+import { $user, $userId } from '@/entities/user';
 
 import { BuyResourcesFromPoolParams, BuyResourcesFromPoolDataType } from './types';
 import { $buyResourceAmount, $chosenResourceKey } from './inputs';
@@ -19,7 +19,7 @@ export const buyResourceFromPoolFx = createEffect<
 >(async ({ userId, resourceKey, amount }: BuyResourcesFromPoolParams) => {
   try {
     const res: { data: BuyResourcesFromPoolDataType } = await authHost.post(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/buy_resources_from_pool`,
+      `/users/buy_resources_from_pool`,
       {
         user_id: userId,
         resource_key: resourceKey,
@@ -34,6 +34,7 @@ export const buyResourceFromPoolFx = createEffect<
   }
 });
 
+// link buyResourceFromPool to buyResourceFromPoolFx
 sample({
   clock: buyResourceFromPool,
   source: {
@@ -52,6 +53,7 @@ sample({
   target: buyResourceFromPoolFx,
 });
 
+// write buyResourceFromPoolFx.doneData to $user
 sample({
   source: buyResourceFromPoolFx.doneData,
   filter: data => !!data,
@@ -70,6 +72,7 @@ sample({
   target: $user,
 });
 
+// write buyResourceFromPoolFx.doneData to $resourcePool
 sample({
   source: buyResourceFromPoolFx.doneData,
   filter: data => !!data,

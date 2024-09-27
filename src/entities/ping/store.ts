@@ -10,9 +10,7 @@ import { PingDataType } from './types';
 
 export const ping = createEffect<void, PingDataType['data'] | undefined, AxiosError>(async () => {
   try {
-    const res: { data: PingDataType } = await authHost.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/ping`
-    );
+    const res: { data: PingDataType } = await authHost.get('/users/ping');
 
     return res.data.data;
   } catch (error) {

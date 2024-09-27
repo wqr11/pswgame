@@ -8,6 +8,7 @@ import { createStore, createEffect, sample, createEvent } from 'effector';
 
 import { AuthDataType, TokensType } from './types';
 
+// get a pair of auth tokens
 export const login = createEffect<string, TokensType | undefined, AxiosError>(
   async (init_data: string) => {
     const access = Cookies.get(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`);
@@ -67,11 +68,13 @@ export const $auth = createStore<TokensType | null>(null)
   .on(login.doneData, (_, auth) => auth)
   .reset(logout);
 
+// fire loggedIn event on login.doneData
 sample({
   clock: login.doneData,
   target: loggedIn,
 });
 
+// link logout to logoutFx
 sample({
   clock: logout,
   target: logoutFx,

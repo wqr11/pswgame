@@ -12,9 +12,7 @@ export const getRefs = createEvent<void>();
 export const getRefsFx = createEffect<number, RefsApiData['data'] | undefined, AxiosError>(
   async (userId: number) => {
     try {
-      const res: { data: RefsApiData } = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/referrals/get_referrals/${userId}`
-      );
+      const res: { data: RefsApiData } = await axios.get(`referrals/get_referrals/${userId}`);
 
       return res.data.data;
     } catch (error) {

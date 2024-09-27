@@ -1,4 +1,4 @@
-import { KingdomType, TokensType, LastOpenedPageType, LastActiveResourceType } from '@/entities';
+import { KingdomType, LastOpenedPageType, LastActiveResourceType } from '@/entities';
 
 export type UserType = {
   data: {

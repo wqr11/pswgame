@@ -1,8 +1,9 @@
 'use client';
 
-import axios, { isAxiosError } from 'axios';
+import { authHost } from '@/shared/api/axios-hosts';
+import { isAxiosError } from 'axios';
 
-import { createEffect, createEvent, sample, createStore } from 'effector';
+import { createEffect, sample, createStore } from 'effector';
 
 import { $kingdom, KingdomType, KingdomTypeArray } from '@/entities';
 import { UpdateStateType, UpdateStateProps, LastOpenedPageType } from './types';
@@ -13,14 +14,11 @@ export const updateStateFx = createEffect<
   Error
 >(async ({ userId, lastActiveResource, lastOpenedPage }: UpdateStateProps) => {
   try {
-    const res: { data: UpdateStateType } = await axios.post(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/update_state`,
-      {
-        user_id: userId,
-        last_active_resource: lastActiveResource,
-        last_opened_page: lastOpenedPage,
-      }
-    );
+    const res: { data: UpdateStateType } = await authHost.post('/users/update_state', {
+      user_id: userId,
+      last_active_resource: lastActiveResource,
+      last_opened_page: lastOpenedPage,
+    });
     return res.data.data.state;
   } catch (error) {
     if (isAxiosError(error)) {

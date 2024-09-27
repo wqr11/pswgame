@@ -3,24 +3,19 @@
 import { authHost } from '@/shared/api/axios-hosts';
 import { isAxiosError } from 'axios';
 
-import { createEvent, createStore, createEffect, sample } from 'effector';
+import { createStore, createEvent, createEffect, sample } from 'effector';
 
 import { loggedIn, logout } from '@/entities';
 
+import { $userId, $username } from '../tg-data';
+import { setTokens } from '../tokens';
+
 import { UserType, GetUserParams, UpdateUserParams } from './types';
-
-export const setUserId = createEvent<number>();
-export const $userId = createStore<number | null>(null).on(setUserId, (_, userId) => userId);
-
-export const setUsername = createEvent<string>();
-export const $username = createStore<string | null>(null).on(setUsername, (_, name) => name);
 
 export const getUser = createEvent<void>();
 export const getUserFx = createEffect(async ({ userId }: GetUserParams) => {
   try {
-    const res: { data: UserType } = await authHost.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/get/${userId}`
-    );
+    const res: { data: UserType } = await authHost.get(`/users/get/${userId}`);
 
     return res.data.data;
   } catch (error) {
@@ -33,13 +28,10 @@ export const getUserFx = createEffect(async ({ userId }: GetUserParams) => {
 export const updateUserFx = createEffect<UpdateUserParams, UserType['data'] | undefined, Error>(
   async ({ userId, username }: UpdateUserParams) => {
     try {
-      const res: { data: UserType } = await authHost.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/update`,
-        {
-          user_id: userId,
-          user_name: username,
-        }
-      );
+      const res: { data: UserType } = await authHost.post(`/users/update`, {
+        user_id: userId,
+        user_name: username,
+      });
       return res.data.data;
     } catch (error) {
       if (isAxiosError(error)) {
@@ -53,15 +45,15 @@ export const $user = createStore<UserType['data'] | null>(null)
   .on(getUserFx.doneData, (_, user) => user ?? null)
   .reset(logout);
 
-export const setTokens = createEvent<number | undefined>();
-export const $tokens = createStore<number>(0).on(setTokens, (state, tokens) => tokens ?? state);
-
 // Samples
+
+// getUser on login
 sample({
   clock: loggedIn,
   target: getUser,
 });
 
+// link getUser to getUserFx
 sample({
   clock: getUser,
   source: { userId: $userId },
@@ -70,6 +62,7 @@ sample({
   target: getUserFx,
 });
 
+// update username in case of it's absence
 sample({
   clock: $user,
   source: { userId: $userId, username: $username },
@@ -85,12 +78,14 @@ sample({
   target: updateUserFx,
 });
 
+// write updateUserFx.doneData to $user
 sample({
   source: updateUserFx.doneData,
   filter: userData => !!userData,
   target: $user,
 });
 
+// write $tokens on $user change
 sample({
   source: $user,
   fn: user => user?.tokens_amount,

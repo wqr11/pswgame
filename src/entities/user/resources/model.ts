@@ -7,7 +7,8 @@ import { createEffect, createStore, sample } from 'effector';
 
 import { UserResourcesType, GetResourcesParams } from './types';
 
-import { $user, $userId } from '../user-data';
+import { $userId } from '../tg-data';
+import { $user } from '../user-data';
 
 export const getResourcesFx = createEffect<
   GetResourcesParams,
@@ -16,7 +17,7 @@ export const getResourcesFx = createEffect<
 >(async ({ userId }: GetResourcesParams) => {
   try {
     const res: { data: UserResourcesType } = await authHost.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/get_resources/${userId}/all`
+      `users/get_resources/${userId}/all`
     );
 
     return res.data.data.entities;
@@ -32,6 +33,7 @@ export const $resources = createStore<UserResourcesType['data']['entities'] | nu
   (_, resources) => resources
 );
 
+// getResources on $user change
 sample({
   clock: $user,
   source: { userId: $userId },
