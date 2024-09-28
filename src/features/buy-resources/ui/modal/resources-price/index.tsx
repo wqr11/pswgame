@@ -22,7 +22,17 @@ export const ResourcesPrice = () => {
       >
         {price && formatNumber(price)}
       </h6>
-      <Coin />
+      <Coin
+        height="100%"
+        style={{
+          position: 'absolute',
+          top: 0,
+          right: 2,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      />
     </div>
   );
 };
