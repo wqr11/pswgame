@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from 'react';
 
-import { Header, Footer } from '@/widgets';
+import { Header, Footer, TabSwitcher } from '@/widgets';
 import { Scaler } from '@/features/scaler';
 
 export default function GameLayout({ children }: PropsWithChildren) {
@@ -8,6 +8,7 @@ export default function GameLayout({ children }: PropsWithChildren) {
     <div className="relative overflow-hidden text-white">
       <Header />
       <Scaler height={800}>{children}</Scaler>
+      <TabSwitcher />
       <Footer />
     </div>
   );

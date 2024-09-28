@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { useRouter } from 'next/navigation';
 
@@ -11,7 +11,6 @@ import { useUnit } from 'effector-react';
 
 export const GameUI = () => {
   const router = useRouter();
-  const [scale, setScale] = useState(1);
 
   const kingdom = useUnit($kingdom);
   const user = useUnit($user);
@@ -22,31 +21,9 @@ export const GameUI = () => {
     }
   }, [user, router]);
 
-  useEffect(() => {
-    const updateScale = () => {
-      const viewportHeight = window.innerHeight;
-      const baseHeight = 800;
-      const newScale = Math.min(
-        viewportHeight / baseHeight,
-        parseInt(`${process.env.NEXT_PUBLIC_MAX_APP_SCALING}`)
-      );
-      setScale(newScale);
-    };
-
-    updateScale();
-    window.addEventListener('resize', updateScale);
-
-    return () => window.removeEventListener('resize', updateScale);
-  }, []);
-
   return (
-    <div
-      className="origin-top"
-      style={{
-        transform: `scale(${scale})`,
-      }}
-    >
-      <div className="relative my-auto w-full h-full flex-grow max-h-[100vh] overflow-clip">
+    <div className="min-w-screen max-w-screen max-h-screen min-h-screen overflow-clip">
+      <div className="flex-grow overflow-clip">
         {kingdom ? (
           <CurrentKingdomDisplay
             kingdomType={kingdom}
@@ -56,10 +33,7 @@ export const GameUI = () => {
           <LoadingFallback />
         )}
       </div>
-
       <KingdomSwitcher />
-
-      <TabSwitcher />
     </div>
   );
 };
