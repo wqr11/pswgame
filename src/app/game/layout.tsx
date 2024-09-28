@@ -1,12 +1,13 @@
 import type { PropsWithChildren } from 'react';
 
 import { Header, Footer } from '@/widgets';
+import { Scaler } from '@/features/scaler';
 
 export default function GameLayout({ children }: PropsWithChildren) {
   return (
-    <div className="relative text-white overflow-hidden">
+    <div className="relative overflow-hidden text-white">
       <Header />
-      {children}
+      <Scaler height={800}>{children}</Scaler>
       <Footer />
     </div>
   );

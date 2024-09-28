@@ -11,7 +11,7 @@ export const ResourcesPrice = () => {
   const price = useUnit(buyResourcesModelChosenResource.$chosenResourceTotalPrice);
 
   return (
-    <div className="flex min-w-[50%] max-w-[90%] flex-shrink items-center gap-2 border-[2px] border-white px-2 py-1">
+    <div className="relative flex min-w-[50%] max-w-[90%] flex-shrink items-center gap-2 border-[2px] border-white px-2 py-1">
       <h6
         className="flex size-full items-center justify-center text-lg"
         style={{
@@ -27,7 +27,7 @@ export const ResourcesPrice = () => {
         style={{
           position: 'absolute',
           top: 0,
-          right: 2,
+          right: '4px',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',

@@ -35,7 +35,6 @@ authHost.interceptors.request.use(
         const newTokens = await axios.post<{
           data: {
             access_token: string;
-            refresh_token: string;
           };
         }>(
           `${API_URL}/auth/update_access_token`,
@@ -53,10 +52,6 @@ authHost.interceptors.request.use(
         Cookies.set(
           `${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`,
           newTokens.data.data.access_token
-        );
-        Cookies.set(
-          `${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`,
-          newTokens.data.data.refresh_token
         );
       } catch (error) {
         // if error occured while refreshing tokens (ex: tokens are missing) -> redirect to '/' so it relogins
