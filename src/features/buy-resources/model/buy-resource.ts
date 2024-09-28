@@ -4,7 +4,7 @@ import { authHost } from '@/shared/api/axios-hosts';
 import { isAxiosError } from 'axios';
 import { createEffect, createEvent, sample } from 'effector';
 
-import { UserType, $resourcePool, PoolResourcesDataType } from '@/entities';
+import { UserType, resourcePoolModel, PoolResourcesDataType } from '@/entities';
 
 import { $user, $userId } from '@/entities/user';
 
@@ -83,5 +83,5 @@ sample({
       start_reset_time: data?.start_reset_time,
       end_reset_time: data?.end_reset_time,
     }) as PoolResourcesDataType['data'],
-  target: $resourcePool,
+  target: resourcePoolModel.$resourcePool,
 });
