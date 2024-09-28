@@ -14,13 +14,13 @@ export const UpdatePoolProgress = () => {
   const timerProgress = useUnit($timerProgress);
 
   useEffect(() => {
-    console.log(timerProgress);
+    console.log('TIMER PROGRESS', timerProgress);
   }, [timerProgress]);
 
   const { t } = useTranslation('translation', { keyPrefix: 'game.tabs.resources' });
 
   return (
-    <div>
+    <div className="w-[150px]">
       <h6 className="flex w-full justify-start text-[13px] uppercase">{t('updatePool.text')}</h6>
       <div className="flex items-center border-[3px] border-white py-1 pl-4">
         <p className="flex gap-1">

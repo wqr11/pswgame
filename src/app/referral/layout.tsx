@@ -23,9 +23,8 @@ export default function ReferralLayout({ children }: PropsWithChildren) {
         >
           {children}
         </div>
-
-        <RefTabSwitcher />
       </Scaler>
+      <RefTabSwitcher />
       <div className="fixed bottom-0 left-0 z-50 flex h-[80px] w-full items-center justify-center rounded-t-[20px] border-t-[1px] border-[#dcdcdce6] bg-[#0e0e0e]">
         <AboutUs />
       </div>

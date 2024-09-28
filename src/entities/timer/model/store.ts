@@ -2,10 +2,10 @@
 
 import { combine, createStore, createEffect, createEvent, sample } from 'effector';
 
-import { $resourcePool, getResourcePool, resetResourcePool } from '@/entities';
+import { resourcePoolModel } from '@/entities/resources-pool';
 
-const $startTime = combine($resourcePool, pool => pool?.start_reset_time ?? 0);
-const $endTime = combine($resourcePool, pool => pool?.end_reset_time ?? 0);
+const $startTime = combine(resourcePoolModel.$resourcePool, pool => pool?.start_reset_time ?? 0);
+const $endTime = combine(resourcePoolModel.$resourcePool, pool => pool?.end_reset_time ?? 0);
 const $totalTime = combine($startTime, $endTime, (start, end) => end - start);
 
 export const $estimatedTime = createStore<number>(0);
@@ -33,7 +33,7 @@ const $timerId = createStore<NodeJS.Timeout | null>(null);
 
 // set estimated time on tick and login
 sample({
-  clock: [tick, getResourcePool.doneData],
+  clock: [tick, resourcePoolModel.getResourcePool.doneData],
   source: $endTime,
   filter: end => !!end,
   // @ts-ignore
@@ -46,10 +46,11 @@ sample({
   target: $estimatedTime,
 });
 
-// start on get timestamps
+// stop prev and start a new one on getResourcePool.doneData
 sample({
-  clock: getResourcePool.doneData,
-  target: startTimerInterval,
+  clock: resourcePoolModel.getResourcePool.doneData,
+  source: $timerId,
+  target: [stopTimerInterval, startTimerInterval],
 });
 
 // set timerId
@@ -62,12 +63,5 @@ sample({
 sample({
   source: $estimatedTime,
   filter: estimated => estimated === 0,
-  target: [resetResourcePool, getResourcePool],
+  target: [resourcePoolModel.resetResourcePool, resourcePoolModel.getResourcePool],
 });
-
-// stop on logout
-// sample({
-//   clock: logout,
-//   source: $timerId,
-//   target: stopTimerInterval,
-// });

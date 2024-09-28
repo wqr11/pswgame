@@ -7,15 +7,17 @@ import { ToggleResourceMenuButton, BuyResourceModal } from '@/features/buy-resou
 import { ReferenceButton, LoadingFallback, TabAnimatedGame } from '@/widgets';
 
 import { useUnit } from 'effector-react';
-import { $resourcePool, getResourcePool } from '@/entities';
+import { resourcePoolModel } from '@/entities';
 import { buyResourcesModelInputs } from '@/features/buy-resources';
 
 import styles from '@/shared/ui/styles/current-tab/currentTab.module.css';
 import { AnimatePresence } from 'framer-motion';
 
 export const ResourcesTab = () => {
-  const resources = useUnit($resourcePool);
+  const resources = useUnit(resourcePoolModel.$resourcePool);
   const modalShown = useUnit(buyResourcesModelInputs.$modalShown);
+
+  const getResourcePool = useUnit(resourcePoolModel.getResourcePool);
 
   useEffect(() => {
     getResourcePool();
@@ -41,14 +43,14 @@ export const ResourcesTab = () => {
               <UpdatePoolProgress />
               <ToggleResourceMenuButton />
             </div>
+            <AnimatePresence mode="wait">
+              {modalShown && <BuyResourceModal key="buy-res-modal" />}
+            </AnimatePresence>
           </>
         ) : (
           <LoadingFallback />
         )}
       </div>
-      <AnimatePresence mode="wait">
-        {modalShown && <BuyResourceModal key="buy-res-modal" />}
-      </AnimatePresence>
     </TabAnimatedGame>
   );
 };

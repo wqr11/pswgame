@@ -3,7 +3,7 @@
 import { authHost } from '@/shared/api/axios-hosts';
 import { isAxiosError, AxiosError } from 'axios';
 
-import { createEffect, createStore, sample } from 'effector';
+import { createEffect, createStore, sample, attach } from 'effector';
 
 import { loggedIn } from '../auth';
 import { PingDataType } from './types';
@@ -20,33 +20,27 @@ export const ping = createEffect<void, PingDataType['data'] | undefined, AxiosEr
   }
 });
 
-export const startPingInterval = createEffect<void, NodeJS.Timeout, Error>(() => {
+export const startPingIntervalFx = createEffect<void, NodeJS.Timeout, Error>(() => {
   ping();
   return setInterval(() => {
     ping();
   }, 180000); // 180 секунд
 });
 
-export const stopPingInterval = createEffect<NodeJS.Timeout, void, Error>(
+export const stopPingIntervalFx = createEffect<NodeJS.Timeout, void, Error>(
   (intervalId: NodeJS.Timeout) => {
     clearInterval(intervalId);
   }
 );
 
 export const $pingIntervalId = createStore<NodeJS.Timeout | null>(null)
-  .on(startPingInterval.doneData, (_, intervalId) => intervalId)
-  .reset(stopPingInterval.done);
+  .on(startPingIntervalFx.doneData, (_, intervalId) => intervalId)
+  .reset(stopPingIntervalFx.done);
 // .reset(logout);
 
 sample({
   clock: loggedIn,
-  //@ts-ignore
-  target: startPingInterval,
+  source: $pingIntervalId,
+  filter: id => !!id,
+  target: [stopPingIntervalFx, startPingIntervalFx],
 });
-
-// sample({
-//   clock: logout,
-//   source: $pingIntervalId,
-//   filter: pingIntervalId => !!pingIntervalId,
-//   target: stopPingInterval,
-// });

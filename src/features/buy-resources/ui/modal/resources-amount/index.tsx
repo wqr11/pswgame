@@ -43,17 +43,12 @@ export const ResourcesAmount = () => {
       >
         {formatNumber(buyResAmount)}
       </h6>
-      <Icon
-        height="100%"
-        style={{
-          position: 'absolute',
-          top: 0,
-          right: '4px',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      />
+      <div className="absolute right-2 top-0 h-full items-center justify-center">
+        <Icon
+          height={24}
+          width={24}
+        />
+      </div>
     </div>
   );
 };

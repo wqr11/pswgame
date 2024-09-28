@@ -11,7 +11,7 @@ import { postTapFx } from '../tap';
 export const getLeaders = createEffect<void, LeaderboardUnitType[] | undefined, AxiosError>(
   async () => {
     try {
-      const res: { data: LeaderboardDataType } = await localHost.get('/users/get_all');
+      const res: { data: LeaderboardDataType } = await localHost.get('users/get_all/');
 
       return res.data.data;
     } catch (error) {

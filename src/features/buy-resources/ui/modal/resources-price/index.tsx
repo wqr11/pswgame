@@ -20,19 +20,14 @@ export const ResourcesPrice = () => {
           color: 'transparent',
         }}
       >
-        {price && formatNumber(price)}
+        {price !== undefined && formatNumber(price)}
       </h6>
-      <Coin
-        height="100%"
-        style={{
-          position: 'absolute',
-          top: 0,
-          right: '4px',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      />
+      <div className="absolute right-2 top-0 h-full items-center justify-center">
+        <Coin
+          height={24}
+          width={24}
+        />
+      </div>
     </div>
   );
 };

@@ -1,11 +1,11 @@
 'use client';
 
 import { combine } from 'effector';
-import { $resourcePool, $tokens } from '@/entities';
+import { $tokens, resourcePoolModel } from '@/entities';
 import { $chosenResourceKey, $buyResourceAmount } from './inputs';
 
 export const $chosenResourceData = combine(
-  $resourcePool,
+  resourcePoolModel.$resourcePool,
   $chosenResourceKey,
   (pool, resource) =>
     pool?.entities.map(entity => {

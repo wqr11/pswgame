@@ -2,7 +2,12 @@
 
 import { motion } from 'framer-motion';
 
+import { useUnit } from 'effector-react';
+import { $appScale } from '@/features/scaler/model/store';
+
 export const TabAnimatedGame = (props: { children?: React.ReactNode; className: string }) => {
+  const scale = useUnit($appScale);
+
   return (
     <motion.div
       key="tab"
@@ -16,7 +21,7 @@ export const TabAnimatedGame = (props: { children?: React.ReactNode; className: 
       }}
       className={props.className}
     >
-      {props.children}
+      <div style={{ scale }}>{props.children}</div>
     </motion.div>
   );
 };
