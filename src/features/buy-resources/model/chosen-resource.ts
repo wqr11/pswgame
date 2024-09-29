@@ -11,14 +11,13 @@ export const $chosenResourceData = combine(
     // change this
     console.log(pool);
     //
-    const resource = pool?.entities.map(entity => {
-      if (entity.name === chosenResource) {
-        return entity;
-      }
-    });
-    console.log(resource);
-    if (resource) {
-      return resource[0];
+    if (pool) {
+      const resource = pool.entities.map(entity => {
+        if (entity.name === chosenResource) {
+          return entity;
+        }
+      });
+      return resource[0] ?? null;
     }
     return null;
   }
