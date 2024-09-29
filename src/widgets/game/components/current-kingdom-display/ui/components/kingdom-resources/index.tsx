@@ -12,12 +12,7 @@ import { formatNumber } from '@/shared/utils/formatNumber';
 
 export const KingdomResource = ({ kingdomType }: { kingdomType: KingdomType }) => {
   const resources = useUnit($resources);
-  const resource =
-    resources?.map(resource => {
-      if (resource.name === kingdomsResources[kingdomType]) {
-        return resource;
-      }
-    })[0] ?? null;
+  const resource = resources?.filter(resource => resource.name === kingdomType)[0] ?? null;
 
   const icons: {
     [resource in ResourceType]: React.FC<React.SVGProps<SVGElement>>;
