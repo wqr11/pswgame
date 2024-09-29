@@ -2,7 +2,7 @@ import GyberLogoGreen from './assets/gyber-logo-green.svg';
 
 import { ReferenceButton, TabAnimatedGame } from '@/widgets';
 
-import styles from '@/shared/ui/styles/current-tab/currentTab.module.css';
+import styles from '../../styles/currentTab.module.css';
 
 import tabStyles from './styles/AboutTab.module.css';
 

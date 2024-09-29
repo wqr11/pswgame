@@ -86,18 +86,18 @@
         "text": "Veuillez utiliser le portefeuille précédent.",
         "button": "Sortie"
       }
+    },
+    "footer": {
+      "aboutUsButton": "À propos de nous"
+    },
+    "notAvailable": {
+      "title": "Actuellement en développement",
+      "text": "Abonnez-vous à notre <0>chaîne Telegram</0> pour connaître l'état actuel du projet."
+    },
+    "errorPage": {
+      "title": "Erreur!",
+      "button": "Retour"
     }
-  },
-  "footer": {
-    "aboutUsButton": "À propos de nous"
-  },
-  "notAvailable": {
-    "title": "Actuellement en développement",
-    "text": "Abonnez-vous à notre <0>chaîne Telegram</0> pour connaître l'état actuel du projet."
-  },
-  "errorPage": {
-    "title": "Erreur!",
-    "button": "Retour"
   },
   "createUsername": {
     "usernameField": "Nom d'utilisateur",

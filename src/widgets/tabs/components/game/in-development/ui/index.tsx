@@ -1,6 +1,6 @@
 import Power from '@/shared/ui/icons/kingdoms/power.svg';
 
-import styles from '@/shared/ui/styles/current-tab/currentTab.module.css';
+import styles from '../../styles/currentTab.module.css';
 
 import glitchStyles from '@/shared/ui/styles/glitch/glitch.module.css';
 import { TabAnimatedGame } from '@/widgets';

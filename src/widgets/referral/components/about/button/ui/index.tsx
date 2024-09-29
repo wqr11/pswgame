@@ -17,7 +17,7 @@ export const AboutUs = () => {
   };
 
   const { t } = useTranslation('translation', {
-    keyPrefix: 'game.header',
+    keyPrefix: 'referral.footer',
   });
 
   return (

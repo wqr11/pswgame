@@ -7,12 +7,16 @@ import { $chosenResourceKey, $buyResourceAmount } from './inputs';
 export const $chosenResourceData = combine(
   resourcePoolModel.$resourcePool,
   $chosenResourceKey,
-  (pool, resource) =>
-    pool?.entities.map(entity => {
+  (pool, resource) => {
+    // change this
+    console.log(pool);
+    //
+    return pool?.entities.map(entity => {
       if (entity.name === resource) {
         return entity;
       }
-    })[0]
+    })[0];
+  }
 );
 
 export const $chosenResourceBuyMax = combine($chosenResourceData, $tokens, (data, tokens) => {

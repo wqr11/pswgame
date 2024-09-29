@@ -5,7 +5,8 @@ import { AxiosError, isAxiosError } from 'axios';
 
 import { createEffect, createStore, sample, createEvent } from 'effector';
 
-import { loggedIn, $user } from '@/entities';
+import { loggedIn } from '@/entities';
+import { $user } from '@/entities/user';
 
 import { PoolResourcesDataType } from './types';
 

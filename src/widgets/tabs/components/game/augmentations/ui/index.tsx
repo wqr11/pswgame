@@ -1,6 +1,6 @@
 import { ReferenceButton } from '@/widgets';
 
-import styles from '@/shared/ui/styles/current-tab/currentTab.module.css';
+import styles from '../../styles/currentTab.module.css';
 
 export const AugmentationsTab = () => {
   return (

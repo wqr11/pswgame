@@ -10,7 +10,7 @@ import { useUnit } from 'effector-react';
 import { resourcePoolModel } from '@/entities';
 import { buyResourcesModelInputs } from '@/features/buy-resources';
 
-import styles from '@/shared/ui/styles/current-tab/currentTab.module.css';
+import styles from '../styles/currentTab.module.css';
 import { AnimatePresence } from 'framer-motion';
 
 export const ResourcesTab = () => {

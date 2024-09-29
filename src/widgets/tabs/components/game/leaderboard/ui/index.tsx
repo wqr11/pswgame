@@ -12,7 +12,7 @@ import {
 import { useUnit } from 'effector-react';
 import { $leaderboard, $tokens, $user } from '@/entities';
 
-import styles from '@/shared/ui/styles/current-tab/currentTab.module.css';
+import styles from '../../styles/currentTab.module.css';
 
 import tabStyles from '../styles/LeaderboardTab.module.css';
 
