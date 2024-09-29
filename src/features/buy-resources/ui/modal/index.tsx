@@ -51,7 +51,7 @@ export const BuyResourceModal = () => {
         type: 'spring',
         bounce: 0.15,
       }}
-      className="fixed left-0 top-[42px] z-50 flex h-[300px] w-full items-start bg-[#0e0e0e] px-[5%]"
+      className="fixed left-0 top-[100px] z-50 flex h-[300px] w-full items-start bg-[#0e0e0e] px-[5%]"
     >
       <div className="flex size-full flex-col items-center justify-evenly border-[1px] border-white">
         <ResourcesList />

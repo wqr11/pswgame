@@ -22,7 +22,7 @@ export const ResourcesPrice = () => {
       >
         {price !== undefined && formatNumber(price)}
       </h6>
-      <div className="absolute right-2 top-0 h-full items-center justify-center">
+      <div className="absolute right-2 top-0 flex h-full items-center justify-center">
         <Coin
           height={24}
           width={24}

@@ -12,7 +12,12 @@ export const TokensDisplay = () => {
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="mx-auto mt-8 flex size-fit items-center gap-[8px] border-[1px] px-[10px]">
+      <div
+        className="mx-auto mt-8 flex size-fit items-center gap-[8px] border-[1px] px-[10px]"
+        style={{
+          width: `${tokens.toString().length * 11}px`,
+        }}
+      >
         <h6 className="font-normal">{formatNumber(tokens)}</h6>
         <Coin />
       </div>

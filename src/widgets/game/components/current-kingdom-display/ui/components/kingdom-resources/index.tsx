@@ -12,6 +12,12 @@ import { formatNumber } from '@/shared/utils/formatNumber';
 
 export const KingdomResource = ({ kingdomType }: { kingdomType: KingdomType }) => {
   const resources = useUnit($resources);
+  const resource =
+    resources?.map(resource => {
+      if (resource.name === kingdomsResources[kingdomType]) {
+        return resource;
+      }
+    })[0] ?? null;
 
   const icons: {
     [resource in ResourceType]: React.FC<React.SVGProps<SVGElement>>;
@@ -34,14 +40,13 @@ export const KingdomResource = ({ kingdomType }: { kingdomType: KingdomType }) =
   const Resource = icons[kingdomsResources[kingdomType]];
 
   return (
-    <div className="mx-auto flex size-fit items-center justify-center gap-[10px] border-[1px] border-white px-3 py-1">
-      <h6 className="text-[16px]">
-        {resources?.map(resource => {
-          if (resource.name === kingdomsResources[kingdomType]) {
-            return formatNumber(resource.current);
-          }
-        })}
-      </h6>
+    <div
+      className="mx-auto flex size-fit items-center justify-center gap-[10px] border-[1px] border-white px-3 py-1"
+      style={{
+        width: `${(resource?.current.toString().length ?? 5) * 11}px`,
+      }}
+    >
+      <h6 className="text-[16px]">{resource !== null && formatNumber(resource.current)}</h6>
       <div className="flex size-[18px] items-center justify-center">
         <Resource
           height={18}
