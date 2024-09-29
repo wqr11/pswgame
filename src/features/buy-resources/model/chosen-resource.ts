@@ -7,15 +7,20 @@ import { $chosenResourceKey, $buyResourceAmount } from './inputs';
 export const $chosenResourceData = combine(
   resourcePoolModel.$resourcePool,
   $chosenResourceKey,
-  (pool, resource) => {
+  (pool, chosenResource) => {
     // change this
     console.log(pool);
     //
-    return pool?.entities.map(entity => {
-      if (entity.name === resource) {
+    const resource = pool?.entities.map(entity => {
+      if (entity.name === chosenResource) {
         return entity;
       }
-    })[0];
+    });
+    console.log(resource);
+    if (resource) {
+      return resource[0];
+    }
+    return null;
   }
 );
 
