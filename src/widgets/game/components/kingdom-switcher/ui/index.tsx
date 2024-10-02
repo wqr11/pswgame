@@ -13,12 +13,12 @@ export const KingdomSwitcher = () => {
       />
       <KingdomSwitchButton
         kingdomType="trader"
-        kingdomState="locked"
+        kingdomState="opened"
       />
       <div className="col-span-3 flex justify-center">
         <KingdomSwitchButton
           kingdomType="grower"
-          kingdomState="available"
+          kingdomState="opened"
         />
       </div>
     </div>
