@@ -1,4 +1,4 @@
-import axios, { isAxiosError } from 'axios';
+import axios, { AxiosError, InternalAxiosRequestConfig, isAxiosError } from 'axios';
 
 import { HOST } from '../config/host';
 
@@ -52,19 +52,30 @@ const refreshTokens = async () => {
   }
 };
 
-authHost.interceptors.request.use(
-  function (res) {
-    const access = Cookies.get(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`);
+authHost.interceptors.request.use(function (config: InternalAxiosRequestConfig) {
+  const access = Cookies.get(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`);
 
-    res.headers.set('jwt-token', access);
+  config.headers.set('jwt-token', access);
 
-    return res;
-  },
-  async function (error) {
-    console.error('Auth error:', error);
-    const newTokens = await refreshTokens();
-    if (newTokens) {
-      window.location.href = '/';
+  return config;
+});
+
+authHost.interceptors.response.use(
+  res => res,
+  async (error: AxiosError) => {
+    const originalRequest = error.config;
+
+    if (error.response?.status === 401) {
+      try {
+        const newTokens = await refreshTokens();
+        originalRequest?.headers.set('jwt-token', newTokens);
+
+        // @ts-ignore
+        return authHost(originalRequest);
+      } catch (refreshError) {
+        return Promise.reject(refreshError);
+      }
     }
+    return Promise.reject(error);
   }
 );
