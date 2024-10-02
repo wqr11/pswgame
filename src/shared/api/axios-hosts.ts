@@ -65,7 +65,7 @@ authHost.interceptors.response.use(
   async (error: AxiosError) => {
     const originalRequest = error.config;
 
-    if (error.response?.status === 401) {
+    if (error.response?.status === 401 || error.response?.status === 422) {
       try {
         const newTokens = await refreshTokens();
         originalRequest?.headers.set('jwt-token', newTokens);
