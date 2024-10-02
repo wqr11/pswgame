@@ -13,6 +13,13 @@ export const login = createEffect<string, boolean, Error>(async (init_data: stri
   Cookies.remove(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`);
   Cookies.remove(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`);
 
+  const accessToken = Cookies.get(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`);
+  const refreshToken = Cookies.get(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`);
+
+  if (accessToken && refreshToken) {
+    return true;
+  }
+
   try {
     const res: { data: AuthDataType } = await axios.post(
       `${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/login`,
