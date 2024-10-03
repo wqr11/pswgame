@@ -10,7 +10,12 @@ import { retrieveLaunchParams } from '@telegram-apps/sdk';
 
 import { useInitData } from '@telegram-apps/sdk-react';
 
-import { $user, setUserId as setUserIdEvent, setUsername as setUsernameEvent } from '@/entities';
+import {
+  $user,
+  getRefs,
+  setUserId as setUserIdEvent,
+  setUsername as setUsernameEvent,
+} from '@/entities';
 
 import { useUnit } from 'effector-react';
 import { login, $isAuth, $lastOpenedPage } from '@/entities';
@@ -45,6 +50,7 @@ export const AuthPageUI = () => {
   useEffect(() => {
     if (!!isAuth && !!user) {
       router.push(`/${lastPage ?? 'game'}`);
+      getRefs();
     }
   }, [isAuth, user, router, lastPage]);
 
