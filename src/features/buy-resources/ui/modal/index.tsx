@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 
 import { ResourceBuySlider } from '../slider';
 import { ResourcesPrice } from './resources-price';
@@ -18,23 +18,25 @@ export const BuyResourceModal = () => {
   const chosenResourceKey = useUnit(buyResourcesModelInputs.$chosenResourceKey);
   const toggleModal = useUnit(buyResourcesModelInputs.toggleModal);
 
+  const handleBlur = useCallback(() => {
+    toggleModal();
+  }, [toggleModal]);
+
   const modalRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (modalRef.current) {
-      modalRef.current.addEventListener('blur', () => {
-        toggleModal();
-      });
+    const currentModal = modalRef.current;
+
+    if (currentModal) {
+      currentModal.addEventListener('blur', handleBlur);
     }
 
     return () => {
-      if (modalRef.current) {
-        modalRef.current.removeEventListener('blur', () => {
-          toggleModal();
-        });
+      if (currentModal) {
+        currentModal.removeEventListener('blur', handleBlur);
       }
     };
-  }, [modalRef]);
+  }, [handleBlur]);
 
   useEffect(() => {
     console.log(buyResourceAmount, chosenResourceKey);
