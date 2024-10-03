@@ -24,7 +24,7 @@ export const Scaler = ({ children, height }: { children: React.ReactNode; height
     window.addEventListener('resize', updateScale);
 
     return () => window.removeEventListener('resize', updateScale);
-  }, []);
+  }, [height, setAppScale]);
 
   return (
     <div
