@@ -7,11 +7,12 @@ import { ToggleResourceMenuButton, BuyResourceModal } from '@/features/buy-resou
 import { ReferenceButton, LoadingFallback, TabAnimatedGame } from '@/widgets';
 
 import { useUnit } from 'effector-react';
-import { resourcePoolModel } from '@/entities';
+import { resourcePoolModel } from '@/entities/resources-pool';
 import { buyResourcesModelInputs } from '@/features/buy-resources';
 
 import styles from '../styles/currentTab.module.css';
 import { AnimatePresence } from 'framer-motion';
+import { Scaler } from '@/features/scaler';
 
 export const ResourcesTab = () => {
   const resources = useUnit(resourcePoolModel.$resourcePool);
@@ -21,7 +22,7 @@ export const ResourcesTab = () => {
 
   useEffect(() => {
     getResourcePool();
-  }, []);
+  }, [getResourcePool]);
 
   return (
     <TabAnimatedGame className={`${styles.tab_wrapper} flex flex-col gap-1`}>
@@ -32,24 +33,26 @@ export const ResourcesTab = () => {
         />
       </div>
       <div className={`${styles.section_with_border} relative overflow-clip`}>
-        {resources ? (
-          <>
-            <ResourcePool
-              sharedResources={resources?.shared_resources}
-              sharedTotalResouces={resources?.shared_total_resources}
-            />
-            <ResourcesProgress resources={resources?.entities} />
-            <div className="flex flex-col items-end gap-2">
-              <UpdatePoolProgress />
-              <ToggleResourceMenuButton />
-            </div>
-            <AnimatePresence mode="wait">
-              {modalShown && <BuyResourceModal key="buy-res-modal" />}
-            </AnimatePresence>
-          </>
-        ) : (
-          <LoadingFallback />
-        )}
+        <Scaler height={800}>
+          {resources ? (
+            <>
+              <ResourcePool
+                sharedResources={resources?.shared_resources}
+                sharedTotalResouces={resources?.shared_total_resources}
+              />
+              <ResourcesProgress resources={resources?.entities} />
+              <div className="flex flex-col items-end gap-2">
+                <UpdatePoolProgress />
+                <ToggleResourceMenuButton />
+              </div>
+              <AnimatePresence mode="wait">
+                {modalShown && <BuyResourceModal key="buy-res-modal" />}
+              </AnimatePresence>
+            </>
+          ) : (
+            <LoadingFallback />
+          )}
+        </Scaler>
       </div>
     </TabAnimatedGame>
   );

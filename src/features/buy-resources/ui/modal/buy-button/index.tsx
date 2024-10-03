@@ -4,7 +4,7 @@ import { useUnit } from 'effector-react';
 import { buyResourcesModel, buyResourcesModelInputs } from '@/features/buy-resources';
 
 export const ResourceBuyButton = () => {
-  const buyResources = useUnit(buyResourcesModel.buyResourceFromPool);
+  const buyResources = useUnit(buyResourcesModel.buyResourcesFromPool);
   const toggleModal = useUnit(buyResourcesModelInputs.toggleModal);
 
   const handleClick = (e: React.PointerEvent<HTMLButtonElement>) => {

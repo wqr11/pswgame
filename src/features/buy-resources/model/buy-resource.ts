@@ -11,8 +11,8 @@ import { $user, $userId } from '@/entities/user';
 import { BuyResourcesFromPoolParams, BuyResourcesFromPoolDataType } from './types';
 import { $buyResourceAmount, $chosenResourceKey } from './inputs';
 
-export const buyResourceFromPool = createEvent<void>();
-export const buyResourceFromPoolFx = createEffect<
+export const buyResourcesFromPool = createEvent<void>();
+export const buyResourcesFromPoolFx = createEffect<
   BuyResourcesFromPoolParams,
   BuyResourcesFromPoolDataType['data'] | undefined,
   Error
@@ -36,7 +36,7 @@ export const buyResourceFromPoolFx = createEffect<
 
 // link buyResourceFromPool to buyResourceFromPoolFx
 sample({
-  clock: buyResourceFromPool,
+  clock: buyResourcesFromPool,
   source: {
     userId: $userId,
     amount: $buyResourceAmount,
@@ -49,12 +49,12 @@ sample({
       amount: amount,
       resourceKey: resourceKey,
     }) as BuyResourcesFromPoolParams,
-  target: buyResourceFromPoolFx,
+  target: buyResourcesFromPoolFx,
 });
 
 // write buyResourceFromPoolFx.doneData to $user
 sample({
-  source: buyResourceFromPoolFx.doneData,
+  source: buyResourcesFromPoolFx.doneData,
   filter: data => !!data,
   fn: data =>
     ({
@@ -73,7 +73,7 @@ sample({
 
 // write buyResourceFromPoolFx.doneData to $resourcePool
 sample({
-  source: buyResourceFromPoolFx.doneData,
+  source: buyResourcesFromPoolFx.doneData,
   filter: data => !!data,
   fn: data =>
     ({

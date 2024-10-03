@@ -1,6 +1,7 @@
 'use client';
 
-import BuyButtonBg from './assets/buy-button-bg.svg';
+import BuyButtonBgImg from './assets/buy-button-bg.svg?url';
+import Image from 'next/image';
 
 import { useUnit } from 'effector-react';
 import { buyResourcesModelInputs } from '../../model';
@@ -13,18 +14,19 @@ export const ToggleResourceMenuButton = () => {
 
   return (
     <button
-      className="relative z-50 flex items-center justify-center active:opacity-40"
+      className="z-50 flex items-center justify-center active:opacity-40"
       onClick={toggleModal}
     >
-      <div className="relative size-fit">
+      <div className="relative">
         <div className="absolute left-0 top-0">
-          <BuyButtonBg
-            width="100%"
-            height="100%"
-            preserveAspectRatio="none"
+          <Image
+            src={BuyButtonBgImg}
+            className="h-[unset]"
+            alt="button"
+            loading="eager"
           />
         </div>
-        <h6 className="flex size-full items-center justify-center text-sm uppercase text-white">
+        <h6 className="relative p-2 text-sm uppercase leading-none text-white">
           {t('buyResource.text')}
         </h6>
       </div>
