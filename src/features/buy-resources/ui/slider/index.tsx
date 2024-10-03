@@ -26,7 +26,11 @@ export const ResourceBuySlider = () => {
         max={maxBuyAmount}
         disabled={!maxBuyAmount}
         value={buyResourceAmount}
-      ></input>
+        style={{
+          appearance: 'none',
+          WebkitAppearance: 'none',
+        }}
+      />
     </div>
   );
 };
