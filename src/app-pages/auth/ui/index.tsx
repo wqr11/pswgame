@@ -34,6 +34,8 @@ export const AuthPageUI = () => {
   const user = useUnit($user);
   const lastPage = useUnit($lastOpenedPage);
 
+  const getReferrals = useUnit(getRefs);
+
   useEffect(() => {
     if (initData?.user?.id) {
       setUserId(initData.user.id);
@@ -50,9 +52,9 @@ export const AuthPageUI = () => {
   useEffect(() => {
     if (!!isAuth && !!user) {
       router.push(`/${lastPage ?? 'game'}`);
-      getRefs();
+      getReferrals();
     }
-  }, [isAuth, user, router, lastPage]);
+  }, [isAuth, user, router, lastPage, getReferrals]);
 
   return <LoadingPageUI />;
 };
