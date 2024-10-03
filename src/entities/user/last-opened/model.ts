@@ -27,7 +27,7 @@ export const updateStateFx = createEffect<
   }
 });
 
-export const $lastActiveResource = createStore<KingdomType | null>(null);
+export const $lastActiveResource = createStore<KingdomType | 'miner'>('miner');
 export const $lastOpenedPage = createStore<LastOpenedPageType | null>(null);
 
 // Samples
