@@ -21,18 +21,18 @@ export const BuyResourceModal = () => {
 
   const modalRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    const handleClick = (e: MouseEvent) => {
-      if (modalRef?.current?.contains(e.target as Node)) {
-        setModalShown(false);
-      }
-    };
-    modalRef?.current?.addEventListener('click', handleClick);
+  // useEffect(() => {
+  //   const handleClick = (e: MouseEvent) => {
+  //     if (modalRef?.current?.contains(e.target as Node)) {
+  //       setModalShown(false);
+  //     }
+  //   };
+  //   modalRef?.current?.addEventListener('click', handleClick);
 
-    return () => {
-      modalRef?.current?.removeEventListener('click', handleClick);
-    };
-  }, []);
+  //   return () => {
+  //     modalRef?.current?.removeEventListener('click', handleClick);
+  //   };
+  // }, []);
 
   // for debug only
   useEffect(() => {
