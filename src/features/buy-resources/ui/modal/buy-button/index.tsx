@@ -5,12 +5,12 @@ import { buyResourcesModel, buyResourcesModelInputs } from '@/features/buy-resou
 
 export const ResourceBuyButton = () => {
   const buyResources = useUnit(buyResourcesModel.buyResourcesFromPool);
-  const toggleModal = useUnit(buyResourcesModelInputs.toggleModal);
+  const setModalShown = useUnit(buyResourcesModelInputs.setModalShown);
 
   const handleClick = (e: React.PointerEvent<HTMLButtonElement>) => {
     e.preventDefault();
     buyResources();
-    toggleModal();
+    setModalShown(false);
   };
 
   return (

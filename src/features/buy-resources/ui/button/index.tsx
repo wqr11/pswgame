@@ -8,14 +8,17 @@ import { buyResourcesModelInputs } from '../../model';
 import { useTranslation } from 'react-i18next';
 
 export const ToggleResourceMenuButton = () => {
-  const toggleModal = useUnit(buyResourcesModelInputs.toggleModal);
+  const modalShown = useUnit(buyResourcesModelInputs.$modalShown);
+  const setModalShown = useUnit(buyResourcesModelInputs.setModalShown);
 
   const { t } = useTranslation('translation', { keyPrefix: 'game.tabs.resources' });
 
   return (
     <button
       className="z-50 flex items-center justify-center active:opacity-40"
-      onClick={toggleModal}
+      onClick={() => {
+        setModalShown(!modalShown);
+      }}
     >
       <div className="relative">
         <div className="absolute left-0 top-0">
