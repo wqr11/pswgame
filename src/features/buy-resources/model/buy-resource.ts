@@ -6,7 +6,7 @@ import { createEffect, createEvent, sample } from 'effector';
 
 import { UserType, resourcePoolModel, PoolResourcesDataType } from '@/entities';
 
-import { $user, $userId } from '@/entities/user';
+import { setTokens, $user, $userId } from '@/entities/user';
 
 import { BuyResourcesFromPoolParams, BuyResourcesFromPoolDataType } from './types';
 import { $buyResourceAmount, $chosenResourceKey } from './inputs';
@@ -69,6 +69,14 @@ sample({
       state: data?.state,
     }) as UserType['data'],
   target: $user,
+});
+
+// set tokens after buying res
+sample({
+  source: buyResourcesFromPoolFx.doneData,
+  filter: data => !!data,
+  fn: data => data?.tokens_amount,
+  target: setTokens,
 });
 
 // write buyResourceFromPoolFx.doneData to $resourcePool
