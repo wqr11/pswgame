@@ -49,7 +49,7 @@ export const ResourceButton = ({
       style={{
         width: `${size}px`,
         height: `${size}px`,
-        scale: chosenResourceKey === resource ? 0.95 : 1,
+        scale: chosenResourceKey !== resource ? 0.95 : 1,
         filter: chosenResourceKey === resource ? 'none' : 'grayscale(85%)',
       }}
       onClick={handleClick}

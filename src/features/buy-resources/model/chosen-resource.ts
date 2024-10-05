@@ -12,12 +12,11 @@ export const $chosenResourceData = combine(
     console.log(pool);
     //
     if (pool) {
-      const resource = pool.entities.map(entity => {
-        if (entity.name === chosenResource) {
-          return entity;
-        }
-      });
-      return resource[0] ?? null;
+      const resource = pool.entities.filter(res => res.name === chosenResource);
+      if (!!resource[0]) {
+        return resource[0];
+      }
+      throw new Error(`ERROR In ChosenResourceData: ${resource}`);
     }
     return null;
   }

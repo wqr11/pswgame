@@ -6,9 +6,9 @@ import { ResourceType, $tab } from '@/entities';
 
 export const resetInputs = createEvent<void>();
 
-export const toggleModal = createEvent<void>();
+export const setModalShown = createEvent<boolean>();
 export const $modalShown = createStore<boolean>(false)
-  .on(toggleModal, state => !state)
+  .on(setModalShown, (_, data) => data)
   .reset(resetInputs);
 
 export const setResourceBuyAmount = createEvent<number>();

@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { motion } from 'framer-motion';
 
 import { useEffect, useRef, useCallback } from 'react';
@@ -16,30 +17,26 @@ import { ResourceBuyButton } from './buy-button';
 export const BuyResourceModal = () => {
   const buyResourceAmount = useUnit(buyResourcesModelInputs.$buyResourceAmount);
   const chosenResourceKey = useUnit(buyResourcesModelInputs.$chosenResourceKey);
-  const toggleModal = useUnit(buyResourcesModelInputs.toggleModal);
-
-  const handleBlur = useCallback(() => {
-    toggleModal();
-  }, [toggleModal]);
+  const setModalShown = useUnit(buyResourcesModelInputs.setModalShown);
 
   const modalRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const currentModal = modalRef.current;
-
-    if (currentModal) {
-      currentModal.addEventListener('blur', handleBlur);
-    }
-
-    return () => {
-      if (currentModal) {
-        currentModal.removeEventListener('blur', handleBlur);
+    const handleClick = (e: MouseEvent) => {
+      if (modalRef?.current?.contains(e.target as Node)) {
+        setModalShown(false);
       }
     };
-  }, [handleBlur]);
+    modalRef?.current?.addEventListener('click', handleClick);
 
+    return () => {
+      modalRef?.current?.removeEventListener('click', handleClick);
+    };
+  }, []);
+
+  // for debug only
   useEffect(() => {
-    console.log(buyResourceAmount, chosenResourceKey);
+    console.debug(buyResourceAmount, chosenResourceKey);
   }, [buyResourceAmount, chosenResourceKey]);
 
   return (
@@ -57,9 +54,13 @@ export const BuyResourceModal = () => {
     >
       <div className="flex size-full flex-col items-center justify-evenly border-[1px] border-white">
         <ResourcesList />
-        <ResourcesPrice />
-        <ResourcesAmount />
-        <ResourceBuySlider />
+        {chosenResourceKey && (
+          <>
+            <ResourcesPrice />
+            <ResourcesAmount />
+            <ResourceBuySlider />
+          </>
+        )}
         <ResourceBuyButton />
       </div>
     </motion.div>
