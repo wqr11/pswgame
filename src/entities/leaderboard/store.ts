@@ -12,7 +12,7 @@ export const getLeaders = createEffect<void, LeaderboardUnitType[] | undefined, 
   async () => {
     try {
       const res: { data: LeaderboardDataType } = await localHost.get(
-        `users/get_all/q=${Date.now()}`
+        `users/get_all/?q=${Date.now()}`
       );
 
       return res.data.data;
