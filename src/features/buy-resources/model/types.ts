@@ -9,5 +9,5 @@ export type BuyResourcesFromPoolParams = {
 };
 
 export type BuyResourcesFromPoolDataType = {
-  data: UserType['data'] & PoolResourcesDataType['data'];
+  data: { user: UserType['data'] } & PoolResourcesDataType['data'];
 };
