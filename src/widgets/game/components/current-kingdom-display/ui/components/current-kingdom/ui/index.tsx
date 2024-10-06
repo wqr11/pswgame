@@ -70,11 +70,7 @@ export const CurrentKingdom = ({
           onClick={() => tap()}
           className="h-[220px] max-h-[220px] w-auto"
         >
-          <Kingdom
-            height={220}
-            width={220}
-            preserveAspectRatio="meet"
-          />
+          <Kingdom preserveAspectRatio="meet" />
         </motion.button>
       </motion.div>
     </AnimatePresence>
