@@ -1,7 +1,9 @@
+import { ResourceType } from '@/entities/resources-pool';
+
 export type GetResourcesParams = { userId: number };
 
 export type UserResourceType = {
-  name: string;
+  name: ResourceType;
   current: number;
 };
 
