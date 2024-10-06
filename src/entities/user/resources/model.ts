@@ -7,6 +7,8 @@ import { createEffect, createStore, sample } from 'effector';
 
 import { UserResourcesType, GetResourcesParams } from './types';
 
+import { postTapFx } from '@/entities/tap';
+
 import { $userId } from '../tg-data';
 import { $user } from '../user-data';
 
@@ -35,7 +37,7 @@ export const $resources = createStore<UserResourcesType['data']['entities'] | nu
 
 // getResources on $user change
 sample({
-  clock: $user,
+  clock: [$user, postTapFx.doneData],
   source: { userId: $userId },
   filter: ({ userId }) => !!userId,
   // @ts-ignore
