@@ -1,7 +1,7 @@
 'use client';
 
 import { authHost } from '@/shared/api/axios-hosts';
-import { AxiosError, isAxiosError } from 'axios';
+import { isAxiosError } from 'axios';
 
 import { createEffect, createStore, sample } from 'effector';
 
@@ -13,7 +13,7 @@ import { $user } from '../user-data';
 export const getResourcesFx = createEffect<
   GetResourcesParams,
   UserResourcesType['data']['entities'] | undefined,
-  AxiosError
+  Error
 >(async ({ userId }: GetResourcesParams) => {
   try {
     const res: { data: UserResourcesType } = await authHost.get(

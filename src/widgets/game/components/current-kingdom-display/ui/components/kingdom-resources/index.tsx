@@ -12,7 +12,7 @@ import { formatNumber } from '@/shared/utils/formatNumber';
 
 export const KingdomResource = ({ kingdomType }: { kingdomType: KingdomType }) => {
   const resources = useUnit($resources);
-  const resource = resources?.filter(resource => resource.name === kingdomType)[0] ?? null;
+  const resource = resources?.filter(res => res.name === kingdomsResources[kingdomType])[0] ?? null;
 
   const icons: {
     [resource in ResourceType]: React.FC<React.SVGProps<SVGElement>>;
@@ -37,11 +37,11 @@ export const KingdomResource = ({ kingdomType }: { kingdomType: KingdomType }) =
   return (
     <div
       className="mx-auto flex size-fit items-center justify-center gap-[10px] border-[1px] border-white px-3 py-1"
-      // style={{
-      //   width: `${(resource?.current.toString().length ?? 5) * 11}px`,
-      // }}
+      style={{
+        width: `${(resource?.current.toString().length ?? 5) * 11}px`,
+      }}
     >
-      <h6 className="text-[16px]">{resource !== null && formatNumber(resource.current)}</h6>
+      <h6 className="text-[16px]">{formatNumber(resource?.current ?? 0)}</h6>
       <div className="flex size-[18px] items-center justify-center">
         <Resource
           height={18}

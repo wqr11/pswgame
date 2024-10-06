@@ -44,11 +44,9 @@ const refreshTokens = async () => {
     return newTokens.data.data.access_token;
   } catch (error) {
     // if error occured while refreshing tokens (ex: tokens are missing) -> redirect to '/' so it relogins
-    if (isAxiosError(error)) {
-      Cookies.remove(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`);
-      Cookies.remove(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`);
-      window.location.href = '/';
-    }
+    Cookies.remove(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`);
+    Cookies.remove(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`);
+    window.location.href = '/';
   }
 };
 
