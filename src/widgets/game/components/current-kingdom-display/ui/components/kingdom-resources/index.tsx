@@ -8,11 +8,12 @@ import Energy from '@/shared/ui/icons/resources/energy.svg';
 import Crypto from '@/shared/ui/icons/resources/crypto.svg';
 
 import { useUnit } from 'effector-react';
-import { KingdomType, ResourceType, $resources, UserResourceType } from '@/entities';
+import { KingdomType, ResourceType, $resources, UserResourceType, $kingdom } from '@/entities';
 
 import { formatNumber } from '@/shared/utils/formatNumber';
 
-export const KingdomResource = ({ kingdomType }: { kingdomType: KingdomType }) => {
+export const KingdomResource = () => {
+  const kingdom = useUnit($kingdom);
   const [resource, setResource] = useState<UserResourceType | null>(null);
   const resources = useUnit($resources);
 
@@ -34,14 +35,14 @@ export const KingdomResource = ({ kingdomType }: { kingdomType: KingdomType }) =
     trader: 'crypto',
   };
 
-  const Resource = icons[kingdomsResources[kingdomType]];
+  const Resource = icons[kingdomsResources[kingdom]];
 
   useEffect(() => {
-    if (resources) {
-      const res = resources.filter(res => res.name === kingdomsResources[kingdomType])[0];
+    if (resources && kingdom) {
+      const res = resources.filter(res => res.name === kingdomsResources[kingdom])[0];
       setResource(res);
     }
-  }, [resources]);
+  }, [resources, kingdom]);
 
   return (
     <div

@@ -25,7 +25,7 @@ export const CurrentKingdomDisplay = ({
         kingdomTier={kingdomTier}
       />
       <TokensDisplay />
-      <KingdomResource kingdomType={kingdomType} />
+      <KingdomResource />
     </div>
   );
 };
