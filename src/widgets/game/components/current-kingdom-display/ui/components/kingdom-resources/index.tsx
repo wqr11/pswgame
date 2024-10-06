@@ -37,9 +37,9 @@ export const KingdomResource = ({ kingdomType }: { kingdomType: KingdomType }) =
   return (
     <div
       className="mx-auto flex size-fit items-center justify-center gap-[10px] border-[1px] border-white px-3 py-1"
-      style={{
-        width: `${(resource?.current.toString().length ?? 5) * 11}px`,
-      }}
+      // style={{
+      //   width: `${(resource?.current.toString().length ?? 5) * 11}px`,
+      // }}
     >
       <h6 className="text-[16px]">{formatNumber(resource?.current ?? 0)}</h6>
       <div className="flex size-[18px] items-center justify-center">
