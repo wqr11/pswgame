@@ -75,7 +75,7 @@ sample({
 sample({
   source: buyResourcesFromPoolFx.doneData,
   filter: data => !!data,
-  fn: data => data?.tokens_amount,
+  fn: data => data?.user.tokens_amount,
   target: setTokens,
 });
 
