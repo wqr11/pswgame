@@ -17,14 +17,14 @@ import { postTapFxParams } from './types';
 
 import { tapsChunk } from '@/shared/config/tap';
 
-export const clearTimeoutId = createEffect<NodeJS.Timeout | null, void, Error>(
+export const clearTimeoutIdFx = createEffect<NodeJS.Timeout | null, void, Error>(
   (timeout: NodeJS.Timeout | null) => {
     if (timeout) {
       clearTimeout(timeout);
     }
   }
 );
-export const $tapTimeoutId = createStore<NodeJS.Timeout | null>(null).reset(clearTimeoutId);
+export const $tapTimeoutId = createStore<NodeJS.Timeout | null>(null).reset(clearTimeoutIdFx);
 
 export const tap = createEvent<void>();
 export const postTap = createEvent<void>();
@@ -61,18 +61,18 @@ sample({
 
 // ### TAP TIMEOUT ###
 
-// set timeout on tap, write id in $tapTimeoutId
-sample({
-  clock: tap,
-  fn: () => setTimeout(() => postTap(), 1000),
-  target: $tapTimeoutId,
-});
-
 // clear prev timeout on tap
 sample({
   clock: tap,
   source: $tapTimeoutId,
-  target: clearTimeoutId,
+  target: clearTimeoutIdFx,
+});
+
+// set timeout on tap, write id in $tapTimeoutId
+sample({
+  clock: tap,
+  fn: () => setTimeout(postTap, 1000),
+  target: $tapTimeoutId,
 });
 
 // ###
