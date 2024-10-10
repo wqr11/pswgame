@@ -5,7 +5,8 @@ import { isAxiosError } from 'axios';
 
 import { createEffect, sample, createStore } from 'effector';
 
-import { $kingdom, $user, KingdomType, KingdomTypeArray } from '@/entities';
+import { $kingdom, KingdomType, KingdomTypeArray } from '@/entities';
+import { $user } from '../user-data';
 import { UpdateStateType, UpdateStateProps, LastOpenedPageType } from './types';
 
 export const updateStateFx = createEffect<
