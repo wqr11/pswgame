@@ -3,33 +3,21 @@
 import { createStore, createEffect, sample } from 'effector';
 
 import { LeaderboardDataType, LeaderboardUnitType } from './types';
-import { localHost } from '@/shared/api/axios-hosts';
-import { AxiosError, isAxiosError } from 'axios';
+import { authHost } from '@/shared/api/axios-hosts';
 import { loggedIn } from '../auth';
 import { postTapFx } from '../tap';
 
-export const getLeaders = createEffect<void, LeaderboardUnitType[] | undefined, AxiosError>(
-  async () => {
-    try {
-      const res: { data: LeaderboardDataType } = await localHost.get(
-        `users/get_all/?q=${Date.now()}`
-      );
-
-      return res.data.data;
-    } catch (error) {
-      if (isAxiosError(error)) {
-        throw new Error(error.message);
-      }
-    }
-  }
-);
+export const getLeadersFx = createEffect(async () => {
+  const res = await authHost.get<LeaderboardDataType>('/users/get_all_short');
+  return res.data.data;
+});
 
 export const $leaderboard = createStore<LeaderboardUnitType[] | null>(null).on(
-  getLeaders.doneData,
+  getLeadersFx.doneData,
   (_, leaders) => leaders ?? null
 );
 
 sample({
   clock: [loggedIn, postTapFx.doneData],
-  target: getLeaders,
+  target: getLeadersFx,
 });
