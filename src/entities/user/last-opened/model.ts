@@ -6,8 +6,8 @@ import { isAxiosError } from 'axios';
 import { createEffect, sample, createStore } from 'effector';
 
 import { $kingdom, KingdomType, KingdomTypeArray } from '@/entities';
-import { $user} from '../user-data';
-import { $userId } from '../tg-data
+import { $user } from '../user-data';
+import { $userId } from '../tg-data';
 import { UpdateStateType, UpdateStateProps, LastOpenedPageType } from './types';
 
 export const updateStateFx = createEffect<
@@ -39,13 +39,14 @@ sample({
   clock: [$lastActiveResource, $lastOpenedPage],
   source: [$lastActiveResource, $lastOpenedPage, $userId],
   filter: ([res, page, userId]) => !!res && !!page && !!userId,
-  fn: ([res, page, userId]) => ({
-    userId: userId,
-    lastActiveResource: res,
-    lastOpenedPage: page
-  } as UpdateStateProps),
+  fn: ([res, page, userId]) =>
+    ({
+      userId: userId,
+      lastActiveResource: res,
+      lastOpenedPage: page,
+    }) as UpdateStateProps,
   target: updateStateFx,
-})
+});
 
 // write user data to last opened things
 sample({
