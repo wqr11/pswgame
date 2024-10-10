@@ -35,12 +35,12 @@ export const KingdomResource = () => {
     trader: 'crypto',
   };
 
-  const Resource = icons[kingdomsResources[kingdom]];
+  const Resource = icons[kingdomsResources[kingdom!]];
 
   useEffect(() => {
     if (resources && kingdom) {
-      const res = resources.filter(res => res.name === kingdomsResources[kingdom])[0];
-      setResource(res);
+      const res = resources.find(res => res.name === kingdomsResources[kingdom]);
+      setResource(res ?? null);
     }
   }, [resources, kingdom]);
 

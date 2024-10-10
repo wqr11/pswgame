@@ -27,12 +27,23 @@ export const updateStateFx = createEffect<
   }
 });
 
-export const $lastActiveResource = createStore<KingdomType | 'miner'>('miner');
+export const $lastActiveResource = createStore<KingdomType | null>(null);
 export const $lastOpenedPage = createStore<LastOpenedPageType | null>(null);
 
 // Samples
+
+// write last opened res
 sample({
   source: $kingdom,
   filter: kingdom => !!kingdom,
   target: $lastActiveResource,
+});
+
+// write last opened res back to $kingdom if it lacks value
+sample({
+  source: { resource: $lastActiveResource, kingdom: $kingdom },
+  filter: ({ resource, kingdom }) =>
+    !!resource && KingdomTypeArray.includes(resource) && kingdom !== resource,
+  fn: ({ resource }) => resource,
+  target: $kingdom,
 });

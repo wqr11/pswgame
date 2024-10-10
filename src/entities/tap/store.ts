@@ -9,7 +9,7 @@ import { createEffect, createStore, createEvent, sample } from 'effector';
 
 import { $userId } from '../user/tg-data';
 import { $tokens, setTokens } from '../user/tokens';
-import { $user } from '../user';
+import { $user, getResourcesFx, GetResourcesParams } from '../user';
 import { $kingdom, kingdomToResource } from '../kingdom';
 
 import { TapDataType } from './types';
@@ -101,6 +101,14 @@ sample({
   source: { tokens: $tokens, multiplier: $tap_multiplier },
   fn: ({ tokens, multiplier }) => tokens + 100 * multiplier,
   target: setTokens,
+});
+
+sample({
+  clock: postTapFx.doneData,
+  source: { userId: $userId },
+  filter: ({ userId }) => !!userId,
+  fn: ({ userId }) => ({ userId: userId }) as GetResourcesParams,
+  target: getResourcesFx,
 });
 
 // logout on postTap.fail

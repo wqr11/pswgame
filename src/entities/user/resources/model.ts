@@ -7,7 +7,6 @@ import { UserResourcesType, GetResourcesParams } from './types';
 
 import { $userId } from '../tg-data';
 import { $user } from '../user-data';
-import { postTapFx } from '@/entities/tap';
 
 export const getResourcesFx = createEffect<
   GetResourcesParams,
@@ -25,10 +24,11 @@ export const $resources = createStore<UserResourcesType['data']['entities'] | nu
 
 // getResources on $user change
 sample({
-  // remove trigger on postTapFx later
-  clock: [$user, postTapFx.doneData],
+  clock: [$user],
   source: { userId: $userId },
   filter: ({ userId }) => !!userId,
   fn: ({ userId }) => ({ userId: userId }) as GetResourcesParams,
   target: getResourcesFx,
 });
+
+// ANOTHER ONE SAMPLE WRITTEN IN TAP STORE
