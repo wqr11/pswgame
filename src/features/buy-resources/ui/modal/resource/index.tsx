@@ -42,15 +42,23 @@ export const ResourceButton = ({
       initial={{
         scale: 1,
       }}
-      animate={{
-        scale: chosenResourceKey === resource ? 0.95 : 1,
-      }}
-      transition={{ duration: 0.02, ease: 'easeInOut' }}
+      animate={
+        chosenResourceKey !== resource
+          ? {
+              scale: 0.9,
+              filter: 'grayscale(1)',
+              translateY: 1,
+            }
+          : {
+              scale: 1.1,
+              filter: 'none',
+              translateY: 0,
+            }
+      }
+      transition={{ duration: 0.1, ease: 'easeInOut' }}
       style={{
         width: `${size}px`,
         height: `${size}px`,
-        scale: chosenResourceKey !== resource ? 0.95 : 1,
-        filter: chosenResourceKey === resource ? 'none' : 'grayscale(85%)',
       }}
       onClick={handleClick}
     >
