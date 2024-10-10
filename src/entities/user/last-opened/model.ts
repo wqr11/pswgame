@@ -5,7 +5,7 @@ import { isAxiosError } from 'axios';
 
 import { createEffect, sample, createStore } from 'effector';
 
-import { $kingdom, KingdomType, KingdomTypeArray } from '@/entities';
+import { $kingdom, $user, KingdomType, KingdomTypeArray } from '@/entities';
 import { UpdateStateType, UpdateStateProps, LastOpenedPageType } from './types';
 
 export const updateStateFx = createEffect<
@@ -27,16 +27,26 @@ export const updateStateFx = createEffect<
   }
 });
 
-export const $lastActiveResource = createStore<KingdomType | null>(null).on(
-  updateStateFx.doneData,
-  (_, data) => data?.last_active_resource
-);
-export const $lastOpenedPage = createStore<LastOpenedPageType | null>(null).on(
-  updateStateFx.doneData,
-  (_, data) => data?.last_opened_page
-);
+export const $lastActiveResource = createStore<KingdomType | null>(null);
+
+export const $lastOpenedPage = createStore<LastOpenedPageType | null>(null);
 
 // Samples
+
+// write user data to last opened things
+sample({
+  source: $user,
+  filter: user => !!user && !!user.state.last_active_resource,
+  fn: user => user?.state.last_active_resource!,
+  target: $lastActiveResource,
+});
+
+sample({
+  source: $user,
+  filter: user => !!user && !!user.state.last_opened_page,
+  fn: user => user?.state.last_opened_page!,
+  target: $lastOpenedPage,
+});
 
 // write last opened res
 sample({
