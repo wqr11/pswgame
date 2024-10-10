@@ -27,8 +27,14 @@ export const updateStateFx = createEffect<
   }
 });
 
-export const $lastActiveResource = createStore<KingdomType | null>(null);
-export const $lastOpenedPage = createStore<LastOpenedPageType | null>(null);
+export const $lastActiveResource = createStore<KingdomType | null>(null).on(
+  updateStateFx.doneData,
+  (_, data) => data?.last_active_resource
+);
+export const $lastOpenedPage = createStore<LastOpenedPageType | null>(null).on(
+  updateStateFx.doneData,
+  (_, data) => data?.last_opened_page
+);
 
 // Samples
 
