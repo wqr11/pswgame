@@ -2,15 +2,10 @@
 
 import { CurrentKingdom, KingdomResource, TokensDisplay } from '@/widgets';
 
-import { KingdomTier, KingdomType } from '@/entities';
+import { useUnit } from 'effector-react';
+import { $kingdom } from '@/entities';
 
-export const CurrentKingdomDisplay = ({
-  kingdomType,
-  kingdomTier,
-}: {
-  kingdomType: KingdomType;
-  kingdomTier: KingdomTier;
-}) => {
+export const CurrentKingdomDisplay = () => {
   const textColors = {
     power: 'text-[#FFAD31]',
     grower: 'text-[#B1FF82]',
@@ -18,12 +13,11 @@ export const CurrentKingdomDisplay = ({
     trader: 'text-[#7CB1FF]',
   };
 
+  const kingdom = useUnit($kingdom);
+
   return (
-    <div className={`${textColors[kingdomType]} flex flex-col gap-1`}>
-      <CurrentKingdom
-        kingdomType={kingdomType}
-        kingdomTier={kingdomTier}
-      />
+    <div className={`${textColors[kingdom!]} flex flex-col gap-1`}>
+      <CurrentKingdom />
       <TokensDisplay />
       <KingdomResource />
     </div>

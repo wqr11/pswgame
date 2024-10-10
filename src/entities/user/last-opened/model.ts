@@ -33,13 +33,6 @@ export const $lastOpenedPage = createStore<LastOpenedPageType | null>(null);
 // Samples
 sample({
   source: $kingdom,
+  filter: kingdom => !!kingdom,
   target: $lastActiveResource,
-});
-
-sample({
-  source: { resource: $lastActiveResource, kingdom: $kingdom },
-  filter: ({ resource, kingdom }) =>
-    !!resource && KingdomTypeArray.includes(resource) && kingdom !== resource,
-  fn: ({ resource }) => resource,
-  target: $kingdom,
 });

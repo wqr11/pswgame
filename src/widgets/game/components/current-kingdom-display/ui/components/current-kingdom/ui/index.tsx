@@ -22,15 +22,12 @@ import TraderKingdomTier2 from './assets/kingdoms/trader/tier-2.svg';
 import TraderKingdomTier3 from './assets/kingdoms/trader/tier-3.svg';
 import TraderKingdomTier4 from './assets/kingdoms/trader/tier-4.svg';
 
-import { KingdomTier, KingdomType, tap } from '@/entities';
+import { useUnit } from 'effector-react';
+import { tap, $kingdom } from '@/entities';
 
-export const CurrentKingdom = ({
-  kingdomType,
-  kingdomTier,
-}: {
-  kingdomType: KingdomType;
-  kingdomTier: KingdomTier;
-}) => {
+export const CurrentKingdom = () => {
+  const kingdom = useUnit($kingdom);
+
   const kingdoms = {
     grower: [GrowerKingdomTier1, GrowerKingdomTier2, GrowerKingdomTier3, GrowerKingdomTier4],
     miner: [MinerKingdomTier1, MinerKingdomTier2, MinerKingdomTier3, MinerKingdomTier4],
@@ -38,7 +35,8 @@ export const CurrentKingdom = ({
     trader: [TraderKingdomTier1, TraderKingdomTier2, TraderKingdomTier3, TraderKingdomTier4],
   };
 
-  const Kingdom = kingdoms[kingdomType][kingdomTier - 1];
+  // @TODO: change this shit to fetchable tier
+  const Kingdom = kingdoms[kingdom!][2 - 1];
 
   return (
     <AnimatePresence>
