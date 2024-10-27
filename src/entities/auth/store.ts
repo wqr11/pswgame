@@ -9,10 +9,7 @@ import { createStore, createEffect, sample, createEvent } from 'effector';
 import { AuthDataType, TokensType } from './types';
 
 // get a pair of auth tokens
-export const login = createEffect<string, boolean, Error>(async (init_data: string) => {
-  Cookies.remove(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`);
-  Cookies.remove(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`);
-
+export const loginFx = createEffect<string, boolean, Error>(async (init_data: string) => {
   const accessToken = Cookies.get(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`);
   const refreshToken = Cookies.get(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`);
 
@@ -34,24 +31,28 @@ export const login = createEffect<string, boolean, Error>(async (init_data: stri
       }
     );
 
-    Cookies.set(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`, res.data.data.access_token);
-    Cookies.set(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`, res.data.data.refresh_token);
+    Cookies.set(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`, res.data.data.access_token, {
+      expires: 86400,
+    });
+    Cookies.set(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`, res.data.data.refresh_token, {
+      expires: 86400,
+    });
 
     return true;
   } catch (error) {
     if (isAxiosError(error)) {
       throw new Error(error.message);
     }
-    throw new Error('Unpredicted error in login');
+    throw new Error('Unpredicted error in loginFx');
   }
 });
 
 export const loggedIn = createEvent<void>();
 
-export const $isAuth = createStore<boolean>(false).on(login.doneData, (_, data) => data);
+export const $isAuth = createStore<boolean>(false).on(loginFx.doneData, (_, data) => data);
 
-// fire loggedIn event on login.doneData
+// fire loggedIn event on loginFx.doneData
 sample({
-  clock: login.doneData,
+  clock: loginFx.doneData,
   target: loggedIn,
 });

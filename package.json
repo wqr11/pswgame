@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "dev:https": "next dev --experimental-https -H 192.168.1.32",
+    "dev:https": "next dev --experimental-https -H 192.168.0.17",
     "dev:local": "next dev --experimental-https",
     "build": "next build",
     "start": "next start",
+    "start:https": "next start --experimental-https -H 192.168.0.17",
     "prettier": "prettier . --write",
     "lint": "next lint"
   },

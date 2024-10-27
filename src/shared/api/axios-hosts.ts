@@ -2,7 +2,15 @@ import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
 
 import Cookies from 'js-cookie';
 
-export const API_URL = `${process.env.NEXT_PUBLIC_API_URL ?? 'URL_NOT_FOUND'}/api/v1/`;
+export const API_URL = `${process.env.NEXT_PUBLIC_API_URL ?? 'URL_NOT_FOUND'}/api/v1`;
+
+export const nextApiHost = axios.create({
+  baseURL: `${process.env.NEXT_PUBLIC_HOST_LOCAL_URL}/next-api`,
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+  },
+});
 
 export const authHost = axios.create({
   baseURL: API_URL,
@@ -57,7 +65,10 @@ authHost.interceptors.response.use(
   async (error: AxiosError) => {
     const originalRequest = error.config;
 
-    if (error.response?.status === 401 || error.response?.status === 422) {
+    if (
+      error.response?.status === 401
+      //  || error.response?.status === 422
+    ) {
       try {
         const newTokens = await refreshTokens();
         originalRequest?.headers.set('jwt-token', newTokens);

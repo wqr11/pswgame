@@ -16,8 +16,7 @@ export const getResourcePool = createEffect<
   AxiosError
 >(async () => {
   try {
-    const res = await authHost.get<PoolResourcesDataType>('/kingdom/pool_resources/all');
-
+    const res = await authHost.get<PoolResourcesDataType>('/kingdom/pool_resources');
     return res.data.data;
   } catch (error) {
     if (isAxiosError(error)) {

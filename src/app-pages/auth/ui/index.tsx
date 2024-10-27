@@ -18,7 +18,7 @@ import {
 } from '@/entities';
 
 import { useUnit } from 'effector-react';
-import { login, $isAuth, $lastOpenedPage } from '@/entities';
+import { loginFx, $isAuth, $lastOpenedPage } from '@/entities';
 
 export const AuthPageUI = () => {
   const router = useRouter();
@@ -30,6 +30,7 @@ export const AuthPageUI = () => {
   const setUserId = useUnit(setUserIdEvent);
   const setUsername = useUnit(setUsernameEvent);
 
+  const login = useUnit(loginFx);
   const isAuth = useUnit($isAuth);
   const user = useUnit($user);
   const lastPage = useUnit($lastOpenedPage);
@@ -47,7 +48,7 @@ export const AuthPageUI = () => {
 
   useEffect(() => {
     login(`${initDataRaw}`);
-  }, [initDataRaw]);
+  }, [initDataRaw, login]);
 
   useEffect(() => {
     if (!!isAuth && !!user) {

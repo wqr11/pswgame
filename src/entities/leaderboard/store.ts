@@ -8,7 +8,7 @@ import { loggedIn } from '../auth';
 import { postTapFx } from '../tap';
 
 export const getLeadersFx = createEffect(async () => {
-  const res = await authHost.get<LeaderboardDataType>('/users/get_all_short');
+  const res = await authHost.get<LeaderboardDataType>('/users/get_leaders?limit=100');
   return res.data.data;
 });
 

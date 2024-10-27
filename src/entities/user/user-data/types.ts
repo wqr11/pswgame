@@ -37,6 +37,8 @@ export type UserType = {
   };
 };
 
+export type CreateUserParams = { userId: number };
+
 export type GetUserParams = { userId: number };
 
 export type UpdateUserParams = {

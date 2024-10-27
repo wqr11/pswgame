@@ -31,7 +31,7 @@ const stopTimerInterval = createEffect<NodeJS.Timeout | null, void, void>(
 
 const $timerId = createStore<NodeJS.Timeout | null>(null);
 
-// set estimated time on tick and login
+// set estimated time on tick and loginFx
 sample({
   clock: [tick, resourcePoolModel.getResourcePool.doneData],
   source: $endTime,
