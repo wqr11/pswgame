@@ -19,6 +19,11 @@ export const $isAuth = createStore<boolean>(false).on(
   (_, data) => data.access_token.length > 0 && data.refresh_token.length > 0
 );
 
+export const $authTokens = createStore<AuthDataType['data'] | null>(null).on(
+  loginFx.doneData,
+  (_, data) => data
+);
+
 // fire loggedIn event on loginFx.doneData
 sample({
   clock: loginFx.doneData,
