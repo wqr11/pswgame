@@ -1,26 +1,22 @@
+'use client';
+
 import { KingdomSwitchButton } from './kingdom-switch-button';
 
+import { useUnit } from 'effector-react';
+import { $availableKingdoms } from '@/entities/kingdom';
+
 export const KingdomSwitcher = () => {
+  const kingdoms = useUnit($availableKingdoms);
+
   return (
-    <div className="mx-auto mt-8 grid size-fit grid-cols-3 gap-4">
-      <KingdomSwitchButton
-        kingdomType="miner"
-        kingdomState="opened"
-      />
-      <KingdomSwitchButton
-        kingdomType="power"
-        kingdomState="opened"
-      />
-      <KingdomSwitchButton
-        kingdomType="trader"
-        kingdomState="locked"
-      />
-      <div className="col-span-3 flex justify-center">
+    <div className="mx-auto mt-8 grid grid-cols-3 gap-4">
+      {kingdoms?.map((kingdom, idx) => (
         <KingdomSwitchButton
-          kingdomType="grower"
-          kingdomState="opened"
+          kingdomType={kingdom.name}
+          kingdomState={kingdom.state}
+          key={`kingdom-switch-button-${idx}`}
         />
-      </div>
+      ))}
     </div>
   );
 };

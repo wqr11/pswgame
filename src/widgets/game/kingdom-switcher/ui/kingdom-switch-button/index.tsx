@@ -10,7 +10,13 @@ import LockGreen from '../assets/Lock-green.svg';
 
 import { motion } from 'framer-motion';
 
-import { KingdomType, KingdomStateUnitType, setKingdom } from '@/entities';
+import {
+  KingdomType,
+  KingdomStateUnitType,
+  setKingdom as setKingdomEvent,
+  pickKingdom as pickKingdomEvent,
+} from '@/entities';
+import { useUnit } from 'effector-react';
 
 export const KingdomSwitchButton = ({
   kingdomType,
@@ -25,6 +31,9 @@ export const KingdomSwitchButton = ({
     power: PowerIcon,
     trader: TraderIcon,
   };
+
+  const setKingdom = useUnit(setKingdomEvent);
+  const pickKingdom = useUnit(pickKingdomEvent);
 
   const Resource = resourceIcons[kingdomType];
 
@@ -49,6 +58,9 @@ export const KingdomSwitchButton = ({
       case 'opened':
         setKingdom(kingdomType);
         break;
+      case 'available':
+        pickKingdom(kingdomType);
+        break;
       default:
         break;
     }
@@ -66,7 +78,7 @@ export const KingdomSwitchButton = ({
           bounce: 0.6,
         },
       }}
-      className="flex max-h-[55px] min-h-[55px] min-w-[55px] max-w-[55px] items-center justify-center border-[3px] border-white p-1"
+      className="flex max-h-[55px] min-h-[55px] min-w-[55px] max-w-[55px] flex-grow items-center justify-center border-[3px] border-white p-1"
       onClick={handleClick}
     >
       {getIcon()}

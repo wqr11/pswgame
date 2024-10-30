@@ -46,7 +46,7 @@ sample({
   filter: (source, user) =>
     !!source.userId &&
     !!source.username &&
-    (user?.user_name === '' || user?.user_name === 'Unknown'),
+    (user?.user_name === '' || user?.user_name.toLowerCase() === 'unknown'),
   fn: ({ userId, username }) =>
     ({
       userId: userId,
