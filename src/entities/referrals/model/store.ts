@@ -12,15 +12,8 @@ export const getRefs = createEvent<void>();
 
 export const getRefsFx = createEffect<number, RefsApiData['data'] | undefined, AxiosError>(
   async (userId: number) => {
-    try {
-      const res: { data: RefsApiData } = await authHost.get(`/referrals/get_referrals/${userId}`);
-
-      return res.data.data;
-    } catch (error) {
-      if (isAxiosError(error)) {
-        throw new Error(error.message);
-      }
-    }
+    const res: { data: RefsApiData } = await authHost.get(`/referrals/get_referrals/${userId}`);
+    return res.data.data;
   }
 );
 
