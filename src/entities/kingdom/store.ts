@@ -3,6 +3,7 @@
 import { createEffect, createEvent, createStore, sample } from 'effector';
 import { AvailableKingdomsDataType, KingdomType } from './types';
 import { authHost } from '@/shared/api/axios-hosts';
+import { loggedIn } from '../auth';
 
 // logic for picking a kingdom
 export const pickKingdom = createEvent<string>();
@@ -27,6 +28,12 @@ export const $availableKingdoms = createStore<AvailableKingdomsDataType['data'] 
 // visible kingdom
 export const setKingdom = createEvent<KingdomType>();
 export const $kingdom = createStore<KingdomType | null>(null);
+
+// get kingdoms on login
+sample({
+  clock: loggedIn,
+  target: getAvailableKingdomsFx,
+});
 
 // run a check whether input from setKingdom is correct
 sample({

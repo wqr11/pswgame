@@ -19,7 +19,9 @@ export const loginFx = createEffect<string, boolean, Error>(async (init_data: st
 
   const res: { data: AuthDataType } = await axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/login`,
-    init_data,
+    {
+      init_data,
+    },
     {
       headers: {
         'Accept': 'application/json',
