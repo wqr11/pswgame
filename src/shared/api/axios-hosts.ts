@@ -1,6 +1,7 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import { getAuthTokens } from '@/actions/auth/getAuthTokens';
 import { setCookie } from '@/actions/auth/setCookie';
+import { deleteCookie } from '@/actions/auth/deleteCookie';
 
 export const API_URL = `${process.env.NEXT_PUBLIC_API_URL ?? 'URL_NOT_FOUND'}/api/v1`;
 
@@ -49,8 +50,8 @@ const refreshTokens = async () => {
     return newTokens.data.data.access_token;
   } catch (error) {
     // if error occured while refreshing tokens (ex: tokens are missing) -> redirect to '/' so it relogins
-    Cookies.remove(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`);
-    Cookies.remove(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`);
+    deleteCookie(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`);
+    deleteCookie(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`);
     window.location.href = '/';
   }
 };
