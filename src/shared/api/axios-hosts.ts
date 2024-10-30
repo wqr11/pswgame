@@ -1,5 +1,6 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
-import Cookies from 'js-cookie';
+import { getAuthTokens } from '@/actions/auth/getAuthTokens';
+import { setCookie } from '@/actions/auth/setCookie';
 
 export const API_URL = `${process.env.NEXT_PUBLIC_API_URL ?? 'URL_NOT_FOUND'}/api/v1`;
 
@@ -21,7 +22,7 @@ export const authHost = axios.create({
 
 const refreshTokens = async () => {
   try {
-    const refresh = Cookies.get(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`);
+    const tokens = getAuthTokens();
 
     const newTokens = await axios.post<{
       data: {
@@ -30,7 +31,7 @@ const refreshTokens = async () => {
     }>(
       `${API_URL}/auth/update_access_token`,
       {
-        refresh_token: refresh,
+        refresh_token: tokens.refresh,
       },
       {
         headers: {
@@ -40,7 +41,10 @@ const refreshTokens = async () => {
       }
     );
 
-    Cookies.set(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`, newTokens.data.data.access_token);
+    setCookie({
+      name: `${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`,
+      value: newTokens.data.data.access_token,
+    });
 
     return newTokens.data.data.access_token;
   } catch (error) {
@@ -52,9 +56,9 @@ const refreshTokens = async () => {
 };
 
 authHost.interceptors.request.use(function (config: InternalAxiosRequestConfig) {
-  const access = Cookies.get(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`);
+  const tokens = getAuthTokens();
 
-  config.headers.set('jwt-token', access);
+  config.headers.set('jwt-token', tokens?.access);
 
   return config;
 });
