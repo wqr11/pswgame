@@ -16,7 +16,7 @@ export const CurrentKingdomDisplay = () => {
   const kingdom = useUnit($kingdom);
 
   return (
-    <div className={`${textColors[kingdom!]} flex flex-col gap-1`}>
+    <div className={`${kingdom && textColors[kingdom]} flex flex-col gap-1`}>
       <CurrentKingdom />
       <TokensDisplay />
       <KingdomResource />

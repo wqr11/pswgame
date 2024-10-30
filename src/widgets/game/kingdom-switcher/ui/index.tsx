@@ -10,7 +10,7 @@ export const KingdomSwitcher = () => {
 
   return (
     <div className="mx-auto mt-8 grid grid-cols-3 gap-4">
-      {kingdoms?.map((kingdom, idx) => (
+      {kingdoms && kingdoms.length > 0 && kingdoms?.map((kingdom, idx) => (
         <KingdomSwitchButton
           kingdomType={kingdom.name}
           kingdomState={kingdom.state}
