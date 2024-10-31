@@ -2,6 +2,7 @@
 
 import axios from 'axios';
 import { cookies } from 'next/headers';
+// import { headers } from 'next/headers';
 import { AuthDataType } from '@/entities/auth';
 
 export const login = async (init_data: string) => {
@@ -19,6 +20,8 @@ export const login = async (init_data: string) => {
   );
 
   const tokens = res.data.data;
+
+  // headers().set('jwt-token', process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME);
 
   cookies().set({
     name: `${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`,
