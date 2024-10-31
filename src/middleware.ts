@@ -9,6 +9,8 @@ export async function middleware(req: NextRequest) {
   const access = cookies().get(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`);
   // const refreshToken = req.cookies.get(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`);
 
+  console.log(access);
+
   if (!headers.has('jwt-token') && access) {
     req.headers.set('jwt-token', access?.toString() ?? '');
 
