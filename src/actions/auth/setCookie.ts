@@ -7,5 +7,6 @@ export const setCookie = ({ name, value, ...args }: { name: string; value: strin
     name,
     value,
     ...args,
+    sameSite: 'lax'
   });
 };

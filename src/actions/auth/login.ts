@@ -23,11 +23,13 @@ export const login = async (init_data: string) => {
   cookies().set({
     name: `${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`,
     value: tokens.access_token,
+    sameSite: 'lax',
   });
 
   cookies().set({
     name: `${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`,
     value: tokens.refresh_token,
+    sameSite: 'lax',
   });
 
   return tokens;
