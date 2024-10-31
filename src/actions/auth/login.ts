@@ -24,12 +24,14 @@ export const login = async (init_data: string) => {
     name: `${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`,
     value: tokens.access_token,
     sameSite: 'none',
+    secure: true,
   });
 
   cookies().set({
     name: `${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`,
     value: tokens.refresh_token,
     sameSite: 'none',
+    secure: true,
   });
 
   return tokens;

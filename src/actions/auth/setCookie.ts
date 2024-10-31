@@ -8,5 +8,6 @@ export const setCookie = ({ name, value, ...args }: { name: string; value: strin
     value,
     ...args,
     sameSite: 'none',
+    secure: true,
   });
 };
