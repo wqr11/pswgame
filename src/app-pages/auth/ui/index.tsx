@@ -47,7 +47,9 @@ export const AuthPageUI = () => {
   }, [initData, setUserId, setUsername]);
 
   useEffect(() => {
-    login(`${initDataRaw}`);
+    if (initDataRaw && initDataRaw?.length > 0) {
+      login(`${initDataRaw}`);
+    }
   }, [initDataRaw, login]);
 
   useEffect(() => {

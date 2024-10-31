@@ -1,4 +1,4 @@
-import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
+import axios, { AxiosError } from 'axios';
 import { getAuthTokens } from '@/actions/auth/getAuthTokens';
 import { setCookie } from '@/actions/auth/setCookie';
 import { deleteCookie } from '@/actions/auth/deleteCookie';
@@ -56,13 +56,13 @@ const refreshTokens = async () => {
   }
 };
 
-authHost.interceptors.request.use(function (config: InternalAxiosRequestConfig) {
-  const tokens = getAuthTokens();
+// authHost.interceptors.request.use(function (config: InternalAxiosRequestConfig) {
+//   const tokens = getAuthTokens();
 
-  config.headers.set('jwt-token', tokens?.access);
+//   config.headers.set('jwt-token', tokens?.access);
 
-  return config;
-});
+//   return config;
+// });
 
 authHost.interceptors.response.use(
   res => res,
@@ -74,9 +74,12 @@ authHost.interceptors.response.use(
       //  || error.response?.status === 422
     ) {
       try {
-        const newTokens = await refreshTokens();
-        originalRequest?.headers.set('jwt-token', newTokens);
+        //const newTokens = 
+        await refreshTokens();
 
+        // ### may not work (in Chrome especially)
+        // originalRequest?.headers.set('jwt-token', newTokens);
+        // ###
         // @ts-ignore
         return authHost(originalRequest);
       } catch (refreshError) {
