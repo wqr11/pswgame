@@ -25,11 +25,10 @@ export async function POST(req: NextRequest) {
         {
           status: 200,
           statusText: 'Authorized',
-          headers: {
-            'jwt-token': tokens.access_token,
-          },
         }
       );
+
+      req.headers.set('jwt-token', tokens.access_token);
 
       // Set cookies securely
       response.cookies.set({
