@@ -34,6 +34,7 @@ export async function POST(req: NextRequest) {
         value: tokens.access_token,
         httpOnly: true,
         secure: true,
+        sameSite: 'none',
         maxAge: 3600, // 1 hour, adjust as needed
       });
 
@@ -42,6 +43,7 @@ export async function POST(req: NextRequest) {
         value: tokens.refresh_token,
         httpOnly: true,
         secure: true,
+        sameSite: 'none',
         maxAge: 7 * 24 * 3600, // 7 days, adjust as needed
       });
 
