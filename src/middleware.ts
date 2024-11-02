@@ -11,6 +11,8 @@ export async function middleware(req: NextRequest) {
     reqHeaders.append('jwt-token', access);
   }
 
+  reqHeaders.append('TESTTEST', 'ASDASDASDAS');
+
   return NextResponse.next({
     headers: reqHeaders,
   });
