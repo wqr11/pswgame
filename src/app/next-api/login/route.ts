@@ -21,21 +21,17 @@ export async function POST(req: NextRequest) {
 
   const tokens = loginData.data.data;
 
-  const cookieStore = cookies();
+  const cookieStore = req.cookies;
   const headerStore = new Headers(req.headers);
 
   cookieStore.set({
     name: `${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`,
     value: tokens.access_token,
-    sameSite: 'none',
-    secure: true,
   });
 
   cookieStore.set({
     name: `${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`,
     value: tokens.refresh_token,
-    sameSite: 'none',
-    secure: true,
   });
 
   headerStore.append('jwt-token', `${tokens.access_token}`);
