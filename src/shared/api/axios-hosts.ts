@@ -2,11 +2,12 @@ import axios, { AxiosError } from 'axios';
 import { getAuthTokens } from '@/actions/auth/getAuthTokens';
 import { setCookie } from '@/actions/auth/setCookie';
 import { deleteCookie } from '@/actions/auth/deleteCookie';
+import { HOST } from '../config/host';
 
 export const API_URL = `${process.env.NEXT_PUBLIC_API_URL ?? 'URL_NOT_FOUND'}/api/v1`;
 
 export const nextApiHost = axios.create({
-  baseURL: `${process.env.NEXT_PUBLIC_HOST_LOCAL_URL}/next-api`,
+  baseURL: `${HOST}/next-api`,
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
@@ -74,7 +75,7 @@ authHost.interceptors.response.use(
       //  || error.response?.status === 422
     ) {
       try {
-        //const newTokens = 
+        //const newTokens =
         await refreshTokens();
 
         // ### may not work (in Chrome especially)

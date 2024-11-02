@@ -1,28 +1,16 @@
 'use client';
 
 import { createStore, createEffect, sample, createEvent } from 'effector';
+import { nextApiHost } from '@/shared/api/axios-hosts';
 
-import { AuthDataType } from './types';
-import { login } from '@/actions/auth/login';
-
-// get a pair of auth tokens
-export const loginFx = createEffect<string, AuthDataType['data'], Error>(
-  async (init_data: string) => {
-    return login(init_data);
-  }
-);
+export const loginFx = createEffect<string, boolean, Error>(async (init_data: string) => {
+  const res = await nextApiHost.post('login', { init_data });
+  return res.status === 200;
+});
 
 export const loggedIn = createEvent<void>();
 
-export const $isAuth = createStore<boolean>(false).on(
-  loginFx.doneData,
-  (_, data) => data.access_token.length > 0 && data.refresh_token.length > 0
-);
-
-export const $authTokens = createStore<AuthDataType['data'] | null>(null).on(
-  loginFx.doneData,
-  (_, data) => data
-);
+export const $isAuth = createStore<boolean>(false).on(loginFx.doneData, (_, value) => value);
 
 // fire loggedIn event on loginFx.doneData
 sample({
