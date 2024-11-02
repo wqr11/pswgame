@@ -28,15 +28,12 @@ export async function POST(req: NextRequest) {
         }
       );
 
-      req.headers.set('jwt-token', tokens.access_token);
-
       // Set cookies securely
       response.cookies.set({
         name: process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME || 'PSWMetaAccessToken',
         value: tokens.access_token,
         httpOnly: true,
         secure: true,
-        sameSite: 'lax',
         maxAge: 3600, // 1 hour, adjust as needed
       });
 
@@ -45,7 +42,6 @@ export async function POST(req: NextRequest) {
         value: tokens.refresh_token,
         httpOnly: true,
         secure: true,
-        sameSite: 'lax',
         maxAge: 7 * 24 * 3600, // 7 days, adjust as needed
       });
 
