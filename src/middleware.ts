@@ -1,23 +1,27 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
-export async function middleware(req: NextRequest) {
-  const access = req.cookies.get(
+export function middleware(request: NextRequest) {
+  const token = request.cookies.get(
     process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME ?? 'PSWMetaAccessToken'
-  )?.value;
+  );
 
-  const reqHeaders = new Headers(req.headers);
+  // Clone the request headers
+  const requestHeaders = new Headers(request.headers);
 
-  if (access) {
-    reqHeaders.append('jwt-token', access);
+  // Set the jwt-token header if the cookie exists
+  if (token) {
+    requestHeaders.set('jwt-token', token.value);
   }
 
-  reqHeaders.append('TESTTEST', 'ASDASDASDAS');
-
+  // Return the response with the modified headers
   return NextResponse.next({
-    headers: reqHeaders,
+    request: {
+      headers: requestHeaders,
+    },
   });
 }
 
 export const config = {
-  matcher: ['/:path*'],
+  matcher: '/:path*',
 };
