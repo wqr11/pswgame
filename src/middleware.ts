@@ -1,15 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function middleware(req: NextRequest) {
-  const access = req.cookies.get(process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME ?? 'PSWMetaAccessToken');
+  const access = req.cookies.get(
+    process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME ?? 'PSWMetaAccessToken'
+  )?.value;
 
-  const response = NextResponse.next();
+  const reqHeaders = new Headers(req.headers);
 
-  response.headers.append('jwt-token', access?.value ?? '');
+  if (access) {
+    reqHeaders.append('jwt-token', access);
+  }
 
-  return response;
+  return NextResponse.next({
+    headers: reqHeaders,
+  });
 }
 
 export const config = {
-  matcher: ['/', '/game', '/referral'],
+  matcher: ['/:path*'],
 };
