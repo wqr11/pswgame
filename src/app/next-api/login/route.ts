@@ -47,22 +47,15 @@ export async function POST(req: NextRequest) {
   );
 
   if (loginData.data.data.access_token) {
-    return NextResponse.json(
-      {
-        result: 'Authorized',
-      },
-      {
-        headers: headerStore,
-        status: 200,
-        statusText: 'Authorized with status 200',
-      }
-    );
+    return new NextResponse('Authorized', {
+      headers: headerStore,
+      status: 200,
+      statusText: 'Authorized with status 200',
+    });
   }
 
-  return NextResponse.json(
-    {
-      error: 'Unauthorized',
-    },
+  return new NextResponse(
+    'Unauthorized',
     {
       status: 401,
       statusText: 'Unauthorized 401',
