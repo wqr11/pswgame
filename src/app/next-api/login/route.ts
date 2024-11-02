@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
   const tokens = loginData.data.data;
 
   const cookieStore = cookies();
-  const headerStore = headers();
+  const headerStore = new Headers(req.headers);
 
   cookieStore.set({
     name: `${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`,
