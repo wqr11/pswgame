@@ -3,15 +3,11 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function middleware(req: NextRequest) {
   const access = req.cookies.get(process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME ?? 'PSWMetaAccessToken');
 
-  const reqHeaders = new Headers(req.headers);
+  const response = NextResponse.next();
 
-  reqHeaders.set('jwt-token', `${access}`);
+  response.headers.append('jwt-token', access?.value ?? '');
 
-  return NextResponse.next({
-    request: {
-      headers: reqHeaders,
-    },
-  });
+  return response;
 }
 
 export const config = {
