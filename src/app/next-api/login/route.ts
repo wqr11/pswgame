@@ -1,6 +1,6 @@
 import { AuthDataType } from '@/entities';
 import axios from 'axios';
-import { cookies, headers } from 'next/headers';
+import { cookies } from 'next/headers';
 import { type NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
@@ -51,13 +51,15 @@ export async function POST(req: NextRequest) {
   );
 
   if (loginData.data.data.access_token) {
-    return new NextResponse('Authorized', {
+    return NextResponse.json('Authorized', {
       headers: headerStore,
       status: 200,
+      statusText: 'Authorized with status 200',
     });
   }
 
-  return new NextResponse('Unauthorized', {
+  return NextResponse.json('Unauthorized', {
     status: 401,
+    statusText: 'Unauthorized 401',
   });
 }
