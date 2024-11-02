@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
 
   cookieStore.set({
     name: `${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`,
-    value: tokens.access_token,
+    value: tokens.refresh_token,
     sameSite: 'none',
     secure: true,
   });
@@ -42,24 +42,34 @@ export async function POST(req: NextRequest) {
 
   headerStore.append(
     'Set-Cookie',
-    `token=${cookieStore.get(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`)}`
+    `${cookieStore.get(`${process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME}`)}`
   );
 
   headerStore.append(
     'Set-Cookie',
-    `token=${cookieStore.get(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`)}`
+    `${cookieStore.get(`${process.env.NEXT_PUBLIC_REFRESH_TOKEN_NAME}`)}`
   );
 
   if (loginData.data.data.access_token) {
-    return NextResponse.json('Authorized', {
-      headers: headerStore,
-      status: 200,
-      statusText: 'Authorized with status 200',
-    });
+    return NextResponse.json(
+      {
+        result: 'Authorized',
+      },
+      {
+        headers: headerStore,
+        status: 200,
+        statusText: 'Authorized with status 200',
+      }
+    );
   }
 
-  return NextResponse.json('Unauthorized', {
-    status: 401,
-    statusText: 'Unauthorized 401',
-  });
+  return NextResponse.json(
+    {
+      error: 'Unauthorized',
+    },
+    {
+      status: 401,
+      statusText: 'Unauthorized 401',
+    }
+  );
 }
