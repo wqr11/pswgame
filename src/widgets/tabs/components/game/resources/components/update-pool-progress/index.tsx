@@ -13,10 +13,6 @@ export const UpdatePoolProgress = () => {
   const estimatedTime = useUnit($estimatedTime);
   const timerProgress = useUnit($timerProgress);
 
-  useEffect(() => {
-    console.log('TIMER PROGRESS', timerProgress);
-  }, [timerProgress]);
-
   const { t } = useTranslation('translation', { keyPrefix: 'game.tabs.resources' });
 
   return (

@@ -1,7 +1,7 @@
 'use server';
 
 import axios from 'axios';
-import { cookies } from 'next/headers';
+import { cookies, headers } from 'next/headers';
 import { AuthDataType } from '@/entities/auth';
 
 export const login = async (init_data: string) => {
@@ -33,6 +33,8 @@ export const login = async (init_data: string) => {
     sameSite: 'none',
     secure: true,
   });
+
+  headers().set('jwt-token', tokens.access_token);
 
   return tokens;
 };

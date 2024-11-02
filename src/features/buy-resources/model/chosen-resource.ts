@@ -8,9 +8,6 @@ export const $chosenResourceData = combine(
   resourcePoolModel.$resourcePool,
   $chosenResourceKey,
   (pool, chosenResource) => {
-    // change this
-    console.log(pool);
-    //
     if (pool) {
       const resource = pool.entities.filter(res => res.name === chosenResource);
       if (!!resource[0]) {
