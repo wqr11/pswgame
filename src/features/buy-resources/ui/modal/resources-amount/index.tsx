@@ -42,7 +42,7 @@ export const ResourcesAmount = () => {
         }}
       >
         {/* {formatNumber(buyResAmount)} */}
-        {buyResAmount ?? 'NO AMOUNT'}
+        {buyResAmount}
       </h6>
       <div className="absolute right-2 top-0 flex h-full items-center justify-center">
         <Icon

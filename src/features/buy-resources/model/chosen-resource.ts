@@ -8,14 +8,8 @@ export const $chosenResourceData = combine(
   resourcePoolModel.$resourcePool,
   $chosenResourceKey,
   (pool, chosenResource) => {
-    if (pool) {
-      const resource = pool.entities.filter(res => res.name === chosenResource);
-      if (!!resource[0]) {
-        return resource[0];
-      }
-      throw new Error(`ERROR In ChosenResourceData: ${resource}`);
-    }
-    return null;
+    const resource = !!pool && pool.entities.find(res => res.name === chosenResource);
+    return resource ?? null;
   }
 );
 
@@ -30,6 +24,6 @@ export const $chosenResourceTotalPrice = combine(
   $chosenResourceData,
   $buyResourceAmount,
   (data, amount) => {
-    if (data) return data.cost * amount;
+    return data ? data.cost * amount : 0;
   }
 );
