@@ -10,6 +10,7 @@ import { ResourceType } from '@/entities';
 import { useUnit } from 'effector-react';
 import { buyResourcesModelInputs } from '../../../model';
 import { formatNumber } from '@/shared/utils/formatNumber';
+import { useEffect } from 'react';
 
 export const ResourcesAmount = () => {
   const buyResAmount = useUnit(buyResourcesModelInputs.$buyResourceAmount);
@@ -33,6 +34,11 @@ export const ResourcesAmount = () => {
 
   const Icon = icons[chosenResKey ?? 'food'];
 
+  useEffect(() => {
+    console.log(buyResAmount);
+    console.log(chosenResKey);
+  }, [buyResAmount, chosenResKey]);
+
   return (
     <div className="relative flex min-w-[50%] max-w-[90%] flex-shrink items-center gap-2 border-[2px] border-white px-2 py-1">
       <h6
@@ -42,7 +48,7 @@ export const ResourcesAmount = () => {
         }}
       >
         {/* {formatNumber(buyResAmount)} */}
-        {buyResAmount}
+        {buyResAmount ?? 'NO AMOUNT'}
       </h6>
       <div className="absolute right-2 top-0 flex h-full items-center justify-center">
         <Icon

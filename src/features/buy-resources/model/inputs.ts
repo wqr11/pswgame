@@ -17,7 +17,7 @@ export const $buyResourceAmount = createStore<number>(0)
   .reset(resetInputs);
 
 export const setChosenResourceKey = createEvent<ResourceType>();
-export const $chosenResourceKey = createStore<ResourceType | 'crypto'>('crypto')
+export const $chosenResourceKey = createStore<ResourceType>('crypto')
   .on(setChosenResourceKey, (_, resource) => resource)
   .reset(resetInputs);
 

@@ -1,5 +1,3 @@
-import { KingdomStateUnitType } from '../kingdom';
-
 export type ResourceType = 'crypto' | 'heat' | 'food' | 'energy';
 
 export type PoolResourceType = {
@@ -7,7 +5,6 @@ export type PoolResourceType = {
   cost: number;
   current: number;
   total: number;
-  state: KingdomStateUnitType;
 };
 
 export type PoolResourcesDataType = {
